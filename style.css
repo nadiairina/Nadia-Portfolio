@@ -1663,4 +1663,9 @@ body.dark .modern-project-card {
     color: inherit;
     display: block;
 }
+    .project-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 }
