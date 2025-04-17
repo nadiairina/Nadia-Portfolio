@@ -1602,4 +1602,60 @@ body.dark .resume-btn:hover {
     .footer-links {
         gap: 2rem;
     }
+    /* Modern Projects Grid */
+.modern-projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.modern-project-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.modern-project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.modern-project-card .project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.modern-project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.modern-project-card .project-info {
+    padding: 1.5rem;
+}
+
+.modern-project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.modern-project-card .project-category {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+body.dark .modern-project-card {
+    background-color: #1f2937;
+}
 }
