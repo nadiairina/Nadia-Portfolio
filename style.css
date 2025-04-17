@@ -334,7 +334,7 @@ body.dark .tooltip:before {
 }
 
 .greeting {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--primary-color);
     font-size: 1.25rem;
     margin-bottom: 1rem;
