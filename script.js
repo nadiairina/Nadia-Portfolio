@@ -1,5 +1,7 @@
 // Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Script is loaded and running!');
+    
     // Store theme preference in localStorage
     const DARK_MODE_KEY = 'darkMode';
     const THEME_TRANSITION_DURATION = 500; // ms
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Dark mode toggle functionality with improved animation
     if (themeToggle) {
+        console.log('Theme toggle button found:', themeToggle);
         themeToggle.addEventListener("click", toggleDarkMode);
         
         // Add tooltip to theme toggle
@@ -52,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip.style.opacity = '0';
             tooltip.style.transform = 'translateY(10px)';
         });
+    } else {
+        console.log('Theme toggle button not found!');
     }
     
     // Project filtering (on projects page)
@@ -164,12 +169,15 @@ document.addEventListener('DOMContentLoaded', () => {
      * Toggle dark mode with enhanced animation and accessibility
      */
     function toggleDarkMode() {
+        console.log('Toggle dark mode clicked');
+        
         // Add transition class to trigger smooth animation for all elements
         document.documentElement.classList.add('theme-transition');
         
         // Toggle dark mode class
         document.body.classList.toggle('dark');
         const isDarkMode = document.body.classList.contains('dark');
+        console.log('Dark mode is now:', isDarkMode);
         
         // Update button icon and aria-label for accessibility
         themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
