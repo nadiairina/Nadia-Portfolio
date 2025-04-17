@@ -1,424 +1,372 @@
-// Wait for DOM content to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Script is loaded and running!');
-    
-    // Store theme preference in localStorage
-    const DARK_MODE_KEY = 'darkMode';
-    const THEME_TRANSITION_DURATION = 500; // ms
-    
-    // Elements
-    const header = document.getElementById("header");
-    const themeToggle = document.getElementById("theme-toggle");
-    const projectFilters = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
-    const contactForm = document.getElementById('contact-form');
-    
-    // Initialize theme based on user preference
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize theme
     initializeTheme();
     
-    // Debounce function for performance optimization
-    function debounce(func, wait) {
-        let timeout;
-        return function() {
-            const context = this;
-            const args = arguments;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), wait);
-        };
-    }
+    // Add event listeners
+    document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
+    window.addEventListener('scroll', debounce(handleScroll, 10));
     
-    // Sticky header shadow on scroll with debounce for performance
-    const debouncedHandleScroll = debounce(handleScroll, 10);
-    window.addEventListener("scroll", debouncedHandleScroll);
-    
-    // Initial scroll check (in case page is loaded scrolled down)
-    setTimeout(handleScroll, 100);
-    
-    // Dark mode toggle functionality with improved animation
-    if (themeToggle) {
-        console.log('Theme toggle button found:', themeToggle);
-        themeToggle.addEventListener("click", toggleDarkMode);
-        
-        // Add tooltip to theme toggle
-        const tooltip = document.createElement('span');
-        tooltip.className = 'tooltip';
-        tooltip.textContent = 'Toggle Dark Mode';
-        themeToggle.appendChild(tooltip);
-        
-        // Show tooltip on hover
-        themeToggle.addEventListener('mouseenter', () => {
-            tooltip.style.opacity = '1';
-            tooltip.style.transform = 'translateY(0)';
-        });
-        
-        themeToggle.addEventListener('mouseleave', () => {
-            tooltip.style.opacity = '0';
-            tooltip.style.transform = 'translateY(10px)';
-        });
-    } else {
-        console.log('Theme toggle button not found!');
-    }
-    
-    // Project filtering (on projects page)
-    if (projectFilters.length > 0 && projectItems.length > 0) {
+    // Set up project filters if on projects page
+    if (document.querySelector('.project-filters')) {
         setupProjectFilters();
     }
     
-    // Contact form handling with improved validation
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactForm);
+    // Set up form validation if on contact page
+    if (document.getElementById('contact-form')) {
         setupFormValidation();
     }
     
-    // Smooth scrolling for anchor links
+    // Set up smooth scrolling
     setupSmoothScrolling();
     
-    // Add animation classes when elements come into view
+    // Set up scroll animations
     setupScrollAnimations();
+});
+
+/**
+ * Debounce function to limit function calls
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            func.apply(context, args);
+        }, wait);
+    };
+}
+
+/**
+ * Initialize theme based on user preference or system preference
+ * with improved transition between states
+ */
+function initializeTheme() {
+    const darkModeToggle = document.getElementById('theme-toggle');
     
-    /**
-     * Initialize theme based on user preference or system preference
-     * with improved transition between states
-     */
-    function initializeTheme() {
-        // Check if user has a saved preference
-        const savedTheme = localStorage.getItem(DARK_MODE_KEY);
-        
-        // Prepare body for smooth transition
-        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-        
-        if (savedTheme === 'true') {
-            document.body.classList.add('dark');
-            if (themeToggle) {
-                themeToggle.textContent = '🌞';
-                themeToggle.setAttribute('aria-label', 'Switch to Light Mode');
-            }
-        } else if (savedTheme === 'false') {
-            document.body.classList.remove('dark');
-            if (themeToggle) {
-                themeToggle.textContent = '🌙';
-                themeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
-            }
-        } else {
-            // If no saved preference, check system preference
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.body.classList.add('dark');
-                if (themeToggle) {
-                    themeToggle.textContent = '🌞';
-                    themeToggle.setAttribute('aria-label', 'Switch to Light Mode');
-                }
-                localStorage.setItem(DARK_MODE_KEY, 'true');
-            } else {
-                if (themeToggle) {
-                    themeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
-                }
-            }
-        }
-        
-        // Listen for system theme changes
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (localStorage.getItem(DARK_MODE_KEY) === null) {
-                    // Only auto-switch if user hasn't set a preference
-                    if (e.matches) {
-                        document.body.classList.add('dark');
-                        if (themeToggle) {
-                            themeToggle.textContent = '🌞';
-                            themeToggle.setAttribute('aria-label', 'Switch to Light Mode');
-                        }
-                    } else {
-                        document.body.classList.remove('dark');
-                        if (themeToggle) {
-                            themeToggle.textContent = '🌙';
-                            themeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
-                        }
-                    }
-                }
-            });
-        }
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Apply dark theme if saved or system prefers it
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.body.classList.add('dark');
+        darkModeToggle.innerHTML = '☀️';
+        darkModeToggle.setAttribute('aria-label', 'Toggle Light Mode');
+    } else {
+        darkModeToggle.innerHTML = '🌙';
+        darkModeToggle.setAttribute('aria-label', 'Toggle Dark Mode');
     }
     
-    /**
-     * Handle scroll events for sticky header with improved animation
-     * and performance optimization
-     */
-    function handleScroll() {
-        if (!header) return;
-        
-        // Add shadow and transform effect to header when scrolled
-        const scrolled = window.scrollY > 10;
-        
-        if (scrolled && !header.classList.contains("scrolled")) {
-            header.classList.add("scrolled");
-            // Trigger a reflow to ensure smooth animation
-            void header.offsetWidth;
-        } else if (!scrolled && header.classList.contains("scrolled")) {
-            header.classList.remove("scrolled");
-        }
-        
-        // Check for elements that should animate on scroll
-        const animatedElements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
-        animatedElements.forEach(element => {
-            if (isElementInViewport(element)) {
-                element.classList.add('animated');
-            }
-        });
-    }
+    // Add tooltip for first-time users
+    const tooltip = document.createElement('span');
+    tooltip.classList.add('tooltip');
+    tooltip.textContent = document.body.classList.contains('dark') ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    darkModeToggle.appendChild(tooltip);
     
-    /**
-     * Toggle dark mode with enhanced animation and accessibility
-     */
-    function toggleDarkMode() {
-        console.log('Toggle dark mode clicked');
-        
-        // Add transition class to trigger smooth animation for all elements
-        document.documentElement.classList.add('theme-transition');
-        
-        // Toggle dark mode class
-        document.body.classList.toggle('dark');
-        const isDarkMode = document.body.classList.contains('dark');
-        console.log('Dark mode is now:', isDarkMode);
-        
-        // Update button icon and aria-label for accessibility
-        themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
-        themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
-        
-        // Save preference to localStorage
-        localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
-        
-        // Add animation to theme toggle
-        themeToggle.classList.add('theme-toggle-animation');
-        
-        // Flash effect on body background
-        const flashElement = document.createElement('div');
-        flashElement.className = 'theme-flash';
-        document.body.appendChild(flashElement);
-        
-        // Clean up animations after transition completes
+    // Show tooltip briefly on first visit
+    if (!localStorage.getItem('tooltipShown')) {
         setTimeout(() => {
-            themeToggle.classList.remove('theme-toggle-animation');
-            document.documentElement.classList.remove('theme-transition');
-            if (flashElement.parentNode) {
-                flashElement.parentNode.removeChild(flashElement);
-            }
-        }, THEME_TRANSITION_DURATION);
-    }
-    
-    /**
-     * Setup project filtering functionality
-     */
-    function setupProjectFilters() {
-        projectFilters.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                projectFilters.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Get filter value
-                const filterValue = button.getAttribute('data-filter');
-                
-                // Filter projects
-                projectItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'grid';
-                        // Add animation
-                        item.classList.add('fade-in');
-                        setTimeout(() => {
-                            item.classList.remove('fade-in');
-                        }, 500);
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-    }
-    
-    /**
-     * Setup form validation with real-time feedback
-     */
-    function setupFormValidation() {
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        
-        formInputs.forEach(input => {
-            // Create feedback element
-            const feedbackElement = document.createElement('div');
-            feedbackElement.className = 'form-feedback';
-            input.parentNode.appendChild(feedbackElement);
+            tooltip.style.opacity = '1';
+            tooltip.style.transform = 'translateX(-50%) translateY(0)';
             
-            // Add event listeners for validation
-            input.addEventListener('blur', () => validateInput(input, feedbackElement));
-            input.addEventListener('input', () => {
-                // Clear error when user starts typing again
-                if (input.classList.contains('invalid')) {
-                    input.classList.remove('invalid');
-                    feedbackElement.textContent = '';
-                    feedbackElement.classList.remove('error');
+            setTimeout(() => {
+                tooltip.style.opacity = '0';
+                tooltip.style.transform = 'translateX(-50%) translateY(10px)';
+                localStorage.setItem('tooltipShown', 'true');
+            }, 3000);
+        }, 1000);
+    }
+    
+    // Add hover effect for tooltip
+    darkModeToggle.addEventListener('mouseenter', () => {
+        tooltip.style.opacity = '1';
+        tooltip.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    
+    darkModeToggle.addEventListener('mouseleave', () => {
+        tooltip.style.opacity = '0';
+        tooltip.style.transform = 'translateX(-50%) translateY(10px)';
+    });
+}
+
+/**
+ * Handle scroll events for sticky header with improved animation
+ * and performance optimization
+ */
+function handleScroll() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+}
+
+/**
+ * Toggle dark mode with enhanced animation and accessibility
+ */
+function toggleDarkMode() {
+    const body = document.body;
+    const darkModeToggle = document.getElementById('theme-toggle');
+    const tooltip = darkModeToggle.querySelector('.tooltip');
+    
+    // Add transition class for smooth transition
+    body.classList.add('theme-transition');
+    
+    // Create flash effect
+    const flash = document.createElement('div');
+    flash.classList.add('theme-flash');
+    body.appendChild(flash);
+    
+    // Toggle dark mode class and update button
+    if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        darkModeToggle.innerHTML = '🌙';
+        darkModeToggle.setAttribute('aria-label', 'Toggle Dark Mode');
+        localStorage.setItem('theme', 'light');
+        
+        if (tooltip) {
+            tooltip.textContent = 'Switch to Dark Mode';
+        }
+    } else {
+        body.classList.add('dark');
+        darkModeToggle.innerHTML = '☀️';
+        darkModeToggle.setAttribute('aria-label', 'Toggle Light Mode');
+        localStorage.setItem('theme', 'dark');
+        
+        if (tooltip) {
+            tooltip.textContent = 'Switch to Light Mode';
+        }
+    }
+    
+    // Add animation to button
+    darkModeToggle.classList.add('theme-toggle-animation');
+    
+    // Clean up after transition
+    setTimeout(() => {
+        darkModeToggle.classList.remove('theme-toggle-animation');
+        body.removeChild(flash);
+        setTimeout(() => {
+            body.classList.remove('theme-transition');
+        }, 500);
+    }, 500);
+    
+    // Re-append tooltip after changing button content
+    if (tooltip) {
+        darkModeToggle.appendChild(tooltip);
+    }
+}
+
+/**
+ * Setup project filtering functionality
+ */
+function setupProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item, .modern-project-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Set active button
+            filterButtons.forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            
+            // Filter projects
+            projectItems.forEach(item => {
+                const parent = item.closest('.project-link-wrapper') || item;
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    parent.style.display = 'block';
+                    setTimeout(() => {
+                        parent.style.opacity = '1';
+                        parent.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    parent.style.opacity = '0';
+                    parent.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        parent.style.display = 'none';
+                    }, 300);
                 }
             });
         });
-    }
+    });
+}
+
+/**
+ * Setup form validation with real-time feedback
+ */
+function setupFormValidation() {
+    const contactForm = document.getElementById('contact-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
     
-    /**
-     * Validate form input and show feedback
-     * @param {HTMLElement} input - Input element to validate
-     * @param {HTMLElement} feedback - Element to show feedback in
-     */
-    function validateInput(input, feedback) {
-        const value = input.value.trim();
-        const name = input.name;
-        
-        // Don't validate empty optional fields
-        if (!input.required && !value) {
-            feedback.textContent = '';
-            return true;
-        }
-        
-        // Check for required fields
-        if (input.required && !value) {
+    const nameFeedback = document.getElementById('name-feedback');
+    const emailFeedback = document.getElementById('email-feedback');
+    const messageFeedback = document.getElementById('message-feedback');
+    
+    // Set up real-time validation
+    nameInput.addEventListener('input', () => validateInput(nameInput, nameFeedback));
+    emailInput.addEventListener('input', () => validateInput(emailInput, emailFeedback));
+    messageInput.addEventListener('input', () => validateInput(messageInput, messageFeedback));
+    
+    // Handle form submission
+    contactForm.addEventListener('submit', handleContactForm);
+}
+
+/**
+ * Validate form input and show feedback
+ * @param {HTMLElement} input - Input element to validate
+ * @param {HTMLElement} feedback - Element to show feedback in
+ */
+function validateInput(input, feedback) {
+    const value = input.value.trim();
+    
+    // Clear previous validation
+    input.classList.remove('invalid');
+    feedback.textContent = '';
+    feedback.classList.remove('error');
+    
+    if (input.id === 'name') {
+        if (value.length < 2) {
             input.classList.add('invalid');
-            feedback.textContent = 'This field is required';
+            feedback.textContent = 'Name must be at least 2 characters';
             feedback.classList.add('error');
             return false;
         }
-        
-        // Email validation
-        if (name === 'email' && value) {
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(value)) {
-                input.classList.add('invalid');
-                feedback.textContent = 'Please enter a valid email address';
-                feedback.classList.add('error');
-                return false;
-            }
+    } else if (input.id === 'email') {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(value)) {
+            input.classList.add('invalid');
+            feedback.textContent = 'Please enter a valid email address';
+            feedback.classList.add('error');
+            return false;
         }
-        
-        // Clear feedback if valid
-        feedback.textContent = '';
-        return true;
+    } else if (input.id === 'message') {
+        if (value.length < 10) {
+            input.classList.add('invalid');
+            feedback.textContent = 'Message must be at least 10 characters';
+            feedback.classList.add('error');
+            return false;
+        }
     }
     
-    /**
-     * Handle contact form submission with enhanced validation
-     * @param {Event} e - Form submit event
-     */
-    function handleContactForm(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
-        
-        // Validate all fields
-        let isValid = true;
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        
-        formInputs.forEach(input => {
-            const feedbackElement = input.parentNode.querySelector('.form-feedback');
-            if (!validateInput(input, feedbackElement)) {
-                isValid = false;
-            }
-        });
-        
-        if (!isValid) {
-            // Focus the first invalid field
-            contactForm.querySelector('.invalid').focus();
-            return;
-        }
-        
-        // Create and show success message
+    return true;
+}
+
+/**
+ * Handle contact form submission with enhanced validation
+ * @param {Event} e - Form submit event
+ */
+function handleContactForm(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    
+    const nameFeedback = document.getElementById('name-feedback');
+    const emailFeedback = document.getElementById('email-feedback');
+    const messageFeedback = document.getElementById('message-feedback');
+    
+    // Validate all inputs
+    const nameValid = validateInput(nameInput, nameFeedback);
+    const emailValid = validateInput(emailInput, emailFeedback);
+    const messageValid = validateInput(messageInput, messageFeedback);
+    
+    if (nameValid && emailValid && messageValid) {
+        // Create success message
         const successMessage = document.createElement('div');
-        successMessage.className = 'form-success';
+        successMessage.classList.add('form-success');
         successMessage.innerHTML = `
-            <i class="fas fa-check-circle"></i>
-            <p>Thank you for your message, ${name}!</p>
+            <i class="fa-solid fa-check-circle"></i>
+            <p>Thanks for your message, ${nameInput.value}!</p>
             <p>I'll get back to you soon.</p>
         `;
         
-        // Replace form with success message
-        contactForm.style.opacity = '0';
-        
+        // Hide form and show success message
+        form.style.opacity = '0';
         setTimeout(() => {
-            const formContainer = contactForm.parentNode;
-            formContainer.innerHTML = '';
-            formContainer.appendChild(successMessage);
-            
-            // Animate success message
+            form.style.display = 'none';
+            form.parentNode.appendChild(successMessage);
             setTimeout(() => {
                 successMessage.style.opacity = '1';
                 successMessage.style.transform = 'translateY(0)';
-            }, 50);
-            
-            // Reset form behind the scenes for if we want to show it again
-            contactForm.reset();
+            }, 100);
         }, 300);
-    }
-    
-    /**
-     * Setup smooth scrolling for anchor links
-     */
-    function setupSmoothScrolling() {
-        const anchorLinks = document.querySelectorAll('a[href^="#"]');
         
-        anchorLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const targetId = link.getAttribute('href');
+        // Optional: Send form data to server
+        // fetch('/api/contact', {
+        //     method: 'POST',
+        //     body: new FormData(form)
+        // });
+    }
+}
+
+/**
+ * Setup smooth scrolling for anchor links
+ */
+function setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            if (this.getAttribute('href') !== '#') {
+                e.preventDefault();
                 
-                // Skip if it's just "#"
-                if (targetId === '#') return;
-                
+                const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    e.preventDefault();
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
                     
-                    // Get header height for offset
-                    const headerHeight = header ? header.offsetHeight : 0;
-                    
-                    // Scroll to element with offset for header
                     window.scrollTo({
-                        top: targetElement.offsetTop - headerHeight - 20,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
-            });
+            }
         });
-    }
+    });
+}
+
+/**
+ * Setup animations for elements when they come into view
+ */
+function setupScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
     
-    /**
-     * Setup animations for elements when they come into view
-     */
-    function setupScrollAnimations() {
-        // Add animate-on-scroll class to elements that should animate
-        const elementsToAnimate = [
-            ...document.querySelectorAll('.project-card'),
-            ...document.querySelectorAll('.skill-category'),
-            ...document.querySelectorAll('.timeline-item'),
-            ...document.querySelectorAll('.education-item')
-        ];
-        
-        elementsToAnimate.forEach(element => {
-            element.classList.add('animate-on-scroll');
+    // Initial check for elements in viewport
+    animatedElements.forEach(el => {
+        if (isElementInViewport(el)) {
+            el.classList.add('animated');
+        }
+    });
+    
+    // Add scroll listener
+    window.addEventListener('scroll', debounce(() => {
+        animatedElements.forEach(el => {
+            if (isElementInViewport(el) && !el.classList.contains('animated')) {
+                el.classList.add('animated');
+            }
         });
-        
-        // Initial check for elements in viewport
-        handleScroll();
-    }
+    }, 50));
+}
+
+/**
+ * Check if an element is in the viewport
+ * @param {HTMLElement} element - The element to check
+ * @returns {boolean} - Whether the element is in the viewport
+ */
+function isElementInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
     
-    /**
-     * Check if an element is in the viewport
-     * @param {HTMLElement} element - The element to check
-     * @returns {boolean} - Whether the element is in the viewport
-     */
-    function isElementInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
-            rect.bottom >= 0
-        );
-    }
-});
+    return (
+        rect.top <= windowHeight * 0.85 &&
+        rect.bottom >= 0
+    );
+}
