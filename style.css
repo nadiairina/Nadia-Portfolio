@@ -177,14 +177,28 @@ img {
 }
 
 .resume-btn {
-    color: var(--primary-color);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 6px;
     font-weight: 600;
     transition: all var(--transition-normal);
+    text-align: center;
 }
 
 .resume-btn:hover {
-    color: var(--primary-dark);
-    text-decoration: underline;
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+body.dark .resume-btn {
+    background-color: var(--primary-dark);
+}
+
+body.dark .resume-btn:hover {
+    background-color: var(--primary-color);
 }
 
 .social-icons {
