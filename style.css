@@ -1658,4 +1658,9 @@ body.dark .resume-btn:hover {
 body.dark .modern-project-card {
     background-color: #1f2937;
 }
+    .project-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 }
