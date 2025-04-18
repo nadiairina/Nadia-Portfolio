@@ -1231,6 +1231,69 @@ body.dark .tooltip:before {
     background-color: var(--bg-light);
 }
 
+/* Modern Projects Grid */
+.modern-projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.modern-project-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.modern-project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.modern-project-card .project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.modern-project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.modern-project-card .project-info {
+    padding: 1.5rem;
+}
+
+.modern-project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.modern-project-card .project-category {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.project-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+body.dark .modern-project-card {
+    background-color: #1f2937;
+}
+
 /* Footer */
 .footer {
     background-color: var(--bg-dark);
@@ -1299,69 +1362,6 @@ body.dark .tooltip:before {
     border-top: 1px solid #374151;
     color: #a1a1aa;
     font-size: 0.875rem;
-}
-
-/* Modern Projects Grid */
-.modern-projects-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.modern-project-card {
-    background-color: var(--bg-card);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.modern-project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-}
-
-.modern-project-card .project-image {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-}
-
-.modern-project-card .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.modern-project-card:hover .project-image img {
-    transform: scale(1.05);
-}
-
-.modern-project-card .project-info {
-    padding: 1.5rem;
-}
-
-.modern-project-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-}
-
-.modern-project-card .project-category {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-.project-link-wrapper {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-body.dark .modern-project-card {
-    background-color: #1f2937;
 }
 
 /* Animations */
@@ -1730,569 +1730,4 @@ body.dark .project-image.placeholder-img {
     .footer-links {
         grid-template-columns: 1fr;
     }
-    /* Better Dark Mode Styling for Contact Form */
-body.dark .contact-info,
-body.dark .contact-form-container {
-    background-color: #1f2937;
-    border-color: #374151;
-    color: #e5e7eb;
-}
-
-body.dark .contact-icon {
-    background-color: #312e81;
-    color: var(--primary-light);
-}
-
-body.dark .contact-detail h3 {
-    color: #f3f4f6;
-}
-
-body.dark .availability-status {
-    background-color: #111827;
-    color: #d1d5db;
-    border: 1px solid #374151;
-}
-
-body.dark .form-group label {
-    color: #f3f4f6;
-}
-
-body.dark .form-group input,
-body.dark .form-group textarea {
-    background-color: #111827;
-    border-color: #4b5563;
-    color: #e5e7eb;
-}
-
-body.dark .form-group input:focus,
-body.dark .form-group textarea:focus {
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.2);
-}
-
-body.dark .submit-btn:hover {
-    background-color: var(--primary-light);
-}
-    /* Logo link styles */
-.logo-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.logo-link:hover {
-    color: inherit;
-}
-
-.logo-link:hover .logo:after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-    /* Make navigation links the same color as the logo */
-.nav a {
-    font-weight: 500;
-    position: relative;
-    padding: 0.5rem 0;
-    color: var(--primary-color); /* This makes the links purple like the logo */
-}
-
-/* Keep the hover state to make it a bit darker for better UX */
-.nav a:hover,
-.nav a.active {
-    color: var(--primary-dark); /* Slightly darker shade when hovering */
-}
-
-/* For dark mode */
-body.dark .nav a {
-    color: var(--primary-light); /* Lighter shade of purple in dark mode */
-}
-
-body.dark .nav a:hover,
-body.dark .nav a.active {
-    color: white; /* White on hover in dark mode for better contrast */
-}
-    /* Update the secondary button to have purple border */
-.btn.secondary {
-    background-color: transparent;
-    color: var(--text-dark);
-    border: 1px solid var(--primary-color); /* Changed from border-color to primary color */
-}
-
-.btn.secondary:hover {
-    border-color: var(--primary-dark); /* Slightly darker on hover */
-    color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
-}
-
-/* For dark mode */
-body.dark .btn.secondary {
-    color: var(--text-light);
-    border-color: var(--primary-color); /* Purple border in dark mode too */
-}
-
-body.dark .btn.secondary:hover {
-    border-color: var(--primary-light); /* Lighter purple on hover in dark mode */
-    color: var(--primary-light);
-}
-    /* Make the "Some of my latest work" heading purple */
-.work h2 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    position: relative;
-    display: inline-block;
-    color: var(--primary-color); /* This makes the text purple like the logo */
-}
-
-/* Keep the existing underline effect, but make sure it's visible */
-.work h2:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background-color: var(--primary-color);
-}
-
-/* For dark mode */
-body.dark .work h2 {
-    color: var(--primary-light); /* Lighter purple in dark mode */
-}
-    /* Lighter dark mode background colors */
-body.dark {
-    background: #232835; /* Lighter than the current dark background */
-    color: var(--text-light);
-}
-
-body.dark .header {
-    background-color: rgba(35, 40, 53, 0.95); /* Lighter than current dark header */
-    border-bottom-color: #3a4050; /* Slightly lighter border */
-}
-
-body.dark .work {
-    background-color: #1c2131; /* Lighter than current dark work section */
-}
-
-/* Improved contrast for purple elements in dark mode */
-body.dark .nav a,
-body.dark .greeting,
-body.dark .work h2,
-body.dark .timeline-date,
-body.dark .skill-category h3,
-body.dark .highlight {
-    color: #a5b4fc; /* Lighter and brighter purple for better contrast */
-}
-
-body.dark .tech-tag,
-body.dark .skill-tag {
-    background-color: #4338ca; /* Brighter background for tags */
-    color: #ffffff; /* White text for maximum contrast */
-}
-
-/* Improve card contrast */
-body.dark .project-card,
-body.dark .skill-category,
-body.dark .education-item,
-body.dark .modern-project-card {
-    background-color: #2a303c; /* Slightly lighter than the main background */
-    border-color: #3a4050;
-}
-
-/* Increase contrast for headings */
-body.dark h1, 
-body.dark h2, 
-body.dark h3 {
-    color: #f9fafb; /* Brighter white for headings */
-}
-    /* Typewriter effect */
-.typewriter {
-    position: relative;
-    color: var(--primary-color);
-    font-weight: 600;
-    overflow: hidden;
-    border-right: 2px solid var(--primary-color);
-    white-space: nowrap;
-    display: inline-block;
-}
-
-.typewriter:nth-of-type(1) {
-    animation: typing 2s steps(8, end) infinite alternate,
-               blink-caret 0.75s step-end infinite;
-    animation-delay: 0s;
-}
-
-.typewriter:nth-of-type(2) {
-    animation: typing2 2.5s steps(18, end) infinite alternate,
-               blink-caret 0.75s step-end infinite;
-    animation-delay: 2s;
-}
-
-/* Typing animation for the first word */
-@keyframes typing {
-    0%, 10% {
-        width: 0;
-    }
-    70%, 90% {
-        width: 8ch; /* Approximately the length of "Marketer" */
-    }
-}
-
-/* Typing animation for the second word */
-@keyframes typing2 {
-    0%, 10% {
-        width: 0;
-    }
-    70%, 90% {
-        width: 18ch; /* Approximately the length of "Frontend Developer" */
-    }
-}
-
-/* Blinking cursor animation */
-@keyframes blink-caret {
-    from, to { 
-        border-color: transparent; 
-    }
-    50% { 
-        border-color: var(--primary-color); 
-    }
-}
-
-/* Add CSS to ensure correct display in dark mode */
-body.dark .typewriter {
-    border-right-color: var(--primary-light);
-}
-
-body.dark .typewriter {
-    color: var(--primary-light);
-}
-
-@media (max-width: 768px) {
-    /* Adjust animation widths for smaller screens */
-    @keyframes typing {
-        0%, 10% {
-            width: 0;
-        }
-        70%, 90% {
-            width: 7ch;
-        }
-    }
-    
-    @keyframes typing2 {
-        0%, 10% {
-            width: 0;
-        }
-        70%, 90% {
-            width: 16ch;
-        }
-    }
-}
-    /* Improved typewriter effect */
-.typewriter {
-    position: relative;
-    color: var(--primary-color);
-    font-weight: 600;
-    overflow: hidden;
-    border-right: 2px solid var(--primary-color);
-    white-space: nowrap;
-    display: inline-block;
-}
-
-/* Dark mode improvements for typewriter */
-body.dark .typewriter {
-    color: var(--primary-light);
-    border-right-color: var(--primary-light);
-}
-
-.typewriter:nth-of-type(1) {
-    animation: typing 2s steps(8, end) infinite alternate,
-               blink-caret 0.75s step-end infinite;
-    animation-delay: 0s;
-}
-
-.typewriter:nth-of-type(2) {
-    animation: typing2 2.5s steps(18, end) infinite alternate,
-               blink-caret 0.75s step-end infinite;
-    animation-delay: 2s;
-}
-
-/* Typing animation for the first word */
-@keyframes typing {
-    0%, 10% {
-        width: 0;
-    }
-    70%, 90% {
-        width: 8ch; /* Approximately the length of "Marketer" */
-    }
-}
-
-/* Typing animation for the second word */
-@keyframes typing2 {
-    0%, 10% {
-        width: 0;
-    }
-    70%, 90% {
-        width: 18ch; /* Approximately the length of "Frontend Developer" */
-    }
-}
-
-/* Blinking cursor animation */
-@keyframes blink-caret {
-    from, to { 
-        border-color: transparent; 
-    }
-    50% { 
-        border-color: currentColor; /* Use current text color */
-    }
-}
-    /* Fix for contact page in dark mode */
-body.dark .contact-hero {
-    background-color: #1c2131; /* Consistent with other dark mode sections */
-}
-
-body.dark .contact-hero h1,
-body.dark .contact-hero p {
-    color: var(--text-light); /* Make text visible in dark mode */
-}
-
-body.dark .contact-info,
-body.dark .contact-form-container {
-    background-color: #2a303c; /* Lighter than main background */
-    border-color: #3a4050;
-    color: var(--text-light);
-}
-
-body.dark .contact-info h2,
-body.dark .contact-form-container h2,
-body.dark .contact-detail h3,
-body.dark .form-group label {
-    color: #f3f4f6; /* Brighter white for headings */
-}
-
-body.dark .contact-detail p,
-body.dark .contact-detail a {
-    color: #d1d5db; /* Light gray for better readability */
-}
-
-/* Fix for "Currently available for work" text */
-body.dark .availability-status {
-    background-color: #1f2937; /* Darker background */
-    border: 1px solid #374151;
-}
-
-body.dark .availability-status p {
-    color: #d1d5db; /* Light gray text */
-}
-
-/* Form inputs in dark mode */
-body.dark .form-group input,
-body.dark .form-group textarea {
-    background-color: #1f2937;
-    border-color: #4b5563;
-    color: #e5e7eb;
-}
-
-body.dark .form-group input::placeholder,
-body.dark .form-group textarea::placeholder {
-    color: #9ca3af;
-}
-
-/* Fix for CTA section */
-body.dark .cta-section {
-    background-color: #4338ca; /* Dark purple instead of primary color */
-}
-
-body.dark .cta-section .btn.primary {
-    background-color: #f9fafb;
-    color: #4338ca;
-}
-
-body.dark .cta-section .btn.secondary {
-    color: #f9fafb;
-    border-color: #f9fafb;
-}
-
-body.dark .cta-section .btn.secondary:hover {
-    background-color: #f9fafb;
-    color: #4338ca;
-}/* Typewriter animation fixes */
-.typewriter {
-    position: relative;
-    color: var(--primary-color);
-    font-weight: 600;
-    overflow: hidden;
-    border-right: 2px solid var(--primary-color);
-    white-space: nowrap;
-    display: inline-block;
-}
-
-/* Proper dark mode treatment for typewriter */
-body.dark .typewriter {
-    color: var(--primary-light);
-    border-right-color: var(--primary-light);
-}
-
-.typewriter:nth-of-type(1) {
-    animation: typing 2s steps(8, end) infinite alternate,
-               blink-caret 0.75s step-end infinite;
-    animation-delay: 0s;
-}
-
-.typewriter:nth-of-type(2) {
-    animation: typing2 2.5s steps(18, end) infinite alternate,
-               blink-caret 0.75s step-end infinite;
-    animation-delay: 2s;
-}
-
-/* Typing animation for the first word */
-@keyframes typing {
-    0%, 10% {
-        width: 0;
-    }
-    70%, 90% {
-        width: 8ch; /* For "Marketer" */
-    }
-}
-
-/* Typing animation for the second word */
-@keyframes typing2 {
-    0%, 10% {
-        width: 0;
-    }
-    70%, 90% {
-        width: 18ch; /* For "Frontend Developer" */
-    }
-}
-
-/* Blinking cursor animation */
-@keyframes blink-caret {
-    from, to { 
-        border-color: transparent; 
-    }
-    50% { 
-        border-color: currentColor; /* Use current text color for better compatibility */
-    }
-}
-
-/* Dark mode fixes */
-body.dark {
-    background-color: #232835;
-    color: var(--text-light);
-}
-
-body.dark .header {
-    background-color: rgba(35, 40, 53, 0.95);
-    border-bottom-color: #3a4050;
-}
-
-body.dark .work {
-    background-color: #1c2131;
-}
-
-/* Fix for contact page */
-body.dark .contact-hero {
-    background-color: #1c2131;
-}
-
-body.dark .contact-hero h1,
-body.dark .contact-hero p {
-    color: var(--text-light);
-}
-
-body.dark .contact-info,
-body.dark .contact-form-container {
-    background-color: #2a303c;
-    border-color: #3a4050;
-    color: var(--text-light);
-}
-
-body.dark .contact-info h2,
-body.dark .contact-form-container h2,
-body.dark .contact-detail h3,
-body.dark .form-group label {
-    color: #f3f4f6;
-}
-
-body.dark .contact-detail p,
-body.dark .contact-detail a {
-    color: #d1d5db;
-}
-
-/* Fix for "Currently available for work" text */
-body.dark .availability-status {
-    background-color: rgba(67, 56, 202, 0.1);
-    border: 1px solid rgba(67, 56, 202, 0.3);
-}
-
-body.dark .availability-status p {
-    color: #d1d5db;
-}
-
-/* Form inputs in dark mode */
-body.dark .form-group input,
-body.dark .form-group textarea {
-    background-color: #1f2937;
-    border-color: #4b5563;
-    color: #e5e7eb;
-}
-
-body.dark .form-group input::placeholder,
-body.dark .form-group textarea::placeholder {
-    color: #9ca3af;
-}
-
-/* Improved contrast for elements in dark mode */
-body.dark .nav a,
-body.dark .greeting,
-body.dark .work h2,
-body.dark .timeline-date,
-body.dark .skill-category h3,
-body.dark .highlight {
-    color: #a5b4fc;
-}
-
-body.dark .tech-tag,
-body.dark .skill-tag {
-    background-color: #4338ca;
-    color: #ffffff;
-}
-
-body.dark .project-card,
-body.dark .skill-category,
-body.dark .education-item,
-body.dark .modern-project-card {
-    background-color: #2a303c;
-    border-color: #3a4050;
-}
-
-body.dark h1, 
-body.dark h2, 
-body.dark h3 {
-    color: #f9fafb;
-}
-.typing-text {
-    position: absolute;
-    opacity: 0;
-    animation: rotateWords 8s linear infinite;
-    font-weight: bold;
-    color: var(--primary-color); /* ou a cor que preferires */
-}
-
-.typing-text:nth-child(1) {
-    animation-delay: 0s;
-}
-.typing-text:nth-child(2) {
-    animation-delay: 4s;
-}
-
-@keyframes rotateWords {
-    0% { opacity: 0; transform: translateY(10px); }
-    10% { opacity: 1; transform: translateY(0); }
-    40% { opacity: 1; transform: translateY(0); }
-    50% { opacity: 0; transform: translateY(-10px); }
-    100% { opacity: 0; transform: translateY(-10px); }
-}
-    
 }
