@@ -2047,4 +2047,75 @@ body.dark .typewriter {
         border-color: currentColor; /* Use current text color */
     }
 }
+    /* Fix for contact page in dark mode */
+body.dark .contact-hero {
+    background-color: #1c2131; /* Consistent with other dark mode sections */
+}
+
+body.dark .contact-hero h1,
+body.dark .contact-hero p {
+    color: var(--text-light); /* Make text visible in dark mode */
+}
+
+body.dark .contact-info,
+body.dark .contact-form-container {
+    background-color: #2a303c; /* Lighter than main background */
+    border-color: #3a4050;
+    color: var(--text-light);
+}
+
+body.dark .contact-info h2,
+body.dark .contact-form-container h2,
+body.dark .contact-detail h3,
+body.dark .form-group label {
+    color: #f3f4f6; /* Brighter white for headings */
+}
+
+body.dark .contact-detail p,
+body.dark .contact-detail a {
+    color: #d1d5db; /* Light gray for better readability */
+}
+
+/* Fix for "Currently available for work" text */
+body.dark .availability-status {
+    background-color: #1f2937; /* Darker background */
+    border: 1px solid #374151;
+}
+
+body.dark .availability-status p {
+    color: #d1d5db; /* Light gray text */
+}
+
+/* Form inputs in dark mode */
+body.dark .form-group input,
+body.dark .form-group textarea {
+    background-color: #1f2937;
+    border-color: #4b5563;
+    color: #e5e7eb;
+}
+
+body.dark .form-group input::placeholder,
+body.dark .form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Fix for CTA section */
+body.dark .cta-section {
+    background-color: #4338ca; /* Dark purple instead of primary color */
+}
+
+body.dark .cta-section .btn.primary {
+    background-color: #f9fafb;
+    color: #4338ca;
+}
+
+body.dark .cta-section .btn.secondary {
+    color: #f9fafb;
+    border-color: #f9fafb;
+}
+
+body.dark .cta-section .btn.secondary:hover {
+    background-color: #f9fafb;
+    color: #4338ca;
+}
 }
