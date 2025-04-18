@@ -414,5 +414,23 @@ setInterval(() => {
     typingText.textContent = roles[i];
     i = (i + 1) % roles.length;
 }, 4000);
+    document.addEventListener("DOMContentLoaded", () => {
+    const typingSpan = document.querySelector('.typing-text');
+    const text = typingSpan.dataset.text;
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            typingSpan.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, 150);
+        }
+    }
+
+    // Limpa o texto inicial e começa a digitar
+    typingSpan.textContent = "";
+    type();
+});
+
 
 });
