@@ -1811,4 +1811,28 @@ body.dark .nav a:hover,
 body.dark .nav a.active {
     color: white; /* White on hover in dark mode for better contrast */
 }
+    /* Update the secondary button to have purple border */
+.btn.secondary {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--primary-color); /* Changed from border-color to primary color */
+}
+
+.btn.secondary:hover {
+    border-color: var(--primary-dark); /* Slightly darker on hover */
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* For dark mode */
+body.dark .btn.secondary {
+    color: var(--text-light);
+    border-color: var(--primary-color); /* Purple border in dark mode too */
+}
+
+body.dark .btn.secondary:hover {
+    border-color: var(--primary-light); /* Lighter purple on hover in dark mode */
+    color: var(--primary-light);
+}
 }
