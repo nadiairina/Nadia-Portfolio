@@ -2117,5 +2117,160 @@ body.dark .cta-section .btn.secondary {
 body.dark .cta-section .btn.secondary:hover {
     background-color: #f9fafb;
     color: #4338ca;
+}/* Typewriter animation fixes */
+.typewriter {
+    position: relative;
+    color: var(--primary-color);
+    font-weight: 600;
+    overflow: hidden;
+    border-right: 2px solid var(--primary-color);
+    white-space: nowrap;
+    display: inline-block;
 }
+
+/* Proper dark mode treatment for typewriter */
+body.dark .typewriter {
+    color: var(--primary-light);
+    border-right-color: var(--primary-light);
+}
+
+.typewriter:nth-of-type(1) {
+    animation: typing 2s steps(8, end) infinite alternate,
+               blink-caret 0.75s step-end infinite;
+    animation-delay: 0s;
+}
+
+.typewriter:nth-of-type(2) {
+    animation: typing2 2.5s steps(18, end) infinite alternate,
+               blink-caret 0.75s step-end infinite;
+    animation-delay: 2s;
+}
+
+/* Typing animation for the first word */
+@keyframes typing {
+    0%, 10% {
+        width: 0;
+    }
+    70%, 90% {
+        width: 8ch; /* For "Marketer" */
+    }
+}
+
+/* Typing animation for the second word */
+@keyframes typing2 {
+    0%, 10% {
+        width: 0;
+    }
+    70%, 90% {
+        width: 18ch; /* For "Frontend Developer" */
+    }
+}
+
+/* Blinking cursor animation */
+@keyframes blink-caret {
+    from, to { 
+        border-color: transparent; 
+    }
+    50% { 
+        border-color: currentColor; /* Use current text color for better compatibility */
+    }
+}
+
+/* Dark mode fixes */
+body.dark {
+    background-color: #232835;
+    color: var(--text-light);
+}
+
+body.dark .header {
+    background-color: rgba(35, 40, 53, 0.95);
+    border-bottom-color: #3a4050;
+}
+
+body.dark .work {
+    background-color: #1c2131;
+}
+
+/* Fix for contact page */
+body.dark .contact-hero {
+    background-color: #1c2131;
+}
+
+body.dark .contact-hero h1,
+body.dark .contact-hero p {
+    color: var(--text-light);
+}
+
+body.dark .contact-info,
+body.dark .contact-form-container {
+    background-color: #2a303c;
+    border-color: #3a4050;
+    color: var(--text-light);
+}
+
+body.dark .contact-info h2,
+body.dark .contact-form-container h2,
+body.dark .contact-detail h3,
+body.dark .form-group label {
+    color: #f3f4f6;
+}
+
+body.dark .contact-detail p,
+body.dark .contact-detail a {
+    color: #d1d5db;
+}
+
+/* Fix for "Currently available for work" text */
+body.dark .availability-status {
+    background-color: rgba(67, 56, 202, 0.1);
+    border: 1px solid rgba(67, 56, 202, 0.3);
+}
+
+body.dark .availability-status p {
+    color: #d1d5db;
+}
+
+/* Form inputs in dark mode */
+body.dark .form-group input,
+body.dark .form-group textarea {
+    background-color: #1f2937;
+    border-color: #4b5563;
+    color: #e5e7eb;
+}
+
+body.dark .form-group input::placeholder,
+body.dark .form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Improved contrast for elements in dark mode */
+body.dark .nav a,
+body.dark .greeting,
+body.dark .work h2,
+body.dark .timeline-date,
+body.dark .skill-category h3,
+body.dark .highlight {
+    color: #a5b4fc;
+}
+
+body.dark .tech-tag,
+body.dark .skill-tag {
+    background-color: #4338ca;
+    color: #ffffff;
+}
+
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .education-item,
+body.dark .modern-project-card {
+    background-color: #2a303c;
+    border-color: #3a4050;
+}
+
+body.dark h1, 
+body.dark h2, 
+body.dark h3 {
+    color: #f9fafb;
+}
+    
 }
