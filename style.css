@@ -1788,4 +1788,27 @@ body.dark .submit-btn:hover {
     transform: scaleX(1);
     transform-origin: left;
 }
+    /* Make navigation links the same color as the logo */
+.nav a {
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    color: var(--primary-color); /* This makes the links purple like the logo */
+}
+
+/* Keep the hover state to make it a bit darker for better UX */
+.nav a:hover,
+.nav a.active {
+    color: var(--primary-dark); /* Slightly darker shade when hovering */
+}
+
+/* For dark mode */
+body.dark .nav a {
+    color: var(--primary-light); /* Lighter shade of purple in dark mode */
+}
+
+body.dark .nav a:hover,
+body.dark .nav a.active {
+    color: white; /* White on hover in dark mode for better contrast */
+}
 }
