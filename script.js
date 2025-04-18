@@ -418,57 +418,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     /**
-     * Setup the typewriter effect for the hero section
-     */
-    function setupTypewriterEffect() {
-        const typewriterElement = document.getElementById('typewriter');
-        if (!typewriterElement) return;
-        
-        const phrases = ['Marketer', 'Frontend Developer'];  // Separate job titles
-        let currentPhraseIndex = 0;
-        let currentCharIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100;
-        
-        typewriterElement.classList.add('blinking-cursor');
-        
-        function type() {
-            const currentPhrase = phrases[currentPhraseIndex];
-            
-            if (isDeleting) {
-                // Removing characters
-                currentCharIndex--;
-                typingSpeed = 50; // Delete faster
-            } else {
-                // Adding characters
-                currentCharIndex++;
-                typingSpeed = 150; // Type slower
-            }
-            
-            // Display current text
-            typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
-            
-            if (!isDeleting && currentCharIndex === currentPhrase.length) {
-                // Finished typing current phrase
-                isDeleting = false;  // Don't delete - keep the full text
-                typingSpeed = 2000;  // Wait 2 seconds before starting to delete
-                setTimeout(() => {
-                    isDeleting = true;  // Now delete to restart animation
-                    type();
-                }, typingSpeed);
-                return;
-            } else if (isDeleting && currentCharIndex === 0) {
-                // Finished deleting
-                isDeleting = false;
-                // Move to next phrase
-                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-                typingSpeed = 500; // Pause before typing next phrase
-            }
-            
-            setTimeout(type, typingSpeed);
+ * Setup the typewriter effect for the hero section
+ */
+function setupTypewriterEffect() {
+    const typewriterElement = document.getElementById('typewriter');
+    if (!typewriterElement) return;
+
+    const phrases = ['Marketer', 'Frontend Developer']; // Separate job titles
+    let currentPhraseIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    typewriterElement.classList.add('blinking-cursor');
+
+    function type() {
+        const currentPhrase = phrases[currentPhraseIndex];
+
+        if (isDeleting) {
+            // Removing characters
+            currentCharIndex--;
+            typingSpeed = 50; // Delete faster
+        } else {
+            // Adding characters
+            currentCharIndex++;
+            typingSpeed = 150; // Type slower
         }
-        
-        // Start the typing effect
-        setTimeout(type, 1000);
+
+        // Display current text
+        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+
+        if (!isDeleting && currentCharIndex === currentPhrase.length) {
+            // Finished typing current phrase
+            typingSpeed = 2000; // Wait 2 seconds before starting to delete
+            setTimeout(() => {
+                isDeleting = true; // Now delete to restart animation
+                type();
+            }, typingSpeed);
+            return;
+        } else if (isDeleting && currentCharIndex === 0) {
+            // Finished deleting
+            isDeleting = false;
+            // Move to next phrase
+            currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+            typingSpeed = 500; // Pause before typing next phrase
+        }
+
+        setTimeout(type, typingSpeed);
     }
-});
+
+    // Start the typing effect
+    setTimeout(type, 1000);
+}
