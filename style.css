@@ -1861,4 +1861,50 @@ body.dark .btn.secondary:hover {
 body.dark .work h2 {
     color: var(--primary-light); /* Lighter purple in dark mode */
 }
+    /* Lighter dark mode background colors */
+body.dark {
+    background: #232835; /* Lighter than the current dark background */
+    color: var(--text-light);
+}
+
+body.dark .header {
+    background-color: rgba(35, 40, 53, 0.95); /* Lighter than current dark header */
+    border-bottom-color: #3a4050; /* Slightly lighter border */
+}
+
+body.dark .work {
+    background-color: #1c2131; /* Lighter than current dark work section */
+}
+
+/* Improved contrast for purple elements in dark mode */
+body.dark .nav a,
+body.dark .greeting,
+body.dark .work h2,
+body.dark .timeline-date,
+body.dark .skill-category h3,
+body.dark .highlight {
+    color: #a5b4fc; /* Lighter and brighter purple for better contrast */
+}
+
+body.dark .tech-tag,
+body.dark .skill-tag {
+    background-color: #4338ca; /* Brighter background for tags */
+    color: #ffffff; /* White text for maximum contrast */
+}
+
+/* Improve card contrast */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .education-item,
+body.dark .modern-project-card {
+    background-color: #2a303c; /* Slightly lighter than the main background */
+    border-color: #3a4050;
+}
+
+/* Increase contrast for headings */
+body.dark h1, 
+body.dark h2, 
+body.dark h3 {
+    color: #f9fafb; /* Brighter white for headings */
+}
 }
