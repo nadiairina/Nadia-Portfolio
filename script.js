@@ -377,15 +377,33 @@ function initTypewriterEffect() {
     
     typewriters.forEach(element => {
         const text = element.getAttribute('data-text');
-        element.textContent = text; // Set the initial text
+        element.textContent = text; // Set the initial text content
     });
 }
 
-// Add this to your DOMContentLoaded event handler
+// Make sure to call this function when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Other initializations...
+    initializeTheme();
+    document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
+    window.addEventListener('scroll', debounce(handleScroll, 10));
+    
+    // Set up project filters if on projects page
+    if (document.querySelector('.project-filters')) {
+        setupProjectFilters();
+    }
+    
+    // Set up form validation if on contact page
+    if (document.getElementById('contact-form')) {
+        setupFormValidation();
+    }
+    
+    // Set up smooth scrolling
+    setupSmoothScrolling();
+    
+    // Set up scroll animations
+    setupScrollAnimations();
     
     // Initialize typewriter effect
     initTypewriterEffect();
 });
-}
