@@ -1773,4 +1773,19 @@ body.dark .form-group textarea:focus {
 body.dark .submit-btn:hover {
     background-color: var(--primary-light);
 }
+    /* Logo link styles */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.logo-link:hover {
+    color: inherit;
+}
+
+.logo-link:hover .logo:after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
 }
