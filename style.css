@@ -1730,4 +1730,47 @@ body.dark .project-image.placeholder-img {
     .footer-links {
         grid-template-columns: 1fr;
     }
+    /* Better Dark Mode Styling for Contact Form */
+body.dark .contact-info,
+body.dark .contact-form-container {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+body.dark .contact-icon {
+    background-color: #312e81;
+    color: var(--primary-light);
+}
+
+body.dark .contact-detail h3 {
+    color: #f3f4f6;
+}
+
+body.dark .availability-status {
+    background-color: #111827;
+    color: #d1d5db;
+    border: 1px solid #374151;
+}
+
+body.dark .form-group label {
+    color: #f3f4f6;
+}
+
+body.dark .form-group input,
+body.dark .form-group textarea {
+    background-color: #111827;
+    border-color: #4b5563;
+    color: #e5e7eb;
+}
+
+body.dark .form-group input:focus,
+body.dark .form-group textarea:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.2);
+}
+
+body.dark .submit-btn:hover {
+    background-color: var(--primary-light);
+}
 }
