@@ -2272,5 +2272,27 @@ body.dark h2,
 body.dark h3 {
     color: #f9fafb;
 }
+.typing-text {
+    position: absolute;
+    opacity: 0;
+    animation: rotateWords 8s linear infinite;
+    font-weight: bold;
+    color: var(--primary-color); /* ou a cor que preferires */
+}
+
+.typing-text:nth-child(1) {
+    animation-delay: 0s;
+}
+.typing-text:nth-child(2) {
+    animation-delay: 4s;
+}
+
+@keyframes rotateWords {
+    0% { opacity: 0; transform: translateY(10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    40% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
     
 }
