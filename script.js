@@ -406,4 +406,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize typewriter effect
     initTypewriterEffect();
+    const roles = ["Marketeer", "Frontend Developer"];
+const typingText = document.querySelector(".typing-text");
+let i = 0;
+
+setInterval(() => {
+    typingText.textContent = roles[i];
+    i = (i + 1) % roles.length;
+}, 4000);
+
 });
