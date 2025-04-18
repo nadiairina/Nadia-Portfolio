@@ -1989,4 +1989,62 @@ body.dark .typewriter {
         }
     }
 }
+    /* Improved typewriter effect */
+.typewriter {
+    position: relative;
+    color: var(--primary-color);
+    font-weight: 600;
+    overflow: hidden;
+    border-right: 2px solid var(--primary-color);
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Dark mode improvements for typewriter */
+body.dark .typewriter {
+    color: var(--primary-light);
+    border-right-color: var(--primary-light);
+}
+
+.typewriter:nth-of-type(1) {
+    animation: typing 2s steps(8, end) infinite alternate,
+               blink-caret 0.75s step-end infinite;
+    animation-delay: 0s;
+}
+
+.typewriter:nth-of-type(2) {
+    animation: typing2 2.5s steps(18, end) infinite alternate,
+               blink-caret 0.75s step-end infinite;
+    animation-delay: 2s;
+}
+
+/* Typing animation for the first word */
+@keyframes typing {
+    0%, 10% {
+        width: 0;
+    }
+    70%, 90% {
+        width: 8ch; /* Approximately the length of "Marketer" */
+    }
+}
+
+/* Typing animation for the second word */
+@keyframes typing2 {
+    0%, 10% {
+        width: 0;
+    }
+    70%, 90% {
+        width: 18ch; /* Approximately the length of "Frontend Developer" */
+    }
+}
+
+/* Blinking cursor animation */
+@keyframes blink-caret {
+    from, to { 
+        border-color: transparent; 
+    }
+    50% { 
+        border-color: currentColor; /* Use current text color */
+    }
+}
 }
