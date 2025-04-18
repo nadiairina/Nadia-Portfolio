@@ -369,4 +369,23 @@ function isElementInViewport(element) {
         rect.top <= windowHeight * 0.85 &&
         rect.bottom >= 0
     );
+    /**
+ * Initialize typewriter effect for highlighted text
+ */
+function initTypewriterEffect() {
+    const typewriters = document.querySelectorAll('.typewriter');
+    
+    typewriters.forEach(element => {
+        const text = element.getAttribute('data-text');
+        element.textContent = text; // Set the initial text
+    });
+}
+
+// Add this to your DOMContentLoaded event handler
+document.addEventListener('DOMContentLoaded', function() {
+    // Other initializations...
+    
+    // Initialize typewriter effect
+    initTypewriterEffect();
+});
 }
