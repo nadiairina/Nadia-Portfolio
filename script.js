@@ -472,3 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, 1000);
     }
 });
+        // Start the typing effect
+        setTimeout(type, 1000);
+    }
+});
