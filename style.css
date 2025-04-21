@@ -1730,4 +1730,23 @@ body.dark .project-image.placeholder-img {
     .footer-links {
         grid-template-columns: 1fr;
     }
+    /* Default Light mode styles */
+.contact-heading, .availability {
+    background-color: #ffffff; /* Light background for light mode */
+    color: #333333; /* Dark text */
+}
+
+/* Dark mode for body */
+body.dark {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
+}
+
+/* Dark mode styles for contact sections */
+body.dark .contact-heading,
+body.dark .availability {
+    background-color: #121212; /* Match body background */
+    color: #e0e0e0; /* Match text color */
+}
+
 }
