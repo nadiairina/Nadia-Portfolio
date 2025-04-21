@@ -471,4 +471,66 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start the typing effect
         setTimeout(type, 1000);
     }
+    "use strict";
+
+// Constants for theme toggle
+const DARK_MODE_KEY = "dark-mode-enabled";
+const THEME_TRANSITION_DURATION = 400;
+const themeToggle = document.getElementById("theme-toggle");
+
+/**
+ * Toggle dark mode with enhanced animation and accessibility
+ */
+function toggleDarkMode() {
+    // Add transition class to trigger smooth animation for all elements
+    document.documentElement.classList.add('theme-transition');
+
+    // Toggle dark mode class
+    document.body.classList.toggle('dark');
+    const isDarkMode = document.body.classList.contains('dark');
+
+    // Update button icon and aria-label for accessibility
+    themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+    themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+
+    // Save preference to localStorage
+    localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
+
+    // Add animation to theme toggle
+    themeToggle.classList.add('theme-toggle-animation');
+
+    // Flash effect on body background
+    const flashElement = document.createElement('div');
+    flashElement.className = 'theme-flash';
+    document.body.appendChild(flashElement);
+
+    // Clean up animations after transition completes
+    setTimeout(() => {
+        themeToggle.classList.remove('theme-toggle-animation');
+        document.documentElement.classList.remove('theme-transition');
+        if (flashElement.parentNode) {
+            flashElement.parentNode.removeChild(flashElement);
+        }
+    }, THEME_TRANSITION_DURATION);
+}
+
+// Apply saved theme on load
+(function applySavedTheme() {
+    const savedDarkMode = localStorage.getItem(DARK_MODE_KEY);
+    if (savedDarkMode === "true") {
+        document.body.classList.add("dark");
+        themeToggle.textContent = "🌞";
+        themeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+    } else {
+        document.body.classList.remove("dark");
+        themeToggle.textContent = "🌙";
+        themeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+    }
+})();
+
+// Add event listener for theme toggle button
+if (themeToggle) {
+    themeToggle.addEventListener("click", toggleDarkMode);
+}
+
 });
