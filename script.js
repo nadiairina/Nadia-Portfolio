@@ -1,4 +1,4 @@
-// Wait for DOM content to be fully loaded
+Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Store theme preference in localStorage
     const DARK_MODE_KEY = 'darkMode';
@@ -420,34 +420,53 @@ document.addEventListener('DOMContentLoaded', () => {
     /**
      * Setup the typewriter effect for the hero section
      */
-    document.addEventListener('DOMContentLoaded', () => {
-    const typewriterElement = document.getElementById('typewriter');
-    const phrases = ['Marketer', 'Frontend Developer'];
-    
-    let index = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    
-    function type() {
+    function setupTypewriterEffect() {
+        const typewriterElement = document.getElementById('typewriter');
         if (!typewriterElement) return;
-
-        const currentPhrase = phrases[index];
-        typewriterElement.textContent = isDeleting
-            ? currentPhrase.substring(0, charIndex--)
-            : currentPhrase.substring(0, charIndex++);
-
-        if (!isDeleting && charIndex === currentPhrase.length) {
-            setTimeout(() => (isDeleting = true), 2000);
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            index = (index + 1) % phrases.length;
+        
+        const phrases = ['Marketer', 'Frontend Developer'];  // Separate job titles
+        let currentPhraseIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        typewriterElement.classList.add('blinking-cursor');
+        
+        function type() {
+            const currentPhrase = phrases[currentPhraseIndex];
+            
+            if (isDeleting) {
+                // Removing characters
+                currentCharIndex--;
+                typingSpeed = 50; // Delete faster
+            } else {
+                // Adding characters
+                currentCharIndex++;
+                typingSpeed = 150; // Type slower
+            }
+            
+            // Display current text
+            typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+            
+            if (!isDeleting && currentCharIndex === currentPhrase.length) {
+                // Finished typing current phrase
+                isDeleting = false;  // Don't delete - keep the full text
+                typingSpeed = 2000;  // Wait 2 seconds before starting to delete
+                setTimeout(() => {
+                    isDeleting = true;  // Now delete to restart animation
+                    type();
+                }, typingSpeed);
+                return;
+            } else if (isDeleting && currentCharIndex === 0) {
+                // Finished deleting
+                isDeleting = false;
+                // Move to next phrase
+                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                typingSpeed = 500; // Pause before typing next phrase
+            }
+            
+            setTimeout(type, typingSpeed);
         }
-
-        setTimeout(type, isDeleting ? 50 : 100);
-    }
-
-    type();
-});
         
         // Start the typing effect
         setTimeout(type, 1000);
