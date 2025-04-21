@@ -1,4 +1,4 @@
-Wait for DOM content to be fully loaded
+// Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Store theme preference in localStorage
     const DARK_MODE_KEY = 'darkMode';
@@ -468,10 +468,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(type, typingSpeed);
         }
         
-        // Start the typing effect
-        setTimeout(type, 1000);
-    }
-});
         // Start the typing effect
         setTimeout(type, 1000);
     }
