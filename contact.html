@@ -48,34 +48,38 @@
             </p>
         </div>
     </section>
-                <div class="contact-form-container">
-                    <h2>Send Me a Message</h2>
-                    <p>I'm currently available for freelance work and full-time opportunities. Feel free to reach out!</p>
-                    <form id="contact-form" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Your email address" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="What is this regarding?">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+
+    <!-- Contact Form Section -->
+    <section>
+        <div class="contact-form-container">
+            <h2>Send Me a Message</h2>
+            <p>I'm currently available for freelance work and full-time opportunities. Feel free to reach out!</p>
+            <form id="contact-form" class="contact-form" action="https://formspree.io/f/manoyyvr" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
                 </div>
-            </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your email address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What is this regarding?">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+                </div>
+
+                <!-- Optional: redirect after submission -->
+                <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html"> -->
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
         </div>
     </section>
 
