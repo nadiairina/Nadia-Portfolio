@@ -2040,4 +2040,30 @@ body.dark .project-description {
         margin-right: 0 !important;
     }
 }
+    /* Personal details styling */
+.personal-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    background-color: rgba(99, 102, 241, 0.05);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.detail {
+    flex: 1;
+    min-width: 150px;
+}
+
+.detail-label {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.detail-value {
+    display: block;
+}
 }
