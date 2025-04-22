@@ -62,8 +62,19 @@
     <header class="header" id="header">
         <div class="container">
             <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
-            <nav class="nav">
-                <a href="index.html" aria-label="Home">Home</a>
+            
+            <!-- Mobile menu button (hamburger) -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
+                <span class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </span>
+            </button>
+            
+            <!-- Navigation menu (will be hidden on mobile) -->
+            <nav class="nav" id="nav">
+                <a href="index.html" class="active" aria-label="Home">Home</a>
                 <a href="about.html" aria-label="About Me">About Me</a>
                 <a href="projects.html" aria-label="Projects">Projects</a>
                 <a href="contact.html" aria-label="Contact">Contact</a>
@@ -83,24 +94,45 @@
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
         </div>
+        
+        <!-- Mobile menu (off-canvas) -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <nav class="mobile-nav">
+                    <a href="index.html" class="active" aria-label="Home">Home</a>
+                    <a href="about.html" aria-label="About Me">About Me</a>
+                    <a href="projects.html" aria-label="Projects">Projects</a>
+                    <a href="contact.html" aria-label="Contact">Contact</a>
+                    <a class="resume-btn-mobile" href="assets/CV Nadia Alidina-2.pdf" download aria-label="Download Resume">Resume</a>
+                </nav>
+                <div class="mobile-social-icons">
+                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/nadiairina" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
     
     <!-- Hero Section -->
-<!-- Hero Section -->
-<section class="hero" id="hero">
-    <div class="container">
-        <p class="greeting">Hi, I'm Nadia</p>
-        <h1 class="title">I'm a</h1>
-        <h1 class="job-title"><span class="highlight typewriter-effect" id="typewriter"></span></h1>
-        <p class="subtitle">
-            I build accessible, <span class="highlight">responsive</span> websites that bring ideas to life.
-        </p>
-        <div class="hero-cta">
-            <a href="projects.html" class="btn primary">View My Work</a>
-            <a href="contact.html" class="btn secondary">Get In Touch</a>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <p class="greeting">Hi, I'm Nadia</p>
+            <h1 class="title">I'm a</h1>
+            <h1 class="job-title"><span class="highlight typewriter-effect" id="typewriter"></span></h1>
+            <p class="subtitle">
+                I build accessible, <span class="highlight">responsive</span> websites that bring ideas to life.
+            </p>
+            <div class="hero-cta">
+                <a href="projects.html" class="btn primary">View My Work</a>
+                <a href="contact.html" class="btn secondary">Get In Touch</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
     <!-- Featured Work Section -->
     <section class="work" id="work">
         <div class="container">
