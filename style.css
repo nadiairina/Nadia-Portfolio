@@ -1910,8 +1910,8 @@ body.dark .project-description {
 }
 
 .about-image {
-    width: 250px;  /* Fixed width */
-    height: 250px; /* Fixed height to make a perfect circle */
+    width: 180px;  /* Fixed width */
+    height: 180px; /* Fixed height to make a perfect circle */
     border-radius: 50%; /* Makes it circular */
     overflow: hidden; /* Ensures the image doesn't spill outside the circular border */
     box-shadow: var(--shadow-md);
