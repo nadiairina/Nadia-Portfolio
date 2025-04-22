@@ -1861,6 +1861,12 @@ body.dark .project-description {
     margin-bottom: 1rem;
 }
 /* Profile image styling */
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
 .about-image {
     width: 250px;
     height: 250px;
@@ -1868,7 +1874,7 @@ body.dark .project-description {
     overflow: hidden;
     box-shadow: var(--shadow-md);
     border: 3px solid var(--primary-color);
-    margin-right: 3rem;
+    margin-right: 2rem;
     flex-shrink: 0;
 }
 
