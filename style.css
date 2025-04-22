@@ -2066,4 +2066,17 @@ body.dark .project-description {
 .detail-value {
     display: block;
 }
+    /* Job title styling */
+.job-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    min-height: 4.2rem; /* Set minimum height to prevent layout shift */
+}
+
+.title {
+    margin-bottom: 0.5rem; /* Reduce margin to bring job title closer */
+}
 }
