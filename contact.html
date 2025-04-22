@@ -11,28 +11,6 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Dark mode overrides */
-        body.dark-mode {
-            background-color: #121212;
-            color: #f5f5f5;
-        }
-        
-        body.dark-mode .header,
-        body.dark-mode .contact-hero,
-        body.dark-mode .contact-form-container,
-        body.dark-mode .cta-section,
-        body.dark-mode .footer {
-            background-color: #121212;
-            color: #f5f5f5;
-        }
-        
-        body.dark-mode input,
-        body.dark-mode textarea {
-            background-color: #1e1e1e;
-            color: #f5f5f5;
-            border-color: #333;
-        }
-        
         /* Make form more compact */
         .contact-form-container {
             max-width: 800px;
@@ -63,7 +41,7 @@
         
         .form-group label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             margin-bottom: 5px;
         }
         
@@ -86,41 +64,6 @@
             margin-left: auto;
             padding: 8px 16px;
             font-size: 0.9rem;
-        }
-        
-        /* Proper LinkedIn button */
-        .footer-social .linkedin-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background-color: #0077b5;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: background-color 0.2s;
-        }
-        
-        .footer-social .linkedin-btn:hover {
-            background-color: #006699;
-        }
-        
-        /* LinkedIn button in contact information */
-        .contact-info .linkedin-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background-color: #0077b5;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: background-color 0.2s;
-            margin-top: 5px;
-        }
-        
-        .contact-info .linkedin-btn:hover {
-            background-color: #006699;
         }
     </style>
 </head>
@@ -195,12 +138,10 @@
             
             <div class="contact-info" style="margin-top: 30px;">
                 <h3>Contact Information</h3>
-                <p>Email: <a href="mailto:contact@nadiairina.com">contact@nadiairina.com</a></p>
+                <p>Email: <a href="mailto:contact@nadiairina.com">nadiairina934@gmail.com</a></p>
                 <p>
-                    LinkedIn: 
-                    <a href="https://linkedin.com/in/nadiairina" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
-                        <i class="fab fa-linkedin-in"></i>
-                        Connect on LinkedIn
+                    <a href="https://linkedin.com/in/nadiairina" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i> LinkedIn
                     </a>
                 </p>
             </div>
@@ -225,7 +166,7 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
-                    <p>Frontend Developer & Marketer</p>
+                    <p>Frontend Developer & Marketeer</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-nav">
@@ -238,10 +179,7 @@
                     <div class="footer-social">
                         <h4>Connect</h4>
                         <a href="https://github.com/nadiairina" target="_blank">GitHub</a>
-                        <a href="https://linkedin.com/in/nadiairina" target="_blank" class="linkedin-btn">
-                            <i class="fab fa-linkedin-in"></i>
-                            LinkedIn
-                        </a>
+                        <a href="https://linkedin.com/in/nadiairina" target="_blank">LinkedIn</a>
                         <a href="mailto:contact@nadiairina.com">Email</a>
                     </div>
                 </div>
@@ -252,21 +190,6 @@
         </div>
     </footer>
 
-    <script>
-        // Simple dark mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        
-        // Check for saved theme preference or use default
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        document.body.classList.toggle('dark-mode', savedTheme === 'dark');
-        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-        
-        // Theme toggle button click handler
-        themeToggle.addEventListener('click', () => {
-            const isDarkMode = document.body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-            themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
