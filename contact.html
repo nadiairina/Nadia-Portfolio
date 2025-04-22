@@ -16,6 +16,7 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 30px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         .contact-form {
@@ -43,6 +44,7 @@
             display: block;
             font-size: 0.8rem;
             margin-bottom: 5px;
+            transition: color 0.3s ease;
         }
         
         .form-group input,
@@ -51,6 +53,7 @@
             padding: 8px 12px;
             font-size: 0.9rem;
             border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         
         .form-group textarea {
@@ -64,6 +67,71 @@
             margin-left: auto;
             padding: 8px 16px;
             font-size: 0.9rem;
+        }
+        
+        /* Dark mode fixes */
+        body.dark {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        body.dark .header,
+        body.dark .footer {
+            background-color: rgba(31, 41, 55, 0.95);
+            border-color: #374151;
+        }
+        
+        body.dark .contact-hero {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        body.dark .page-title,
+        body.dark .page-description {
+            color: #f9fafb;
+        }
+        
+        body.dark .contact-form-container {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        body.dark .contact-form-container h2,
+        body.dark .contact-form-container h3,
+        body.dark .contact-form-container label,
+        body.dark .contact-form-container p,
+        body.dark .contact-form-container a {
+            color: #f9fafb;
+        }
+        
+        body.dark .form-group input,
+        body.dark .form-group textarea {
+            background-color: #374151;
+            color: #f9fafb;
+            border-color: #4b5563;
+        }
+        
+        body.dark .cta-section {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+        
+        body.dark .cta-section h2,
+        body.dark .cta-section p {
+            color: #f9fafb;
+        }
+        
+        body.dark .btn.secondary {
+            border-color: #4b5563;
+            color: #f9fafb;
+        }
+        
+        body.dark a {
+            color: #f9fafb;
+        }
+        
+        body.dark a:hover {
+            color: var(--primary-color);
         }
     </style>
 </head>
@@ -138,7 +206,7 @@
             
             <div class="contact-info" style="margin-top: 30px;">
                 <h3>Contact Information</h3>
-                <p>Email: <a href="mailto:contact@nadiairina.com">nadiairina934@gmail.com</a></p>
+                <p>Email: <a href="mailto:nadiairina934@gmail.com">nadiairina934@gmail.com</a></p>
                 <p>
                     <a href="https://linkedin.com/in/nadiairina" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-linkedin"></i> LinkedIn
@@ -180,7 +248,7 @@
                         <h4>Connect</h4>
                         <a href="https://github.com/nadiairina" target="_blank">GitHub</a>
                         <a href="https://linkedin.com/in/nadiairina" target="_blank">LinkedIn</a>
-                        <a href="mailto:contact@nadiairina.com">Email: nadiairina934@gmail.com</a>
+                        <a href="mailto:nadiairina934@gmail.com">Email: nadiairina934@gmail.com</a>
                     </div>
                 </div>
             </div>
