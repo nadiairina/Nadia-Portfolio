@@ -1979,4 +1979,65 @@ body.dark .project-description {
         margin-right: 2rem !important;
     }
 }
+/* Improved profile image styling */
+.about-image {
+    width: 250px !important;
+    height: 250px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    border: 4px solid white !important;
+    margin-bottom: 2rem !important;
+    position: relative !important;
+}
+
+.profile-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.5s ease !important;
+}
+
+.about-image:hover .profile-image {
+    transform: scale(1.05) !important;
+}
+
+/* Add a subtle highlight effect */
+.about-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+/* About content layout with better spacing */
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-text {
+    flex: 1;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .about-image {
+        margin-right: 0 !important;
+    }
+}
 }
