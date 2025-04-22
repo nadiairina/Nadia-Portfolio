@@ -1798,5 +1798,67 @@ body.dark .project-description {
 body.dark .project-description {
     color: #a1a1aa;
 }
+/* Project cards in the "Some of my latest work" section */
+.work .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.work .project-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.work .project-card .project-image {
+    height: 180px; /* Smaller fixed height */
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.work .project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.3s ease;
+}
+
+.work .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.work .project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.work .project-card h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.work .project-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.work .project-card .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
 
 }
