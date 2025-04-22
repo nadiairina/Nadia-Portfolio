@@ -1944,4 +1944,39 @@ body.dark .project-description {
         margin-bottom: 2rem;
     }
 }
+    /* Force profile image size constraints */
+.about-image {
+    width: 250px !important;
+    height: 250px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    border: 3px solid var(--primary-color) !important;
+    margin-bottom: 2rem !important;
+    display: block !important;
+}
+
+.profile-image {
+    width: 250px !important;
+    height: 250px !important;
+    object-fit: cover !important;
+    max-width: 100% !important;
+}
+
+/* About content layout */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .about-content {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .about-image {
+        margin-right: 2rem !important;
+    }
+}
 }
