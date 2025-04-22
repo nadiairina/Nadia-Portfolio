@@ -427,53 +427,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const typewriterElement = document.getElementById('typewriter');
         if (!typewriterElement) return;
         
-        // Only include Front-end Developer and Marketing Specialist (removed UI Designer)
-        const jobTitles = ['Marketeer' , 'Front-end Developer'];
+        // Job titles with Marketeer first, Front-end Developer second
+        const jobTitles = ['Marketeer', 'Front-end Developer'];
         
         let currentTitleIndex = 0;
-        let currentCharIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 150; // Base typing speed in ms
+        let typingSpeed = 80; // Faster typing speed (was 150)
         
-        function typeNextCharacter() {
+        function showNextTitle() {
+            // Clear previous content
+            typewriterElement.textContent = '';
+            
+            // Get current title
             const currentTitle = jobTitles[currentTitleIndex];
             
-            // Calculate typing speed (faster when deleting)
-            const baseSpeed = isDeleting ? typingSpeed / 2 : typingSpeed;
-            let speed = baseSpeed;
+            // Change to the next title index for the next cycle
+            currentTitleIndex = (currentTitleIndex + 1) % jobTitles.length;
             
-            // If deleting is complete, change to next title
-            if (isDeleting && currentCharIndex === 0) {
-                isDeleting = false;
-                currentTitleIndex = (currentTitleIndex + 1) % jobTitles.length;
-                speed = typingSpeed * 3; // Pause before typing next title
+            // Set up character-by-character display
+            let charIndex = 0;
+            
+            function typeNextChar() {
+                if (charIndex < currentTitle.length) {
+                    // Add next character
+                    typewriterElement.textContent += currentTitle[charIndex];
+                    charIndex++;
+                    
+                    // Continue typing
+                    setTimeout(typeNextChar, typingSpeed);
+                } else {
+                    // Finished typing the current title
+                    // Wait longer before switching to the next title
+                    setTimeout(showNextTitle, 2000);
+                }
             }
             
-            // If typing is complete, pause before deleting
-            else if (!isDeleting && currentCharIndex === currentTitle.length) {
-                isDeleting = true;
-                speed = typingSpeed * 5; // Pause before deleting
-            }
-            
-            // Update the text content
-            if (isDeleting) {
-                currentCharIndex--;
-            } else {
-                currentCharIndex++;
-            }
-            
-            typewriterElement.textContent = currentTitle.substring(0, currentCharIndex);
-            
-            // Add blinking cursor effect with CSS
-            typewriterElement.classList.toggle('cursor-blink', currentCharIndex === currentTitle.length && !isDeleting);
-            
-            // Schedule next character
-            setTimeout(typeNextCharacter, speed);
+            // Start typing the current title
+            typeNextChar();
         }
         
-        // Start the effect
-        typeNextCharacter();
-    }
-});
+        // Start the typing effect
+        showNextTitle();
     }
 });
