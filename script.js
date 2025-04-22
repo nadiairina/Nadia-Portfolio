@@ -1,5 +1,7 @@
 // Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded successfully');
+    
     // Store theme preference in localStorage
     const DARK_MODE_KEY = 'darkMode';
     const THEME_TRANSITION_DURATION = 500; // ms
@@ -10,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectFilters = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
     const contactForm = document.getElementById('contact-form');
+    
+    console.log('Theme toggle button found:', themeToggle);
     
     // Initialize theme based on user preference
     initializeTheme();
@@ -52,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip.style.opacity = '0';
             tooltip.style.transform = 'translateY(10px)';
         });
+    } else {
+        console.error('Theme toggle button not found!');
     }
     
     // Project filtering (on projects page)
@@ -72,7 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollAnimations();
     
     // Setup typewriter effect for the hero section
-    setupTypewriterEffect();
+    const typewriterElement = document.getElementById('typewriter');
+    if (typewriterElement) {
+        setupTypewriterEffect();
+    }
     
     /**
      * Initialize theme based on user preference or system preference
@@ -81,6 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function initializeTheme() {
         // Check if user has a saved preference
         const savedTheme = localStorage.getItem(DARK_MODE_KEY);
+        
+        console.log('Saved theme preference:', savedTheme);
         
         // Prepare body for smooth transition
         document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
@@ -167,6 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * Toggle dark mode with enhanced animation and accessibility
      */
     function toggleDarkMode() {
+        console.log('Toggle dark mode clicked');
+        
         // Add transition class to trigger smooth animation for all elements
         document.documentElement.classList.add('theme-transition');
         
@@ -174,9 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('dark');
         const isDarkMode = document.body.classList.contains('dark');
         
+        console.log('Dark mode toggled to:', isDarkMode);
+        
         // Update button icon and aria-label for accessibility
-        themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
-        themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+        if (themeToggle) {
+            themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+            themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+        }
         
         // Save preference to localStorage
         localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
@@ -235,6 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * Setup form validation with real-time feedback
      */
     function setupFormValidation() {
+        if (!contactForm) return;
+        
         const formInputs = contactForm.querySelectorAll('input, textarea');
         
         formInputs.forEach(input => {
@@ -300,13 +319,15 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {Event} e - Form submit event
      */
     function handleContactForm(e) {
+        if (!contactForm) return;
+        
         e.preventDefault();
         
         // Get form values
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
+        const name = document.getElementById('name')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        const subject = document.getElementById('subject')?.value.trim();
+        const message = document.getElementById('message')?.value.trim();
         
         // Validate all fields
         let isValid = true;
@@ -314,14 +335,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         formInputs.forEach(input => {
             const feedbackElement = input.parentNode.querySelector('.form-feedback');
-            if (!validateInput(input, feedbackElement)) {
+            if (feedbackElement && !validateInput(input, feedbackElement)) {
                 isValid = false;
             }
         });
         
         if (!isValid) {
             // Focus the first invalid field
-            contactForm.querySelector('.invalid').focus();
+            const firstInvalid = contactForm.querySelector('.invalid');
+            if (firstInvalid) firstInvalid.focus();
             return;
         }
         
@@ -335,140 +357,134 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         
         // Replace form with success message
-        contactForm.style.opacity = '0';
+        contactForm.innerHTML = '';
+        contactForm.appendChild(successMessage);
         
-        setTimeout(() => {
-            const formContainer = contactForm.parentNode;
-            formContainer.innerHTML = '';
-            formContainer.appendChild(successMessage);
-            
-            // Animate success message
-            setTimeout(() => {
-                successMessage.style.opacity = '1';
-                successMessage.style.transform = 'translateY(0)';
-            }, 50);
-            
-            // Reset form behind the scenes for if we want to show it again
-            contactForm.reset();
-        }, 300);
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     
     /**
      * Setup smooth scrolling for anchor links
      */
     function setupSmoothScrolling() {
-        const anchorLinks = document.querySelectorAll('a[href^="#"]');
-        
-        anchorLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const targetId = link.getAttribute('href');
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
                 
-                // Skip if it's just "#"
-                if (targetId === '#') return;
+                if (href === '#') return;
                 
-                const targetElement = document.querySelector(targetId);
+                e.preventDefault();
                 
-                if (targetElement) {
-                    e.preventDefault();
-                    
-                    // Get header height for offset
-                    const headerHeight = header ? header.offsetHeight : 0;
-                    
-                    // Scroll to element with offset for header
-                    window.scrollTo({
-                        top: targetElement.offsetTop - headerHeight - 20,
-                        behavior: 'smooth'
-                    });
-                }
+                const target = document.querySelector(href);
+                if (!target) return;
+                
+                window.scrollTo({
+                    top: target.offsetTop - 100,
+                    behavior: 'smooth'
+                });
             });
         });
     }
     
     /**
-     * Setup animations for elements when they come into view
+     * Setup animations that trigger when elements come into view
      */
     function setupScrollAnimations() {
-        // Add animate-on-scroll class to elements that should animate
-        const elementsToAnimate = [
-            ...document.querySelectorAll('.project-card'),
-            ...document.querySelectorAll('.skill-category'),
-            ...document.querySelectorAll('.timeline-item'),
-            ...document.querySelectorAll('.education-item')
-        ];
+        // Add animation classes to elements
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
         
-        elementsToAnimate.forEach(element => {
-            element.classList.add('animate-on-scroll');
-        });
+        // Check if elements are in viewport on scroll
+        window.addEventListener('scroll', debounce(() => {
+            animateElements.forEach(element => {
+                if (isElementInViewport(element) && !element.classList.contains('animated')) {
+                    element.classList.add('animated');
+                }
+            });
+        }, 50));
         
-        // Initial check for elements in viewport
-        handleScroll();
+        // Initial check on page load
+        setTimeout(() => {
+            animateElements.forEach(element => {
+                if (isElementInViewport(element) && !element.classList.contains('animated')) {
+                    element.classList.add('animated');
+                }
+            });
+        }, 300);
     }
     
     /**
      * Check if an element is in the viewport
-     * @param {HTMLElement} element - The element to check
-     * @returns {boolean} - Whether the element is in the viewport
+     * @param {Element} el - Element to check
+     * @returns {boolean} - Whether element is in viewport
      */
-    function isElementInViewport(element) {
-        const rect = element.getBoundingClientRect();
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
         return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
-            rect.bottom >= 0
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+            rect.bottom >= 0 &&
+            rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+            rect.right >= 0
         );
     }
     
     /**
-     * Setup the typewriter effect for the hero section
+     * Setup typewriter effect for the hero section
      */
     function setupTypewriterEffect() {
-        const typewriterElement = document.getElementById('typewriter');
-        if (!typewriterElement) return;
-        
-        const phrases = ['Marketer', 'Frontend Developer'];  // Separate job titles
-        let currentPhraseIndex = 0;
-        let currentCharIndex = 0;
+        const words = ["Front-end Developer", "Marketeer", "UI Designer"];
+        let wordIndex = 0;
+        let letterIndex = 0;
         let isDeleting = false;
-        let typingSpeed = 100;
-        
-        typewriterElement.classList.add('blinking-cursor');
+        let isWaiting = false;
+        const typingSpeed = 150; // ms per character
+        const deleteSpeed = 100; // ms per character
+        const waitTime = 2000; // ms to wait between words
         
         function type() {
-            const currentPhrase = phrases[currentPhraseIndex];
+            const currentWord = words[wordIndex];
+            const typewriterElement = document.getElementById('typewriter');
+            
+            if (!typewriterElement) return;
+            
+            if (isWaiting) {
+                setTimeout(() => {
+                    isWaiting = false;
+                    isDeleting = true;
+                    type();
+                }, waitTime);
+                return;
+            }
             
             if (isDeleting) {
-                // Removing characters
-                currentCharIndex--;
-                typingSpeed = 50; // Delete faster
+                // Deleting
+                letterIndex--;
+                if (letterIndex < 0) {
+                    letterIndex = 0;
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
             } else {
-                // Adding characters
-                currentCharIndex++;
-                typingSpeed = 150; // Type slower
+                // Typing
+                letterIndex++;
+                if (letterIndex > currentWord.length) {
+                    letterIndex = currentWord.length;
+                    isWaiting = true;
+                }
             }
             
-            // Display current text
-            typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+            // Update text content
+            typewriterElement.textContent = currentWord.substring(0, letterIndex);
             
-            if (!isDeleting && currentCharIndex === currentPhrase.length) {
-                // Finished typing current phrase
-                isDeleting = false;  // Don't delete - keep the full text
-                typingSpeed = 2000;  // Wait 2 seconds before starting to delete
-                setTimeout(() => {
-                    isDeleting = true;  // Now delete to restart animation
-                    type();
-                }, typingSpeed);
-                return;
-            } else if (isDeleting && currentCharIndex === 0) {
-                // Finished deleting
-                isDeleting = false;
-                // Move to next phrase
-                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-                typingSpeed = 500; // Pause before typing next phrase
+            // Add cursor
+            if (!isWaiting) {
+                setTimeout(type, isDeleting ? deleteSpeed : typingSpeed);
+            } else {
+                type(); // Go to waiting state
             }
-            
-            setTimeout(type, typingSpeed);
         }
         
-        // Start the typing effect
-        setTimeout(type, 1000);
+        // Start typing
+        type();
     }
 });
