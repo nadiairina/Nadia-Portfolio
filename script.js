@@ -277,8 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     /**
      * Validate form input and show feedback
-     * @param {HTMLElement} input - Input element to validate
-     * @param {HTMLElement} feedback - Element to show feedback in
      */
     function validateInput(input, feedback) {
         const value = input.value.trim();
@@ -316,7 +314,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     /**
      * Handle contact form submission with enhanced validation
-     * @param {Event} e - Form submit event
      */
     function handleContactForm(e) {
         if (!contactForm) return;
@@ -335,88 +332,83 @@ document.addEventListener('DOMContentLoaded', () => {
         
         formInputs.forEach(input => {
             const feedbackElement = input.parentNode.querySelector('.form-feedback');
-            if (feedbackElement && !validateInput(input, feedbackElement)) {
+            if (!validateInput(input, feedbackElement)) {
                 isValid = false;
             }
         });
         
-        if (!isValid) {
-            // Focus the first invalid field
-            const firstInvalid = contactForm.querySelector('.invalid');
-            if (firstInvalid) firstInvalid.focus();
-            return;
+        // If the form is valid, submit it
+        if (isValid) {
+            // Here you would typically send the form data to your server
+            // Display success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully!';
+            contactForm.appendChild(successMessage);
+            
+            // Clear form
+            contactForm.reset();
+            
+            // Remove success message after a delay
+            setTimeout(() => {
+                successMessage.classList.add('fade-out');
+                setTimeout(() => {
+                    if (successMessage.parentNode) {
+                        successMessage.parentNode.removeChild(successMessage);
+                    }
+                }, 500);
+            }, 3000);
         }
-        
-        // Create and show success message
-        const successMessage = document.createElement('div');
-        successMessage.className = 'form-success';
-        successMessage.innerHTML = `
-            <i class="fas fa-check-circle"></i>
-            <p>Thank you for your message, ${name}!</p>
-            <p>I'll get back to you soon.</p>
-        `;
-        
-        // Replace form with success message
-        contactForm.innerHTML = '';
-        contactForm.appendChild(successMessage);
-        
-        // Scroll to success message
-        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     
     /**
      * Setup smooth scrolling for anchor links
      */
     function setupSmoothScrolling() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                if (href === '#') return;
-                
+        const anchorLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
+        
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                const target = document.querySelector(href);
-                if (!target) return;
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
                 
-                window.scrollTo({
-                    top: target.offsetTop - 100,
-                    behavior: 'smooth'
-                });
+                if (targetElement) {
+                    // Calculate the offset from the top of the page for the target element
+                    const headerHeight = header ? header.offsetHeight : 0;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerHeight - 20;
+                    
+                    // Smooth scroll to target
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     }
     
     /**
-     * Setup animations that trigger when elements come into view
+     * Setup scroll animations for elements with the animate-on-scroll class
      */
     function setupScrollAnimations() {
-        // Add animation classes to elements
-        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        // Add animation classes to elements when they come into view
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
         
-        // Check if elements are in viewport on scroll
-        window.addEventListener('scroll', debounce(() => {
-            animateElements.forEach(element => {
-                if (isElementInViewport(element) && !element.classList.contains('animated')) {
-                    element.classList.add('animated');
-                }
-            });
-        }, 50));
-        
-        // Initial check on page load
-        setTimeout(() => {
-            animateElements.forEach(element => {
-                if (isElementInViewport(element) && !element.classList.contains('animated')) {
-                    element.classList.add('animated');
-                }
-            });
-        }, 300);
+        // Initial check for elements in viewport
+        animatedElements.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.classList.add('animated');
+            }
+        });
     }
     
     /**
      * Check if an element is in the viewport
-     * @param {Element} el - Element to check
-     * @returns {boolean} - Whether element is in viewport
+     * @param {Element} el - The element to check
+     * @returns {boolean} - True if the element is in the viewport
      */
     function isElementInViewport(el) {
         const rect = el.getBoundingClientRect();
@@ -429,62 +421,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     /**
-     * Setup typewriter effect for the hero section
+     * Setup typewriter effect for job titles on the hero section
      */
     function setupTypewriterEffect() {
-        const words = ["Front-end Developer", "Marketeer", "UI Designer"];
-        let wordIndex = 0;
-        let letterIndex = 0;
-        let isDeleting = false;
-        let isWaiting = false;
-        const typingSpeed = 150; // ms per character
-        const deleteSpeed = 100; // ms per character
-        const waitTime = 2000; // ms to wait between words
+        const typewriterElement = document.getElementById('typewriter');
+        if (!typewriterElement) return;
         
-        function type() {
-            const currentWord = words[wordIndex];
-            const typewriterElement = document.getElementById('typewriter');
+        // Only include Front-end Developer and Marketing Specialist (removed UI Designer)
+        const jobTitles = ['Front-end Developer', 'Marketeer'];
+        
+        let currentTitleIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 150; // Base typing speed in ms
+        
+        function typeNextCharacter() {
+            const currentTitle = jobTitles[currentTitleIndex];
             
-            if (!typewriterElement) return;
+            // Calculate typing speed (faster when deleting)
+            const baseSpeed = isDeleting ? typingSpeed / 2 : typingSpeed;
+            let speed = baseSpeed;
             
-            if (isWaiting) {
-                setTimeout(() => {
-                    isWaiting = false;
-                    isDeleting = true;
-                    type();
-                }, waitTime);
-                return;
+            // If deleting is complete, change to next title
+            if (isDeleting && currentCharIndex === 0) {
+                isDeleting = false;
+                currentTitleIndex = (currentTitleIndex + 1) % jobTitles.length;
+                speed = typingSpeed * 3; // Pause before typing next title
             }
             
+            // If typing is complete, pause before deleting
+            else if (!isDeleting && currentCharIndex === currentTitle.length) {
+                isDeleting = true;
+                speed = typingSpeed * 5; // Pause before deleting
+            }
+            
+            // Update the text content
             if (isDeleting) {
-                // Deleting
-                letterIndex--;
-                if (letterIndex < 0) {
-                    letterIndex = 0;
-                    isDeleting = false;
-                    wordIndex = (wordIndex + 1) % words.length;
-                }
+                currentCharIndex--;
             } else {
-                // Typing
-                letterIndex++;
-                if (letterIndex > currentWord.length) {
-                    letterIndex = currentWord.length;
-                    isWaiting = true;
-                }
+                currentCharIndex++;
             }
             
-            // Update text content
-            typewriterElement.textContent = currentWord.substring(0, letterIndex);
+            typewriterElement.textContent = currentTitle.substring(0, currentCharIndex);
             
-            // Add cursor
-            if (!isWaiting) {
-                setTimeout(type, isDeleting ? deleteSpeed : typingSpeed);
-            } else {
-                type(); // Go to waiting state
-            }
+            // Add blinking cursor effect with CSS
+            typewriterElement.classList.toggle('cursor-blink', currentCharIndex === currentTitle.length && !isDeleting);
+            
+            // Schedule next character
+            setTimeout(typeNextCharacter, speed);
         }
         
-        // Start typing
-        type();
+        // Start the effect
+        typeNextCharacter();
+    }
+});
     }
 });
