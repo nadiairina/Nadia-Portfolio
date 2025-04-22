@@ -1860,5 +1860,40 @@ body.dark .project-description {
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
+/* Profile image styling */
+.about-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 3px solid var(--primary-color);
+    margin-right: 3rem;
+    flex-shrink: 0;
+}
 
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover .profile-image {
+    transform: scale(1.05);
+}
+
+/* Make the layout responsive */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .about-image {
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+}
 }
