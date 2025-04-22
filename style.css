@@ -1748,5 +1748,18 @@ body.dark .availability {
     background-color: #121212; /* Match body background */
     color: #e0e0e0; /* Match text color */
 }
+    .project-description {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+body.dark .project-description {
+    color: #a1a1aa;
+}
 
 }
