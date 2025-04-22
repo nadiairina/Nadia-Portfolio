@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!typewriterElement) return;
         
         // Only include Front-end Developer and Marketing Specialist (removed UI Designer)
-        const jobTitles = ['Front-end Developer', 'Marketeer'];
+        const jobTitles = ['Marketeer' , 'Front-end Developer'];
         
         let currentTitleIndex = 0;
         let currentCharIndex = 0;
