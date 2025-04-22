@@ -1761,5 +1761,42 @@ body.dark .availability {
 body.dark .project-description {
     color: #a1a1aa;
 }
+    /* Project image styling */
+.project-image {
+    height: 200px;
+    background-color: #f0f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img,
+.modern-project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+/* Project description */
+.project-description {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+body.dark .project-description {
+    color: #a1a1aa;
+}
 
 }
