@@ -9,9 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Elements
     const header = document.getElementById("header");
     const themeToggle = document.getElementById("theme-toggle");
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
     const projectFilters = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
     const contactForm = document.getElementById('contact-form');
+    
+    // Create mobile menu overlay
+    const mobileMenuOverlay = document.createElement('div');
+    mobileMenuOverlay.className = 'mobile-menu-overlay';
+    document.body.appendChild(mobileMenuOverlay);
     
     console.log('Theme toggle button found:', themeToggle);
     
@@ -60,6 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Theme toggle button not found!');
     }
     
+    // Mobile menu toggle functionality
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+    }
+    
     // Project filtering (on projects page)
     if (projectFilters.length > 0 && projectItems.length > 0) {
         setupProjectFilters();
@@ -83,49 +102,30 @@ document.addEventListener('DOMContentLoaded', () => {
         setupTypewriterEffect();
     }
     
-    // Mobile menu functionality
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const body = document.body;
-
-    if (mobileMenuToggle && mobileMenu) {
-        // Create overlay element
-        const overlay = document.createElement('div');
-        overlay.className = 'mobile-menu-overlay';
-        document.body.appendChild(overlay);
+    /**
+     * Toggle mobile menu
+     */
+    function toggleMobileMenu() {
+        mobileMenuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        mobileMenuOverlay.classList.toggle('active');
         
-        // Toggle mobile menu
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            
-            // Toggle body scroll
-            if (mobileMenu.classList.contains('active')) {
-                body.style.overflow = 'hidden';
-            } else {
-                body.style.overflow = '';
-            }
-        });
-        
-        // Close menu when clicking overlay
-        overlay.addEventListener('click', () => {
-            mobileMenuToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            body.style.overflow = '';
-        });
-        
-        // Close menu when clicking nav items
-        const mobileNavLinks = mobileMenu.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                body.style.overflow = '';
-            });
-        });
+        // Prevent scrolling when menu is open
+        if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+    
+    /**
+     * Close mobile menu
+     */
+    function closeMobileMenu() {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
     }
     
     /**
