@@ -105,7 +105,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     themeToggle.textContent = '🌞';
                     themeToggle.setAttribute('aria-label', 'Switch to Light Mode');
                 }
+                localStorage.setItem(DARK_MODE_KEY, 'true');
+            } else {
+                if (themeToggle) {
+                    themeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+                }
             }
+        }
+        
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (localStorage.getItem(DARK_MODE_KEY) === null) {
+                    // Only auto-switch if user hasn't set a preference
+                    if (e.matches) {
+                        document.body.classList.add('dark');
+                        if (themeToggle) {
+                            themeToggle.textContent = '🌞';
+                            themeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+                        }
+                    } else {
+                        document.body.classList.remove('dark');
+                        if (themeToggle) {
+                            themeToggle.textContent = '🌙';
+                            themeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+                        }
+                    }
+                }
+            });
         }
     }
     
@@ -114,11 +141,26 @@ document.addEventListener('DOMContentLoaded', () => {
      * and performance optimization
      */
     function handleScroll() {
-        if (window.scrollY > 50) {
+        if (!header) return;
+        
+        // Add shadow and transform effect to header when scrolled
+        const scrolled = window.scrollY > 10;
+        
+        if (scrolled && !header.classList.contains("scrolled")) {
             header.classList.add("scrolled");
-        } else {
+            // Trigger a reflow to ensure smooth animation
+            void header.offsetWidth;
+        } else if (!scrolled && header.classList.contains("scrolled")) {
             header.classList.remove("scrolled");
         }
+        
+        // Check for elements that should animate on scroll
+        const animatedElements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
+        animatedElements.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.classList.add('animated');
+            }
+        });
     }
     
     /**
@@ -133,10 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const isDarkMode = document.body.classList.contains('dark');
         
         // Update button icon and aria-label for accessibility
-        if (themeToggle) {
-            themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
-            themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
-        }
+        themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+        themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
         
         // Save preference to localStorage
         localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
@@ -176,19 +216,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Filter projects
                 projectItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-                    if (filterValue === 'all' || category === filterValue) {
-                        item.style.display = 'block';
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'grid';
+                        // Add animation
+                        item.classList.add('fade-in');
                         setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 50);
+                            item.classList.remove('fade-in');
+                        }, 500);
                     } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
+                        item.style.display = 'none';
                     }
                 });
             });
@@ -199,152 +235,190 @@ document.addEventListener('DOMContentLoaded', () => {
      * Setup form validation with real-time feedback
      */
     function setupFormValidation() {
-        const inputs = contactForm.querySelectorAll('input, textarea');
+        const formInputs = contactForm.querySelectorAll('input, textarea');
         
-        inputs.forEach(input => {
+        formInputs.forEach(input => {
             // Create feedback element
-            const feedback = document.createElement('div');
-            feedback.className = 'form-feedback';
-            input.parentNode.appendChild(feedback);
+            const feedbackElement = document.createElement('div');
+            feedbackElement.className = 'form-feedback';
+            input.parentNode.appendChild(feedbackElement);
             
-            // Add event listeners for real-time validation
-            input.addEventListener('blur', () => validateInput(input, feedback));
-            input.addEventListener('input', () => validateInput(input, feedback));
+            // Add event listeners for validation
+            input.addEventListener('blur', () => validateInput(input, feedbackElement));
+            input.addEventListener('input', () => {
+                // Clear error when user starts typing again
+                if (input.classList.contains('invalid')) {
+                    input.classList.remove('invalid');
+                    feedbackElement.textContent = '';
+                    feedbackElement.classList.remove('error');
+                }
+            });
         });
     }
     
     /**
      * Validate form input and show feedback
+     * @param {HTMLElement} input - Input element to validate
+     * @param {HTMLElement} feedback - Element to show feedback in
      */
     function validateInput(input, feedback) {
-        // Reset feedback
-        feedback.textContent = '';
-        feedback.className = 'form-feedback';
+        const value = input.value.trim();
+        const name = input.name;
         
-        // Skip validation if empty (will be caught by required attribute)
-        if (!input.value.trim()) return;
-        
-        // Validate by input type
-        switch(input.id) {
-            case 'email':
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(input.value)) {
-                    feedback.textContent = 'Please enter a valid email address';
-                    feedback.className = 'form-feedback error';
-                } else {
-                    feedback.textContent = 'Looks good!';
-                    feedback.className = 'form-feedback success';
-                }
-                break;
-                
-            case 'name':
-                if (input.value.trim().length < 2) {
-                    feedback.textContent = 'Name must be at least 2 characters';
-                    feedback.className = 'form-feedback error';
-                } else {
-                    feedback.textContent = 'Looks good!';
-                    feedback.className = 'form-feedback success';
-                }
-                break;
-                
-            case 'message':
-                if (input.value.trim().length < 10) {
-                    feedback.textContent = 'Message must be at least 10 characters';
-                    feedback.className = 'form-feedback error';
-                } else {
-                    feedback.textContent = 'Looks good!';
-                    feedback.className = 'form-feedback success';
-                }
-                break;
+        // Don't validate empty optional fields
+        if (!input.required && !value) {
+            feedback.textContent = '';
+            return true;
         }
+        
+        // Check for required fields
+        if (input.required && !value) {
+            input.classList.add('invalid');
+            feedback.textContent = 'This field is required';
+            feedback.classList.add('error');
+            return false;
+        }
+        
+        // Email validation
+        if (name === 'email' && value) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(value)) {
+                input.classList.add('invalid');
+                feedback.textContent = 'Please enter a valid email address';
+                feedback.classList.add('error');
+                return false;
+            }
+        }
+        
+        // Clear feedback if valid
+        feedback.textContent = '';
+        return true;
     }
     
     /**
      * Handle contact form submission with enhanced validation
+     * @param {Event} e - Form submit event
      */
     function handleContactForm(e) {
-        const inputs = contactForm.querySelectorAll('input, textarea');
-        let isValid = true;
+        e.preventDefault();
         
-        // Validate all inputs
-        inputs.forEach(input => {
-            const feedback = input.parentNode.querySelector('.form-feedback');
-            validateInput(input, feedback);
-            
-            // Check if input is invalid
-            if (feedback.className.includes('error') || !input.value.trim()) {
+        // Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        // Validate all fields
+        let isValid = true;
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        
+        formInputs.forEach(input => {
+            const feedbackElement = input.parentNode.querySelector('.form-feedback');
+            if (!validateInput(input, feedbackElement)) {
                 isValid = false;
             }
         });
         
-        // If form is invalid, prevent submission
         if (!isValid) {
-            e.preventDefault();
-            
-            // Scroll to first invalid input
-            const firstInvalidInput = contactForm.querySelector('.form-feedback.error')?.parentNode.querySelector('input, textarea');
-            if (firstInvalidInput) {
-                firstInvalidInput.focus();
-                firstInvalidInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            // Focus the first invalid field
+            contactForm.querySelector('.invalid').focus();
+            return;
         }
+        
+        // Create and show success message
+        const successMessage = document.createElement('div');
+        successMessage.className = 'form-success';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <p>Thank you for your message, ${name}!</p>
+            <p>I'll get back to you soon.</p>
+        `;
+        
+        // Replace form with success message
+        contactForm.style.opacity = '0';
+        
+        setTimeout(() => {
+            const formContainer = contactForm.parentNode;
+            formContainer.innerHTML = '';
+            formContainer.appendChild(successMessage);
+            
+            // Animate success message
+            setTimeout(() => {
+                successMessage.style.opacity = '1';
+                successMessage.style.transform = 'translateY(0)';
+            }, 50);
+            
+            // Reset form behind the scenes for if we want to show it again
+            contactForm.reset();
+        }, 300);
     }
     
     /**
      * Setup smooth scrolling for anchor links
      */
     function setupSmoothScrolling() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+        
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = link.getAttribute('href');
                 
-                const targetId = this.getAttribute('href');
+                // Skip if it's just "#"
                 if (targetId === '#') return;
                 
                 const targetElement = document.querySelector(targetId);
-                if (!targetElement) return;
                 
-                const headerOffset = 80;
-                const elementPosition = targetElement.offsetTop;
-                const offsetPosition = elementPosition - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            });
-        });
-    }
-    
-    /**
-     * Setup scroll animations for elements with the animate-on-scroll class
-     */
-    function setupScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-        
-        // If no animated elements, exit early
-        if (animatedElements.length === 0) return;
-        
-        // Setup intersection observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
+                if (targetElement) {
+                    e.preventDefault();
                     
-                    // Stop observing once animated
-                    observer.unobserve(entry.target);
+                    // Get header height for offset
+                    const headerHeight = header ? header.offsetHeight : 0;
+                    
+                    // Scroll to element with offset for header
+                    window.scrollTo({
+                        top: targetElement.offsetTop - headerHeight - 20,
+                        behavior: 'smooth'
+                    });
                 }
             });
-        }, { threshold: 0.1 });
-        
-        // Observe all elements with animation classes
-        animatedElements.forEach(element => {
-            observer.observe(element);
         });
     }
     
     /**
-     * Setup typewriter effect for job titles on the hero section
+     * Setup animations for elements when they come into view
+     */
+    function setupScrollAnimations() {
+        // Add animate-on-scroll class to elements that should animate
+        const elementsToAnimate = [
+            ...document.querySelectorAll('.project-card'),
+            ...document.querySelectorAll('.skill-category'),
+            ...document.querySelectorAll('.timeline-item'),
+            ...document.querySelectorAll('.education-item')
+        ];
+        
+        elementsToAnimate.forEach(element => {
+            element.classList.add('animate-on-scroll');
+        });
+        
+        // Initial check for elements in viewport
+        handleScroll();
+    }
+    
+    /**
+     * Check if an element is in the viewport
+     * @param {HTMLElement} element - The element to check
+     * @returns {boolean} - Whether the element is in the viewport
+     */
+    function isElementInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
+            rect.bottom >= 0
+        );
+    }
+    
+    /**
+     * Setup the typewriter effect for the hero section
      */
     function setupTypewriterEffect() {
         const typewriterElement = document.getElementById('typewriter');
