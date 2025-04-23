@@ -15,10 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectItems = document.querySelectorAll('.project-item');
     const contactForm = document.getElementById('contact-form');
     
-    // Create mobile menu overlay
-    const mobileMenuOverlay = document.createElement('div');
-    mobileMenuOverlay.className = 'mobile-menu-overlay';
-    document.body.appendChild(mobileMenuOverlay);
+    // Create mobile menu overlay if it doesn't exist
+    let mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    if (!mobileMenuOverlay) {
+        mobileMenuOverlay = document.createElement('div');
+        mobileMenuOverlay.className = 'mobile-menu-overlay';
+        document.body.appendChild(mobileMenuOverlay);
+    }
     
     console.log('Theme toggle button found:', themeToggle);
     
@@ -106,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Toggle mobile menu
      */
     function toggleMobileMenu() {
+        console.log('Toggle mobile menu');
         mobileMenuToggle.classList.toggle('active');
         mobileMenu.classList.toggle('active');
         mobileMenuOverlay.classList.toggle('active');
