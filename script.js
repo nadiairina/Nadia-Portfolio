@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const typewriterElement = document.getElementById('typewriter');
         if (!typewriterElement) return;
         
-        const phrases = ['Marketer', 'Frontend Developer'];  // Separate job titles
+        const phrases = ['Marketeer', 'Front-end Developer'];  // Separate job titles
         let currentPhraseIndex = 0;
         let currentCharIndex = 0;
         let isDeleting = false;
