@@ -3,13 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Projects by Nadia Irina - Front-end Developer and Marketeer">
-    <title>Projects | Nadia Irina</title>
+    <meta name="description" content="Contact Nadia Irina - Front-end Developer and Marketeer">
+    <title>Contact | Nadia Irina</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="typewriter-and-darkmode.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Make form more compact */
+        .contact-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .contact-form {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-group {
+            margin-bottom: 0;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            max-height: 200px;
+        }
+        
+        .submit-btn {
+            display: block;
+            margin-left: auto;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+        
+        /* Dark mode fixes */
+        body.dark {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        body.dark .header,
+        body.dark .footer {
+            background-color: rgba(31, 41, 55, 0.95);
+            border-color: #374151;
+        }
+        
+        body.dark .contact-hero {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        body.dark .page-title,
+        body.dark .page-description {
+            color: #f9fafb;
+        }
+        
+        body.dark .contact-form-container {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        body.dark .contact-form-container h2,
+        body.dark .contact-form-container h3,
+        body.dark .contact-form-container label,
+        body.dark .contact-form-container p,
+        body.dark .contact-form-container a {
+            color: #f9fafb;
+        }
+        
+        body.dark .form-group input,
+        body.dark .form-group textarea {
+            background-color: #374151;
+            color: #f9fafb;
+            border-color: #4b5563;
+        }
+        
+        body.dark .cta-section {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+        
+        body.dark .cta-section h2,
+        body.dark .cta-section p {
+            color: #f9fafb;
+        }
+        
+        body.dark .btn.secondary {
+            border-color: #4b5563;
+            color: #f9fafb;
+        }
+        
+        body.dark a {
+            color: #f9fafb;
+        }
+        
+        body.dark a:hover {
+            color: var(--primary-color);
+        }
+    </style>
 </head>
 <body>
     <!-- Header/Navbar -->
@@ -30,8 +154,8 @@
             <nav class="nav" id="nav">
                 <a href="index.html" aria-label="Home">Home</a>
                 <a href="about.html" aria-label="About Me">About Me</a>
-                <a href="projects.html" class="active" aria-label="Projects">Projects</a>
-                <a href="contact.html" aria-label="Contact">Contact</a>
+                <a href="projects.html" aria-label="Projects">Projects</a>
+                <a href="contact.html" class="active" aria-label="Contact">Contact</a>
             </nav>
 
             <div class="actions">
@@ -55,8 +179,8 @@
                 <nav class="mobile-nav">
                     <a href="index.html" aria-label="Home">Home</a>
                     <a href="about.html" aria-label="About Me">About Me</a>
-                    <a href="projects.html" class="active" aria-label="Projects">Projects</a>
-                    <a href="contact.html" aria-label="Contact">Contact</a>
+                    <a href="projects.html" aria-label="Projects">Projects</a>
+                    <a href="contact.html" class="active" aria-label="Contact">Contact</a>
                     <a class="resume-btn-mobile" href="assets/CV Nadia Alidina-2.pdf" download aria-label="Download Resume">Resume</a>
                 </nav>
                 <div class="mobile-social-icons">
@@ -71,145 +195,67 @@
         </div>
     </header>
     
-    <!-- Projects Hero Section -->
-    <section class="projects-hero">
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
         <div class="container">
-            <h1 class="page-title">My Projects</h1>
+            <h1 class="page-title">Get In Touch</h1>
             <p class="page-description">
-                A collection of my recent work spanning frontend development and marketing projects. Each project represents a unique challenge and solution.
+                Have a project in mind or want to discuss opportunities? I'm currently available for freelance work and full-time opportunities. Feel free to reach out!
             </p>
         </div>
     </section>
 
-    <!-- Projects Grid Section -->
-    <section class="projects-grid">
+    <!-- Contact Form Section -->
+    <section>
+        <div class="contact-form-container">
+            <h2>Send Me a Message</h2>
+           
+            <form id="contact-form" class="contact-form" action="https://formspree.io/f/manoyyvr" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What is this regarding?">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Your message" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            
+            <div class="contact-info" style="margin-top: 30px;">
+                <h3>Contact Information</h3>
+                <p>Email: <a href="mailto:nadiairina934@gmail.com">nadiairina934@gmail.com</a></p>
+                <p>
+                    <a href="https://linkedin.com/in/nadiairina" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
         <div class="container">
-            <div class="modern-projects-container">
-                <!-- Project 1: Heat Map -->
-                <a href="https://nadiairina.github.io/Heat-Map/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Heat-Map.png" alt="Heat Map Data Visualization">
-                        </div>
-                        <div class="project-info">
-                            <h3>Heat Map Visualization</h3>
-                            <p class="project-category">Data Visualization</p>
-                            <p class="project-description">Interactive visualization showing global temperature changes over time with color-coded cells and tooltips. Built with D3.js, HTML, CSS, and JavaScript.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 2: Choropleth Map -->
-                <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Choropleth-Map.png" alt="Choropleth Map Visualization">
-                        </div>
-                        <div class="project-info">
-                            <h3>Choropleth Map</h3>
-                            <p class="project-category">Data Visualization</p>
-                            <p class="project-description">Geographic data visualization displaying education levels across US counties with interactive features. Created with D3.js, TopoJSON, and JavaScript.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 3: Treemap Diagram -->
-                <a href="https://nadiairina.github.io/Treemap-Diagram/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Treemap-Diagram.png" alt="Treemap Diagram">
-                        </div>
-                        <div class="project-info">
-                            <h3>Treemap Diagram</h3>
-                            <p class="project-category">Data Visualization</p>
-                            <p class="project-description">Hierarchical data visualization showing proportional representation of categories within datasets. Built with D3.js, HTML5, and responsive CSS.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 4: JavaScript Calculator -->
-                <a href="https://nadiairina.github.io/JavaScript-Calculator/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/JavaScript-Calculator.png" alt="JavaScript Calculator">
-                        </div>
-                        <div class="project-info">
-                            <h3>JavaScript Calculator</h3>
-                            <p class="project-category">Web App</p>
-                            <p class="project-description">Fully functional calculator with arithmetic operations, keyboard support, and formula display. Developed with vanilla JavaScript, HTML5, and CSS3.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 5: Drum Machine -->
-                <a href="https://nadiairina.github.io/Drum-Machine/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Drum-Machine.png" alt="Drum Machine">
-                        </div>
-                        <div class="project-info">
-                            <h3>Drum Machine</h3>
-                            <p class="project-category">Interactive Web App</p>
-                            <p class="project-description">Interactive audio application with keyboard controls, sound playback, and visual feedback. Created with JavaScript, HTML5, and the Web Audio API.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 6: Palindrome Checker -->
-                <a href="https://nadiairina.github.io/Palindrome-Checker/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Palindrome-Checker.png" alt="Palindrome Checker">
-                        </div>
-                        <div class="project-info">
-                            <h3>Palindrome Checker</h3>
-                            <p class="project-category">JavaScript Application</p>
-                            <p class="project-description">Tool that verifies if text reads the same backward as forward, ignoring punctuation and spaces. Built with JavaScript algorithms and DOM manipulation.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 7: Statistics Calculator -->
-                <a href="https://nadiairina.github.io/Statistics-Calculator/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Statistics-Calculator.png" alt="Statistics Calculator">
-                        </div>
-                        <div class="project-info">
-                            <h3>Statistics Calculator</h3>
-                            <p class="project-category">Data Tool</p>
-                            <p class="project-description">Application for calculating mean, median, mode, and standard deviation from input data sets. Created with JavaScript, HTML5, and responsive design principles.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 8: Todo App -->
-                <a href="https://nadiairina.github.io/Todo-App/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Todo-App.png" alt="Todo App">
-                        </div>
-                        <div class="project-info">
-                            <h3>Todo App</h3>
-                            <p class="project-category">Web App</p>
-                            <p class="project-description">Task management application with add, edit, delete, and complete functionality. Uses local storage for persistence, built with JavaScript and CSS3.</p>
-                        </div>
-                    </div>
-                </a>
-                
-                <!-- Project 9: Technical Documentation -->
-                <a href="https://nadiairina.github.io/Technical-Documentation-Page/" target="_blank" class="project-link-wrapper">
-                    <div class="modern-project-card">
-                        <div class="project-image">
-                            <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Technical-Documentation-Page.png" alt="Technical Documentation Page">
-                        </div>
-                        <div class="project-info">
-                            <h3>Technical Documentation Page</h3>
-                            <p class="project-category">Documentation</p>
-                            <p class="project-description">Responsive technical documentation site with navigation sidebar and code samples. Created using HTML5, CSS Grid, and JavaScript for interactive features.</p>
-                        </div>
-                    </div>
-                </a>
+            <h2>Let's Work Together</h2>
+            <p>Looking for a frontend developer with marketing expertise? I'd love to hear about your project!</p>
+            <div class="cta-buttons">
+                <a href="projects.html" class="btn secondary">View My Work</a>
+                <a href="#contact-form" class="btn primary">Contact Me</a>
             </div>
         </div>
     </section>
