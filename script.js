@@ -83,51 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setupTypewriterEffect();
     }
     
-    // Mobile menu functionality
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const body = document.body;
-
-    if (mobileMenuToggle && mobileMenu) {
-        // Create overlay element
-        const overlay = document.createElement('div');
-        overlay.className = 'mobile-menu-overlay';
-        document.body.appendChild(overlay);
-        
-        // Toggle mobile menu
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-            
-            // Toggle body scroll
-            if (mobileMenu.classList.contains('active')) {
-                body.style.overflow = 'hidden';
-            } else {
-                body.style.overflow = '';
-            }
-        });
-        
-        // Close menu when clicking overlay
-        overlay.addEventListener('click', () => {
-            mobileMenuToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            body.style.overflow = '';
-        });
-        
-        // Close menu when clicking nav items
-        const mobileNavLinks = mobileMenu.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                body.style.overflow = '';
-            });
-        });
-    }
-    
     /**
      * Initialize theme based on user preference or system preference
      * with improved transition between states
@@ -510,10 +465,6 @@ document.addEventListener('DOMContentLoaded', () => {
             typeNextChar();
         }
         
-        // Start the typing effect
-        showNextTitle();
-    }
-});
         // Start the typing effect
         showNextTitle();
     }
