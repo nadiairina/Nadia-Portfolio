@@ -144,7 +144,7 @@
                 <a href="index.html" aria-label="Home">Home</a>
                 <a href="about.html" aria-label="About Me">About Me</a>
                 <a href="projects.html" aria-label="Projects">Projects</a>
-                <a href="contact.html"  class="active" aria-label="Contact">Contact</a>
+                <a href="contact.html" class="active" aria-label="Contact">Contact</a>
             </nav>
 
             <div class="actions">
@@ -168,49 +168,70 @@
         <div class="container">
             <h1 class="page-title">Get In Touch</h1>
             <p class="page-description">
-                Have a project in mind or want to discuss opportunities? I'm currently available for freelance work and full-time opportunities. Feel free to reach out!
+                Have a project in mind or just want to say hello? Feel free to reach out using the form below or through my social media channels.
             </p>
         </div>
     </section>
 
     <!-- Contact Form Section -->
-    <section>
-        <div class="contact-form-container">
-            <h2>Send Me a Message</h2>
-           
-            <form id="contact-form" class="contact-form" action="https://formspree.io/f/manoyyvr" method="POST">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-form-container">
+                <form id="contact-form" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                            <div class="form-feedback" id="name-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="form-feedback" id="email-feedback"></div>
+                        </div>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                        <div class="form-feedback" id="subject-feedback"></div>
                     </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <div class="form-feedback" id="message-feedback"></div>
+                    </div>
+                    <button type="submit" class="submit-btn btn primary">Send Message</button>
+                </form>
+                <div class="form-success" id="form-success">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Your message has been sent successfully!</p>
+                    <p>I'll get back to you as soon as possible.</p>
                 </div>
-                
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="What is this regarding?">
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Your message" required></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-            
-            <div class="contact-info" style="margin-top: 30px;">
-                <h3>Contact Information</h3>
-                <p>Email: <a href="mailto:nadiairina934@gmail.com">nadiairina934@gmail.com</a></p>
+            </div>
+            <div class="contact-info">
+                <h2>Contact Information</h2>
                 <p>
-                    <a href="https://linkedin.com/in/nadiairina" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
+                    If you prefer to connect directly, you can reach me through:
+                </p>
+                <ul class="contact-details">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>Email: </span>
+                        <a href="mailto:nadiairina934@gmail.com">nadiairina934@gmail.com</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-github"></i>
+                        <span>GitHub: </span>
+                        <a href="https://github.com/nadiairina" target="_blank">nadiairina</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn: </span>
+                        <a href="https://linkedin.com/in/nadiairina" target="_blank">nadiairina</a>
+                    </li>
+                </ul>
+                <p>
+                    I'm based in Portugal, but I work with clients from around the world.
                 </p>
             </div>
         </div>
