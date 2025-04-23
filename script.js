@@ -514,3 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showNextTitle();
     }
 });
+        // Start the typing effect
+        showNextTitle();
+    }
+});
