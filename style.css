@@ -1730,4 +1730,79 @@ body.dark .project-image.placeholder-img {
     .footer-links {
         grid-template-columns: 1fr;
     }
+  /* Typewriter effect styles */
+.typewriter-effect {
+  font-weight: 600;
+  color: #6366f1; /* Primary color */
+  position: relative;
+  display: inline-block;
+  border-right: 2px solid #6366f1;
+  padding-right: 5px;
+  animation: blink-caret 0.75s step-end infinite;
+  min-height: 1.5em; /* Fixed height to prevent layout shifts */
+  min-width: 1ch; /* Minimum width for cursor */
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #6366f1 }
+}
+
+/* Dark mode styles */
+body.dark {
+  background-color: #1f2937;
+  color: #f3f4f6;
+}
+
+body.dark .header {
+  background-color: rgba(31, 41, 55, 0.95);
+  border-bottom-color: #374151;
+}
+
+body.dark .nav a {
+  color: #f3f4f6;
+}
+
+body.dark .logo {
+  color: #f3f4f6;
+}
+
+body.dark .btn.secondary {
+  color: #f3f4f6;
+  border-color: #374151;
+}
+
+body.dark .work {
+  background-color: #111827;
+}
+
+body.dark .project-card {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+body.dark .project-card h3 {
+  color: #f3f4f6;
+}
+
+body.dark .project-card p {
+  color: #d1d5db;
+}
+
+body.dark .tech-tag {
+  background-color: rgba(99, 102, 241, 0.2);
+}
+
+body.dark .skills {
+  background-color: #111827;
+}
+
+body.dark .skill-tag {
+  background-color: #1f2937;
+  color: #f3f4f6;
+}
+
+body.dark .footer {
+  background-color: #111827;
+  border-top-color: #374151;
 }
