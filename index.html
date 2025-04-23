@@ -11,6 +11,51 @@
     <link rel="stylesheet" href="typewriter-and-darkmode.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+/* Add this to your styles or in a style tag in the head */
+.project-card .project-image {
+    height: 180px; /* Reduced height */
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.3s ease;
+}
+
+/* Some of my latest work section specific styles */
+.work .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.work .project-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.work .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.work .project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+</style>
 </head>
 <body>
     <!-- Header/Navbar -->
@@ -41,20 +86,21 @@
     </header>
     
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="container">
-            <p class="greeting">Hi, I'm Nadia</p>
-            <h1 class="title">I'm a <span class="highlight typewriter-effect" id="typewriter"></span></h1>
-            <p class="subtitle">
-                I build accessible, <span class="highlight">responsive</span> websites that bring ideas to life.
-            </p>
-            <div class="hero-cta">
-                <a href="projects.html" class="btn primary">View My Work</a>
-                <a href="contact.html" class="btn secondary">Get In Touch</a>
-            </div>
+<!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="container">
+        <p class="greeting">Hi, I'm Nadia</p>
+        <h1 class="title">I'm a</h1>
+        <h1 class="job-title"><span class="highlight typewriter-effect" id="typewriter"></span></h1>
+        <p class="subtitle">
+            I build accessible, <span class="highlight">responsive</span> websites that bring ideas to life.
+        </p>
+        <div class="hero-cta">
+            <a href="projects.html" class="btn primary">View My Work</a>
+            <a href="contact.html" class="btn secondary">Get In Touch</a>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Featured Work Section -->
     <section class="work" id="work">
         <div class="container">
@@ -62,72 +108,85 @@
             <div class="projects">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Heat-Map.png" alt="Heat Map Visualization">
+                        <img src="assets/images/projects/Heat-Map.png" alt="Heat Map Data Visualization">
                     </div>
                     <h3>Heat Map Visualization</h3>
-                    <p>Interactive data visualization showing global temperature changes over time with hover effects and detailed tooltips.</p>
-                    <div class="tech-stack">
+                    <p>Interactive visualization showing global temperature changes over time with color-coded cells and tooltips.</p>
+                    <div class="project-tags">
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">HTML5</span>
                         <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">D3.js</span>
                     </div>
-                    <a href="https://nadiairina.github.io/Heat-Map/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="https://nadiairina.github.io/Heat-Map/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                 </div>
-
+                
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Choropleth-Map.png" alt="Choropleth Map">
+                        <img src="assets/images/projects/Choropleth-Map.png" alt="Choropleth Map Data Visualization">
                     </div>
                     <h3>Choropleth Map</h3>
-                    <p>Interactive geographic visualization of US education data using color gradients to represent data variations by county.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
+                    <p>Educational attainment data visualization with interactive choropleth map showing US county education levels.</p>
+                    <div class="project-tags">
                         <span class="tech-tag">D3.js</span>
                         <span class="tech-tag">TopoJSON</span>
-                    </div>
-                    <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Drum-Machine.png" alt="Drum Machine">
-                    </div>
-                    <h3>Drum Machine</h3>
-                    <p>Interactive web application that simulates a drum machine with keyboard controls, sound playback, and visual feedback.</p>
-                    <div class="tech-stack">
                         <span class="tech-tag">HTML5</span>
                         <span class="tech-tag">CSS3</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Web Audio API</span>
                     </div>
-                    <a href="https://nadiairina.github.io/Drum-Machine/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Treemap-Diagram.png" alt="Treemap Diagram Data Visualization">
+                    </div>
+                    <h3>Treemap Diagram</h3>
+                    <p>Hierarchical treemap showing video game sales data with interactive tooltips and legend for category filtering.</p>
+                    <div class="project-tags">
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">SVG</span>
+                        <span class="tech-tag">CSS3</span>
+                    </div>
+                    <a href="https://nadiairina.github.io/Treemap-Diagram/" target="_blank" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="view-all-container">
-                <a href="projects.html" class="view-all-btn">View All Projects</a>
+            <div class="view-all">
+                <a href="projects.html" class="btn secondary">View All Projects <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
-
+    
     <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="container">
             <h2>My Skills</h2>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3>Front-end Development</h3>
+                    <h3>Development</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3/SCSS</span>
+                        <span class="skill-tag">CSS3</span>
                         <span class="skill-tag">JavaScript</span>
                         <span class="skill-tag">React</span>
-                        <span class="skill-tag">D3.js</span>
                         <span class="skill-tag">Bootstrap</span>
-                        <span class="skill-tag">Web Audio API</span>
                         <span class="skill-tag">Responsive Design</span>
+                        <span class="skill-tag">SASS</span>
+                        <span class="skill-tag">jQuery</span>
+                        <span class="skill-tag">API Integration</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">npm</span>
+                        <span class="skill-tag">Webpack</span>
+                        <span class="skill-tag">Chrome DevTools</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Adobe XD</span>
+                        <span class="skill-tag">Adobe Photoshop</span>
                     </div>
                 </div>
                 <div class="skill-category">
@@ -176,9 +235,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-</body>
-</html>
     <script src="script.js"></script>
 </body>
 </html>
