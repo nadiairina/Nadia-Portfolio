@@ -9,9 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Elements
     const header = document.getElementById("header");
     const themeToggle = document.getElementById("theme-toggle");
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
     const projectFilters = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
     const contactForm = document.getElementById('contact-form');
+    
+    // Create mobile menu overlay
+    const mobileMenuOverlay = document.createElement('div');
+    mobileMenuOverlay.className = 'mobile-menu-overlay';
+    document.body.appendChild(mobileMenuOverlay);
     
     console.log('Theme toggle button found:', themeToggle);
     
@@ -60,6 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Theme toggle button not found!');
     }
     
+    // Mobile menu toggle functionality
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+    }
+    
     // Project filtering (on projects page)
     if (projectFilters.length > 0 && projectItems.length > 0) {
         setupProjectFilters();
@@ -81,6 +100,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const typewriterElement = document.getElementById('typewriter');
     if (typewriterElement) {
         setupTypewriterEffect();
+    }
+    
+    /**
+     * Toggle mobile menu
+     */
+    function toggleMobileMenu() {
+        mobileMenuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        mobileMenuOverlay.classList.toggle('active');
+        
+        // Prevent scrolling when menu is open
+        if (mobileMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+    
+    /**
+     * Close mobile menu
+     */
+    function closeMobileMenu() {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
     }
     
     /**
