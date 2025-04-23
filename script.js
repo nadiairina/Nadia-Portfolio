@@ -1,5 +1,7 @@
 // Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded successfully');
+    
     // Store theme preference in localStorage
     const DARK_MODE_KEY = 'darkMode';
     const THEME_TRANSITION_DURATION = 500; // ms
@@ -10,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectFilters = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
     const contactForm = document.getElementById('contact-form');
+    
+    console.log('Theme toggle button found:', themeToggle);
     
     // Initialize theme based on user preference
     initializeTheme();
@@ -52,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip.style.opacity = '0';
             tooltip.style.transform = 'translateY(10px)';
         });
+    } else {
+        console.error('Theme toggle button not found!');
     }
     
     // Project filtering (on projects page)
@@ -72,7 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setupScrollAnimations();
     
     // Setup typewriter effect for the hero section
-    setupTypewriterEffect();
+    const typewriterElement = document.getElementById('typewriter');
+    if (typewriterElement) {
+        setupTypewriterEffect();
+    }
     
     /**
      * Initialize theme based on user preference or system preference
@@ -81,6 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function initializeTheme() {
         // Check if user has a saved preference
         const savedTheme = localStorage.getItem(DARK_MODE_KEY);
+        
+        console.log('Saved theme preference:', savedTheme);
         
         // Prepare body for smooth transition
         document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
@@ -105,7 +116,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     themeToggle.textContent = '🌞';
                     themeToggle.setAttribute('aria-label', 'Switch to Light Mode');
                 }
+                localStorage.setItem(DARK_MODE_KEY, 'true');
+            } else {
+                if (themeToggle) {
+                    themeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+                }
             }
+        }
+        
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (localStorage.getItem(DARK_MODE_KEY) === null) {
+                    // Only auto-switch if user hasn't set a preference
+                    if (e.matches) {
+                        document.body.classList.add('dark');
+                        if (themeToggle) {
+                            themeToggle.textContent = '🌞';
+                            themeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+                        }
+                    } else {
+                        document.body.classList.remove('dark');
+                        if (themeToggle) {
+                            themeToggle.textContent = '🌙';
+                            themeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+                        }
+                    }
+                }
+            });
         }
     }
     
@@ -114,23 +152,42 @@ document.addEventListener('DOMContentLoaded', () => {
      * and performance optimization
      */
     function handleScroll() {
-        if (window.scrollY > 50) {
+        if (!header) return;
+        
+        // Add shadow and transform effect to header when scrolled
+        const scrolled = window.scrollY > 10;
+        
+        if (scrolled && !header.classList.contains("scrolled")) {
             header.classList.add("scrolled");
-        } else {
+            // Trigger a reflow to ensure smooth animation
+            void header.offsetWidth;
+        } else if (!scrolled && header.classList.contains("scrolled")) {
             header.classList.remove("scrolled");
         }
+        
+        // Check for elements that should animate on scroll
+        const animatedElements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
+        animatedElements.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.classList.add('animated');
+            }
+        });
     }
     
     /**
      * Toggle dark mode with enhanced animation and accessibility
      */
     function toggleDarkMode() {
+        console.log('Toggle dark mode clicked');
+        
         // Add transition class to trigger smooth animation for all elements
         document.documentElement.classList.add('theme-transition');
         
         // Toggle dark mode class
         document.body.classList.toggle('dark');
         const isDarkMode = document.body.classList.contains('dark');
+        
+        console.log('Dark mode toggled to:', isDarkMode);
         
         // Update button icon and aria-label for accessibility
         if (themeToggle) {
@@ -176,19 +233,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Filter projects
                 projectItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-                    if (filterValue === 'all' || category === filterValue) {
-                        item.style.display = 'block';
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'grid';
+                        // Add animation
+                        item.classList.add('fade-in');
                         setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 50);
+                            item.classList.remove('fade-in');
+                        }, 500);
                     } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
+                        item.style.display = 'none';
                     }
                 });
             });
@@ -199,95 +252,116 @@ document.addEventListener('DOMContentLoaded', () => {
      * Setup form validation with real-time feedback
      */
     function setupFormValidation() {
-        const inputs = contactForm.querySelectorAll('input, textarea');
+        if (!contactForm) return;
         
-        inputs.forEach(input => {
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        
+        formInputs.forEach(input => {
             // Create feedback element
-            const feedback = document.createElement('div');
-            feedback.className = 'form-feedback';
-            input.parentNode.appendChild(feedback);
+            const feedbackElement = document.createElement('div');
+            feedbackElement.className = 'form-feedback';
+            input.parentNode.appendChild(feedbackElement);
             
-            // Add event listeners for real-time validation
-            input.addEventListener('blur', () => validateInput(input, feedback));
-            input.addEventListener('input', () => validateInput(input, feedback));
+            // Add event listeners for validation
+            input.addEventListener('blur', () => validateInput(input, feedbackElement));
+            input.addEventListener('input', () => {
+                // Clear error when user starts typing again
+                if (input.classList.contains('invalid')) {
+                    input.classList.remove('invalid');
+                    feedbackElement.textContent = '';
+                    feedbackElement.classList.remove('error');
+                }
+            });
         });
     }
     
     /**
      * Validate form input and show feedback
+     * @param {HTMLElement} input - Input element to validate
+     * @param {HTMLElement} feedback - Element to show feedback in
      */
     function validateInput(input, feedback) {
-        // Reset feedback
-        feedback.textContent = '';
-        feedback.className = 'form-feedback';
+        const value = input.value.trim();
+        const name = input.name;
         
-        // Skip validation if empty (will be caught by required attribute)
-        if (!input.value.trim()) return;
-        
-        // Validate by input type
-        switch(input.id) {
-            case 'email':
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(input.value)) {
-                    feedback.textContent = 'Please enter a valid email address';
-                    feedback.className = 'form-feedback error';
-                } else {
-                    feedback.textContent = 'Looks good!';
-                    feedback.className = 'form-feedback success';
-                }
-                break;
-                
-            case 'name':
-                if (input.value.trim().length < 2) {
-                    feedback.textContent = 'Name must be at least 2 characters';
-                    feedback.className = 'form-feedback error';
-                } else {
-                    feedback.textContent = 'Looks good!';
-                    feedback.className = 'form-feedback success';
-                }
-                break;
-                
-            case 'message':
-                if (input.value.trim().length < 10) {
-                    feedback.textContent = 'Message must be at least 10 characters';
-                    feedback.className = 'form-feedback error';
-                } else {
-                    feedback.textContent = 'Looks good!';
-                    feedback.className = 'form-feedback success';
-                }
-                break;
+        // Don't validate empty optional fields
+        if (!input.required && !value) {
+            feedback.textContent = '';
+            return true;
         }
+        
+        // Check for required fields
+        if (input.required && !value) {
+            input.classList.add('invalid');
+            feedback.textContent = 'This field is required';
+            feedback.classList.add('error');
+            return false;
+        }
+        
+        // Email validation
+        if (name === 'email' && value) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(value)) {
+                input.classList.add('invalid');
+                feedback.textContent = 'Please enter a valid email address';
+                feedback.classList.add('error');
+                return false;
+            }
+        }
+        
+        // Clear feedback if valid
+        feedback.textContent = '';
+        return true;
     }
     
     /**
      * Handle contact form submission with enhanced validation
+     * @param {Event} e - Form submit event
      */
     function handleContactForm(e) {
-        const inputs = contactForm.querySelectorAll('input, textarea');
-        let isValid = true;
+        if (!contactForm) return;
         
-        // Validate all inputs
-        inputs.forEach(input => {
-            const feedback = input.parentNode.querySelector('.form-feedback');
-            validateInput(input, feedback);
-            
-            // Check if input is invalid
-            if (feedback.className.includes('error') || !input.value.trim()) {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name')?.value.trim();
+        const email = document.getElementById('email')?.value.trim();
+        const subject = document.getElementById('subject')?.value.trim();
+        const message = document.getElementById('message')?.value.trim();
+        
+        // Validate all fields
+        let isValid = true;
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        
+        formInputs.forEach(input => {
+            const feedbackElement = input.parentNode.querySelector('.form-feedback');
+            if (feedbackElement && !validateInput(input, feedbackElement)) {
                 isValid = false;
             }
         });
         
-        // If form is invalid, prevent submission
         if (!isValid) {
-            e.preventDefault();
-            
-            // Scroll to first invalid input
-            const firstInvalidInput = contactForm.querySelector('.form-feedback.error')?.parentNode.querySelector('input, textarea');
-            if (firstInvalidInput) {
-                firstInvalidInput.focus();
-                firstInvalidInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            // Focus the first invalid field
+            const firstInvalid = contactForm.querySelector('.invalid');
+            if (firstInvalid) firstInvalid.focus();
+            return;
         }
+        
+        // Create and show success message
+        const successMessage = document.createElement('div');
+        successMessage.className = 'form-success';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <p>Thank you for your message, ${name}!</p>
+            <p>I'll get back to you soon.</p>
+        `;
+        
+        // Replace form with success message
+        contactForm.innerHTML = '';
+        contactForm.appendChild(successMessage);
+        
+        // Scroll to success message
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     
     /**
@@ -296,20 +370,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupSmoothScrolling() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                if (href === '#') return;
+                
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (!targetElement) return;
-                
-                const headerOffset = 80;
-                const elementPosition = targetElement.offsetTop;
-                const offsetPosition = elementPosition - headerOffset;
+                const target = document.querySelector(href);
+                if (!target) return;
                 
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: target.offsetTop - 100,
                     behavior: 'smooth'
                 });
             });
@@ -317,84 +388,103 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     /**
-     * Setup scroll animations for elements with the animate-on-scroll class
+     * Setup animations that trigger when elements come into view
      */
     function setupScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        // Add animation classes to elements
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
         
-        // If no animated elements, exit early
-        if (animatedElements.length === 0) return;
-        
-        // Setup intersection observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                    
-                    // Stop observing once animated
-                    observer.unobserve(entry.target);
+        // Check if elements are in viewport on scroll
+        window.addEventListener('scroll', debounce(() => {
+            animateElements.forEach(element => {
+                if (isElementInViewport(element) && !element.classList.contains('animated')) {
+                    element.classList.add('animated');
                 }
             });
-        }, { threshold: 0.1 });
+        }, 50));
         
-        // Observe all elements with animation classes
-        animatedElements.forEach(element => {
-            observer.observe(element);
-        });
+        // Initial check on page load
+        setTimeout(() => {
+            animateElements.forEach(element => {
+                if (isElementInViewport(element) && !element.classList.contains('animated')) {
+                    element.classList.add('animated');
+                }
+            });
+        }, 300);
     }
     
     /**
-     * Setup typewriter effect for job titles on the hero section
+     * Check if an element is in the viewport
+     * @param {Element} el - Element to check
+     * @returns {boolean} - Whether element is in viewport
+     */
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+            rect.bottom >= 0 &&
+            rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+            rect.right >= 0
+        );
+    }
+    
+    /**
+     * Setup typewriter effect for the hero section
      */
     function setupTypewriterEffect() {
-        const typewriterElement = document.getElementById('typewriter');
-        if (!typewriterElement) return;
-        
-        const phrases = ['Marketeer', 'Front-end Developer'];  // Separate job titles
-        let currentPhraseIndex = 0;
-        let currentCharIndex = 0;
+        const words = ["Front-end Developer", "Marketeer", "UI Designer"];
+        let wordIndex = 0;
+        let letterIndex = 0;
         let isDeleting = false;
-        let typingSpeed = 100;
-        
-        typewriterElement.classList.add('blinking-cursor');
+        let isWaiting = false;
+        const typingSpeed = 150; // ms per character
+        const deleteSpeed = 100; // ms per character
+        const waitTime = 2000; // ms to wait between words
         
         function type() {
-            const currentPhrase = phrases[currentPhraseIndex];
+            const currentWord = words[wordIndex];
+            const typewriterElement = document.getElementById('typewriter');
+            
+            if (!typewriterElement) return;
+            
+            if (isWaiting) {
+                setTimeout(() => {
+                    isWaiting = false;
+                    isDeleting = true;
+                    type();
+                }, waitTime);
+                return;
+            }
             
             if (isDeleting) {
-                // Removing characters
-                currentCharIndex--;
-                typingSpeed = 50; // Delete faster
+                // Deleting
+                letterIndex--;
+                if (letterIndex < 0) {
+                    letterIndex = 0;
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
             } else {
-                // Adding characters
-                currentCharIndex++;
-                typingSpeed = 150; // Type slower
+                // Typing
+                letterIndex++;
+                if (letterIndex > currentWord.length) {
+                    letterIndex = currentWord.length;
+                    isWaiting = true;
+                }
             }
             
-            // Display current text
-            typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+            // Update text content
+            typewriterElement.textContent = currentWord.substring(0, letterIndex);
             
-            if (!isDeleting && currentCharIndex === currentPhrase.length) {
-                // Finished typing current phrase
-                isDeleting = false;  // Don't delete - keep the full text
-                typingSpeed = 2000;  // Wait 2 seconds before starting to delete
-                setTimeout(() => {
-                    isDeleting = true;  // Now delete to restart animation
-                    type();
-                }, typingSpeed);
-                return;
-            } else if (isDeleting && currentCharIndex === 0) {
-                // Finished deleting
-                isDeleting = false;
-                // Move to next phrase
-                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-                typingSpeed = 500; // Pause before typing next phrase
+            // Add cursor
+            if (!isWaiting) {
+                setTimeout(type, isDeleting ? deleteSpeed : typingSpeed);
+            } else {
+                type(); // Go to waiting state
             }
-            
-            setTimeout(type, typingSpeed);
         }
         
-        // Start the typing effect
-        setTimeout(type, 1000);
+        // Start typing
+        type();
     }
 });
