@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectFilters = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
     const contactForm = document.getElementById('contact-form');
+    const typewriterElement = document.getElementById('typewriter');
+
+    console.log("Typewriter element found:", typewriterElement);
     
     // Initialize theme based on user preference
     initializeTheme();
@@ -71,8 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add animation classes when elements come into view
     setupScrollAnimations();
     
-    // Setup typewriter effect for the hero section
-    setupTypewriterEffect();
+    // Setup typewriter effect for the hero section - run immediately
+    if (typewriterElement) {
+        console.log("Setting up typewriter effect");
+        setupTypewriterEffect();
+    } else {
+        console.error("Typewriter element not found!");
+    }
     
     /**
      * Initialize theme based on user preference or system preference
@@ -235,6 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * Setup form validation with real-time feedback
      */
     function setupFormValidation() {
+        if (!contactForm) return;
+        
         const formInputs = contactForm.querySelectorAll('input, textarea');
         
         formInputs.forEach(input => {
@@ -305,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get form values
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim();
+        const subject = document.getElementById('subject') ? document.getElementById('subject').value.trim() : '';
         const message = document.getElementById('message').value.trim();
         
         // Validate all fields
@@ -321,7 +331,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!isValid) {
             // Focus the first invalid field
-            contactForm.querySelector('.invalid').focus();
+            const invalidField = contactForm.querySelector('.invalid');
+            if (invalidField) invalidField.focus();
             return;
         }
         
@@ -360,10 +371,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const anchorLinks = document.querySelectorAll('a[href^="#"]');
         
         anchorLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const targetId = link.getAttribute('href');
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
                 
-                // Skip if it's just "#"
                 if (targetId === '#') return;
                 
                 const targetElement = document.querySelector(targetId);
@@ -371,12 +381,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (targetElement) {
                     e.preventDefault();
                     
-                    // Get header height for offset
-                    const headerHeight = header ? header.offsetHeight : 0;
+                    const headerOffset = header ? header.offsetHeight : 0;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - headerOffset - 20;
                     
-                    // Scroll to element with offset for header
                     window.scrollTo({
-                        top: targetElement.offsetTop - headerHeight - 20,
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
                 }
@@ -385,146 +395,73 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     /**
-     * Setup animations for elements when they come into view
+     * Setup typewriter effect for the hero section
+     * Modified to be faster and write-only - won't erase text
      */
-    function setupScrollAnimations() {
-        // Add animate-on-scroll class to elements that should animate
-        const elementsToAnimate = [
-            ...document.querySelectorAll('.project-card'),
-            ...document.querySelectorAll('.skill-category'),
-            ...document.querySelectorAll('.timeline-item'),
-            ...document.querySelectorAll('.education-item')
-        ];
+    function setupTypewriterEffect() {
+        // Define phrases array - different job titles
+        const phrases = ['Front-end Developer', 'Marketeer', 'UI/UX Enthusiast'];
         
-        elementsToAnimate.forEach(element => {
-            element.classList.add('animate-on-scroll');
-        });
+        // Create a separate function for displaying each career title one after another
+        let index = 0;  // Current phrase
+        let charIndex = 0;  // Current character in the phrase
+        let isDeleting = false;  // Whether we're deleting or typing
         
-        // Initial check for elements in viewport
-        handleScroll();
+        // Define the typing function that will be called repeatedly
+        function typeNextCharacter() {
+            // Get the current phrase
+            const currentPhrase = phrases[index % phrases.length];
+            
+            // Check if we're adding characters (typing)
+            if (charIndex < currentPhrase.length) {
+                // Add the next character
+                typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
+                charIndex++;
+                
+                // Call this function again after a short delay (faster typing speed)
+                setTimeout(typeNextCharacter, 50);
+            } else {
+                // Reached the end of the phrase, wait longer
+                setTimeout(() => {
+                    // Move to next phrase
+                    index++;
+                    charIndex = 0;
+                    typewriterElement.textContent = '';
+                    typeNextCharacter();
+                }, 2000);
+            }
+        }
+        
+        // Start the typewriter effect
+        typeNextCharacter();
     }
     
     /**
-     * Check if an element is in the viewport
-     * @param {HTMLElement} element - The element to check
-     * @returns {boolean} - Whether the element is in the viewport
+     * Check if element is in viewport
+     * @param {HTMLElement} el - Element to check
+     * @returns {boolean} - True if element is in viewport
      */
-    function isElementInViewport(element) {
-        const rect = element.getBoundingClientRect();
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
         return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
-            rect.bottom >= 0
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+            rect.bottom >= 0 &&
+            rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+            rect.right >= 0
         );
     }
     
     /**
-     * Setup the typewriter effect for the hero section
+     * Setup scroll animations
      */
-    function setupTypewriterEffect() {
-        const typewriterElement = document.getElementById('typewriter');
-        if (!typewriterElement) return;
+    function setupScrollAnimations() {
+        // Add a class to elements that should animate on scroll
+        const elementsToAnimate = document.querySelectorAll('.project-card, .skill-category, .section-heading');
+        elementsToAnimate.forEach(element => {
+            element.classList.add('animate-on-scroll');
+        });
         
-        const phrases = ['Marketeer', 'Front-End Developer'];  // Separate job titles
-        let currentPhraseIndex = 0;
-        let currentCharIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100;
-        
-        typewriterElement.classList.add('blinking-cursor');
-        
-        function type() {
-            const currentPhrase = phrases[currentPhraseIndex];
-            
-            if (isDeleting) {
-                // Removing characters
-                currentCharIndex--;
-                typingSpeed = 50; // Delete faster
-            } else {
-                // Adding characters
-                currentCharIndex++;
-                typingSpeed = 150; // Type slower
-            }
-            
-            // Display current text
-            typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
-            
-            if (!isDeleting && currentCharIndex === currentPhrase.length) {
-                // Finished typing current phrase
-                isDeleting = false;  // Don't delete - keep the full text
-                typingSpeed = 2000;  // Wait 2 seconds before starting to delete
-                setTimeout(() => {
-                    isDeleting = true;  // Now delete to restart animation
-                    type();
-                }, typingSpeed);
-                return;
-            } else if (isDeleting && currentCharIndex === 0) {
-                // Finished deleting
-                isDeleting = false;
-                // Move to next phrase
-                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-                typingSpeed = 500; // Pause before typing next phrase
-            }
-            
-            setTimeout(type, typingSpeed);
-        }
-        
-        // Start the typing effect
-        setTimeout(type, 1000);
+        // Check initial positions
+        handleScroll();
     }
-    import React, { useState, useEffect } from 'react';
-
-interface TypewriterEffectProps {
-  phrases: string[];
-  speed?: number;
-  pauseDuration?: number;
-  writeOnly?: boolean;
-}
-
-const TypewriterEffect: React.FC<TypewriterEffectProps> = ({ 
-  phrases, 
-  speed = 100,
-  pauseDuration = 2000,
-  writeOnly = false
-}) => {
-  const [currentPhrase, setCurrentPhrase] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentChar, setCurrentChar] = useState(0);
-
-  useEffect(() => {
-    if (!phrases || phrases.length === 0) return;
-
-    const typePhrase = () => {
-      const phrase = phrases[currentIndex];
-      
-      if (currentChar < phrase.length) {
-        // Writing the phrase
-        setCurrentPhrase(phrase.substring(0, currentChar + 1));
-        setCurrentChar(prevChar => prevChar + 1);
-      } else {
-        // Phrase is complete, pause before next action
-        setTimeout(() => {
-          if (writeOnly) {
-            // If writeOnly is true, simply move to the next phrase without erasing
-            setCurrentChar(0);
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % phrases.length);
-          } else {
-            // Start erasing if writeOnly is false
-            setCurrentChar(phrase.length - 1);
-          }
-        }, pauseDuration);
-      }
-    };
-
-    const timer = setTimeout(typePhrase, speed);
-    return () => clearTimeout(timer);
-  }, [currentChar, currentIndex, phrases, speed, pauseDuration, writeOnly]);
-
-  return (
-    <span className="highlight typewriter-effect" id="typewriter">
-      {currentPhrase}
-    </span>
-  );
-};
-
-export default TypewriterEffect;
 });
