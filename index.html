@@ -11,51 +11,6 @@
     <link rel="stylesheet" href="typewriter-and-darkmode.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-/* Add this to your styles or in a style tag in the head */
-.project-card .project-image {
-    height: 180px; /* Reduced height */
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-.project-card .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.3s ease;
-}
-
-/* Some of my latest work section specific styles */
-.work .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.work .project-card {
-    background-color: var(--bg-card);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.work .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.work .project-card:hover .project-image img {
-    transform: scale(1.05);
-}
-</style>
 </head>
 <body>
     <!-- Header/Navbar -->
@@ -101,65 +56,61 @@
     </section>
 
     <!-- Featured Work Section -->
-    <!-- Featured Work Section -->
-<section class="work" id="work">
-    <div class="container">
-        <h2>Some of my latest work</h2>
-        <div class="projects">
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/projects/heat-map.jpg" alt="Heat Map Visualization"
-                         onerror="this.src='https://via.placeholder.com/400x300?text=Heat+Map'">
+    <section class="work" id="work">
+        <div class="container">
+            <h2>Some of my latest work</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Heat-Map.png" alt="Heat Map Visualization">
+                    </div>
+                    <h3>Heat Map Visualization</h3>
+                    <p>Interactive data visualization showing global temperature changes over time with hover effects and detailed tooltips.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">D3.js</span>
+                    </div>
+                    <a href="https://nadiairina.github.io/Heat-Map/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <h3>Heat Map Visualization</h3>
-                <p>Interactive data visualization showing global temperature changes over time with hover effects and detailed tooltips.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">D3.js</span>
-                </div>
-                <a href="https://nadiairina.github.io/Heat-Map/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
 
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/projects/choropleth-map.jpg" alt="Choropleth Map"
-                         onerror="this.src='https://via.placeholder.com/400x300?text=Choropleth+Map'">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Choropleth-Map.png" alt="Choropleth Map">
+                    </div>
+                    <h3>Choropleth Map</h3>
+                    <p>Interactive geographic visualization of US education data using color gradients to represent data variations by county.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">TopoJSON</span>
+                    </div>
+                    <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <h3>Choropleth Map</h3>
-                <p>Interactive geographic visualization of US education data using color gradients to represent data variations by county.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">D3.js</span>
-                    <span class="tech-tag">TopoJSON</span>
-                </div>
-                <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
 
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="assets/images/projects/drum-machine.jpg" alt="Drum Machine"
-                         onerror="this.src='https://via.placeholder.com/400x300?text=Drum+Machine'">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Drum-Machine.png" alt="Drum Machine">
+                    </div>
+                    <h3>Drum Machine</h3>
+                    <p>Interactive web application that simulates a drum machine with keyboard controls, sound playback, and visual feedback.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Web Audio API</span>
+                    </div>
+                    <a href="https://nadiairina.github.io/Drum-Machine/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                <h3>Drum Machine</h3>
-                <p>Interactive web application that simulates a drum machine with keyboard controls, sound playback, and visual feedback.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">Web Audio API</span>
-                </div>
-                <a href="https://nadiairina.github.io/Drum-Machine/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="view-all-container">
+                <a href="projects.html" class="view-all-btn">View All Projects</a>
             </div>
         </div>
-        <div class="view-all-container">
-            <a href="projects.html" class="view-all-btn">View All Projects</a>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Skills Section -->
     <section class="skills" id="skills">
@@ -215,7 +166,7 @@
                         <h4>Connect</h4>
                         <a href="https://github.com/nadiairina" target="_blank">GitHub</a>
                         <a href="https://linkedin.com/in/nadiairina" target="_blank">LinkedIn</a>
-                        <a href="mailto:nadiairina934@gmail.com">Email: nadiairina934@gmail.com</a>
+                        <a href="mailto:contact@nadiairina.com">Email: nadiairina934@gmail.com</a>
                     </div>
                 </div>
             </div>
