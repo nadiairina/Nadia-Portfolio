@@ -17,19 +17,8 @@
     <header class="header" id="header">
         <div class="container">
             <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
-            
-            <!-- Mobile menu button (hamburger) -->
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
-                <span class="hamburger-icon">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </span>
-            </button>
-            
-            <!-- Navigation menu (will be hidden on mobile) -->
-            <nav class="nav" id="nav">
-                <a href="index.html" class="active" aria-label="Home">Home</a>
+            <nav class="nav">
+                <a href="index.html" aria-label="Home">Home</a>
                 <a href="about.html" aria-label="About Me">About Me</a>
                 <a href="projects.html" aria-label="Projects">Projects</a>
                 <a href="contact.html" aria-label="Contact">Contact</a>
@@ -49,35 +38,13 @@
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
         </div>
-        
-        <!-- Mobile menu (off-canvas) -->
-        <div class="mobile-menu" id="mobile-menu">
-            <div class="mobile-menu-content">
-                <nav class="mobile-nav">
-                    <a href="index.html" class="active" aria-label="Home">Home</a>
-                    <a href="about.html" aria-label="About Me">About Me</a>
-                    <a href="projects.html" aria-label="Projects">Projects</a>
-                    <a href="contact.html" aria-label="Contact">Contact</a>
-                    <a class="resume-btn-mobile" href="assets/CV Nadia Alidina-2.pdf" download aria-label="Download Resume">Resume</a>
-                </nav>
-                <div class="mobile-social-icons">
-                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/nadiairina" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
     </header>
     
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="container">
             <p class="greeting">Hi, I'm Nadia</p>
-            <h1 class="title">I'm a</h1>
-            <h1 class="job-title"><span class="highlight typewriter-effect" id="typewriter"></span></h1>
+            <h1 class="title">I'm a <span class="highlight typewriter-effect" id="typewriter"></span></h1>
             <p class="subtitle">
                 I build accessible, <span class="highlight">responsive</span> websites that bring ideas to life.
             </p>
@@ -87,14 +54,15 @@
             </div>
         </div>
     </section>
+
     <!-- Featured Work Section -->
     <section class="work" id="work">
         <div class="container">
             <h2>Some of my latest work</h2>
             <div class="projects">
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Heat-Map.png" alt="Heat Map Visualization">
+                    <div class="project-image placeholder-img">
+                        <i class="fa-solid fa-chart-line project-icon"></i>
                     </div>
                     <h3>Heat Map Visualization</h3>
                     <p>Interactive data visualization showing global temperature changes over time with hover effects and detailed tooltips.</p>
@@ -108,27 +76,25 @@
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Choropleth-Map.png" alt="Choropleth Map">
+                    <div class="project-image placeholder-img">
+                        <i class="fa-solid fa-shopping-cart project-icon"></i>
                     </div>
-                    <h3>Choropleth Map</h3>
-                    <p>Interactive geographic visualization of US education data using color gradients to represent data variations by county.</p>
+                    <h3>JavaScript Calculator</h3>
+                    <p>Fully functional calculator with arithmetic operations and history tracking, built with vanilla JavaScript.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">HTML5</span>
                         <span class="tech-tag">CSS3</span>
                         <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">D3.js</span>
-                        <span class="tech-tag">TopoJSON</span>
                     </div>
-                    <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="https://nadiairina.github.io/JavaScript-Calculator/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://raw.githubusercontent.com/nadiairina/Nadia-Portfolio/main/assets/images/projects/Drum-Machine.png" alt="Drum Machine">
+                    <div class="project-image placeholder-img">
+                        <i class="fa-solid fa-drum project-icon"></i>
                     </div>
                     <h3>Drum Machine</h3>
-                    <p>Interactive web application that simulates a drum machine with keyboard controls, sound playback, and visual feedback.</p>
+                    <p>Interactive audio application with keyboard controls, sound playback, and visual feedback for drum sounds.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">HTML5</span>
                         <span class="tech-tag">CSS3</span>
@@ -138,8 +104,8 @@
                     <a href="https://nadiairina.github.io/Drum-Machine/" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="view-all-container">
-                <a href="projects.html" class="view-all-btn">View All Projects</a>
+            <div class="view-all">
+                <a href="projects.html" class="btn secondary">View All Projects</a>
             </div>
         </div>
     </section>
@@ -150,15 +116,13 @@
             <h2>My Skills</h2>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3>Front-end Development</h3>
+                    <h3>Frontend</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3/SCSS</span>
+                        <span class="skill-tag">CSS3</span>
                         <span class="skill-tag">JavaScript</span>
                         <span class="skill-tag">React</span>
-                        <span class="skill-tag">D3.js</span>
                         <span class="skill-tag">Bootstrap</span>
-                        <span class="skill-tag">Web Audio API</span>
                         <span class="skill-tag">Responsive Design</span>
                     </div>
                 </div>
@@ -166,11 +130,13 @@
                     <h3>Marketing</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Digital Marketing</span>
-                        <span class="skill-tag">Consumer Behavior</span>
+                        <span class="skill-tag">consumer behavior</span>
                         <span class="skill-tag">Web Design</span>
                         <span class="skill-tag">Strategic Planning</span>
                         <span class="skill-tag">Branding</span>
                     </div>
+                </div>
+                
                 </div>
             </div>
         </div>
@@ -196,7 +162,7 @@
                         <h4>Connect</h4>
                         <a href="https://github.com/nadiairina" target="_blank">GitHub</a>
                         <a href="https://linkedin.com/in/nadiairina" target="_blank">LinkedIn</a>
-                        <a href="mailto:nadiairina934@gmail.com">Email: nadiairina934@gmail.com</a>
+                        <a href="mailto:contact@nadiairina.com">Email: nadiairina934@gmail.com</a>
                     </div>
                 </div>
             </div>
