@@ -471,4 +471,60 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start the typing effect
         setTimeout(type, 1000);
     }
+    import React, { useState, useEffect } from 'react';
+
+interface TypewriterEffectProps {
+  phrases: string[];
+  speed?: number;
+  pauseDuration?: number;
+  writeOnly?: boolean;
+}
+
+const TypewriterEffect: React.FC<TypewriterEffectProps> = ({ 
+  phrases, 
+  speed = 100,
+  pauseDuration = 2000,
+  writeOnly = false
+}) => {
+  const [currentPhrase, setCurrentPhrase] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentChar, setCurrentChar] = useState(0);
+
+  useEffect(() => {
+    if (!phrases || phrases.length === 0) return;
+
+    const typePhrase = () => {
+      const phrase = phrases[currentIndex];
+      
+      if (currentChar < phrase.length) {
+        // Writing the phrase
+        setCurrentPhrase(phrase.substring(0, currentChar + 1));
+        setCurrentChar(prevChar => prevChar + 1);
+      } else {
+        // Phrase is complete, pause before next action
+        setTimeout(() => {
+          if (writeOnly) {
+            // If writeOnly is true, simply move to the next phrase without erasing
+            setCurrentChar(0);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+          } else {
+            // Start erasing if writeOnly is false
+            setCurrentChar(phrase.length - 1);
+          }
+        }, pauseDuration);
+      }
+    };
+
+    const timer = setTimeout(typePhrase, speed);
+    return () => clearTimeout(timer);
+  }, [currentChar, currentIndex, phrases, speed, pauseDuration, writeOnly]);
+
+  return (
+    <span className="highlight typewriter-effect" id="typewriter">
+      {currentPhrase}
+    </span>
+  );
+};
+
+export default TypewriterEffect;
 });
