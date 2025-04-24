@@ -400,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function setupTypewriterEffect() {
         // Define phrases array - different job titles
-        const phrases = ['Marketeer', 'Front-end Developer'];
+        const phrases = ['Marketeer', 'Front-End Developer'];
         
         // Create a separate function for displaying each career title one after another
         let index = 0;  // Current phrase
