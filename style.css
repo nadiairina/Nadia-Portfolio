@@ -1246,7 +1246,7 @@ body.dark .tooltip:before {
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
     cursor: pointer;
-    min-height: 450px; 
+    
 }
 
 .modern-project-card:hover {
@@ -1258,6 +1258,7 @@ body.dark .tooltip:before {
     width: 100%;
     height: 200px;
     overflow: hidden;
+    min-height: 450px; 
 }
 
 .modern-project-card .project-image img {
