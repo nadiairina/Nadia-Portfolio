@@ -1810,7 +1810,7 @@ body.dark .footer {
 }
 /* Hamburger Menu - Mobile Only */
 .hamburger {
-    display: none;
+    display: none !important; /* Add !important here */
     flex-direction: column;
     background: none;
     border: none;
@@ -1829,7 +1829,7 @@ body.dark .footer {
 /* Mobile Styles */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex;
+        display: flex !important; /* Add !important here */
     }
     
     .nav {
