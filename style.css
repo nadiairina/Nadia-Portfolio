@@ -1808,19 +1808,23 @@ body.dark .footer {
   background-color: #111827;
   border-top-color: #374151;
 }
-/* Mobile Styles */
+/* Mobile Styles - Clean and Simple */
 @media (max-width: 768px) {
     .header .container {
-        flex-direction: column;
-        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .logo {
+        width: 100%;
+        margin-bottom: 1rem;
     }
     
     .nav {
-        flex-direction: column;
-        gap: 0.5rem;
-        justify-content: center;
         width: 100%;
-        order: 3;
+        justify-content: center;
+        margin-bottom: 1rem;
     }
     
     .nav a {
@@ -1830,8 +1834,7 @@ body.dark .footer {
     
     .actions {
         width: 100%;
-        justify-content: space-between;
-        order: 2;
+        justify-content: center;
         gap: 1rem;
     }
     
@@ -1840,7 +1843,7 @@ body.dark .footer {
     }
     
     .hero {
-        padding: 4rem 1rem 2rem;
+        padding: 2rem 1rem;
     }
     
     .title {
@@ -1864,19 +1867,5 @@ body.dark .footer {
     .greeting:before,
     .greeting:after {
         display: none;
-    }
-}
-
-@media (max-width: 576px) {
-    .actions {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-    
-    .social-icons {
-        order: 3;
-        width: 100%;
-        justify-content: center;
     }
 }
