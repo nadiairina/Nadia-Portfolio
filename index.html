@@ -59,31 +59,39 @@
 </head>
 <body>
     <!-- Header/Navbar -->
-    <header class="header" id="header">
-        <div class="container">
-            <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
-            <nav class="nav">
-                <a href="index.html" aria-label="Home">Home</a>
-                <a href="about.html" aria-label="About Me">About Me</a>
-                <a href="projects.html" aria-label="Projects">Projects</a>
-                <a href="contact.html" aria-label="Contact">Contact</a>
-            </nav>
+<header class="header" id="header">
+    <div class="container">
+        <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
+        
+        <!-- Mobile hamburger button -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- Navigation (hidden on mobile by default) -->
+        <nav class="nav" id="nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
 
-            <div class="actions">
-                <a class="resume-btn" href="assets/Nadia-Irina-CV.pdf" download aria-label="Download Resume">Resume</a>
-                <div class="social-icons">
-                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
-                
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+        <div class="actions" id="actions">
+            <a class="resume-btn" href="assets/Nadia-Irina-CV.pdf" download>Resume</a>
+            <div class="social-icons">
+                <a href="https://github.com/nadiairina" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
             </div>
+            <button class="theme-toggle" id="theme-toggle">🌙</button>
         </div>
-    </header>
+    </div>
+</header>
     
     <!-- Hero Section -->
     <section class="hero" id="hero">
