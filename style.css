@@ -1808,3 +1808,73 @@ body.dark .footer {
   background-color: #111827;
   border-top-color: #374151;
 }
+/* Mobile header optimizations */
+@media (max-width: 768px) {
+    .header {
+        padding: 0.5rem 0; /* Reduced from 1rem */
+    }
+    
+    .header.scrolled {
+        padding: 0.25rem 0; /* Reduced from 0.75rem */
+    }
+    
+    .header .container {
+        padding: 0 1rem; /* Reduced side padding */
+    }
+    
+    /* Make logo smaller on mobile */
+    .logo {
+        font-size: 1.25rem; /* Reduced from 1.5rem */
+    }
+    
+    /* Hide navigation links on mobile and show hamburger menu instead */
+    .nav {
+        display: none;
+    }
+    
+    /* Compact actions section */
+    .actions {
+        gap: 1rem; /* Reduced from 1.5rem */
+    }
+    
+    /* Smaller social icons */
+    .social-icons a {
+        font-size: 1rem; /* Reduced from 1.25rem */
+    }
+    
+    /* Smaller theme toggle */
+    .theme-toggle {
+        font-size: 1.25rem; /* Reduced from 1.5rem */
+        padding: 0.25rem; /* Reduced from 0.5rem */
+    }
+    
+    /* Smaller resume button */
+    .resume-btn {
+        padding: 0.375rem 1rem; /* Reduced from 0.5rem 1.25rem */
+        font-size: 0.875rem;
+    }
+}
+
+/* For very small phones */
+@media (max-width: 480px) {
+    .header {
+        padding: 0.25rem 0;
+    }
+    
+    .header.scrolled {
+        padding: 0.125rem 0;
+    }
+    
+    .logo {
+        font-size: 1.125rem;
+    }
+    
+    .resume-btn {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .social-icons {
+        gap: 0.75rem;
+    }
+}
