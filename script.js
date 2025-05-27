@@ -465,12 +465,3 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll();
     }
 });
-// Simple hamburger menu
-const hamburger = document.getElementById('hamburger');
-const nav = document.getElementById('nav');
-
-if (hamburger && nav) {
-    hamburger.addEventListener('click', () => {
-        nav.classList.toggle('active');
-    });
-}
