@@ -465,12 +465,3 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll();
     }
 });
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-
-hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  // Atualiza aria-expanded para acessibilidade
-  const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-  hamburger.setAttribute('aria-expanded', !isExpanded);
-});
