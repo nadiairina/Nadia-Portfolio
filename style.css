@@ -1808,9 +1808,10 @@ body.dark .footer {
   background-color: #111827;
   border-top-color: #374151;
 }
-/* Hamburger Menu - Mobile Only */
-.hamburger {
-    display: none !important; /* Add !important here */
+/* Force hide hamburger on desktop with higher specificity */
+.header .hamburger {
+    display: none !important;
+    visibility: hidden !important;
     flex-direction: column;
     background: none;
     border: none;
@@ -1828,8 +1829,9 @@ body.dark .footer {
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    .hamburger {
-        display: flex !important; /* Add !important here */
+    .header .hamburger {
+        display: flex !important;
+        visibility: visible !important;
     }
     
     .nav {
