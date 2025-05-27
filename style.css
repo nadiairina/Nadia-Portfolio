@@ -1813,7 +1813,7 @@ body.dark .footer {
   .nav {
     display: none;
     flex-direction: column;
-    background-color: #6366f1; /* cor de fundo do menu no mobile */
+    background-color: white; /* cor de fundo do menu no mobile */
     position: absolute;
     top: 60px; /* ajuste de acordo com a altura do header */
     right: 10px;
