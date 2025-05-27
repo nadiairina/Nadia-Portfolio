@@ -1808,11 +1808,19 @@ body.dark .footer {
   background-color: #111827;
   border-top-color: #374151;
 }
-/* Mobile Styles - Simple approach */
+/* Mobile Styles */
 @media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
     .nav {
         flex-direction: column;
         gap: 0.5rem;
+        justify-content: center;
+        width: 100%;
+        order: 3;
     }
     
     .nav a {
@@ -1821,10 +1829,54 @@ body.dark .footer {
     }
     
     .actions {
+        width: 100%;
+        justify-content: space-between;
+        order: 2;
         gap: 1rem;
     }
     
     .social-icons {
         gap: 0.5rem;
+    }
+    
+    .hero {
+        padding: 4rem 1rem 2rem;
+    }
+    
+    .title {
+        font-size: 2.25rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .project-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .greeting:before,
+    .greeting:after {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .social-icons {
+        order: 3;
+        width: 100%;
+        justify-content: center;
     }
 }
