@@ -1808,37 +1808,3 @@ body.dark .footer {
   background-color: #111827;
   border-top-color: #374151;
 }
-/* Simple Mobile Fix - No Overlapping */
-@media (max-width: 768px) {
-    .header {
-        position: relative; /* Changed from sticky */
-        padding: 1rem 0;
-    }
-    
-    .header .container {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-    
-    .nav {
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    
-    .actions {
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    
-    .hero {
-        padding: 2rem 1rem;
-    }
-    
-    .greeting:before,
-    .greeting:after {
-        display: none;
-    }
-}
