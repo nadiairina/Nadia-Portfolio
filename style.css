@@ -1808,90 +1808,119 @@ body.dark .footer {
   background-color: #111827;
   border-top-color: #374151;
 }
-/* Mobile header optimizations - CORRECTED VERSION */
+/* Mobile header optimizations - BALANCED VERSION */
 @media (max-width: 768px) {
     .header {
-        padding: 0.5rem 0; /* Reduced from 1rem */
+        padding: 0.4rem 0; /* Slightly reduced but still touchable */
     }
     
     .header.scrolled {
-        padding: 0.25rem 0; /* Reduced from 0.75rem */
+        padding: 0.2rem 0; /* More aggressive reduction when scrolled */
     }
     
     .header .container {
-        padding: 0 1rem; /* Reduced side padding */
-        flex-wrap: wrap; /* Allow wrapping if needed */
+        padding: 0 0.75rem;
     }
     
-    /* Make logo smaller on mobile */
+    /* Keep logo readable */
     .logo {
-        font-size: 1.25rem; /* Reduced from 1.5rem */
+        font-size: 1.2rem;
     }
     
-    /* Keep navigation but make it smaller and more compact */
+    /* Optimize navigation - keep touch-friendly but compact */
     .nav {
-        gap: 1rem; /* Reduced from 2rem */
-        font-size: 0.9rem; /* Smaller text */
+        gap: 0.8rem; /* Reduced spacing between links */
+        font-size: 0.9rem;
     }
     
     .nav a {
-        padding: 0.25rem 0; /* Reduced padding */
-    }
-    
-    /* Compact actions section */
-    .actions {
-        gap: 1rem; /* Reduced from 1.5rem */
-    }
-    
-    /* Smaller social icons */
-    .social-icons a {
-        font-size: 1rem; /* Reduced from 1.25rem */
-    }
-    
-    /* Smaller theme toggle */
-    .theme-toggle {
-        font-size: 1.25rem; /* Reduced from 1.5rem */
-        padding: 0.25rem; /* Reduced from 0.5rem */
-    }
-    
-    /* Smaller resume button */
-    .resume-btn {
-        padding: 0.375rem 1rem; /* Reduced from 0.5rem 1.25rem */
-        font-size: 0.875rem;
-    }
-}
-
-/* For very small phones */
-@media (max-width: 480px) {
-    .header {
-        padding: 0.25rem 0;
-    }
-    
-    .header.scrolled {
-        padding: 0.125rem 0;
-    }
-    
-    .header .container {
-        flex-direction: column; /* Stack elements vertically */
-        gap: 0.5rem;
+        padding: 0.4rem 0.2rem; /* Minimum 44px touch target */
+        min-height: 44px; /* iOS recommended touch target */
+        display: flex;
         align-items: center;
     }
     
-    .logo {
-        font-size: 1.125rem;
+    /* Keep actions touch-friendly */
+    .actions {
+        gap: 0.8rem;
     }
     
-    .nav {
-        gap: 0.75rem;
-        font-size: 0.85rem;
+    /* Maintain touch targets for social icons */
+    .social-icons a {
+        font-size: 1.1rem; /* Not too small */
+        padding: 0.3rem; /* Add padding for better touch target */
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
+    /* Keep theme toggle touchable */
+    .theme-toggle {
+        font-size: 1.2rem;
+        padding: 0.3rem;
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Resume button - keep it usable */
     .resume-btn {
-        padding: 0.25rem 0.75rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* For very small phones - more space-saving */
+@media (max-width: 480px) {
+    .header {
+        padding: 0.3rem 0;
+    }
+    
+    .header.scrolled {
+        padding: 0.15rem 0; /* Very compact when scrolled */
+    }
+    
+    /* Stack navigation and actions for maximum space savings */
+    .header .container {
+        flex-direction: column;
+        gap: 0.3rem;
+        align-items: center;
+    }
+    
+    /* Top row: Logo */
+    .logo {
+        font-size: 1.1rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    /* Bottom row: Navigation + Actions in a compact row */
+    .nav {
+        gap: 0.6rem;
         font-size: 0.8rem;
     }
     
-    .social-icons {
-        gap: 0.75rem;
+    .actions {
+        gap: 0.6rem;
+    }
+    
+    /* Slightly smaller but still touchable */
+    .social-icons a {
+        font-size: 1rem;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .theme-toggle {
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .resume-btn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
     }
 }
