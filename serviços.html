@@ -40,6 +40,867 @@
         </div>
     </header>
 
+    import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
+import { insertContactSchema } from "@shared/schema";
+import { 
+  Code, 
+  Megaphone, 
+  Users, 
+  Check, 
+  Palette, 
+  PenTool, 
+  Settings, 
+  Share2, 
+  Calendar, 
+  Wrench,
+  Mail,
+  Github,
+  Linkedin,
+  Menu,
+  Star,
+  Download,
+  MessageSquare,
+  Shield,
+  Clock,
+  ChevronDown,
+  Globe,
+  Smartphone,
+  Search,
+  Zap,
+  Award,
+  HeadphonesIcon
+} from "lucide-react";
+
+const packages = [
+  {
+    name: "Essential",
+    price: "€150",
+    description: "Ideal para quem quer começar com um site moderno, funcional e direto ao ponto.",
+    icon: Globe,
+    features: [
+      "1 página com scroll único",
+      "Design responsivo (PC, tablet e telemóvel)",
+      "Formulário de contacto funcional (com validação básica)",
+      "Animações suaves ao fazer scroll",
+      "Ícones clicáveis para redes sociais"
+    ],
+    deliveryTime: "3 dias úteis",
+    support: "3 dias por email",
+    featured: false
+  },
+  {
+    name: "Start",
+    price: "€200",
+    description: "Ideal para quem precisa de uma solução simples, elegante e eficaz para apresentar o seu serviço, produto ou marca.",
+    icon: Zap,
+    features: [
+      "Página única com scroll suave (Quem sou / O que faço / Contactos)",
+      "Design responsivo (PC, tablet e telemóvel)",
+      "Formulário de contacto funcional (com validação básica)",
+      "Animações suaves ao fazer scroll",
+      "Ligação às redes sociais (ícones clicáveis)"
+    ],
+    deliveryTime: "5 dias úteis",
+    support: "7 dias por email + sessão Zoom opcional (€30/30 min)",
+    featured: false
+  },
+  {
+    name: "Presence",
+    price: "€550",
+    description: "Ideal para negócios em crescimento ou marcas pessoais que querem site institucional e Instagram otimizado.",
+    icon: Award,
+    features: [
+      "Site institucional (3 páginas: Home / Produtos/Serviços / Contacto)",
+      "Design responsivo + SEO técnico básico (títulos e meta descrições)",
+      "Formulário de contacto funcional (validação básica)",
+      "Otimização leve de performance",
+      "Instagram otimizado (bio, imagem de perfil, destaques)",
+      "3 posts personalizados prontos a publicar"
+    ],
+    deliveryTime: "10 dias úteis",
+    support: "10 dias por email + sessão Zoom opcional (€30/30 min)",
+    featured: true
+  },
+  {
+    name: "Advanced",
+    price: "€750",
+    description: "Ideal para quem já tem alguma autonomia nas redes e quer um site completo de até 5 páginas.",
+    icon: Settings,
+    features: [
+      "Site completo (5 páginas: Home / Sobre / Serviços / Galeria / Contacto)",
+      "Design responsivo + animações suaves (efeitos em scroll e botões)",
+      "SEO técnico básico (títulos, meta descrições, carregamento eficiente)",
+      "Formulário de contacto funcional (com validação básica)",
+      "Instagram otimizado + 6 posts e 3 stories prontos a publicar"
+    ],
+    deliveryTime: "15 dias úteis",
+    support: "14 dias por email + sessão Zoom opcional (€30/30 min)",
+    featured: false
+  },
+  {
+    name: "Pro",
+    price: "€1000",
+    description: "Ideal para quem quer tudo entregue e o Instagram gerido por um mês.",
+    icon: Star,
+    features: [
+      "Site institucional (7 páginas) + 1 secção extra (FAQ, Reservas, Eventos...)",
+      "Design responsivo + animações suaves + modo escuro/claro",
+      "SEO técnico básico",
+      "Formulário funcional + integrações (Maps, WhatsApp, newsletter...)",
+      "Slider de imagens (se necessário)",
+      "Gestão de Instagram (1 mês): 9 posts + 6 stories criados e publicados + interação básica"
+    ],
+    deliveryTime: "20 dias úteis",
+    support: "15 dias por email + sessão Zoom opcional (€30/30 min)",
+    featured: false
+  }
+];
+
+const extras = [
+  {
+    icon: Palette,
+    title: "Branding & Identidade Visual",
+    items: [
+      "Personalização de logotipo, paleta de cores e tipografia | desde €150",
+      "Manual básico de identidade visual | desde €80"
+    ]
+  },
+  {
+    icon: PenTool,
+    title: "Criação de Conteúdo",
+    items: [
+      "Redação de textos para site (home/about/blog) | desde €100 por página",
+      "Revisão e otimização SEO de texto | desde €50 por página",
+      "Edição básica de imagens (ajustes simples, cortes, correções de cor)"
+    ]
+  },
+  {
+    icon: Settings,
+    title: "Funcionalidades Técnicas e Visuais",
+    items: [
+      "Formulário de contacto funcional (envio automático) | €50",
+      "Formulário avançado com integrações | €40",
+      "Animações CSS/JS suaves (scroll, botões) | desde €60",
+      "Modo escuro/claro com toggle | €40",
+      "Slider/carrossel de imagens | €60",
+      "Pop-up informativo ou CTA | €40",
+      "Galeria interativa | €30",
+      "Google Maps integrado | €15",
+      "Botões de contacto flutuantes | €20",
+      "Feed Instagram/TikTok automático | €30",
+      "Botão de pagamento | €50",
+      "Calendário de marcações | €40",
+      "Google Analytics instalado | €25"
+    ]
+  },
+  {
+    icon: Share2,
+    title: "Redes Sociais",
+    items: [
+      "Criação de perfil profissional (bio, destaques, 6 posts) | €90",
+      "Design de posts personalizados (9 imagens) | €70",
+      "Templates editáveis para Canva | €50"
+    ]
+  },
+  {
+    icon: Calendar,
+    title: "Gestão Mensal de Redes Sociais",
+    items: [
+      "Básica (€200/mês ou €180/mês em 3 meses): 4–6 posts + 2 stories/semana, legendas, hashtags e relatório",
+      "Avançada (€350/mês ou €315/mês em 3 meses): 8–12 posts + 4 stories/semana, copy de vendas, DMs e relatórios detalhados"
+    ]
+  }
+];
+
+const faqs = [
+  {
+    question: "Quanto tempo demora cada projeto?",
+    answer: "Os prazos variam conforme o pacote escolhido: Essential (3 dias), Start (5 dias), Presence (10 dias), Advanced (15 dias), Pro (20 dias). O prazo começa a contar após receção de todos os conteúdos necessários."
+  },
+  {
+    question: "O que preciso de fornecer para começar?",
+    answer: "Precisa de fornecer textos, imagens, logótipos, vídeos e qualquer outro material necessário para o projeto. Ajudo-a a organizar tudo o que é necessário no início do projeto."
+  },
+  {
+    question: "Quantas revisões estão incluídas?",
+    answer: "Cada pacote inclui até 3 revisões durante o período de suporte gratuito pós-entrega. Revisões adicionais são cobradas como serviço extra."
+  },
+  {
+    question: "O site funciona em telemóveis?",
+    answer: "Sim! Todos os websites são responsivos e testados para funcionar perfeitamente em desktop, tablet e telemóvel, em todos os browsers principais."
+  },
+  {
+    question: "Incluem alojamento e domínio?",
+    answer: "Todos os pacotes incluem publicação gratuita no GitHub Pages. Para domínio personalizado (.com/.pt), ajudo na configuração mas o custo anual não está incluído no pacote."
+  },
+  {
+    question: "E se precisar de alterações depois?",
+    answer: "Ofereço um plano de manutenção mensal por €60/mês que inclui atualizações, backups e suporte técnico. Alterações pontuais são orçamentadas separadamente."
+  }
+];
+
+export default function Services() {
+  const [selectedPackage, setSelectedPackage] = useState("");
+  const { toast } = useToast();
+
+  const form = useForm({
+    resolver: zodResolver(insertContactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      service: "",
+      message: ""
+    }
+  });
+
+  const contactMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const response = await apiRequest("POST", "/api/contact", data);
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Mensagem enviada!",
+        description: "Obrigada pela sua mensagem! Entrarei em contacto em breve.",
+      });
+      form.reset();
+    },
+    onError: () => {
+      toast({
+        title: "Erro ao enviar mensagem",
+        description: "Por favor, tente novamente mais tarde.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    contactMutation.mutate(data);
+  };
+
+  const scrollToContact = (packageName: string) => {
+    setSelectedPackage(`${packageName} - ${packages.find(p => p.name === packageName)?.price}`);
+    form.setValue("service", `${packageName} - ${packages.find(p => p.name === packageName)?.price}`);
+    
+    const contactSection = document.getElementById("contacto");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <a href="#" className="text-2xl font-bold text-foreground hover:text-primary transition-colors">
+              Nadia<span className="text-primary">Irina</span>
+            </a>
+            <nav className="hidden md:flex items-center space-x-8">
+              <a href="#introducao" className="text-muted-foreground hover:text-primary transition-colors">Introdução</a>
+              <a href="#pacotes" className="text-muted-foreground hover:text-primary transition-colors">Pacotes</a>
+              <a href="#extras" className="text-muted-foreground hover:text-primary transition-colors">Extras</a>
+              <a href="#catalogo" className="text-muted-foreground hover:text-primary transition-colors">Catálogo</a>
+              <a href="#contacto" className="text-primary font-medium">Contacto</a>
+            </nav>
+            <div className="flex items-center space-x-4">
+              <div className="hidden md:flex items-center space-x-3">
+                <a href="https://github.com/nadiairina" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Github className="h-5 w-5" />
+                </a>
+                <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </div>
+              <button className="md:hidden text-muted-foreground">
+                <Menu className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* 1. Introdução aos Serviços */}
+      <section id="introducao" className="hero-gradient py-20">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-black text-foreground mb-6">
+              Os Meus Serviços
+            </h1>
+            <h2 className="text-2xl md:text-3xl text-primary mb-8 font-semibold">
+              O Que Posso Fazer Por Ti
+            </h2>
+            <div className="text-lg text-muted-foreground mb-12 leading-relaxed space-y-4">
+              <p>
+                Olá! O meu nome é Nadia Irina. Sou licenciada em Marketing e Publicidade e tenho certificação em Desenvolvimento Front-End.
+              </p>
+              <p>
+                <strong>Combino o conhecimento estratégico do marketing com as ferramentas de programação</strong> para criar websites modernos, funcionais e alinhados com a identidade de cada marca.
+              </p>
+              <p>
+                O meu foco é oferecer uma presença digital forte, profissional e atrativa, com design responsivo e atenção à experiência do utilizador.
+              </p>
+              <p className="text-primary font-semibold">
+                Se procuras alguém para dar vida ao teu website com criatividade, funcionalidade e dedicação, fala comigo. Vamos trabalhar juntos!
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                size="lg" 
+                className="px-8 py-6 text-lg"
+                onClick={() => document.getElementById('pacotes')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Ver Os Meus Pacotes
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="px-8 py-6 text-lg"
+                onClick={() => document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <Download className="mr-2 h-5 w-5" />
+                Descarregar Catálogo
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Os Nossos Pacotes Principais */}
+      <section id="pacotes" className="py-20 bg-muted/50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-foreground mb-4">Os Nossos Pacotes Principais</h2>
+            <p className="text-xl text-muted-foreground">Pacotes de serviços apresentados de forma visualmente apelativa para facilitar a comparação</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {packages.map((pkg, index) => (
+              <Card 
+                key={pkg.name} 
+                className={`relative hover:shadow-lg transition-all duration-300 hover:-translate-y-2 ${
+                  pkg.featured ? 'border-primary shadow-lg' : ''
+                }`}
+              >
+                {pkg.featured && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-primary text-primary-foreground px-4 py-2">
+                      <Star className="h-3 w-3 mr-1" />
+                      Mais Popular
+                    </Badge>
+                  </div>
+                )}
+                <CardContent className="p-8">
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <pkg.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-2">{pkg.name}</h3>
+                    <div className="text-4xl font-black text-primary mb-4">{pkg.price}</div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{pkg.description}</p>
+                  </div>
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-foreground mb-3">Este pacote é para ti se:</h4>
+                    <ul className="space-y-2 mb-4">
+                      {pkg.features.slice(0, 3).map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <Check className="h-4 w-4 text-primary mt-1 mr-3 flex-shrink-0" />
+                          <span className="text-muted-foreground text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <h4 className="font-semibold text-foreground mb-3">Inclui:</h4>
+                    <ul className="space-y-2">
+                      {pkg.features.slice(3).map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <Check className="h-4 w-4 text-primary mt-1 mr-3 flex-shrink-0" />
+                          <span className="text-muted-foreground text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="text-center">
+                    <Button 
+                      className="w-full" 
+                      variant={pkg.featured ? "default" : "outline"}
+                      onClick={() => scrollToContact(pkg.name)}
+                    >
+                      Escolher Este Pacote
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tabela de Comparação */}
+      <section className="py-16 bg-background">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Tabela de Pacotes</h2>
+            <p className="text-muted-foreground">Comparação clara e fácil dos principais recursos de cada pacote</p>
+          </div>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full bg-card rounded-xl shadow-lg overflow-hidden">
+              <thead className="bg-primary text-primary-foreground">
+                <tr>
+                  <th className="py-4 px-6 text-left font-semibold">Pacotes</th>
+                  <th className="py-4 px-6 text-center font-semibold">Preços</th>
+                  <th className="py-4 px-6 text-center font-semibold">Prazos de Entrega</th>
+                  <th className="py-4 px-6 text-center font-semibold">Suporte Pós-Entrega</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {packages.map((pkg) => (
+                  <tr key={pkg.name} className={`hover:bg-muted/50 ${pkg.featured ? 'bg-primary/5' : ''}`}>
+                    <td className="py-4 px-6 font-semibold text-foreground">{pkg.name}</td>
+                    <td className="py-4 px-6 text-center text-primary font-bold">{pkg.price}</td>
+                    <td className="py-4 px-6 text-center">{pkg.deliveryTime}</td>
+                    <td className="py-4 px-6 text-center text-sm">{pkg.support}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Serviços Extras / Adicionais */}
+      <section id="extras" className="py-20 bg-muted/50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-foreground mb-4">Serviços Extras / Adicionais</h2>
+            <p className="text-xl text-muted-foreground">Tudo o que não está incluído nos pacotes base, mas que pode ser uma mais-valia</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {extras.map((extra, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                      <extra.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">{extra.title}</h3>
+                  </div>
+                  <ul className="space-y-2 text-muted-foreground">
+                    {extra.items.map((item, idx) => (
+                      <li key={idx} className="text-sm flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Serviços Especiais */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <PenTool className="h-6 w-6 text-primary mr-3" />
+                  Criação de Conteúdo para Website
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  Criar textos profissionais para o site pode ser um desafio ou consumir muito tempo. Ofereço um serviço dedicado para garantir que o conteúdo do teu site esteja alinhado com a tua marca e objetivos.
+                </p>
+                <div className="space-y-3 mb-4">
+                  <h4 className="font-semibold text-foreground">O serviço inclui:</h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-start">
+                      <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                      Redação de textos para páginas essenciais (Quem Somos / Serviços / Produtos / Contacto)
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                      Edição básica de imagens (ajustes simples, cortes, correções de cor)
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                      Sugestões para melhorar a comunicação textual e visual
+                    </li>
+                  </ul>
+                </div>
+                <div className="border-t pt-4">
+                  <h5 className="font-semibold text-foreground mb-2">Preços:</h5>
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    <li>• <strong>Pacote Básico (€150):</strong> Até 500 palavras + edição básica de imagens</li>
+                    <li>• <strong>Pacote Completo (€280):</strong> Até 1000 palavras + edição básica de imagens</li>
+                    <li>• <strong>Serviço personalizado:</strong> Orçamento à parte para projetos maiores</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Wrench className="h-6 w-6 text-primary mr-3" />
+                  Plano Mensal de Manutenção e Suporte
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground mb-4">
+                  Ideal para quem quer manter o site sempre atualizado, seguro e funcionando sem preocupações, com suporte rápido quando precisar.
+                </p>
+                <div className="space-y-3 mb-4">
+                  <h4 className="font-semibold text-foreground">Inclui:</h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-start">
+                      <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                      Atualizações regulares do sistema, plugins e correções básicas
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                      Backup automático semanal para garantir segurança dos dados
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                      Monitorização para garantir que o site está sempre online
+                    </li>
+                    <li className="flex items-start">
+                      <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                      Suporte técnico por e-mail para dúvidas e pequenos ajustes (até 2 horas por mês)
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-primary/10 rounded-lg p-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-primary mb-2">€60/mês</div>
+                    <p className="text-sm text-muted-foreground">
+                      Ajustes mais complexos ou criação de conteúdo são cobrados à parte, mediante orçamento.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Informações Importantes */}
+      <section className="py-16 bg-background">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Informações Importantes</h2>
+            <p className="text-muted-foreground">Para construir confiança e gerir expectativas</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Clock className="h-6 w-6 text-primary mr-3" />
+                  Notas Importantes
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Os prazos começam a contar após receção de todos os conteúdos necessários
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Cada pacote inclui até 3 revisões durante o período de suporte gratuito
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Websites testados para funcionar nos browsers mais comuns e em diferentes dispositivos
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <HeadphonesIcon className="h-6 w-6 text-primary mr-3" />
+                  Suporte Pós-Entrega
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Período gratuito de suporte conforme indicado em cada pacote
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Sessões por Zoom disponíveis (30 min - €30)
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Suporte pós-período gratuito cobrado como serviço extra
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Globe className="h-6 w-6 text-primary mr-3" />
+                  Publicação & Domínio
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Opção gratuita: GitHub Pages (seunome.github.io)
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Domínio personalizado: registo de .com/.pt (custo anual não incluído)
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-4 w-4 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    Todos os pacotes incluem publicação - site fica online e pronto!
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Descarrega o Catálogo Completo / Orçamento Personalizado */}
+      <section id="catalogo" className="py-20 bg-primary/5">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl font-black text-foreground mb-6">Descarrega o Catálogo Completo</h2>
+          <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            O PDF contém todos os detalhes, preços e informações aprofundadas sobre cada serviço. 
+            Perfeito para analisares com calma e escolheres a melhor opção para o teu projeto.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+            <Button 
+              size="lg" 
+              className="px-8 py-6 text-lg"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/attached_assets/Guia de Serviços.pdf';
+                link.download = 'Guia_de_Servicos_Nadia_Irina.pdf';
+                link.click();
+              }}
+            >
+              <Download className="mr-2 h-5 w-5" />
+              Descarregar Catálogo de Serviços (PDF)
+            </Button>
+          </div>
+
+          <div className="bg-card rounded-xl p-8 shadow-lg">
+            <h3 className="text-2xl font-bold text-foreground mb-4">
+              Não encontraste o que procuras?
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              Tens um projeto específico em mente? Vamos conversar! Cada projeto é único e posso criar uma solução personalizada para as tuas necessidades.
+            </p>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="px-8 py-6 text-lg"
+              onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <MessageSquare className="mr-2 h-5 w-5" />
+              Orçamento Personalizado
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Perguntas Frequentes (FAQs) */}
+      <section className="py-20 bg-background">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black text-foreground mb-4">Perguntas Frequentes</h2>
+            <p className="text-xl text-muted-foreground">Respostas às dúvidas mais comuns</p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <Collapsible key={index}>
+                <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg bg-card p-6 text-left hover:bg-muted/50 transition-colors">
+                  <h3 className="text-lg font-semibold text-foreground">{faq.question}</h3>
+                  <ChevronDown className="h-5 w-5 text-muted-foreground transition-transform duration-200" />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="px-6 pb-6 pt-2">
+                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                </CollapsibleContent>
+              </Collapsible>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section id="contacto" className="py-20 bg-muted/30">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black text-foreground mb-4">Vamos Trabalhar Juntos!</h2>
+            <p className="text-xl text-muted-foreground">Entre em contacto para discutir o seu projeto</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Contact Info */}
+            <div>
+              <h3 className="text-2xl font-bold text-foreground mb-6">Informações de Contacto</h3>
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                    <Mail className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">Email</p>
+                    <p className="text-muted-foreground">nadiairina934@gmail.com</p>
+                  </div>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                    <Linkedin className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">LinkedIn</p>
+                    <p className="text-muted-foreground">linkedin.com/in/nadia-irina</p>
+                  </div>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                    <Github className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">GitHub</p>
+                    <p className="text-muted-foreground">github.com/nadiairina</p>
+                  </div>
+                </div>
+              </div>
+
+              <Card className="mt-8 bg-primary/5">
+                <CardContent className="p-6">
+                  <h4 className="font-bold text-foreground mb-2">Notas Importantes:</h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Prazos começam após receção de todos os conteúdos</li>
+                    <li>• Cada pacote inclui até 3 revisões</li>
+                    <li>• Website testado em todos os browsers principais</li>
+                    <li>• Publicação incluída em todos os pacotes</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Contact Form */}
+            <Card className="bg-muted/30">
+              <CardContent className="p-8">
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Nome Completo</FormLabel>
+                          <FormControl>
+                            <Input placeholder="O seu nome" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input type="email" placeholder="seuemail@exemplo.com" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="service"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Pacote de Interesse</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecione um pacote" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="Essential - €150">Essential - €150</SelectItem>
+                              <SelectItem value="Start - €200">Start - €200</SelectItem>
+                              <SelectItem value="Presence - €550">Presence - €550</SelectItem>
+                              <SelectItem value="Advanced - €750">Advanced - €750</SelectItem>
+                              <SelectItem value="Pro - €1000">Pro - €1000</SelectItem>
+                              <SelectItem value="Serviços Extras">Serviços Extras</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Mensagem</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Descreva o seu projeto e necessidades..."
+                              rows={4}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button 
+                      type="submit" 
+                      className="w-full" 
+                      size="lg"
+                      disabled={contactMutation.isPending}
+                    >
+                      {contactMutation.isPending ? "A enviar..." : "Enviar Mensagem"}
+                    </Button>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+    
   <!-- Footer -->
     <footer class="footer">
         <div class="container">
