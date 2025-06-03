@@ -5,240 +5,813 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços - Nadia Irina</title>
     <meta name="description" content="Serviços profissionais de desenvolvimento web e marketing digital. Pacotes desde €150 até €1000 com design responsivo, SEO e gestão de redes sociais.">
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Critical Services Page Styling */
-        .packages { 
-            padding: 5rem 0 !important; 
-            background-color: #f9fafb !important; 
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .packages-grid { 
-            display: grid !important; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important; 
-            gap: 2rem !important; 
-            max-width: 1200px !important; 
-            margin: 0 auto !important; 
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
         }
-        .package-card { 
-            background: white !important; 
-            border: 2px solid #e5e7eb !important; 
-            border-radius: 1rem !important; 
-            padding: 2rem !important; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important; 
-            transition: all 0.3s ease !important; 
-            position: relative !important;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
-        .package-card:hover { 
-            transform: translateY(-8px) !important; 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important; 
+        
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
-        .package-card.featured { 
-            border-color: #6366f1 !important; 
+        
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .featured-badge { 
-            position: absolute !important; 
-            top: -12px !important; 
-            left: 50% !important; 
-            transform: translateX(-50%) !important; 
-            background: #6366f1 !important; 
-            color: white !important; 
-            padding: 0.5rem 1rem !important; 
-            border-radius: 1rem !important; 
-            font-size: 0.875rem !important; 
-            font-weight: 600 !important; 
-            display: flex !important;
-            align-items: center !important;
-            gap: 0.25rem !important;
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #1f2937;
         }
-        .package-content {
-            height: 100% !important;
-            display: flex !important;
-            flex-direction: column !important;
+        
+        .dot {
+            color: #6366f1;
         }
-        .package-header {
-            text-align: center !important;
-            margin-bottom: 2rem !important;
+        
+        .nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
         }
-        .package-icon { 
-            width: 4rem !important; 
-            height: 4rem !important; 
-            background: rgba(99, 102, 241, 0.1) !important; 
-            border-radius: 50% !important; 
-            display: flex !important; 
-            align-items: center !important; 
-            justify-content: center !important; 
-            margin: 0 auto 1rem !important; 
-            color: #6366f1 !important; 
+        
+        .nav a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            transition: color 0.3s;
         }
-        .package-name { 
-            font-size: 1.5rem !important; 
-            font-weight: 600 !important; 
-            margin-bottom: 0.5rem !important;
-            color: #1f2937 !important;
+        
+        .nav a:hover,
+        .nav a.active {
+            color: #6366f1;
         }
-        .package-price { 
-            font-size: 2.5rem !important; 
-            font-weight: 800 !important; 
-            color: #6366f1 !important; 
-            margin-bottom: 1rem !important; 
+        
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
-        .package-description { 
-            color: #6b7280 !important; 
-            margin-bottom: 2rem !important;
-            font-size: 0.875rem !important;
-            line-height: 1.5 !important;
+        
+        .resume-btn {
+            background: #6366f1;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
         }
-        .package-features {
-            margin-bottom: 2rem !important;
-            flex-grow: 1 !important;
+        
+        .resume-btn:hover {
+            background: #4f46e5;
         }
-        .package-features h4 {
-            font-weight: 600 !important;
-            color: #1f2937 !important;
-            margin-bottom: 1rem !important;
-            font-size: 1rem !important;
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
         }
-        .package-features ul { 
-            list-style: none !important; 
-            padding: 0 !important; 
+        
+        .social-icons a {
+            color: #6b7280;
+            font-size: 1.25rem;
+            transition: color 0.3s;
         }
-        .package-features li { 
-            display: flex !important; 
-            align-items: flex-start !important; 
-            gap: 0.75rem !important; 
-            margin-bottom: 0.75rem !important; 
-            color: #6b7280 !important;
-            font-size: 0.875rem !important;
+        
+        .social-icons a:hover {
+            color: #6366f1;
         }
-        .package-features li::before { 
-            content: "✓" !important; 
-            color: #6366f1 !important; 
-            font-weight: bold !important; 
-            flex-shrink: 0 !important;
-            margin-top: 0.125rem !important;
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background: rgba(0, 0, 0, 0.05);
         }
-        .package-info {
-            margin-bottom: 2rem !important;
+        
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
         }
-        .info-item { 
-            display: flex !important; 
-            align-items: center !important; 
-            gap: 0.5rem !important; 
-            color: #6b7280 !important; 
-            margin-bottom: 0.75rem !important;
-            font-size: 0.875rem !important;
-        }
-        .info-item svg { 
-            color: #6366f1 !important;
-            flex-shrink: 0 !important;
-        }
-        .btn { 
-            display: inline-block !important; 
-            padding: 0.75rem 1.5rem !important; 
-            border-radius: 8px !important; 
-            font-weight: 600 !important; 
-            text-align: center !important; 
-            text-decoration: none !important; 
-            transition: all 0.3s ease !important; 
-            border: 2px solid transparent !important;
-            outline: none !important;
-        }
-        .btn-outline { 
-            background: transparent !important; 
-            color: #1f2937 !important; 
-            border: 2px solid #e5e7eb !important; 
-        }
-        .btn-outline:hover { 
-            border-color: #6366f1 !important; 
-            color: #6366f1 !important; 
-            transform: translateY(-2px) !important; 
-        }
-        .btn-primary { 
-            background: #6366f1 !important; 
-            color: white !important; 
-            border: 2px solid #6366f1 !important; 
-        }
-        .btn-primary:hover { 
-            background: #4f46e5 !important; 
-            border-color: #4f46e5 !important;
-            transform: translateY(-2px) !important; 
-        }
-        .package-btn {
-            width: 100% !important;
-            margin-top: auto !important;
-        }
-        .section-header {
-            text-align: center !important;
-            margin-bottom: 4rem !important;
-        }
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem) !important;
-            font-weight: 800 !important;
-            color: #1f2937 !important;
-            margin-bottom: 1rem !important;
-        }
-        .section-description {
-            font-size: 1.25rem !important;
-            color: #6b7280 !important;
-        }
+        
         .hero-content {
-            text-align: center !important;
-            max-width: 800px !important;
+            max-width: 800px;
+            margin: 0 auto;
         }
+        
         .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem) !important;
-            font-weight: 900 !important;
-            color: #1f2937 !important;
-            margin-bottom: 1rem !important;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
         }
+        
         .hero-subtitle {
-            font-size: clamp(1.5rem, 3vw, 2rem) !important;
-            color: #6366f1 !important;
-            margin-bottom: 2rem !important;
-            font-weight: 600 !important;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: #6366f1;
+            font-weight: 600;
+            margin-bottom: 2rem;
         }
+        
         .hero-description {
-            font-size: 1.125rem !important;
-            margin-bottom: 3rem !important;
-            max-width: 700px !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
+        
         .hero-description p {
-            margin-bottom: 1.5rem !important;
-            color: #6b7280 !important;
+            margin-bottom: 1.5rem;
+            color: #6b7280;
         }
+        
         .hero-description .highlight {
-            color: #6366f1 !important;
-            font-weight: 600 !important;
+            color: #6366f1;
+            font-weight: 600;
         }
+        
         .hero-actions {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 1rem !important;
-            align-items: center !important;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
         }
+        
         @media (min-width: 640px) {
             .hero-actions {
-                flex-direction: row !important;
-                justify-content: center !important;
+                flex-direction: row;
+                justify-content: center;
             }
         }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        
+        .btn-primary:hover {
+            background: #4f46e5;
+            border-color: #4f46e5;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: #1f2937;
+            border-color: #e5e7eb;
+        }
+        
+        .btn-outline:hover {
+            border-color: #6366f1;
+            color: #6366f1;
+            transform: translateY(-2px);
+        }
+        
+        /* Package Section Styles */
+        .packages {
+            padding: 5rem 0;
+            background: #f9fafb;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            font-size: 1.25rem;
+            color: #6b7280;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 0 auto;
+        }
+        
+        .package-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .package-card.featured {
+            border-color: #6366f1;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6366f1;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .package-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .package-icon {
+            width: 4rem;
+            height: 4rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: #6366f1;
+        }
+        
+        .package-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #6366f1;
+            margin-bottom: 1rem;
+        }
+        
+        .package-description {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .package-features {
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .package-features h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .package-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .package-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .package-features li::before {
+            content: "✓";
+            color: #6366f1;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+        
+        .package-info {
+            margin-bottom: 2rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+        
+        .info-item svg {
+            color: #6366f1;
+            flex-shrink: 0;
+        }
+        
+        .package-btn {
+            width: 100%;
+            margin-top: auto;
+            justify-content: center;
+        }
+        
+        /* Extras Section */
+        .extras {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .extra-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .extra-card:hover {
+            border-color: #6366f1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .extra-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .extra-icon {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6366f1;
+            flex-shrink: 0;
+        }
+        
+        .extra-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .extra-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .extra-items li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .extra-items li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Maintenance Plans */
+        .maintenance-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .maintenance-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .maintenance-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-4px);
+        }
+        
+        .maintenance-header {
+            margin-bottom: 2rem;
+        }
+        
+        .maintenance-icon {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: #6366f1;
+        }
+        
+        .maintenance-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .maintenance-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #6366f1;
+        }
+        
+        .maintenance-features {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        
+        .maintenance-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .maintenance-features li::before {
+            content: "✓";
+            color: #6366f1;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+        
+        /* Important Info Section */
+        .important-info {
+            padding: 5rem 0;
+            background: #f9fafb;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .info-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card:hover {
+            border-color: #6366f1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-icon {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: #6366f1;
+        }
+        
+        .info-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .info-card p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        /* Catalog Section */
+        .catalog {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .catalog-content {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .catalog-card {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            max-width: 500px;
+            transition: all 0.3s ease;
+        }
+        
+        .catalog-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-4px);
+        }
+        
+        .catalog-icon {
+            margin-bottom: 2rem;
+            color: #6366f1;
+        }
+        
+        .catalog-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .catalog-card p {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 5rem 0;
+            background: #f9fafb;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .contact-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 3rem;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-btn {
+            align-self: flex-start;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: #f3f4f6;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #f3f4f6;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-nav h4,
+        .footer-social h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-nav a,
+        .footer-social a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-nav a:hover,
+        .footer-social a:hover {
+            color: #6366f1;
+        }
+        
+        .copyright {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .actions {
+                gap: 0.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         @media (min-width: 768px) {
             .packages-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
+        
         @media (min-width: 1024px) {
             .packages-grid {
-                grid-template-columns: repeat(3, 1fr) !important;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -308,89 +881,85 @@
             <div class="packages-grid">
                 <!-- Essential Package -->
                 <div class="package-card">
-                    <div class="package-content">
-                        <div class="package-header">
-                            <div class="package-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12,6 12,12 16,14"></polyline>
-                                </svg>
-                            </div>
-                            <h3 class="package-name">Essential</h3>
-                            <div class="package-price">€150</div>
-                            <p class="package-description">Ideal para quem quer começar com um site moderno, funcional e direto ao ponto.</p>
+                    <div class="package-header">
+                        <div class="package-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
                         </div>
-                        <div class="package-features">
-                            <h4>Inclui:</h4>
-                            <ul>
-                                <li>1 página com scroll único</li>
-                                <li>Design responsivo (PC, tablet e telemóvel)</li>
-                                <li>Formulário de contacto funcional (com validação básica)</li>
-                                <li>Animações suaves ao fazer scroll</li>
-                                <li>Ícones clicáveis para redes sociais</li>
-                            </ul>
-                        </div>
-                        <div class="package-info">
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12,6 12,12 16,14"></polyline>
-                                </svg>
-                                Entrega: 3 dias úteis
-                            </div>
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                                </svg>
-                                Suporte: 3 dias por email
-                            </div>
-                        </div>
-                        <button class="btn btn-outline package-btn">Escolher Este Pacote</button>
+                        <h3 class="package-name">Essential</h3>
+                        <div class="package-price">€150</div>
+                        <p class="package-description">Ideal para quem quer começar com um site moderno, funcional e direto ao ponto.</p>
                     </div>
+                    <div class="package-features">
+                        <h4>Inclui:</h4>
+                        <ul>
+                            <li>1 página com scroll único</li>
+                            <li>Design responsivo (PC, tablet e telemóvel)</li>
+                            <li>Formulário de contacto funcional (com validação básica)</li>
+                            <li>Animações suaves ao fazer scroll</li>
+                            <li>Ícones clicáveis para redes sociais</li>
+                        </ul>
+                    </div>
+                    <div class="package-info">
+                        <div class="info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                            Entrega: 3 dias úteis
+                        </div>
+                        <div class="info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                            </svg>
+                            Suporte: 3 dias por email
+                        </div>
+                    </div>
+                    <a href="#contacto" class="btn btn-outline package-btn">Escolher Este Pacote</a>
                 </div>
 
                 <!-- Start Package -->
                 <div class="package-card">
-                    <div class="package-content">
-                        <div class="package-header">
-                            <div class="package-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"></polygon>
-                                </svg>
-                            </div>
-                            <h3 class="package-name">Start</h3>
-                            <div class="package-price">€200</div>
-                            <p class="package-description">Ideal para quem precisa de uma solução simples, elegante e eficaz para apresentar o seu serviço, produto ou marca.</p>
+                    <div class="package-header">
+                        <div class="package-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"></polygon>
+                            </svg>
                         </div>
-                        <div class="package-features">
-                            <h4>Inclui:</h4>
-                            <ul>
-                                <li>Página única com scroll suave (Quem sou / O que faço / Contactos)</li>
-                                <li>Design responsivo (PC, tablet e telemóvel)</li>
-                                <li>Formulário de contacto funcional (com validação básica)</li>
-                                <li>Animações suaves ao fazer scroll</li>
-                                <li>Ligação às redes sociais (ícones clicáveis)</li>
-                            </ul>
-                        </div>
-                        <div class="package-info">
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12,6 12,12 16,14"></polyline>
-                                </svg>
-                                Entrega: 5 dias úteis
-                            </div>
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                                </svg>
-                                Suporte: 7 dias por email + sessão Zoom opcional (€30/30 min)
-                            </div>
-                        </div>
-                        <button class="btn btn-outline package-btn">Escolher Este Pacote</button>
+                        <h3 class="package-name">Start</h3>
+                        <div class="package-price">€200</div>
+                        <p class="package-description">Ideal para quem precisa de uma solução simples, elegante e eficaz para apresentar o seu serviço, produto ou marca.</p>
                     </div>
+                    <div class="package-features">
+                        <h4>Inclui:</h4>
+                        <ul>
+                            <li>Página única com scroll suave (Quem sou / O que faço / Contactos)</li>
+                            <li>Design responsivo (PC, tablet e telemóvel)</li>
+                            <li>Formulário de contacto funcional (com validação básica)</li>
+                            <li>Animações suaves ao fazer scroll</li>
+                            <li>Ligação às redes sociais (ícones clicáveis)</li>
+                        </ul>
+                    </div>
+                    <div class="package-info">
+                        <div class="info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                            Entrega: 5 dias úteis
+                        </div>
+                        <div class="info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                            </svg>
+                            Suporte: 7 dias por email + sessão Zoom opcional (€30/30 min)
+                        </div>
+                    </div>
+                    <a href="#contacto" class="btn btn-outline package-btn">Escolher Este Pacote</a>
                 </div>
 
                 <!-- Presence Package (Featured) -->
@@ -401,94 +970,90 @@
                         </svg>
                         Mais Popular
                     </div>
-                    <div class="package-content">
-                        <div class="package-header">
-                            <div class="package-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M6 9l6 6 6-6"></path>
-                                </svg>
-                            </div>
-                            <h3 class="package-name">Presence</h3>
-                            <div class="package-price">€550</div>
-                            <p class="package-description">Ideal para negócios em crescimento ou marcas pessoais que querem site institucional e Instagram otimizado.</p>
+                    <div class="package-header">
+                        <div class="package-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
                         </div>
-                        <div class="package-features">
-                            <h4>Inclui:</h4>
-                            <ul>
-                                <li>Site institucional (3 páginas: Home / Produtos/Serviços / Contacto)</li>
-                                <li>Design responsivo + SEO técnico básico (títulos e meta descrições)</li>
-                                <li>Formulário de contacto funcional (validação básica)</li>
-                                <li>Otimização leve de performance</li>
-                                <li>Instagram otimizado (bio, imagem de perfil, destaques)</li>
-                                <li>3 posts personalizados prontos a publicar</li>
-                            </ul>
-                        </div>
-                        <div class="package-info">
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12,6 12,12 16,14"></polyline>
-                                </svg>
-                                Entrega: 10 dias úteis
-                            </div>
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                                </svg>
-                                Suporte: 15 dias por email + sessão Zoom opcional (incluída)
-                            </div>
-                        </div>
-                        <button class="btn btn-primary package-btn">Escolher Este Pacote</button>
+                        <h3 class="package-name">Presence</h3>
+                        <div class="package-price">€550</div>
+                        <p class="package-description">Ideal para negócios em crescimento ou marcas pessoais que querem site institucional e Instagram otimizado.</p>
                     </div>
+                    <div class="package-features">
+                        <h4>Inclui:</h4>
+                        <ul>
+                            <li>Site institucional (3 páginas: Home / Produtos/Serviços / Contacto)</li>
+                            <li>Design responsivo + SEO técnico básico (títulos e meta descrições)</li>
+                            <li>Formulário de contacto funcional (validação básica)</li>
+                            <li>Otimização leve de performance</li>
+                            <li>Instagram otimizado (bio, imagem de perfil, destaques)</li>
+                            <li>3 posts personalizados prontos a publicar</li>
+                        </ul>
+                    </div>
+                    <div class="package-info">
+                        <div class="info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                            Entrega: 10 dias úteis
+                        </div>
+                        <div class="info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                            </svg>
+                            Suporte: 15 dias por email + sessão Zoom opcional (incluída)
+                        </div>
+                    </div>
+                    <a href="#contacto" class="btn btn-primary package-btn">Escolher Este Pacote</a>
                 </div>
 
                 <!-- Pro Package -->
                 <div class="package-card">
-                    <div class="package-content">
-                        <div class="package-header">
-                            <div class="package-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="12,2 2,7 12,12 22,7 12,2"></polygon>
-                                    <polyline points="2,17 12,22 22,17"></polyline>
-                                    <polyline points="2,12 12,17 22,12"></polyline>
-                                </svg>
-                            </div>
-                            <h3 class="package-name">Pro</h3>
-                            <div class="package-price">€1000</div>
-                            <p class="package-description">Solução completa para empresas que querem uma presença digital robusta e profissional.</p>
+                    <div class="package-header">
+                        <div class="package-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12,2 2,7 12,12 22,7 12,2"></polygon>
+                                <polyline points="2,17 12,22 22,17"></polyline>
+                                <polyline points="2,12 12,17 22,12"></polyline>
+                            </svg>
                         </div>
-                        <div class="package-features">
-                            <h4>Inclui:</h4>
-                            <ul>
-                                <li>Website completo (até 5 páginas personalizadas)</li>
-                                <li>Design responsivo + SEO técnico avançado</li>
-                                <li>Formulário de contacto avançado (com validação completa)</li>
-                                <li>Otimização completa de performance</li>
-                                <li>Integração com Google Analytics e Search Console</li>
-                                <li>Instagram + Facebook otimizados</li>
-                                <li>5 posts personalizados + estratégia de conteúdo</li>
-                                <li>Certificado SSL incluído</li>
-                            </ul>
-                        </div>
-                        <div class="package-info">
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12,6 12,12 16,14"></polyline>
-                                </svg>
-                                Entrega: 20 dias úteis
-                            </div>
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                                </svg>
-                                Suporte: 30 dias por email + 2 sessões Zoom incluídas
-                            </div>
-                        </div>
-                        <button class="btn btn-outline package-btn">Escolher Este Pacote</button>
+                        <h3 class="package-name">Pro</h3>
+                        <div class="package-price">€1000</div>
+                        <p class="package-description">Solução completa para empresas que querem uma presença digital robusta e profissional.</p>
                     </div>
+                    <div class="package-features">
+                        <h4>Inclui:</h4>
+                        <ul>
+                            <li>Website completo (até 5 páginas personalizadas)</li>
+                            <li>Design responsivo + SEO técnico avançado</li>
+                            <li>Formulário de contacto avançado (com validação completa)</li>
+                            <li>Otimização completa de performance</li>
+                            <li>Integração com Google Analytics e Search Console</li>
+                            <li>Instagram + Facebook otimizados</li>
+                            <li>5 posts personalizados + estratégia de conteúdo</li>
+                            <li>Certificado SSL incluído</li>
+                        </ul>
+                    </div>
+                    <div class="package-info">
+                        <div class="info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                            Entrega: 20 dias úteis
+                        </div>
+                        <div class="info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                            </svg>
+                            Suporte: 30 dias por email + 2 sessões Zoom incluídas
+                        </div>
+                    </div>
+                    <a href="#contacto" class="btn btn-outline package-btn">Escolher Este Pacote</a>
                 </div>
             </div>
         </div>
@@ -848,6 +1413,47 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // FAQ Toggle functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const isOpen = faqItem.classList.contains('open');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('open');
+                    item.querySelector('.faq-answer').style.display = 'none';
+                });
+                
+                // Toggle current FAQ item
+                if (!isOpen) {
+                    faqItem.classList.add('open');
+                    answer.style.display = 'block';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigada pela sua mensagem! Entraremos em contacto brevemente.');
+        });
+    </script>
 </body>
 </html>
