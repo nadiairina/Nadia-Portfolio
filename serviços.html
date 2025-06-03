@@ -5,7 +5,236 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços - Nadia Irina</title>
     <meta name="description" content="Serviços profissionais de desenvolvimento web e marketing digital. Pacotes desde €150 até €1000 com design responsivo, SEO e gestão de redes sociais.">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Critical Services Page Styling */
+        .packages { 
+            padding: 5rem 0 !important; 
+            background-color: #f9fafb !important; 
+        }
+        .packages-grid { 
+            display: grid !important; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important; 
+            gap: 2rem !important; 
+            max-width: 1200px !important; 
+            margin: 0 auto !important; 
+        }
+        .package-card { 
+            background: white !important; 
+            border: 2px solid #e5e7eb !important; 
+            border-radius: 1rem !important; 
+            padding: 2rem !important; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important; 
+            transition: all 0.3s ease !important; 
+            position: relative !important;
+        }
+        .package-card:hover { 
+            transform: translateY(-8px) !important; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important; 
+        }
+        .package-card.featured { 
+            border-color: #6366f1 !important; 
+        }
+        .featured-badge { 
+            position: absolute !important; 
+            top: -12px !important; 
+            left: 50% !important; 
+            transform: translateX(-50%) !important; 
+            background: #6366f1 !important; 
+            color: white !important; 
+            padding: 0.5rem 1rem !important; 
+            border-radius: 1rem !important; 
+            font-size: 0.875rem !important; 
+            font-weight: 600 !important; 
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.25rem !important;
+        }
+        .package-content {
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+        .package-header {
+            text-align: center !important;
+            margin-bottom: 2rem !important;
+        }
+        .package-icon { 
+            width: 4rem !important; 
+            height: 4rem !important; 
+            background: rgba(99, 102, 241, 0.1) !important; 
+            border-radius: 50% !important; 
+            display: flex !important; 
+            align-items: center !important; 
+            justify-content: center !important; 
+            margin: 0 auto 1rem !important; 
+            color: #6366f1 !important; 
+        }
+        .package-name { 
+            font-size: 1.5rem !important; 
+            font-weight: 600 !important; 
+            margin-bottom: 0.5rem !important;
+            color: #1f2937 !important;
+        }
+        .package-price { 
+            font-size: 2.5rem !important; 
+            font-weight: 800 !important; 
+            color: #6366f1 !important; 
+            margin-bottom: 1rem !important; 
+        }
+        .package-description { 
+            color: #6b7280 !important; 
+            margin-bottom: 2rem !important;
+            font-size: 0.875rem !important;
+            line-height: 1.5 !important;
+        }
+        .package-features {
+            margin-bottom: 2rem !important;
+            flex-grow: 1 !important;
+        }
+        .package-features h4 {
+            font-weight: 600 !important;
+            color: #1f2937 !important;
+            margin-bottom: 1rem !important;
+            font-size: 1rem !important;
+        }
+        .package-features ul { 
+            list-style: none !important; 
+            padding: 0 !important; 
+        }
+        .package-features li { 
+            display: flex !important; 
+            align-items: flex-start !important; 
+            gap: 0.75rem !important; 
+            margin-bottom: 0.75rem !important; 
+            color: #6b7280 !important;
+            font-size: 0.875rem !important;
+        }
+        .package-features li::before { 
+            content: "✓" !important; 
+            color: #6366f1 !important; 
+            font-weight: bold !important; 
+            flex-shrink: 0 !important;
+            margin-top: 0.125rem !important;
+        }
+        .package-info {
+            margin-bottom: 2rem !important;
+        }
+        .info-item { 
+            display: flex !important; 
+            align-items: center !important; 
+            gap: 0.5rem !important; 
+            color: #6b7280 !important; 
+            margin-bottom: 0.75rem !important;
+            font-size: 0.875rem !important;
+        }
+        .info-item svg { 
+            color: #6366f1 !important;
+            flex-shrink: 0 !important;
+        }
+        .btn { 
+            display: inline-block !important; 
+            padding: 0.75rem 1.5rem !important; 
+            border-radius: 8px !important; 
+            font-weight: 600 !important; 
+            text-align: center !important; 
+            text-decoration: none !important; 
+            transition: all 0.3s ease !important; 
+            border: 2px solid transparent !important;
+            outline: none !important;
+        }
+        .btn-outline { 
+            background: transparent !important; 
+            color: #1f2937 !important; 
+            border: 2px solid #e5e7eb !important; 
+        }
+        .btn-outline:hover { 
+            border-color: #6366f1 !important; 
+            color: #6366f1 !important; 
+            transform: translateY(-2px) !important; 
+        }
+        .btn-primary { 
+            background: #6366f1 !important; 
+            color: white !important; 
+            border: 2px solid #6366f1 !important; 
+        }
+        .btn-primary:hover { 
+            background: #4f46e5 !important; 
+            border-color: #4f46e5 !important;
+            transform: translateY(-2px) !important; 
+        }
+        .package-btn {
+            width: 100% !important;
+            margin-top: auto !important;
+        }
+        .section-header {
+            text-align: center !important;
+            margin-bottom: 4rem !important;
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem) !important;
+            font-weight: 800 !important;
+            color: #1f2937 !important;
+            margin-bottom: 1rem !important;
+        }
+        .section-description {
+            font-size: 1.25rem !important;
+            color: #6b7280 !important;
+        }
+        .hero-content {
+            text-align: center !important;
+            max-width: 800px !important;
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem) !important;
+            font-weight: 900 !important;
+            color: #1f2937 !important;
+            margin-bottom: 1rem !important;
+        }
+        .hero-subtitle {
+            font-size: clamp(1.5rem, 3vw, 2rem) !important;
+            color: #6366f1 !important;
+            margin-bottom: 2rem !important;
+            font-weight: 600 !important;
+        }
+        .hero-description {
+            font-size: 1.125rem !important;
+            margin-bottom: 3rem !important;
+            max-width: 700px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        .hero-description p {
+            margin-bottom: 1.5rem !important;
+            color: #6b7280 !important;
+        }
+        .hero-description .highlight {
+            color: #6366f1 !important;
+            font-weight: 600 !important;
+        }
+        .hero-actions {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 1rem !important;
+            align-items: center !important;
+        }
+        @media (min-width: 640px) {
+            .hero-actions {
+                flex-direction: row !important;
+                justify-content: center !important;
+            }
+        }
+        @media (min-width: 768px) {
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        @media (min-width: 1024px) {
+            .packages-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+        }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -207,54 +436,10 @@
                                     <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
                                     <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
                                 </svg>
-                                Suporte: 10 dias por email + sessão Zoom opcional (€30/30 min)
+                                Suporte: 15 dias por email + sessão Zoom opcional (incluída)
                             </div>
                         </div>
                         <button class="btn btn-primary package-btn">Escolher Este Pacote</button>
-                    </div>
-                </div>
-
-                <!-- Advanced Package -->
-                <div class="package-card">
-                    <div class="package-content">
-                        <div class="package-header">
-                            <div class="package-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="package-name">Advanced</h3>
-                            <div class="package-price">€750</div>
-                            <p class="package-description">Ideal para quem já tem alguma autonomia nas redes e quer um site completo de até 5 páginas.</p>
-                        </div>
-                        <div class="package-features">
-                            <h4>Inclui:</h4>
-                            <ul>
-                                <li>Site completo (5 páginas: Home / Sobre / Serviços / Galeria / Contacto)</li>
-                                <li>Design responsivo + animações suaves (efeitos em scroll e botões)</li>
-                                <li>SEO técnico básico (títulos, meta descrições, carregamento eficiente)</li>
-                                <li>Formulário de contacto funcional (com validação básica)</li>
-                                <li>Instagram otimizado + 6 posts e 3 stories prontos a publicar</li>
-                            </ul>
-                        </div>
-                        <div class="package-info">
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12,6 12,12 16,14"></polyline>
-                                </svg>
-                                Entrega: 15 dias úteis
-                            </div>
-                            <div class="info-item">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                                </svg>
-                                Suporte: 14 dias por email + sessão Zoom opcional (€30/30 min)
-                            </div>
-                        </div>
-                        <button class="btn btn-outline package-btn">Escolher Este Pacote</button>
                     </div>
                 </div>
 
@@ -263,23 +448,27 @@
                     <div class="package-content">
                         <div class="package-header">
                             <div class="package-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 2,7 12,12 22,7 12,2"></polygon>
+                                    <polyline points="2,17 12,22 22,17"></polyline>
+                                    <polyline points="2,12 12,17 22,12"></polyline>
                                 </svg>
                             </div>
                             <h3 class="package-name">Pro</h3>
                             <div class="package-price">€1000</div>
-                            <p class="package-description">Ideal para quem quer tudo entregue e o Instagram gerido por um mês.</p>
+                            <p class="package-description">Solução completa para empresas que querem uma presença digital robusta e profissional.</p>
                         </div>
                         <div class="package-features">
                             <h4>Inclui:</h4>
                             <ul>
-                                <li>Site institucional (7 páginas) + 1 secção extra (FAQ, Reservas, Eventos...)</li>
-                                <li>Design responsivo + animações suaves + modo escuro/claro</li>
-                                <li>SEO técnico básico</li>
-                                <li>Formulário funcional + integrações (Maps, WhatsApp, newsletter...)</li>
-                                <li>Slider de imagens (se necessário)</li>
-                                <li>Gestão de Instagram (1 mês): 9 posts + 6 stories criados e publicados + interação básica</li>
+                                <li>Website completo (até 5 páginas personalizadas)</li>
+                                <li>Design responsivo + SEO técnico avançado</li>
+                                <li>Formulário de contacto avançado (com validação completa)</li>
+                                <li>Otimização completa de performance</li>
+                                <li>Integração com Google Analytics e Search Console</li>
+                                <li>Instagram + Facebook otimizados</li>
+                                <li>5 posts personalizados + estratégia de conteúdo</li>
+                                <li>Certificado SSL incluído</li>
                             </ul>
                         </div>
                         <div class="package-info">
@@ -295,7 +484,7 @@
                                     <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
                                     <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
                                 </svg>
-                                Suporte: 15 dias por email + sessão Zoom opcional (€30/30 min)
+                                Suporte: 30 dias por email + 2 sessões Zoom incluídas
                             </div>
                         </div>
                         <button class="btn btn-outline package-btn">Escolher Este Pacote</button>
@@ -310,107 +499,113 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Serviços Extras</h2>
-                <p class="section-description">Personalize o seu pacote com serviços adicionais</p>
+                <p class="section-description">Complementa o teu pacote com serviços adicionais personalizados</p>
             </div>
 
             <div class="extras-grid">
+                <!-- Marketing Digital -->
                 <div class="extra-card">
                     <div class="extra-header">
                         <div class="extra-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                             </svg>
                         </div>
-                        <h3>Branding & Identidade Visual</h3>
+                        <h3>Marketing Digital</h3>
                     </div>
                     <ul class="extra-items">
-                        <li>Personalização de logotipo, paleta de cores e tipografia | desde €150</li>
-                        <li>Manual básico de identidade visual | desde €80</li>
+                        <li>Gestão de redes sociais (Instagram, Facebook) - €100/mês</li>
+                        <li>Criação de conteúdo visual (posts, stories) - €50 por post</li>
+                        <li>Campanhas publicitárias no Facebook/Instagram - €150 + orçamento de anúncios</li>
+                        <li>Análise de métricas e relatórios mensais - €75/mês</li>
                     </ul>
                 </div>
 
+                <!-- Desenvolvimento Adicional -->
                 <div class="extra-card">
                     <div class="extra-header">
                         <div class="extra-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-                                <path d="M2 2l7.586 7.586"></path>
-                                <circle cx="11" cy="11" r="2"></circle>
+                                <polyline points="16,18 22,12 16,6"></polyline>
+                                <polyline points="8,6 2,12 8,18"></polyline>
                             </svg>
                         </div>
-                        <h3>Criação de Conteúdo</h3>
+                        <h3>Desenvolvimento Adicional</h3>
                     </div>
                     <ul class="extra-items">
-                        <li>Redação de textos para site (home/about/blog) | desde €100 por página</li>
-                        <li>Revisão e otimização SEO de texto | desde €50 por página</li>
-                        <li>Edição básica de imagens (ajustes simples, cortes, correções de cor)</li>
+                        <li>Páginas extra (além do pacote) - €100 por página</li>
+                        <li>Integração com sistemas de pagamento - €200</li>
+                        <li>Sistema de reservas/agendamentos - €300</li>
+                        <li>Blog funcional com CMS - €250</li>
+                        <li>Loja online básica (até 50 produtos) - €500</li>
                     </ul>
                 </div>
 
+                <!-- SEO e Performance -->
                 <div class="extra-card">
                     <div class="extra-header">
                         <div class="extra-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35"></path>
                             </svg>
                         </div>
-                        <h3>Funcionalidades Técnicas e Visuais</h3>
+                        <h3>SEO e Performance</h3>
                     </div>
                     <ul class="extra-items">
-                        <li>Formulário de contacto funcional (envio automático) | €50</li>
-                        <li>Formulário avançado com integrações | €40</li>
-                        <li>Animações CSS/JS suaves (scroll, botões) | desde €60</li>
-                        <li>Modo escuro/claro com toggle | €40</li>
-                        <li>Slider/carrossel de imagens | €60</li>
-                        <li>Pop-up informativo ou CTA | €40</li>
-                        <li>Galeria interativa | €30</li>
-                        <li>Google Maps integrado | €15</li>
-                        <li>Botões de contacto flutuantes | €20</li>
-                        <li>Feed Instagram/TikTok automático | €30</li>
-                        <li>Botão de pagamento | €50</li>
-                        <li>Calendário de marcações | €40</li>
-                        <li>Google Analytics instalado | €25</li>
+                        <li>Auditoria SEO completa - €150</li>
+                        <li>Otimização avançada de velocidade - €200</li>
+                        <li>Configuração de Google Analytics e Search Console - €100</li>
+                        <li>Estratégia de palavras-chave - €175</li>
+                        <li>Link building básico - €250/mês</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Maintenance Plans -->
+            <!-- Planos de Manutenção -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h3 class="section-title" style="font-size: 2rem;">Planos de Manutenção</h3>
+                <p class="section-description">Mantém o teu website sempre atualizado e seguro</p>
+            </div>
+
             <div class="maintenance-plans">
+                <!-- Plano Básico -->
                 <div class="maintenance-card">
                     <div class="maintenance-header">
                         <div class="maintenance-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                         </div>
-                        <h3>Plano de Manutenção Básico</h3>
-                        <div class="maintenance-price">€60/mês</div>
+                        <h3>Básico</h3>
+                        <div class="maintenance-price">€50/mês</div>
                     </div>
                     <ul class="maintenance-features">
-                        <li>Atualizações de conteúdo (até 2h/mês)</li>
-                        <li>Backup semanal</li>
-                        <li>Suporte técnico prioritário</li>
+                        <li>Backup mensal do website</li>
+                        <li>Atualizações de segurança</li>
+                        <li>Suporte por email</li>
+                        <li>Relatório mensal básico</li>
                     </ul>
                 </div>
 
+                <!-- Plano Premium -->
                 <div class="maintenance-card">
                     <div class="maintenance-header">
                         <div class="maintenance-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
                             </svg>
                         </div>
-                        <h3>Plano de Manutenção Avançado</h3>
-                        <div class="maintenance-price">€120/mês</div>
+                        <h3>Premium</h3>
+                        <div class="maintenance-price">€100/mês</div>
                     </div>
                     <ul class="maintenance-features">
-                        <li>Atualizações de conteúdo (até 5h/mês)</li>
-                        <li>Backup diário</li>
-                        <li>Otimização de performance</li>
-                        <li>Relatórios mensais de analytics</li>
+                        <li>Backup semanal do website</li>
+                        <li>Atualizações de segurança e conteúdo</li>
+                        <li>Suporte prioritário por email</li>
+                        <li>Monitorização de uptime</li>
+                        <li>Relatório detalhado mensal</li>
+                        <li>1 pequena alteração por mês incluída</li>
                     </ul>
                 </div>
             </div>
@@ -418,47 +613,47 @@
     </section>
 
     <!-- 4. Informações Importantes -->
-    <section class="important-info">
+    <section id="informacoes" class="important-info">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Informações Importantes</h2>
-                <p class="section-description">Detalhes que garantem transparência e confiança</p>
+                <p class="section-description">Tudo o que precisas de saber sobre o nosso processo de trabalho</p>
             </div>
 
             <div class="info-grid">
+                <!-- Processo -->
                 <div class="info-card">
                     <div class="info-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 12l2 2 4-4"></path>
-                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"></path>
-                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"></path>
-                            <path d="M3 21c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"></path>
-                            <path d="M21 21c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"></path>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
                         </svg>
                     </div>
-                    <h3>Garantia de Qualidade</h3>
-                    <p>Todos os projetos incluem período de garantia e suporte pós-entrega. Comprometo-me com a excelência em cada detalhe.</p>
+                    <h3>Processo de Trabalho</h3>
+                    <p>Consulta inicial → Proposta personalizada → Desenvolvimento → Revisões → Entrega final. Mantemos comunicação constante durante todo o projeto.</p>
                 </div>
 
+                <!-- Pagamento -->
                 <div class="info-card">
                     <div class="info-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12,6 12,12 16,14"></polyline>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
                         </svg>
                     </div>
-                    <h3>Prazos Cumpridos</h3>
-                    <p>Trabalho com cronogramas realistas e cumpro os prazos acordados. Comunicação transparente durante todo o processo.</p>
+                    <h3>Condições de Pagamento</h3>
+                    <p>50% no início do projeto, 50% na entrega final. Aceitamos transferência bancária, MB Way ou PayPal. Faturas emitidas com NIF.</p>
                 </div>
 
+                <!-- Revisões -->
                 <div class="info-card">
                     <div class="info-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
                         </svg>
                     </div>
-                    <h3>Comunicação Direta</h3>
-                    <p>Acesso direto comigo durante todo o projeto. Feedback constante e revisões incluídas em todos os pacotes.</p>
+                    <h3>Revisões Incluídas</h3>
+                    <p>Cada pacote inclui até 3 rondas de revisões. Alterações adicionais são cobradas €25/hora. Grandes mudanças podem gerar custos extra.</p>
                 </div>
             </div>
         </div>
@@ -468,86 +663,66 @@
     <section id="catalogo" class="catalog">
         <div class="container">
             <div class="catalog-content">
-                <h2 class="section-title">Catálogo Completo</h2>
-                <p class="section-description">Descarregue o guia completo dos nossos serviços com todos os detalhes, preços e exemplos de projetos</p>
-
                 <div class="catalog-card">
                     <div class="catalog-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7,10 12,15 17,10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10,9 9,9 8,9"></polyline>
                         </svg>
                     </div>
-                    <h3>Guia de Serviços - Nadia Irina</h3>
-                    <p>PDF completo com informações detalhadas sobre todos os pacotes, serviços extras, exemplos de trabalhos anteriores e processo de trabalho.</p>
-                    <button class="btn btn-primary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7,10 12,15 17,10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Descarregar Catálogo PDF
-                    </button>
+                    <h3>Catálogo Completo de Serviços</h3>
+                    <p>Descarrega o nosso catálogo em PDF com informações detalhadas sobre todos os serviços, preços e exemplos de trabalhos anteriores.</p>
+                    <a href="#" class="btn btn-primary">Descarregar PDF</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. Perguntas Frequentes -->
-    <section class="faq">
+    <!-- 6. FAQ -->
+    <section id="faq" class="faq">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Perguntas Frequentes</h2>
-                <p class="section-description">Esclarecimento das dúvidas mais comuns</p>
+                <p class="section-description">Respostas às dúvidas mais comuns dos nossos clientes</p>
             </div>
 
             <div class="faq-list">
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>Quanto tempo demora cada projeto?</span>
+                        <span>Quanto tempo demora a criar um website?</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9l6 6 6-6"></path>
+                            <polyline points="6,9 12,15 18,9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Os prazos variam conforme o pacote escolhido: Essential (3 dias), Start (5 dias), Presence (10 dias), Advanced (15 dias), Pro (20 dias). O prazo começa a contar após receção de todos os conteúdos necessários.</p>
+                        <p>Os prazos variam conforme o pacote escolhido: Essential (3 dias), Start (5 dias), Presence (10 dias), Pro (20 dias). Projetos customizados podem demorar mais, dependendo da complexidade.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>O que preciso de fornecer para começar?</span>
+                        <span>Que informações preciso de fornecer?</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9l6 6 6-6"></path>
+                            <polyline points="6,9 12,15 18,9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Precisa de fornecer textos, imagens, logótipos, vídeos e qualquer outro material necessário para o projeto. Ajudo-a a organizar tudo o que é necessário no início do projeto.</p>
+                        <p>Precisarás de: textos/conteúdo para o website, imagens/fotos (ou podemos sugerir bancos de imagens), logótipo da empresa, cores e estilo preferidos, exemplos de websites que gostes.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>Quantas revisões estão incluídas?</span>
+                        <span>O website fica responsivo (mobile-friendly)?</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9l6 6 6-6"></path>
+                            <polyline points="6,9 12,15 18,9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Cada pacote inclui até 3 revisões durante o período de suporte gratuito pós-entrega. Revisões adicionais são cobradas como serviço extra.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>O site funciona em telemóveis?</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9l6 6 6-6"></path>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sim! Todos os websites são responsivos e testados para funcionar perfeitamente em desktop, tablet e telemóvel, em todos os browsers principais.</p>
+                        <p>Sim, todos os nossos websites são 100% responsivos e otimizados para telemóveis, tablets e computadores. Testamos em diferentes dispositivos antes da entrega.</p>
                     </div>
                 </div>
 
@@ -555,77 +730,86 @@
                     <button class="faq-question">
                         <span>Incluem alojamento e domínio?</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9l6 6 6-6"></path>
+                            <polyline points="6,9 12,15 18,9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Todos os pacotes incluem publicação gratuita no GitHub Pages. Para domínio personalizado (.com/.pt), ajudo na configuração mas o custo anual não está incluído no pacote.</p>
+                        <p>O desenvolvimento não inclui alojamento nem domínio, mas ajudamos na escolha e configuração. Recomendamos fornecedores confiáveis e orientamos todo o processo de configuração.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">
-                        <span>E se precisar de alterações depois?</span>
+                        <span>Posso fazer alterações depois da entrega?</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9l6 6 6-6"></path>
+                            <polyline points="6,9 12,15 18,9"></polyline>
                         </svg>
                     </button>
                     <div class="faq-answer">
-                        <p>Ofereço um plano de manutenção mensal por €60/mês que inclui atualizações, backups e suporte técnico. Alterações pontuais são orçamentadas separadamente.</p>
+                        <p>Sim, oferecemos suporte pós-entrega conforme o pacote. Alterações pequenas podem ser incluídas no suporte, alterações maiores são orçamentadas separadamente a €25/hora.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Trabalham com que tipo de empresas?</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Trabalhamos com freelancers, pequenas empresas, startups, profissionais liberais, lojas locais, consultórios, e qualquer negócio que precise de presença digital profissional.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Form -->
+    <!-- Contact Section -->
     <section id="contacto" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Vamos Trabalhar Juntos</h2>
-                <p class="section-description">Entre em contacto para discutir o seu projeto</p>
+                <h2 class="section-title">Vamos Trabalhar Juntos?</h2>
+                <p class="section-description">Entra em contacto para discutirmos o teu projeto</p>
             </div>
 
             <div class="contact-card">
                 <form class="contact-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Nome *</label>
-                            <input type="text" id="name" name="name" placeholder="O seu nome" required>
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" placeholder="o.seu.email@example.com" required>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="service">Serviço de Interesse</label>
-                        <select id="service" name="service">
-                            <option value="">Selecione um serviço</option>
-                            <option value="Essential - €150">Essential - €150</option>
-                            <option value="Start - €200">Start - €200</option>
-                            <option value="Presence - €550">Presence - €550</option>
-                            <option value="Advanced - €750">Advanced - €750</option>
-                            <option value="Pro - €1000">Pro - €1000</option>
-                            <option value="Serviços Extras">Serviços Extras</option>
-                            <option value="Manutenção">Plano de Manutenção</option>
-                            <option value="Outro">Outro</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefone">Telefone (opcional)</label>
+                            <input type="tel" id="telefone" name="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="pacote">Pacote de Interesse</label>
+                            <select id="pacote" name="pacote">
+                                <option value="">Seleciona um pacote</option>
+                                <option value="essential">Essential - €150</option>
+                                <option value="start">Start - €200</option>
+                                <option value="presence">Presence - €550</option>
+                                <option value="pro">Pro - €1000</option>
+                                <option value="customizado">Projeto Customizado</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Mensagem *</label>
-                        <textarea id="message" name="message" placeholder="Conte-me mais sobre o seu projeto..." rows="5" required></textarea>
+                        <label for="mensagem">Fale-nos sobre o seu projeto</label>
+                        <textarea id="mensagem" name="mensagem" placeholder="Descreva o tipo de website que precisa, objetivos, prazo desejado, etc." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary contact-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        Enviar Mensagem
-                    </button>
+                    <button type="submit" class="btn btn-primary contact-btn">Enviar Mensagem</button>
                 </form>
             </div>
         </div>
@@ -637,26 +821,29 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
-                    <p>Front-End Developer & Marketeer</p>
+                    <p>Desenvolvimento web e marketing digital profissional</p>
                 </div>
+                
                 <div class="footer-links">
                     <div class="footer-nav">
                         <h4>Navegação</h4>
-                        <a href="index.html">início</a>
+                        <a href="index.html">Início</a>
                         <a href="about.html">Sobre Mim</a>
                         <a href="projects.html">Projetos</a>
                         <a href="contact.html">Contactos</a>
+                        <a href="services.html">Serviços</a>
                     </div>
+                    
                     <div class="footer-social">
-                        <h4>Conectar</h4>
+                        <h4>Redes Sociais</h4>
                         <a href="https://github.com/nadiairina" target="_blank">GitHub</a>
                         <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank">LinkedIn</a>
-                        <a href="mailto:contact@nadiairina.com">Email: nadiairina934@gmail.com</a>
                     </div>
                 </div>
             </div>
+            
             <div class="copyright">
-                <p>&copy; 2023 Nadia Irina. Todos os direitos reservados.</p>
+                <p>&copy; 2024 Nadia Irina. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
