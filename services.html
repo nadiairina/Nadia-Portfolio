@@ -33,20 +33,23 @@
     }
 
     .page-title {
-        font-size: 3.5rem;
-        font-weight: 900;
+        font-size: 3rem;
+        font-weight: 700;
         margin: 1rem 0;
         line-height: 1.2;
         color: var(--text-dark);
         transition: color 0.3s ease;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .page-description {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         margin-bottom: 2.5rem;
         color: var(--text-muted);
         transition: color 0.3s ease;
         line-height: 1.6;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     /* Packages Section */
@@ -58,10 +61,12 @@
 
     .section-title {
         text-align: center;
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         margin-bottom: 50px;
         color: var(--text-dark);
         transition: color 0.3s ease;
+        font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .packages-container {
@@ -123,30 +128,34 @@
     }
 
     .package-name {
-        font-size: 1.6rem;
-        font-weight: 700;
+        font-size: 1.5rem;
+        font-weight: 600;
         margin-bottom: 15px;
         color: var(--text-dark);
         transition: color 0.3s ease;
         text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .package-price {
-        font-size: 2.5rem;
-        font-weight: 800;
+        font-size: 2.2rem;
+        font-weight: 700;
         color: var(--primary-color);
         margin-bottom: 25px;
         text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .package-description {
         color: var(--text-muted);
         margin-bottom: 30px;
-        font-style: italic;
+        font-style: normal;
         transition: color 0.3s ease;
-        font-size: 1rem;
+        font-size: 0.95rem;
         text-align: center;
-        line-height: 1.7;
+        line-height: 1.6;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .package-target {
@@ -162,16 +171,19 @@
         color: var(--text-dark);
         margin-bottom: 15px;
         transition: color 0.3s ease;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .package-target p {
-        font-size: 0.95rem;
-        line-height: 1.8;
+        font-size: 0.9rem;
+        line-height: 1.6;
         margin-bottom: 0;
         color: var(--text-muted);
         transition: color 0.3s ease;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .package-features {
@@ -181,14 +193,16 @@
     }
 
     .package-features li {
-        padding: 8px 0;
-        padding-left: 30px;
+        padding: 6px 0;
+        padding-left: 25px;
         position: relative;
         color: var(--text-muted);
         transition: color 0.3s ease;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 10px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 8px;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .package-features li::before {
@@ -202,16 +216,17 @@
 
     .cta-button {
         width: 100%;
-        padding: 18px;
+        padding: 16px;
         background: var(--primary-color);
         color: white;
         border: none;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        font-weight: 600;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
         cursor: pointer;
         transition: all 0.3s ease;
         margin-top: auto;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     .cta-button:hover {
@@ -485,7 +500,7 @@
     <main>
         <section class="packages-section">
             <div class="packages-container">
-                
+                <h2 class="section-title">Nossos Pacotes</h2>
                 
                 <div class="packages-pyramid">
                     <!-- Top Row - 3 Packages -->
@@ -535,7 +550,7 @@
                         </div>
 
                         <!-- Presence Package -->
-                        <div class="package-card">
+                        <div class="package-card featured">
                             <h3 class="package-name">Presence</h3>
                             <div class="package-price">€550</div>
                             <p class="package-description">Ideal para negócios em crescimento que querem site institucional e Instagram otimizado.</p>
