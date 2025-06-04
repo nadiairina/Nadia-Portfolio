@@ -764,11 +764,12 @@
     .extras-grid:not(.filtered) .extras-category:nth-child(3) {
         grid-column: 5 / 7;
     }
+    /* Middle row - 2 wider centered boxes */
     .extras-grid:not(.filtered) .extras-category:nth-child(4) {
-        grid-column: 2 / 4;
+        grid-column: 1 / 4;
     }
     .extras-grid:not(.filtered) .extras-category:nth-child(5) {
-        grid-column: 4 / 6;
+        grid-column: 4 / 7;
     }
     /* When filtered, use auto-fit layout for full width */
     .extras-grid.filtered {
@@ -1106,7 +1107,7 @@
                     
                     <button class="category-cta">Solicitar Orçamento</button>
                 </div>
-                <!-- MIDDLE ROW - 2 CENTERED BOXES -->
+                <!-- MIDDLE ROW - 2 WIDER CENTERED BOXES -->
                 <!-- Redes Sociais - Criação -->
                 <div class="extras-category" data-category="social">
                     <div class="category-header">
@@ -1301,7 +1302,7 @@
         </div>
     </footer>
     
-    <script>
+   <script>
     // Filter functionality
     document.addEventListener('DOMContentLoaded', function() {
         const filterButtons = document.querySelectorAll('.filter-btn');
