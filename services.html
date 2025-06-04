@@ -666,281 +666,742 @@
         </section>
     </main>
 
+    <style>
+    :root {
+        --primary-color: #6366f1;
+        --primary-dark: #4f46e5;
+        --primary-light: #a5b4fc;
+        --text-dark: #1f2937;
+        --text-light: #f3f4f6;
+        --text-muted: #6b7280;
+        --bg-light: #ffffff;
+        --bg-dark: #1f2937;
+        --bg-muted: #f9fafb;
+        --bg-card: #ffffff;
+        --border-color: #e5e7eb;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        color: var(--text-dark);
+        background: var(--bg-light);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+    .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+        color: var(--text-dark);
+        font-weight: 800;
+    }
+    /* EXTRAS Section Styles */
+    .extras-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        transition: background-color 0.3s ease;
+    }
+    .extras-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    .extras-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 400;
+        line-height: 1.6;
+    }
+    .extras-filters {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+    .filter-btn {
+        padding: 12px 24px;
+        border: 2px solid var(--border-color);
+        background: var(--bg-card);
+        color: var(--text-dark);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+    .extras-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 40px;
+        margin-bottom: 80px;
+    }
+    .extras-category {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+    .extras-category:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+    .category-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+    .category-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        border-radius: 50%;
+        margin-bottom: 20px;
+        color: white;
+        font-size: 2rem;
+        box-shadow: var(--shadow-md);
+    }
+    .category-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+    }
+    .category-description {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        transition: color 0.3s ease;
+        font-weight: 400;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .services-list {
+        margin-bottom: 30px;
+    }
+    .service-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        gap: 20px;
+    }
+    .service-item:last-child {
+        border-bottom: none;
+    }
+    .service-item:hover {
+        background: rgba(99, 102, 241, 0.05);
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 12px;
+    }
+    .service-info {
+        flex: 1;
+    }
+    .service-info h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+        transition: color 0.3s ease;
+    }
+    .service-info p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+        line-height: 1.5;
+        transition: color 0.3s ease;
+        font-weight: 400;
+    }
+    .service-price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        white-space: nowrap;
+        text-align: right;
+    }
+    .category-cta {
+        width: 100%;
+        padding: 16px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+    }
+    .category-cta:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+    .monthly-plans {
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 2px solid var(--border-color);
+    }
+    .monthly-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 25px;
+        text-align: center;
+        transition: color 0.3s ease;
+    }
+    .monthly-plan {
+        background: var(--bg-muted);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        border: 2px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+    .monthly-plan.featured {
+        border-color: var(--primary-color);
+        background: rgba(99, 102, 241, 0.05);
+        position: relative;
+    }
+    .monthly-plan.featured::before {
+        content: "Mais Popular";
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary-color);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    .plan-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        gap: 15px;
+    }
+    .plan-header h5 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin: 0;
+        transition: color 0.3s ease;
+    }
+    .plan-pricing {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .monthly-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary-color);
+    }
+    .quarterly-price {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+    .plan-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .plan-features li {
+        padding: 8px 0;
+        padding-left: 25px;
+        position: relative;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        transition: color 0.3s ease;
+        font-weight: 400;
+    }
+    .plan-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #27ae60;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    /* Dark Mode Support */
+    body.dark .extras-section {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    }
+    body.dark .extras-category {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+    body.dark .filter-btn {
+        background: #374151;
+        border-color: #4b5563;
+        color: var(--text-light);
+    }
+    body.dark .filter-btn:hover,
+    body.dark .filter-btn.active {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+    body.dark .category-title,
+    body.dark .monthly-title,
+    body.dark .service-info h4,
+    body.dark .plan-header h5 {
+        color: var(--text-light);
+    }
+    body.dark .category-description,
+    body.dark .extras-subtitle,
+    body.dark .service-info p,
+    body.dark .plan-features li,
+    body.dark .quarterly-price {
+        color: #9ca3af;
+    }
+    body.dark .service-item {
+        border-color: #374151;
+    }
+    body.dark .service-item:hover {
+        background: rgba(99, 102, 241, 0.1);
+    }
+    body.dark .monthly-plan {
+        background: #374151;
+        border-color: #4b5563;
+    }
+    body.dark .monthly-plan.featured {
+        background: rgba(99, 102, 241, 0.1);
+        border-color: var(--primary-color);
+    }
+    body.dark .monthly-plans {
+        border-color: #374151;
+    }
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .extras-grid {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .extras-category {
+            padding: 35px;
+        }
+    }
+    @media (max-width: 768px) {
+        .extras-section {
+            padding: 60px 0;
+        }
+        
+        .extras-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .extras-category {
+            padding: 30px 25px;
+        }
+        
+        .extras-filters {
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 10px 18px;
+            font-size: 0.85rem;
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 1.8rem;
+        }
+        
+        .category-title {
+            font-size: 1.6rem;
+        }
+        
+        .service-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .service-price {
+            text-align: left;
+            font-size: 1.2rem;
+        }
+        
+        .plan-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .plan-pricing {
+            text-align: left;
+        }
+    }
+    @media (max-width: 480px) {
+        .extras-container {
+            padding: 0 15px;
+        }
+        
+        .extras-category {
+            padding: 25px 20px;
+        }
+        
+        .extras-filters {
+            padding: 0 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+        
+        .category-title {
+            font-size: 1.4rem;
+        }
+        
+        .category-description {
+            font-size: 0.9rem;
+        }
+    }
+    </style>
+</head>
+<body>
     <!-- EXTRAS Section -->
-<section class="extras-section" id="extras">
-    <div class="extras-container">
-        <h2 class="section-title">EXTRAS</h2>
-        <p class="extras-subtitle">Serviços adicionais para potencializar o seu projeto digital</p>
-        
-        <!-- Filter Buttons -->
-        <div class="extras-filters">
-            <button class="filter-btn active" data-category="all">Todos</button>
-            <button class="filter-btn" data-category="branding">Branding</button>
-            <button class="filter-btn" data-category="content">Conteúdo</button>
-            <button class="filter-btn" data-category="optimization">Otimização</button>
-            <button class="filter-btn" data-category="technical">Técnico</button>
-            <button class="filter-btn" data-category="social">Redes Sociais</button>
-        </div>
-        
-        <!-- Services Grid -->
-        <div class="extras-grid">
-            <!-- Branding & Identidade Visual -->
-            <div class="extras-category" data-category="branding">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3 class="category-title">Branding & Identidade Visual</h3>
-                    <p class="category-description">Construa uma identidade visual consistente e memorável</p>
-                </div>
-                
-                <div class="services-list">
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Personalização de logotipo, paleta de cores e tipografia</h4>
-                        </div>
-                        <div class="service-price">desde €150</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Manual básico de identidade visual</h4>
-                        </div>
-                        <div class="service-price">desde €80</div>
-                    </div>
-                </div>
-                
-                <button class="category-cta">Solicitar Orçamento</button>
+    <section class="extras-section" id="extras">
+        <div class="extras-container">
+            <h2 class="section-title">EXTRAS</h2>
+            <p class="extras-subtitle">Serviços adicionais para potencializar o seu projeto digital</p>
+            
+            <!-- Filter Buttons -->
+            <div class="extras-filters">
+                <button class="filter-btn active" data-category="all">Todos</button>
+                <button class="filter-btn" data-category="branding">Branding</button>
+                <button class="filter-btn" data-category="content">Conteúdo</button>
+                <button class="filter-btn" data-category="optimization">Otimização</button>
+                <button class="filter-btn" data-category="technical">Técnico</button>
+                <button class="filter-btn" data-category="social">Redes Sociais</button>
             </div>
-
-            <!-- Criação de Conteúdo -->
-            <div class="extras-category" data-category="content">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-edit"></i>
-                    </div>
-                    <h3 class="category-title">Criação de Conteúdo</h3>
-                    <p class="category-description">Textos profissionais e otimizados para o seu site</p>
-                </div>
-                
-                <div class="services-list">
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Redação de textos para site (home/about/blog)</h4>
+            
+            <!-- Services Grid -->
+            <div class="extras-grid">
+                <!-- Branding & Identidade Visual -->
+                <div class="extras-category" data-category="branding">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-palette"></i>
                         </div>
-                        <div class="service-price">desde €100 por página</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Revisão e otimização SEO de texto</h4>
-                        </div>
-                        <div class="service-price">desde €50 por página</div>
-                    </div>
-                </div>
-                
-                <button class="category-cta">Solicitar Orçamento</button>
-            </div>
-
-            <!-- Otimização de Sites -->
-            <div class="extras-category" data-category="optimization">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="category-title">Otimização de Sites</h3>
-                    <p class="category-description">Melhore a performance e acessibilidade do seu site</p>
-                </div>
-                
-                <div class="services-list">
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Atualização de site antigo (visual moderno e leve)</h4>
-                        </div>
-                        <div class="service-price">desde €100</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Conversão para mobile/tablet</h4>
-                        </div>
-                        <div class="service-price">desde €100</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Melhorias de acessibilidade (teclado, contraste)</h4>
-                        </div>
-                        <div class="service-price">desde €80</div>
-                    </div>
-                </div>
-                
-                <button class="category-cta">Solicitar Orçamento</button>
-            </div>
-
-            <!-- Funcionalidades Técnicas e Visuais -->
-            <div class="extras-category" data-category="technical">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="category-title">Funcionalidades Técnicas e Visuais</h3>
-                    <p class="category-description">Recursos interativos para enriquecer a experiência do usuário</p>
-                </div>
-                
-                <div class="services-list">
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Formulário de contacto funcional (envio automático)</h4>
-                        </div>
-                        <div class="service-price">€50</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Formulário avançado com integrações</h4>
-                        </div>
-                        <div class="service-price">€40</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Animações CSS/JS suaves (scroll, botões)</h4>
-                        </div>
-                        <div class="service-price">desde €60</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Modo escuro/claro com toggle</h4>
-                        </div>
-                        <div class="service-price">€40</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Slider/carrossel de imagens</h4>
-                        </div>
-                        <div class="service-price">€60</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Pop-up informativo ou CTA</h4>
-                        </div>
-                        <div class="service-price">€40</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Galeria interativa</h4>
-                        </div>
-                        <div class="service-price">€30</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Google Maps integrado</h4>
-                        </div>
-                        <div class="service-price">€15</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Botões de contacto flutuantes</h4>
-                        </div>
-                        <div class="service-price">€20</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Feed Instagram/TikTok automático</h4>
-                        </div>
-                        <div class="service-price">€30</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Botão de pagamento</h4>
-                        </div>
-                        <div class="service-price">€50</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Calendário de marcações</h4>
-                        </div>
-                        <div class="service-price">€40</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Google Analytics instalado</h4>
-                        </div>
-                        <div class="service-price">€25</div>
-                    </div>
-                </div>
-                
-                <button class="category-cta">Solicitar Orçamento</button>
-            </div>
-
-            <!-- Redes Sociais -->
-            <div class="extras-category" data-category="social">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i class="fas fa-share-alt"></i>
-                    </div>
-                    <h3 class="category-title">Redes Sociais</h3>
-                    <p class="category-description">Gestão completa da sua presença nas redes sociais</p>
-                </div>
-                
-                <div class="services-list">
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Criação de perfil profissional (bio, destaques, 6 posts)</h4>
-                        </div>
-                        <div class="service-price">€90</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Design de posts personalizados (9 imagens)</h4>
-                        </div>
-                        <div class="service-price">€70</div>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-info">
-                            <h4>Templates editáveis para Canva</h4>
-                        </div>
-                        <div class="service-price">€50</div>
-                    </div>
-                </div>
-                
-                <!-- Monthly Social Media Plans -->
-                <div class="monthly-plans">
-                    <h4 class="monthly-title">Gestão Mensal de Redes Sociais</h4>
-                    
-                    <div class="monthly-plan">
-                        <div class="plan-header">
-                            <h5>Básica</h5>
-                            <div class="plan-pricing">
-                                <div class="monthly-price">€200/mês</div>
-                                <div class="quarterly-price">€180/mês em 3 meses</div>
-                            </div>
-                        </div>
-                        <ul class="plan-features">
-                            <li>4–6 posts + 2 stories/semana</li>
-                            <li>Legendas e hashtags</li>
-                            <li>Relatório mensal</li>
-                        </ul>
+                        <h3 class="category-title">Branding & Identidade Visual</h3>
+                        <p class="category-description">Construa uma identidade visual consistente e memorável</p>
                     </div>
                     
-                    <div class="monthly-plan featured">
-                        <div class="plan-header">
-                            <h5>Avançada</h5>
-                            <div class="plan-pricing">
-                                <div class="monthly-price">€350/mês</div>
-                                <div class="quarterly-price">€315/mês em 3 meses</div>
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Personalização de logotipo, paleta de cores e tipografia</h4>
                             </div>
+                            <div class="service-price">desde €150</div>
                         </div>
-                        <ul class="plan-features">
-                            <li>8–12 posts + 4 stories/semana</li>
-                            <li>Copy de vendas</li>
-                            <li>Gestão de DMs</li>
-                            <li>Relatórios detalhados</li>
-                        </ul>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Manual básico de identidade visual</h4>
+                            </div>
+                            <div class="service-price">desde €80</div>
+                        </div>
                     </div>
+                    
+                    <button class="category-cta">Solicitar Orçamento</button>
                 </div>
-                
-                <button class="category-cta">Solicitar Orçamento</button>
+                <!-- Criação de Conteúdo -->
+                <div class="extras-category" data-category="content">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3 class="category-title">Criação de Conteúdo</h3>
+                        <p class="category-description">Textos profissionais e otimizados para o seu site</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Redação de textos para site (home/about/blog)</h4>
+                            </div>
+                            <div class="service-price">desde €100 por página</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Revisão e otimização SEO de texto</h4>
+                            </div>
+                            <div class="service-price">desde €50 por página</div>
+                        </div>
+                    </div>
+                    
+                    <button class="category-cta">Solicitar Orçamento</button>
+                </div>
+                <!-- Otimização de Sites -->
+                <div class="extras-category" data-category="optimization">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="category-title">Otimização de Sites</h3>
+                        <p class="category-description">Melhore a performance e acessibilidade do seu site</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Atualização de site antigo (visual moderno e leve)</h4>
+                            </div>
+                            <div class="service-price">desde €100</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Conversão para mobile/tablet</h4>
+                            </div>
+                            <div class="service-price">desde €100</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Melhorias de acessibilidade (teclado, contraste)</h4>
+                            </div>
+                            <div class="service-price">desde €80</div>
+                        </div>
+                    </div>
+                    
+                    <button class="category-cta">Solicitar Orçamento</button>
+                </div>
+                <!-- Funcionalidades Técnicas e Visuais -->
+                <div class="extras-category" data-category="technical">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="category-title">Funcionalidades Técnicas e Visuais</h3>
+                        <p class="category-description">Recursos interativos para enriquecer a experiência do usuário</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Formulário de contacto funcional (envio automático)</h4>
+                            </div>
+                            <div class="service-price">€50</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Formulário avançado com integrações</h4>
+                            </div>
+                            <div class="service-price">€40</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Animações CSS/JS suaves (scroll, botões)</h4>
+                            </div>
+                            <div class="service-price">desde €60</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Modo escuro/claro com toggle</h4>
+                            </div>
+                            <div class="service-price">€40</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Slider/carrossel de imagens</h4>
+                            </div>
+                            <div class="service-price">€60</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Pop-up informativo ou CTA</h4>
+                            </div>
+                            <div class="service-price">€40</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Galeria interativa</h4>
+                            </div>
+                            <div class="service-price">€30</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Google Maps integrado</h4>
+                            </div>
+                            <div class="service-price">€15</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Botões de contacto flutuantes</h4>
+                            </div>
+                            <div class="service-price">€20</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Feed Instagram/TikTok automático</h4>
+                            </div>
+                            <div class="service-price">€30</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Botão de pagamento</h4>
+                            </div>
+                            <div class="service-price">€50</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Calendário de marcações</h4>
+                            </div>
+                            <div class="service-price">€40</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Google Analytics instalado</h4>
+                            </div>
+                            <div class="service-price">€25</div>
+                        </div>
+                    </div>
+                    
+                    <button class="category-cta">Solicitar Orçamento</button>
+                </div>
+                <!-- Redes Sociais -->
+                <div class="extras-category" data-category="social">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3 class="category-title">Redes Sociais</h3>
+                        <p class="category-description">Gestão completa da sua presença nas redes sociais</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Criação de perfil profissional (bio, destaques, 6 posts)</h4>
+                            </div>
+                            <div class="service-price">€90</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Design de posts personalizados (9 imagens)</h4>
+                            </div>
+                            <div class="service-price">€70</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Templates editáveis para Canva</h4>
+                            </div>
+                            <div class="service-price">€50</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Monthly Social Media Plans -->
+                    <div class="monthly-plans">
+                        <h4 class="monthly-title">Gestão Mensal de Redes Sociais</h4>
+                        
+                        <div class="monthly-plan">
+                            <div class="plan-header">
+                                <h5>Básica</h5>
+                                <div class="plan-pricing">
+                                    <div class="monthly-price">€200/mês</div>
+                                    <div class="quarterly-price">€180/mês em 3 meses</div>
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li>4–6 posts + 2 stories/semana</li>
+                                <li>Legendas e hashtags</li>
+                                <li>Relatório mensal</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="monthly-plan featured">
+                            <div class="plan-header">
+                                <h5>Avançada</h5>
+                                <div class="plan-pricing">
+                                    <div class="monthly-price">€350/mês</div>
+                                    <div class="quarterly-price">€315/mês em 3 meses</div>
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li>8–12 posts + 4 stories/semana</li>
+                                <li>Copy de vendas</li>
+                                <li>Gestão de DMs</li>
+                                <li>Relatórios detalhados</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button class="category-cta">Solicitar Orçamento</button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
+    <script>
+    // Filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const serviceCategories = document.querySelectorAll('.extras-category');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter categories
+                serviceCategories.forEach(categoryElement => {
+                    const categoryData = categoryElement.getAttribute('data-category');
+                    
+                    if (category === 'all' || categoryData === category) {
+                        categoryElement.style.display = 'block';
+                        categoryElement.style.opacity = '1';
+                    } else {
+                        categoryElement.style.display = 'none';
+                        categoryElement.style.opacity = '0';
+                    }
+                });
+            });
+        });
+    });
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
