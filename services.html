@@ -70,27 +70,40 @@
         padding: 0 20px;
     }
 
-    .packages-grid {
+    .packages-pyramid {
         display: flex;
-        justify-content: space-between;
-        gap: 30px;
+        flex-direction: column;
+        gap: 40px;
         margin-bottom: 80px;
-        overflow-x: auto;
-        padding: 10px 0;
+    }
+
+    .packages-row {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .packages-row.top-row {
+        /* 3 packages on top */
+    }
+
+    .packages-row.bottom-row {
+        /* 2 packages on bottom */
+        margin-top: 20px;
     }
 
     .package-card {
         background: var(--bg-card);
-        border-radius: 20px;
-        padding: 40px 35px;
+        border-radius: 25px;
+        padding: 50px 40px;
         box-shadow: var(--shadow-md);
         transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         position: relative;
         overflow: hidden;
         border: 1px solid var(--border-color);
-        min-height: 650px;
-        min-width: 260px;
-        flex: 1;
+        min-height: 700px;
+        width: 400px;
         display: flex;
         flex-direction: column;
     }
@@ -325,19 +338,34 @@
         }
         
         .package-card {
-            min-width: 220px;
+            width: 350px;
         }
     }
 
     @media (max-width: 1200px) {
-        .packages-grid {
+        .packages-row {
+            gap: 30px;
+        }
+        
+        .package-card {
+            width: 320px;
+            min-height: 650px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .packages-row.top-row {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .packages-row.bottom-row {
             flex-wrap: wrap;
             justify-content: center;
         }
         
         .package-card {
-            flex: 0 1 calc(33.333% - 20px);
-            min-width: 280px;
+            width: 300px;
         }
     }
 
@@ -354,15 +382,21 @@
             font-size: 1.2rem;
         }
 
-        .packages-grid {
+        .packages-pyramid {
+            gap: 30px;
+        }
+
+        .packages-row {
             flex-direction: column;
             align-items: center;
+            gap: 25px;
         }
 
         .package-card {
-            min-width: 100%;
+            width: 90%;
             max-width: 400px;
-            min-height: 550px;
+            min-height: 600px;
+            padding: 40px 30px;
         }
 
         .comparison-table {
@@ -389,8 +423,9 @@
         }
 
         .package-card {
+            width: 95%;
             padding: 30px 25px;
-            min-height: 500px;
+            min-height: 550px;
         }
 
         .package-price {
@@ -399,6 +434,10 @@
 
         .packages-section {
             padding: 60px 0;
+        }
+
+        .packages-row {
+            gap: 20px;
         }
     }
     </style>
@@ -446,117 +485,123 @@
     <main>
         <section class="packages-section">
             <div class="packages-container">
-              
                 
-                <div class="packages-grid">
-                    <!-- Essential Package -->
-                    <div class="package-card">
-                        <h3 class="package-name">Essential</h3>
-                        <div class="package-price">€150</div>
-                        <p class="package-description">Ideal para quem quer começar com um site moderno, funcional e direto ao ponto.</p>
-                        
-                        <div class="package-target">
-                            <h4>Este pacote é para ti se:</h4>
-                            <p>Precisas de uma presença online rápida e profissional. Queres uma página única com as principais informações sobre ti ou o teu serviço.</p>
+                
+                <div class="packages-pyramid">
+                    <!-- Top Row - 3 Packages -->
+                    <div class="packages-row top-row">
+                        <!-- Essential Package -->
+                        <div class="package-card">
+                            <h3 class="package-name">Essential</h3>
+                            <div class="package-price">€150</div>
+                            <p class="package-description">Ideal para quem quer começar com um site moderno, funcional e direto ao ponto.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Precisas de uma presença online rápida e profissional. Queres uma página única com as principais informações sobre ti ou o teu serviço.</p>
+                            </div>
+
+                            <ul class="package-features">
+                                <li>1 página com scroll único</li>
+                                <li>Design responsivo</li>
+                                <li>Formulário de contacto funcional</li>
+                                <li>Animações suaves ao fazer scroll</li>
+                                <li>Ícones clicáveis para redes sociais</li>
+                            </ul>
+
+                            <button class="cta-button">Escolher Essential</button>
                         </div>
 
-                        <ul class="package-features">
-                            <li>1 página com scroll único</li>
-                            <li>Design responsivo</li>
-                            <li>Formulário de contacto funcional</li>
-                            <li>Animações suaves ao fazer scroll</li>
-                            <li>Ícones clicáveis para redes sociais</li>
-                        </ul>
+                        <!-- Start Package -->
+                        <div class="package-card">
+                            <h3 class="package-name">Start</h3>
+                            <div class="package-price">€200</div>
+                            <p class="package-description">Ideal para quem precisa de uma solução simples, elegante e eficaz para apresentar o seu serviço.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Estás a começar e queres um site profissional de página única. Queres apresentar-te de forma clara e apelativa.</p>
+                            </div>
 
-                        <button class="cta-button">Escolher Essential</button>
+                            <ul class="package-features">
+                                <li>Página única com scroll suave</li>
+                                <li>Design responsivo</li>
+                                <li>Formulário de contacto funcional</li>
+                                <li>Animações suaves ao fazer scroll</li>
+                                <li>Ligação às redes sociais</li>
+                            </ul>
+
+                            <button class="cta-button">Escolher Start</button>
+                        </div>
+
+                        <!-- Presence Package -->
+                        <div class="package-card featured">
+                            <h3 class="package-name">Presence</h3>
+                            <div class="package-price">€550</div>
+                            <p class="package-description">Ideal para negócios em crescimento que querem site institucional e Instagram otimizado.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Precisas de um site com estrutura clara. Queres uma identidade visual coerente entre site e redes sociais.</p>
+                            </div>
+
+                            <ul class="package-features">
+                                <li>Site institucional (3 páginas)</li>
+                                <li>Design responsivo + SEO básico</li>
+                                <li>Formulário de contacto funcional</li>
+                                <li>Otimização leve de performance</li>
+                                <li>Instagram otimizado + 3 posts</li>
+                            </ul>
+
+                            <button class="cta-button">Escolher Presence</button>
+                        </div>
                     </div>
 
-                    <!-- Start Package -->
-                    <div class="package-card">
-                        <h3 class="package-name">Start</h3>
-                        <div class="package-price">€200</div>
-                        <p class="package-description">Ideal para quem precisa de uma solução simples, elegante e eficaz para apresentar o seu serviço.</p>
-                        
-                        <div class="package-target">
-                            <h4>Este pacote é para ti se:</h4>
-                            <p>Estás a começar e queres um site profissional de página única. Queres apresentar-te de forma clara e apelativa.</p>
+                    <!-- Bottom Row - 2 Packages -->
+                    <div class="packages-row bottom-row">
+                        <!-- Advanced Package -->
+                        <div class="package-card">
+                            <h3 class="package-name">Advanced</h3>
+                            <div class="package-price">€750</div>
+                            <p class="package-description">Ideal para quem quer um site completo de até 5 páginas com animações dinâmicas.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Queres apresentar serviços e galeria de forma profissional. Pretendes animações que tornem a navegação dinâmica.</p>
+                            </div>
+
+                            <ul class="package-features">
+                                <li>Site completo (5 páginas)</li>
+                                <li>Design responsivo + animações</li>
+                                <li>SEO técnico básico</li>
+                                <li>Formulário de contacto funcional</li>
+                                <li>Instagram + 6 posts e 3 stories</li>
+                            </ul>
+
+                            <button class="cta-button">Escolher Advanced</button>
                         </div>
 
-                        <ul class="package-features">
-                            <li>Página única com scroll suave</li>
-                            <li>Design responsivo</li>
-                            <li>Formulário de contacto funcional</li>
-                            <li>Animações suaves ao fazer scroll</li>
-                            <li>Ligação às redes sociais</li>
-                        </ul>
+                        <!-- Pro Package -->
+                        <div class="package-card">
+                            <h3 class="package-name">Pro</h3>
+                            <div class="package-price">€1000</div>
+                            <p class="package-description">Ideal para quem quer tudo entregue e o Instagram gerido por um mês completo.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Queres funcionalidades avançadas. Não tens tempo para gerir redes ou preferes delegar completamente.</p>
+                            </div>
 
-                        <button class="cta-button">Escolher Start</button>
-                    </div>
+                            <ul class="package-features">
+                                <li>Site institucional (7 páginas)</li>
+                                <li>Modo escuro/claro + animações</li>
+                                <li>Integrações (Maps, WhatsApp)</li>
+                                <li>Gestão de Instagram (1 mês)</li>
+                                <li>9 posts + 6 stories + interação</li>
+                            </ul>
 
-                    <!-- Presence Package -->
-                    <div class="package-card">
-                        <h3 class="package-name">Presence</h3>
-                        <div class="package-price">€550</div>
-                        <p class="package-description">Ideal para negócios em crescimento que querem site institucional e Instagram otimizado.</p>
-                        
-                        <div class="package-target">
-                            <h4>Este pacote é para ti se:</h4>
-                            <p>Precisas de um site com estrutura clara. Queres uma identidade visual coerente entre site e redes sociais.</p>
+                            <button class="cta-button">Escolher Pro</button>
                         </div>
-
-                        <ul class="package-features">
-                            <li>Site institucional (3 páginas)</li>
-                            <li>Design responsivo + SEO básico</li>
-                            <li>Formulário de contacto funcional</li>
-                            <li>Otimização leve de performance</li>
-                            <li>Instagram otimizado + 3 posts</li>
-                        </ul>
-
-                        <button class="cta-button">Escolher Presence</button>
-                    </div>
-
-                    <!-- Advanced Package -->
-                    <div class="package-card">
-                        <h3 class="package-name">Advanced</h3>
-                        <div class="package-price">€750</div>
-                        <p class="package-description">Ideal para quem quer um site completo de até 5 páginas com animações dinâmicas.</p>
-                        
-                        <div class="package-target">
-                            <h4>Este pacote é para ti se:</h4>
-                            <p>Queres apresentar serviços e galeria de forma profissional. Pretendes animações que tornem a navegação dinâmica.</p>
-                        </div>
-
-                        <ul class="package-features">
-                            <li>Site completo (5 páginas)</li>
-                            <li>Design responsivo + animações</li>
-                            <li>SEO técnico básico</li>
-                            <li>Formulário de contacto funcional</li>
-                            <li>Instagram + 6 posts e 3 stories</li>
-                        </ul>
-
-                        <button class="cta-button">Escolher Advanced</button>
-                    </div>
-
-                    <!-- Pro Package -->
-                    <div class="package-card">
-                        <h3 class="package-name">Pro</h3>
-                        <div class="package-price">€1000</div>
-                        <p class="package-description">Ideal para quem quer tudo entregue e o Instagram gerido por um mês completo.</p>
-                        
-                        <div class="package-target">
-                            <h4>Este pacote é para ti se:</h4>
-                            <p>Queres funcionalidades avançadas. Não tens tempo para gerir redes ou preferes delegar completamente.</p>
-                        </div>
-
-                        <ul class="package-features">
-                            <li>Site institucional (7 páginas)</li>
-                            <li>Modo escuro/claro + animações</li>
-                            <li>Integrações (Maps, WhatsApp)</li>
-                            <li>Gestão de Instagram (1 mês)</li>
-                            <li>9 posts + 6 stories + interação</li>
-                        </ul>
-
-                        <button class="cta-button">Escolher Pro</button>
                     </div>
                 </div>
 
@@ -634,7 +679,7 @@
                 <p>&copy; 2023 Nadia Irina. Todos os direitos reservados.</p>
             </div>
         </div>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
