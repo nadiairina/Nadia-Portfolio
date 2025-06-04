@@ -64,100 +64,118 @@
         transition: color 0.3s ease;
     }
 
+    .packages-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
     .packages-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 25px;
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
         margin-bottom: 80px;
+        overflow-x: auto;
+        padding: 10px 0;
     }
 
     .package-card {
         background: var(--bg-card);
-        border-radius: 15px;
-        padding: 30px 25px;
+        border-radius: 20px;
+        padding: 40px 35px;
         box-shadow: var(--shadow-md);
         transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         position: relative;
         overflow: hidden;
         border: 1px solid var(--border-color);
-        min-height: 580px;
+        min-height: 650px;
+        min-width: 260px;
+        flex: 1;
         display: flex;
         flex-direction: column;
     }
 
     .package-card:hover {
-        transform: translateY(-8px);
+        transform: translateY(-10px);
         box-shadow: var(--shadow-lg);
     }
 
     .package-card.featured {
         border: 2px solid var(--primary-color);
+        transform: scale(1.02);
+    }
+
+    .package-card.featured:hover {
+        transform: scale(1.02) translateY(-10px);
     }
 
     .package-name {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         font-weight: 700;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         color: var(--text-dark);
         transition: color 0.3s ease;
         text-align: center;
     }
 
     .package-price {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
         font-weight: 800;
         color: var(--primary-color);
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         text-align: center;
     }
 
     .package-description {
         color: var(--text-muted);
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         font-style: italic;
         transition: color 0.3s ease;
-        font-size: 0.95rem;
+        font-size: 1rem;
         text-align: center;
-        line-height: 1.6;
+        line-height: 1.7;
     }
 
     .package-target {
         background: var(--bg-muted);
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 25px;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
         transition: background-color 0.3s ease;
         flex-grow: 1;
     }
 
     .package-target h4 {
         color: var(--text-dark);
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         transition: color 0.3s ease;
-        font-size: 1.05rem;
+        font-size: 1.1rem;
+        font-weight: 600;
     }
 
     .package-target p {
-        font-size: 0.9rem;
-        line-height: 1.7;
+        font-size: 0.95rem;
+        line-height: 1.8;
         margin-bottom: 0;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
     }
 
     .package-features {
         list-style: none;
         padding: 0;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
     }
 
     .package-features li {
-        padding: 6px 0;
-        padding-left: 25px;
+        padding: 8px 0;
+        padding-left: 30px;
         position: relative;
         color: var(--text-muted);
         transition: color 0.3s ease;
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 8px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 10px;
     }
 
     .package-features li::before {
@@ -166,17 +184,17 @@
         left: 0;
         color: #27ae60;
         font-weight: bold;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .cta-button {
         width: 100%;
-        padding: 15px;
+        padding: 18px;
         background: var(--primary-color);
         color: white;
         border: none;
-        border-radius: 8px;
-        font-size: 1rem;
+        border-radius: 10px;
+        font-size: 1.1rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -192,18 +210,20 @@
     /* Comparison Table */
     .comparison-table {
         background: var(--bg-card);
-        border-radius: 15px;
-        padding: 40px;
+        border-radius: 20px;
+        padding: 50px;
         box-shadow: var(--shadow-md);
         overflow-x: auto;
         border: 1px solid var(--border-color);
         transition: background-color 0.3s ease;
+        max-width: 1400px;
+        margin: 0 auto;
     }
 
     .table-title {
         text-align: center;
-        font-size: 2rem;
-        margin-bottom: 30px;
+        font-size: 2.2rem;
+        margin-bottom: 40px;
         color: var(--text-dark);
         transition: color 0.3s ease;
     }
@@ -211,12 +231,12 @@
     .comparison-table table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 600px;
+        min-width: 800px;
     }
 
     .comparison-table th, 
     .comparison-table td {
-        padding: 15px;
+        padding: 20px 15px;
         text-align: center;
         border-bottom: 1px solid var(--border-color);
         transition: background-color 0.3s ease, color 0.3s ease;
@@ -226,6 +246,7 @@
         background: var(--primary-color);
         color: white;
         font-weight: 600;
+        font-size: 1.1rem;
     }
 
     .comparison-table tr:nth-child(even) {
@@ -238,7 +259,7 @@
 
     .price-cell {
         font-weight: 700;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         color: var(--primary-color);
     }
 
@@ -278,7 +299,8 @@
     }
 
     body.dark .package-description,
-    body.dark .package-features li {
+    body.dark .package-features li,
+    body.dark .package-target p {
         color: #9ca3af;
     }
 
@@ -297,10 +319,25 @@
     }
 
     /* Responsive Design */
+    @media (max-width: 1400px) {
+        .packages-container {
+            max-width: 1200px;
+        }
+        
+        .package-card {
+            min-width: 220px;
+        }
+    }
+
     @media (max-width: 1200px) {
         .packages-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .package-card {
+            flex: 0 1 calc(33.333% - 20px);
+            min-width: 280px;
         }
     }
 
@@ -318,16 +355,18 @@
         }
 
         .packages-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            flex-direction: column;
+            align-items: center;
         }
 
         .package-card {
-            min-height: 500px;
+            min-width: 100%;
+            max-width: 400px;
+            min-height: 550px;
         }
 
         .comparison-table {
-            padding: 20px;
+            padding: 25px;
         }
 
         .comparison-table table {
@@ -336,7 +375,7 @@
 
         .comparison-table th, 
         .comparison-table td {
-            padding: 10px 8px;
+            padding: 15px 10px;
         }
     }
 
@@ -349,17 +388,13 @@
             font-size: 2rem;
         }
 
-        .packages-grid {
-            grid-template-columns: 1fr;
-        }
-
         .package-card {
-            padding: 25px 20px;
-            min-height: 450px;
+            padding: 30px 25px;
+            min-height: 500px;
         }
 
         .package-price {
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
 
         .packages-section {
@@ -410,7 +445,7 @@
     <!-- Packages Section -->
     <main>
         <section class="packages-section">
-            <div class="container">
+            <div class="packages-container">
                 <h2 class="section-title">Nossos Pacotes</h2>
                 
                 <div class="packages-grid">
