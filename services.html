@@ -680,7 +680,6 @@
         --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
-
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         color: var(--text-dark);
@@ -689,7 +688,6 @@
         margin: 0;
         padding: 0;
     }
-
     .section-title {
         text-align: center;
         font-size: 2.2rem;
@@ -697,20 +695,16 @@
         color: var(--text-dark);
         font-weight: 800;
     }
-
-    /* EXTRAS Section Styles */
     .extras-section {
         padding: 80px 0;
         background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         transition: background-color 0.3s ease;
     }
-
     .extras-container {
         max-width: 1400px;
         margin: 0 auto;
         padding: 0 20px;
     }
-
     .extras-subtitle {
         text-align: center;
         font-size: 1.2rem;
@@ -722,7 +716,6 @@
         font-weight: 400;
         line-height: 1.6;
     }
-
     .extras-filters {
         display: flex;
         justify-content: center;
@@ -731,7 +724,6 @@
         flex-wrap: wrap;
         padding: 0 20px;
     }
-
     .filter-btn {
         padding: 12px 24px;
         border: 2px solid var(--border-color);
@@ -744,7 +736,6 @@
         font-size: 0.9rem;
         white-space: nowrap;
     }
-
     .filter-btn:hover,
     .filter-btn.active {
         background: var(--primary-color);
@@ -753,7 +744,6 @@
         transform: translateY(-2px);
         box-shadow: var(--shadow-md);
     }
-
     /* PYRAMID GRID LAYOUT */
     .extras-grid {
         display: grid;
@@ -764,34 +754,33 @@
         margin-left: auto;
         margin-right: auto;
     }
-
-    /* Top row - 3 boxes */
-    .extras-category:nth-child(1) {
+    /* Default pyramid layout when showing all items */
+    .extras-grid:not(.filtered) .extras-category:nth-child(1) {
         grid-column: 1 / 3;
     }
-
-    .extras-category:nth-child(2) {
+    .extras-grid:not(.filtered) .extras-category:nth-child(2) {
         grid-column: 3 / 5;
     }
-
-    .extras-category:nth-child(3) {
+    .extras-grid:not(.filtered) .extras-category:nth-child(3) {
         grid-column: 5 / 7;
     }
-
-    /* Middle row - 2 centered boxes */
-    .extras-category:nth-child(4) {
+    .extras-grid:not(.filtered) .extras-category:nth-child(4) {
         grid-column: 2 / 4;
     }
-
-    .extras-category:nth-child(5) {
+    .extras-grid:not(.filtered) .extras-category:nth-child(5) {
         grid-column: 4 / 6;
     }
-
+    /* When filtered, use auto-fit layout for full width */
+    .extras-grid.filtered {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    .extras-grid.filtered .extras-category {
+        grid-column: auto;
+    }
     /* Full width technical box */
     .extras-category.full-width {
         grid-column: 1 / -1;
     }
-
     .extras-category {
         background: var(--bg-card);
         border-radius: 20px;
@@ -803,21 +792,17 @@
         opacity: 1;
         transform: scale(1);
     }
-
     .extras-category.filter-hidden {
         display: none !important;
     }
-
     .extras-category:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-lg);
     }
-
     .category-header {
         text-align: center;
         margin-bottom: 35px;
     }
-
     .category-icon {
         display: inline-flex;
         align-items: center;
@@ -831,7 +816,6 @@
         font-size: 2rem;
         box-shadow: var(--shadow-md);
     }
-
     .category-title {
         font-size: 1.8rem;
         font-weight: 700;
@@ -839,7 +823,6 @@
         margin-bottom: 15px;
         transition: color 0.3s ease;
     }
-
     .category-description {
         color: var(--text-muted);
         font-size: 1rem;
@@ -851,11 +834,9 @@
         margin-left: auto;
         margin-right: auto;
     }
-
     .services-list {
         margin-bottom: 30px;
     }
-
     .service-item {
         display: flex;
         justify-content: space-between;
@@ -865,11 +846,9 @@
         transition: all 0.3s ease;
         gap: 20px;
     }
-
     .service-item:last-child {
         border-bottom: none;
     }
-
     .service-item:hover {
         background: rgba(99, 102, 241, 0.05);
         margin-left: -15px;
@@ -878,13 +857,11 @@
         padding-right: 15px;
         border-radius: 12px;
     }
-
     .service-info {
         flex: 1;
         min-width: 0;
         padding-right: 15px;
     }
-
     .service-info h4 {
         font-size: 1.1rem;
         font-weight: 600;
@@ -894,7 +871,6 @@
         line-height: 1.4;
         word-wrap: break-word;
     }
-
     .service-info p {
         font-size: 0.9rem;
         color: var(--text-muted);
@@ -903,7 +879,6 @@
         transition: color 0.3s ease;
         font-weight: 400;
     }
-
     .service-price {
         font-size: 1rem;
         font-weight: 700;
@@ -914,7 +889,6 @@
         line-height: 1.3;
         flex-shrink: 0;
     }
-
     .category-cta {
         width: 100%;
         padding: 16px;
@@ -928,13 +902,11 @@
         transition: all 0.3s ease;
         margin-top: 20px;
     }
-
     .category-cta:hover {
         background: var(--primary-dark);
         transform: translateY(-2px);
         box-shadow: var(--shadow-md);
     }
-
     /* Responsive Design */
     @media (max-width: 1200px) {
         .extras-grid {
@@ -954,7 +926,6 @@
             padding: 35px;
         }
     }
-
     @media (max-width: 768px) {
         .extras-section {
             padding: 60px 0;
@@ -1000,7 +971,6 @@
             font-size: 1.2rem;
         }
     }
-
     @media (max-width: 480px) {
         .extras-container {
             padding: 0 15px;
@@ -1076,7 +1046,6 @@
                     
                     <button class="category-cta">Solicitar Orçamento</button>
                 </div>
-
                 <!-- Criação de Conteúdo -->
                 <div class="extras-category" data-category="content">
                     <div class="category-header">
@@ -1104,7 +1073,6 @@
                     
                     <button class="category-cta">Solicitar Orçamento</button>
                 </div>
-
                 <!-- Otimização de Sites -->
                 <div class="extras-category" data-category="optimization">
                     <div class="category-header">
@@ -1138,7 +1106,6 @@
                     
                     <button class="category-cta">Solicitar Orçamento</button>
                 </div>
-
                 <!-- MIDDLE ROW - 2 CENTERED BOXES -->
                 <!-- Redes Sociais - Criação -->
                 <div class="extras-category" data-category="social">
@@ -1173,7 +1140,6 @@
                     
                     <button class="category-cta">Solicitar Orçamento</button>
                 </div>
-
                 <!-- Gestão Mensal de Redes Sociais -->
                 <div class="extras-category" data-category="social">
                     <div class="category-header">
@@ -1207,7 +1173,6 @@
                     
                     <button class="category-cta">Solicitar Orçamento</button>
                 </div>
-
                 <!-- BOTTOM ROW - 1 FULL-WIDTH BOX -->
                 <!-- Funcionalidades Técnicas e Visuais -->
                 <div class="extras-category full-width" data-category="technical">
@@ -1305,7 +1270,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1341,7 +1306,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         const filterButtons = document.querySelectorAll('.filter-btn');
         const categories = document.querySelectorAll('.extras-category');
-
+        const grid = document.querySelector('.extras-grid');
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const category = this.getAttribute('data-category');
@@ -1350,6 +1315,13 @@
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 // Add active class to clicked button
                 this.classList.add('active');
+                
+                // Add/remove filtered class based on selection
+                if (category === 'all') {
+                    grid.classList.remove('filtered');
+                } else {
+                    grid.classList.add('filtered');
+                }
                 
                 // Filter categories
                 categories.forEach(cat => {
