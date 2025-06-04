@@ -764,12 +764,12 @@
     .extras-grid:not(.filtered) .extras-category:nth-child(3) {
         grid-column: 5 / 7;
     }
-    /* Middle row - 2 wider centered boxes */
+    /* Middle row - 2 centered boxes with gap */
     .extras-grid:not(.filtered) .extras-category:nth-child(4) {
-        grid-column: 1 / 4;
+        grid-column: 2 / 4;
     }
     .extras-grid:not(.filtered) .extras-category:nth-child(5) {
-        grid-column: 4 / 7;
+        grid-column: 4 / 6;
     }
     /* When filtered, use auto-fit layout for full width */
     .extras-grid.filtered {
@@ -789,7 +789,8 @@
         box-shadow: var(--shadow-md);
         border: 1px solid var(--border-color);
         transition: all 0.3s ease;
-        display: block;
+        display: flex;
+        flex-direction: column;
         opacity: 1;
         transform: scale(1);
     }
@@ -837,6 +838,7 @@
     }
     .services-list {
         margin-bottom: 30px;
+        flex: 1;
     }
     .service-item {
         display: flex;
@@ -1107,7 +1109,7 @@
                     
                     <button class="category-cta">Orçamento Otimização</button>
                 </div>
-                <!-- MIDDLE ROW - 2 WIDER CENTERED BOXES -->
+                <!-- MIDDLE ROW - 2 CENTERED BOXES -->
                 <!-- Redes Sociais - Criação -->
                 <div class="extras-category" data-category="social">
                     <div class="category-header">
