@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pacotes de Web Design - Nadia Irina">
-    <title>Serviços | Nadia Irina</title>
+    <title>Pacotes | Nadia Irina</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="typewriter-and-darkmode.css">
@@ -14,39 +14,53 @@
     <style>
     /* Packages Page Specific Styles */
 
-    /* Hero Section */
-    .hero-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
+    /* Hero Section - Matching Contact Page Style */
+    .contact-hero {
+        padding: 6rem 1rem 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        padding: 120px 0 80px;
-        margin-top: 80px;
+        background-color: var(--bg-light);
+        transition: background-color 0.3s ease;
     }
 
-    .hero-section h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        font-weight: 700;
+    .contact-hero .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
     }
 
-    .hero-section .subtitle {
-        font-size: 1.2rem;
-        opacity: 0.9;
-        max-width: 600px;
-        margin: 0 auto;
+    .page-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin: 1rem 0;
+        line-height: 1.2;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+    }
+
+    .page-description {
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
     }
 
     /* Packages Section */
     .packages-section {
         padding: 80px 0;
-        background-color: #f8f9fa;
+        background-color: var(--bg-muted);
+        transition: background-color 0.3s ease;
     }
 
     .section-title {
         text-align: center;
         font-size: 2.5rem;
         margin-bottom: 50px;
-        color: #2c3e50;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
     }
 
     .packages-grid {
@@ -57,22 +71,23 @@
     }
 
     .package-card {
-        background: white;
+        background: var(--bg-card);
         border-radius: 15px;
         padding: 40px 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         position: relative;
         overflow: hidden;
+        border: 1px solid var(--border-color);
     }
 
     .package-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        box-shadow: var(--shadow-lg);
     }
 
     .package-card.featured {
-        border: 3px solid #667eea;
+        border: 3px solid var(--primary-color);
         transform: scale(1.05);
     }
 
@@ -81,7 +96,7 @@
         position: absolute;
         top: 20px;
         right: -35px;
-        background: #667eea;
+        background: var(--primary-color);
         color: white;
         padding: 5px 40px;
         font-size: 0.8rem;
@@ -93,32 +108,36 @@
         font-size: 1.8rem;
         font-weight: 700;
         margin-bottom: 10px;
-        color: #2c3e50;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
     }
 
     .package-price {
         font-size: 3rem;
         font-weight: 800;
-        color: #667eea;
+        color: var(--primary-color);
         margin-bottom: 20px;
     }
 
     .package-description {
-        color: #666;
+        color: var(--text-muted);
         margin-bottom: 30px;
         font-style: italic;
+        transition: color 0.3s ease;
     }
 
     .package-target {
-        background: #f8f9fa;
+        background: var(--bg-muted);
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 30px;
+        transition: background-color 0.3s ease;
     }
 
     .package-target h4 {
-        color: #2c3e50;
+        color: var(--text-dark);
         margin-bottom: 10px;
+        transition: color 0.3s ease;
     }
 
     .package-features {
@@ -130,7 +149,8 @@
         padding: 8px 0;
         padding-left: 25px;
         position: relative;
-        color: #555;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
     }
 
     .package-features li::before {
@@ -144,7 +164,7 @@
     .cta-button {
         width: 100%;
         padding: 15px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: var(--primary-color);
         color: white;
         border: none;
         border-radius: 8px;
@@ -156,24 +176,28 @@
     }
 
     .cta-button:hover {
+        background: var(--primary-dark);
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        box-shadow: var(--shadow-md);
     }
 
     /* Comparison Table */
     .comparison-table {
-        background: white;
+        background: var(--bg-card);
         border-radius: 15px;
         padding: 40px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-md);
         overflow-x: auto;
+        border: 1px solid var(--border-color);
+        transition: background-color 0.3s ease;
     }
 
     .table-title {
         text-align: center;
         font-size: 2rem;
         margin-bottom: 30px;
-        color: #2c3e50;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
     }
 
     .comparison-table table {
@@ -186,37 +210,97 @@
     .comparison-table td {
         padding: 15px;
         text-align: center;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--border-color);
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .comparison-table th {
-        background: #667eea;
+        background: var(--primary-color);
         color: white;
         font-weight: 600;
     }
 
     .comparison-table tr:nth-child(even) {
-        background: #f8f9fa;
+        background: var(--bg-muted);
     }
 
     .comparison-table tr:hover {
-        background: #e3f2fd;
+        background: var(--primary-light);
+        background: rgba(99, 102, 241, 0.1);
     }
 
     .price-cell {
         font-weight: 700;
         font-size: 1.2rem;
-        color: #667eea;
+        color: var(--primary-color);
+    }
+
+    /* Dark Mode Support */
+    body.dark .contact-hero {
+        background-color: var(--bg-dark);
+    }
+
+    body.dark .page-title,
+    body.dark .page-description {
+        color: var(--text-light);
+    }
+
+    body.dark .packages-section {
+        background-color: #1a1a1a;
+    }
+
+    body.dark .package-card {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+
+    body.dark .package-target {
+        background: #3d3d3d;
+    }
+
+    body.dark .comparison-table {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+
+    body.dark .section-title,
+    body.dark .table-title,
+    body.dark .package-name,
+    body.dark .package-target h4 {
+        color: var(--text-light);
+    }
+
+    body.dark .package-description,
+    body.dark .package-features li {
+        color: #9ca3af;
+    }
+
+    body.dark .comparison-table th,
+    body.dark .comparison-table td {
+        border-color: #374151;
+        color: var(--text-light);
+    }
+
+    body.dark .comparison-table tr:nth-child(even) {
+        background: #374151;
+    }
+
+    body.dark .comparison-table tr:hover {
+        background: rgba(99, 102, 241, 0.2);
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        .hero-section {
-            padding: 100px 0 60px;
+        .contact-hero {
+            padding: 4rem 1rem 2rem;
         }
         
-        .hero-section h1 {
-            font-size: 2rem;
+        .page-title {
+            font-size: 2.5rem;
+        }
+
+        .page-description {
+            font-size: 1.2rem;
         }
 
         .packages-grid {
@@ -243,8 +327,12 @@
     }
 
     @media (max-width: 480px) {
-        .hero-section {
-            padding: 80px 0 40px;
+        .contact-hero {
+            padding: 3rem 1rem 1.5rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
         }
 
         .package-card {
@@ -258,38 +346,6 @@
         .packages-section {
             padding: 60px 0;
         }
-    }
-
-    /* Dark Mode Support */
-    body.dark .packages-section {
-        background-color: #1a1a1a;
-    }
-
-    body.dark .package-card {
-        background: #2d2d2d;
-        color: #fff;
-    }
-
-    body.dark .package-target {
-        background: #3d3d3d;
-    }
-
-    body.dark .comparison-table {
-        background: #2d2d2d;
-        color: #fff;
-    }
-
-    body.dark .section-title,
-    body.dark .table-title {
-        color: #fff;
-    }
-
-    body.dark .package-name {
-        color: #fff;
-    }
-
-    body.dark .comparison-table th {
-        background: #667eea;
     }
     </style>
 </head>
@@ -322,11 +378,13 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
+    <!-- Hero Section - Matching Contact Page Style -->
+    <section class="contact-hero">
         <div class="container">
-            <h1>PACOTES</h1>
-            <p class="subtitle">Escolha o pacote ideal para levar a sua presença online ao próximo nível</p>
+            <h1 class="page-title">Pacotes</h1>
+            <p class="page-description">
+                Escolha o pacote ideal para levar a sua presença online ao próximo nível
+            </p>
         </div>
     </section>
 
