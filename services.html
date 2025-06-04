@@ -1009,8 +1009,9 @@
             <p class="extras-subtitle">Serviços adicionais para potencializar o teu projeto digital</p>
             
             <!-- Filter Buttons -->
-            <div class="extras-filters">
-    <button class="filter-btn active" data-category="branding">Branding</button>
+           <div class="extras-filters">
+    <button class="filter-btn active" data-category="all">Todos</button>
+    <button class="filter-btn" data-category="branding">Branding</button>
     <button class="filter-btn" data-category="content">Conteúdo</button>
     <button class="filter-btn" data-category="optimization">Otimização</button>
     <button class="filter-btn" data-category="technical">Técnico</button>
@@ -1307,16 +1308,6 @@
     const filterButtons = document.querySelectorAll('.filter-btn');
     const categories = document.querySelectorAll('.extras-category');
     
-    // Initialize - show only branding category
-    categories.forEach(function(category) {
-        const categoryValue = category.getAttribute('data-category');
-        if (categoryValue === 'branding') {
-            category.classList.remove('filter-hidden');
-        } else {
-            category.classList.add('filter-hidden');
-        }
-    });
-    
     filterButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             const filterValue = this.getAttribute('data-category');
@@ -1333,7 +1324,7 @@
             categories.forEach(function(category) {
                 const categoryValue = category.getAttribute('data-category');
                 
-                if (categoryValue === filterValue) {
+                if (filterValue === 'all' || categoryValue === filterValue) {
                     category.classList.remove('filter-hidden');
                 } else {
                     category.classList.add('filter-hidden');
