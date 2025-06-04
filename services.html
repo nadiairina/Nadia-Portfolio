@@ -1010,13 +1010,12 @@
             
             <!-- Filter Buttons -->
             <div class="extras-filters">
-                <button class="filter-btn active" data-category="all">Todos</button>
-                <button class="filter-btn" data-category="branding">Branding</button>
-                <button class="filter-btn" data-category="content">Conteúdo</button>
-                <button class="filter-btn" data-category="optimization">Otimização</button>
-                <button class="filter-btn" data-category="technical">Técnico</button>
-                <button class="filter-btn" data-category="social">Redes Sociais</button>
-            </div>
+    <button class="filter-btn active" data-category="branding">Branding</button>
+    <button class="filter-btn" data-category="content">Conteúdo</button>
+    <button class="filter-btn" data-category="optimization">Otimização</button>
+    <button class="filter-btn" data-category="technical">Técnico</button>
+    <button class="filter-btn" data-category="social">Redes Sociais</button>
+</div>
             
             <!-- Services Grid -->
             <div class="extras-grid">
@@ -1305,34 +1304,44 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const categories = document.querySelectorAll('.extras-category');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const categories = document.querySelectorAll('.extras-category');
+    
+    // Initialize - show only branding category
+    categories.forEach(function(category) {
+        const categoryValue = category.getAttribute('data-category');
+        if (categoryValue === 'branding') {
+            category.classList.remove('filter-hidden');
+        } else {
+            category.classList.add('filter-hidden');
+        }
+    });
+    
+    filterButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const filterValue = this.getAttribute('data-category');
             
-            filterButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    const filterValue = this.getAttribute('data-category');
-                    
-                    // Remove active class from all buttons
-                    filterButtons.forEach(function(btn) {
-                        btn.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Show/hide categories
-                    categories.forEach(function(category) {
-                        const categoryValue = category.getAttribute('data-category');
-                        
-                        if (filterValue === 'all' || categoryValue === filterValue) {
-                            category.classList.remove('filter-hidden');
-                        } else {
-                            category.classList.add('filter-hidden');
-                        }
-                    });
-                });
+            // Remove active class from all buttons
+            filterButtons.forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Show/hide categories
+            categories.forEach(function(category) {
+                const categoryValue = category.getAttribute('data-category');
+                
+                if (categoryValue === filterValue) {
+                    category.classList.remove('filter-hidden');
+                } else {
+                    category.classList.add('filter-hidden');
+                }
             });
         });
+    });
+});
     </script>
 </body>
 </html>
