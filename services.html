@@ -827,23 +827,32 @@
         padding-right: 15px;
         border-radius: 12px;
     }
-    .service-info {
-        flex: 1;
-    }
-    .service-info h4 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 8px;
-        transition: color 0.3s ease;
-    }
     .service-price {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--primary-color);
-        white-space: nowrap;
-        text-align: right;
-    }
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: right;
+    min-width: 120px;
+    max-width: 140px;
+    line-height: 1.3;
+    flex-shrink: 0;
+}
+
+.service-info {
+    flex: 1;
+    min-width: 0;
+    padding-right: 15px;
+}
+
+.service-info h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
     .category-cta {
         width: 100%;
         padding: 16px;
