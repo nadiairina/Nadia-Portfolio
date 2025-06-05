@@ -2217,6 +2217,235 @@ body.dark .support-intro,
 body.dark .support-content-item p {
     color: #9ca3af;
 }
+
+/* Monthly Plan Section */
+.monthly-plan-section {
+    padding: 80px 0;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.monthly-plan-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
+    border: 2px solid var(--primary-color);
+    border-radius: 25px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.monthly-plan-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+}
+
+.monthly-plan-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.monthly-plan-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.monthly-plan-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.monthly-plan-price {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.monthly-plan-price span {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.monthly-plan-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.plan-includes,
+.plan-excludes {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.plan-includes h4,
+.plan-excludes h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-includes h4 {
+    color: #059669;
+}
+
+.plan-excludes h4 {
+    color: #dc2626;
+}
+
+.plan-includes h4::before {
+    content: "✓";
+    background: #059669;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.plan-excludes h4::before {
+    content: "✗";
+    background: #dc2626;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-list li {
+    padding: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    color: var(--text-muted);
+    line-height: 1.5;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.plan-list li:last-child {
+    border-bottom: none;
+}
+
+.plan-includes .plan-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.plan-excludes .plan-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #dc2626;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.monthly-plan-cta {
+    text-align: center;
+}
+
+.monthly-plan-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 18px 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.monthly-plan-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Dark Mode Support */
+body.dark .monthly-plan-section {
+    background-color: #1f2937;
+}
+
+body.dark .monthly-plan-card,
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.15));
+}
+
+body.dark .monthly-plan-title {
+    color: var(--text-light);
+}
+
+body.dark .monthly-plan-subtitle,
+body.dark .plan-list li {
+    color: #9ca3af;
+}
+        
     </style>
 </head>
 <body>
@@ -2329,6 +2558,52 @@ body.dark .support-content-item p {
             </div>
         </div>
     </section>
+
+    <!-- Monthly Maintenance Plan Section -->
+<section class="monthly-plan-section">
+    <div class="monthly-plan-container">
+        <div class="monthly-plan-card">
+            <div class="monthly-plan-badge">
+                PLANO MENSAL
+            </div>
+            
+            <h2 class="monthly-plan-title">Plano Mensal de Manutenção e Suporte</h2>
+            
+            <p class="monthly-plan-subtitle">
+                Mantenha o seu website sempre atualizado, seguro e a funcionar sem preocupações, com suporte rápido quando precisar.
+            </p>
+            
+            <div class="monthly-plan-price">
+                €60<span>/mês</span>
+            </div>
+            
+            <div class="monthly-plan-content">
+                <div class="plan-includes">
+                    <h4>Inclui:</h4>
+                    <ul class="plan-list">
+                        <li>Atualizações regulares do sistema, plugins e correções básicas</li>
+                        <li>Backup automático semanal para segurança dos dados</li>
+                        <li>Monitorização para garantir que o site está sempre online</li>
+                        <li>Suporte técnico por e-mail para dúvidas e pequenos ajustes (até 2 horas por mês)</li>
+                    </ul>
+                </div>
+                
+                <div class="plan-excludes">
+                    <h4>Não Inclui:</h4>
+                    <ul class="plan-list">
+                        <li>Ajustes mais complexos ou criação de conteúdo (orçamentados à parte)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="monthly-plan-cta">
+                <a href="#contact" class="monthly-plan-button">
+                    Subscrever Plano Mensal
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Support and Guarantee Section -->
 <section class="support-section">
