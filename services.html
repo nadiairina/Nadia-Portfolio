@@ -1302,6 +1302,553 @@
         </div>
     </section>
 
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --bg-card: #ffffff;
+            --bg-muted: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        /* Content Creation Service Section Styles */
+        .content-creation-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .content-creation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.1"><polygon points="0,0 1000,0 1000,100 0,80"/></svg>') no-repeat center center;
+            background-size: cover;
+            pointer-events: none;
+        }
+
+        .content-creation-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Service Header */
+        .service-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .service-badge {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .service-badge span {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .service-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .service-description {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Service Content */
+        .service-content {
+            display: grid;
+            gap: 80px;
+        }
+
+        /* Includes Section */
+        .includes-section {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .includes-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .includes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .include-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            padding: 30px;
+            background: var(--bg-muted);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .include-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .include-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .include-content h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .include-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border-radius: 25px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .package-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .package-limit {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin: 0;
+            font-style: italic;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .package-features li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .pricing-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .pricing-card.custom .pricing-cta {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+        }
+
+        .pricing-card.custom .pricing-cta:hover {
+            background: linear-gradient(135deg, #4b5563, #374151);
+        }
+
+        /* Dark Mode Support */
+        body.dark .content-creation-section {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+
+        body.dark .includes-section,
+        body.dark .pricing-section {
+            background: #2d2d2d;
+            border-color: #374151;
+        }
+
+        body.dark .service-title,
+        body.dark .includes-title,
+        body.dark .pricing-title,
+        body.dark .package-name {
+            color: #f9fafb;
+        }
+
+        body.dark .service-description,
+        body.dark .include-content p,
+        body.dark .package-features li,
+        body.dark .package-limit {
+            color: #9ca3af;
+        }
+
+        body.dark .include-content h4 {
+            color: #f9fafb;
+        }
+
+        body.dark .include-item {
+            background: #374151;
+            border-color: #4b5563;
+        }
+
+        body.dark .include-item:hover {
+            background: #4b5563;
+        }
+
+        body.dark .pricing-card {
+            background: #374151;
+            border-color: #4b5563;
+        }
+
+        body.dark .pricing-card.featured {
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-creation-container {
+                padding: 0 15px;
+            }
+            
+            .includes-section,
+            .pricing-section {
+                padding: 40px 30px;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-creation-section {
+                padding: 60px 0;
+            }
+            
+            .service-title {
+                font-size: 2.5rem;
+            }
+            
+            .service-description {
+                font-size: 1.1rem;
+            }
+            
+            .includes-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .include-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+            
+            .includes-section,
+            .pricing-section {
+                padding: 30px 20px;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .pricing-card {
+                padding: 30px 20px;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-title {
+                font-size: 2rem;
+            }
+            
+            .includes-title,
+            .pricing-title {
+                font-size: 2rem;
+            }
+            
+            .package-price {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Content Creation Service Section -->
+    <section class="content-creation-section" id="content-creation">
+        <div class="content-creation-container">
+            <div class="service-header">
+                <div class="service-badge">
+                    <span>SERVIÇO EXTRA</span>
+                </div>
+                <h2 class="service-title">Criação de Conteúdo para Website</h2>
+                <p class="service-description">
+                    Ofereço um serviço dedicado à redação de textos profissionais e edição básica de imagens, 
+                    garantindo que o conteúdo do seu site esteja alinhado com a sua marca e objetivos.
+                </p>
+            </div>
+
+            <div class="service-content">
+                <div class="includes-section">
+                    <h3 class="includes-title">Inclui:</h3>
+                    <div class="includes-grid">
+                        <div class="include-item">
+                            <div class="include-icon">
+                                <i class="fas fa-pen-fancy"></i>
+                            </div>
+                            <div class="include-content">
+                                <h4>Redação de Textos</h4>
+                                <p>Textos para páginas essenciais do site (ex: Quem Somos, Serviços, Contacto)</p>
+                            </div>
+                        </div>
+
+                        <div class="include-item">
+                            <div class="include-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="include-content">
+                                <h4>Edição Básica de Imagens</h4>
+                                <p>Ajustes, cortes, correção de cor para otimizar as suas imagens</p>
+                            </div>
+                        </div>
+
+                        <div class="include-item">
+                            <div class="include-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="include-content">
+                                <h4>Sugestões de Melhoria</h4>
+                                <p>Sugestões para melhorar a comunicação textual e visual do seu site</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h3 class="pricing-title">Preços (desde):</h3>
+                    <div class="pricing-cards">
+                        <div class="pricing-card basic">
+                            <div class="pricing-header">
+                                <h4 class="package-name">Pacote Básico</h4>
+                                <div class="package-price">€150</div>
+                                <p class="package-limit">até 500 palavras</p>
+                            </div>
+                            <ul class="package-features">
+                                <li>Redação de textos profissionais</li>
+                                <li>Edição básica de 3 imagens</li>
+                                <li>1 revisão incluída</li>
+                                <li>Entrega em 5 dias úteis</li>
+                            </ul>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Básico%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Básico%20de%20Criação%20de%20Conteúdo%20(€150).%0A%0ADetalhes%20do%20projeto:%0A-%20Páginas%20a%20redigir:%0A-%20Tipo%20de%20negócio:%0A-%20Tom%20de%20comunicação%20desejado:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Escolher Básico</a>
+                        </div>
+
+                        <div class="pricing-card complete featured">
+                            <div class="featured-badge">
+                                <span>MAIS POPULAR</span>
+                            </div>
+                            <div class="pricing-header">
+                                <h4 class="package-name">Pacote Completo</h4>
+                                <div class="package-price">€280</div>
+                                <p class="package-limit">até 1000 palavras</p>
+                            </div>
+                            <ul class="package-features">
+                                <li>Redação de textos profissionais</li>
+                                <li>Edição básica de 6 imagens</li>
+                                <li>2 revisões incluídas</li>
+                                <li>Otimização SEO básica</li>
+                                <li>Sugestões de melhorias</li>
+                                <li>Entrega em 7 dias úteis</li>
+                            </ul>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Completo%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Completo%20de%20Criação%20de%20Conteúdo%20(€280).%0A%0ADetalhes%20do%20projeto:%0A-%20Páginas%20a%20redigir:%0A-%20Tipo%20de%20negócio:%0A-%20Tom%20de%20comunicação%20desejado:%0A-%20Objetivos%20SEO:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Escolher Completo</a>
+                        </div>
+
+                        <div class="pricing-card custom">
+                            <div class="pricing-header">
+                                <h4 class="package-name">Serviço Personalizado</h4>
+                                <div class="package-price">Orçamento à parte</div>
+                                <p class="package-limit">conteúdo personalizado</p>
+                            </div>
+                            <ul class="package-features">
+                                <li>Análise detalhada das necessidades</li>
+                                <li>Conteúdo totalmente personalizado</li>
+                                <li>Revisões ilimitadas</li>
+                                <li>Estratégia de conteúdo</li>
+                                <li>Suporte contínuo</li>
+                                <li>Prazo flexível</li>
+                            </ul>
+                            <a href="contact.html?subject=Interesse%20no%20Serviço%20Personalizado%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Serviço%20Personalizado%20de%20Criação%20de%20Conteúdo.%0A%0ADetalhes%20do%20projeto:%0A-%20Tipo%20de%20conteúdo%20necessário:%0A-%20Volume%20de%20texto%20estimado:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivos%20específicos:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Solicitar Orçamento</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
