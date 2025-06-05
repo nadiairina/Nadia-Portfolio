@@ -96,20 +96,56 @@
     
 
     .package-card {
-        background: var(--bg-card);
-        border-radius: 25px;
-        padding: 50px 40px;
-        box-shadow: var(--shadow-md);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        border: 1px solid var(--border-color);
-        min-height: 700px;
-        width: 400px;
-        display: flex;
-        flex-direction: column;
-    }
+    background: var(--bg-card);
+    border-radius: 25px;
+    padding: 60px 40px 50px 40px;  /* ← Add extra top padding */
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    overflow: visible;  /* ← Change to visible */
+    border: 1px solid var(--border-color);
+    min-height: 700px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+    /* Recommended Banner Styles */
+.recommended-banner {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    z-index: 10;
+    white-space: nowrap;
+    border: none;
+}
 
+.recommended-banner::before,
+.recommended-banner::after {
+    display: none;
+    content: none;
+}
+
+/* Purple Border for Recommended Cards */
+.package-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+
+.pricing-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+        
     .package-card:hover {
         transform: translateY(-10px);
         box-shadow: var(--shadow-lg);
