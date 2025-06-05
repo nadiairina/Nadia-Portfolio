@@ -58,15 +58,27 @@
         
         .form-group textarea {
             resize: vertical;
-            min-height: 100px;
-            max-height: 200px;
+            min-height: 120px;
+            max-height: 250px;
         }
         
         .submit-btn {
             display: block;
             margin-left: auto;
-            padding: 8px 16px;
-            font-size: 0.9rem;
+            padding: 12px 24px;
+            font-size: 1rem;
+            background: var(--primary-color, #6366f1);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark, #4f46e5);
+            transform: translateY(-2px);
         }
         
         /* Dark mode fixes */
@@ -133,6 +145,25 @@
         body.dark a:hover {
             color: var(--primary-color);
         }
+
+        /* Success message styles */
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #ef4444;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -145,7 +176,7 @@
                 <a href="about.html" aria-label="Sobre Mim">Sobre Mim</a>
                 <a href="projects.html" aria-label="Projectos">Projetos</a>
                 <a href="services.html" aria-label="Serviços">Serviços</a>
-                <a href="contacts.html"  class="active" aria-label="Contactos">Contactos</a>
+                <a href="contact.html"  class="active" aria-label="Contactos">Contactos</a>
                 
             </nav>
 
@@ -180,6 +211,14 @@
         <div class="contact-form-container">
             <h2>Envia-me uma Mensagem</h2>
            
+            <div class="success-message" id="success-message">
+                <strong>Mensagem enviada com sucesso!</strong> Obrigada pelo teu contacto. Responderei o mais breve possível.
+            </div>
+
+            <div class="error-message" id="error-message">
+                <strong>Erro ao enviar mensagem.</strong> Por favor, tenta novamente ou contacta diretamente por email.
+            </div>
+
             <form id="contact-form" class="contact-form" action="https://formspree.io/f/manoyyvr" method="POST">
                 <div class="form-row">
                     <div class="form-group">
@@ -195,12 +234,12 @@
                 
                 <div class="form-group">
                     <label for="subject">Assunto</label>
-                    <input type="text" id="subject" name="subject" placeholder="Qual o assunto?">
+                    <input type="text" id="subject" name="subject" placeholder="Qual o assunto?" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="message">Mensagem</label>
-                    <textarea id="message" name="message" rows="4" placeholder="A Tua Mensagem" required></textarea>
+                    <textarea id="message" name="message" rows="6" placeholder="A Tua Mensagem" required></textarea>
                 </div>
 
                 <button type="submit" class="submit-btn">Enviar Mensagem</button>
@@ -259,6 +298,68 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Pre-fill form based on URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const subjectField = document.getElementById('subject');
+            const messageField = document.getElementById('message');
+            
+            // Get parameters from URL
+            const subject = urlParams.get('subject');
+            const message = urlParams.get('message');
+            
+            // Pre-fill subject field if parameter exists
+            if (subject) {
+                subjectField.value = decodeURIComponent(subject);
+            }
+            
+            // Pre-fill message field if parameter exists
+            if (message) {
+                messageField.value = decodeURIComponent(message);
+            }
+
+            // Form submission handling
+            const form = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                
+                // Get form data
+                const formData = new FormData(form);
+                
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        successMessage.style.display = 'block';
+                        form.reset();
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    errorMessage.style.display = 'block';
+                    // Scroll to error message
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
 
     <script src="script.js"></script>
 </body>
