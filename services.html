@@ -1357,6 +1357,7 @@
         }
 
         /* Recommended Banner Styles */
+/* Recommended Banner Styles */
 .recommended-banner {
     position: absolute !important;
     top: -12px !important;
@@ -1373,7 +1374,13 @@
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
     z-index: 10 !important;
     white-space: nowrap !important;
-    border: none !important;  /* ← Here it is */
+    border: none !important;
+}
+
+.recommended-banner::before,
+.recommended-banner::after {
+    display: none !important;
+    content: none !important;
 }
 
 .recommended-banner::before {
@@ -1491,6 +1498,17 @@
             line-height: 1.6;
             margin: 0;
         }
+
+        .package-card {
+    overflow: visible;
+    padding: 60px 40px 50px 40px;
+}
+
+.extras-category {
+    overflow: visible;
+    padding: 50px 40px 40px 40px;
+    position: relative;
+}
 
         /* Pricing Section */
         .pricing-section {
