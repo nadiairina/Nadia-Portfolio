@@ -941,8 +941,10 @@
                     <!-- Bottom Row - 2 Packages -->
                     <div class="packages-row bottom-row">
                         <!-- Advanced Package -->
-                        <div class="package-card">
-                            <h3 class="package-name">Advanced</h3>
+                        
+<div class="package-card">
+    <div class="recommended-banner">RECOMENDADO</div>
+    <h3 class="package-name">Advanced</h3>
                             <div class="package-price">€750</div>
                             <p class="package-description">Ideal para quem quer um site completo de até 5 páginas com animações dinâmicas.</p>
                             
@@ -1211,13 +1213,14 @@
                 </div>
 
                 <!-- BOTTOM ROW - 1 FULL-WIDTH BOX -->
-                <!-- Funcionalidades Técnicas e Visuais -->
-                <div class="extras-category full-width" data-category="technical">
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3 class="category-title">Funcionalidades Técnicas e Visuais</h3>
+               <!-- Funcionalidades Técnicas e Visuais -->
+<div class="extras-category full-width" data-category="technical">
+    <div class="recommended-banner">RECOMENDADO</div>
+    <div class="category-header">
+        <div class="category-icon">
+            <i class="fas fa-cogs"></i>
+        </div>
+        <h3 class="category-title">Funcionalidades Técnicas e Visuais</h3>
                         <p class="category-description">Recursos interativos para enriquecer a experiência do usuário</p>
                     </div>
                     
@@ -1278,7 +1281,7 @@
                         </div>
                         <div class="service-item">
                             <div class="service-info">
-                                <h4>Feed Instagram/TikTok automático</h4>
+                                <h4>Feed Instagram</h4>
                             </div>
                             <div class="service-price">€30</div>
                         </div>
@@ -1352,6 +1355,35 @@
             display: inline-block;
             margin-bottom: 20px;
         }
+
+        /* Recommended Banner Styles */
+.recommended-banner {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 0 25px 0 15px;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+    z-index: 10;
+}
+
+.recommended-banner::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid #cc4125;
+    border-top: 6px solid #cc4125;
+}
 
         .service-badge span {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
