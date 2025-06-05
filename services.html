@@ -942,7 +942,7 @@
                     <div class="packages-row bottom-row">
                         <!-- Advanced Package -->
                         
-<div class="package-card">
+<div class="package-card recommended">
     <div class="recommended-banner">RECOMENDADO</div>
     <h3 class="package-name">Advanced</h3>
                             <div class="package-price">€750</div>
@@ -1214,7 +1214,7 @@
 
                 <!-- BOTTOM ROW - 1 FULL-WIDTH BOX -->
                <!-- Funcionalidades Técnicas e Visuais -->
-<div class="extras-category full-width" data-category="technical">
+<div class="extras-category full-width recommended" data-category="technical">
     <div class="recommended-banner">RECOMENDADO</div>
     <div class="category-header">
         <div class="category-icon">
@@ -1356,31 +1356,41 @@
             margin-bottom: 20px;
         }
 
-        /* Recommended Banner Styles */
-/* Recommended Banner Styles */
+        /* Green Banner Styling */
 .recommended-banner {
-    position: absolute !important;
-    top: -12px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    background: linear-gradient(135deg, #10b981, #059669) !important;
-    color: white !important;
-    padding: 8px 20px !important;
-    font-size: 0.75rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    border-radius: 20px !important;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
-    z-index: 10 !important;
-    white-space: nowrap !important;
-    border: none !important;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    z-index: 10;
+    white-space: nowrap;
+    border: none;
 }
 
 .recommended-banner::before,
 .recommended-banner::after {
-    display: none !important;
-    content: none !important;
+    display: none;
+    content: none;
+}
+
+/* Purple Border for Recommended Cards */
+.package-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+
+.extras-category.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
 }
 
 .recommended-banner::before {
@@ -1500,11 +1510,13 @@
         }
 
         .package-card {
-    overflow: visible;
-    padding: 60px 40px 50px 40px;
+    /* Keep all existing properties, but change these: */
+    overflow: visible;  /* Change from "hidden" to "visible" */
+    padding: 60px 40px 50px 40px;  /* Add extra top padding */
 }
 
 .extras-category {
+    /* Keep all existing properties, but add these: */
     overflow: visible;
     padding: 50px 40px 40px 40px;
     position: relative;
