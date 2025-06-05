@@ -224,12 +224,17 @@
         transition: all 0.3s ease;
         margin-top: auto;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
     }
 
     .cta-button:hover {
         background: var(--primary-dark);
         transform: translateY(-2px);
         box-shadow: var(--shadow-md);
+        color: white;
+        text-decoration: none;
     }
 
     /* Comparison Table */
@@ -452,6 +457,369 @@
             gap: 20px;
         }
     }
+
+    /* Extras Section Styles */
+    :root {
+        --primary-color: #6366f1;
+        --primary-dark: #4f46e5;
+        --primary-light: #a5b4fc;
+        --text-dark: #1f2937;
+        --text-light: #f3f4f6;
+        --text-muted: #6b7280;
+        --bg-light: #ffffff;
+        --bg-dark: #1f2937;
+        --bg-muted: #f9fafb;
+        --bg-card: #ffffff;
+        --border-color: #e5e7eb;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .extras-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        transition: background-color 0.3s ease;
+    }
+
+    .extras-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .extras-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 400;
+        line-height: 1.6;
+    }
+
+    .extras-filters {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+
+    .filter-btn {
+        padding: 12px 24px;
+        border: 2px solid var(--border-color);
+        background: var(--bg-card);
+        color: var(--text-dark);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    /* PYRAMID GRID LAYOUT */
+    .extras-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 30px;
+        margin-bottom: 80px;
+        max-width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* First row - 3 boxes */
+    .extras-grid:not(.filtered) .extras-category:nth-child(1) {
+        grid-column: 1 / 3;
+    }
+
+    .extras-grid:not(.filtered) .extras-category:nth-child(2) {
+        grid-column: 3 / 5;
+    }
+
+    .extras-grid:not(.filtered) .extras-category:nth-child(3) {
+        grid-column: 5 / 7;
+    }
+
+    /* Second row - 2 wider boxes */
+    .extras-grid:not(.filtered) .extras-category:nth-child(4) {
+        grid-column: 1 / 4;
+    }
+
+    .extras-grid:not(.filtered) .extras-category:nth-child(5) {
+        grid-column: 4 / 7;
+    }
+
+    /* When filtered, use auto-fit layout for full width */
+    .extras-grid.filtered {
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    }
+
+    .extras-grid.filtered .extras-category {
+        grid-column: auto;
+    }
+
+    /* Full width technical box */
+    .extras-category.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .extras-category {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .extras-category.filter-hidden {
+        display: none !important;
+    }
+
+    .extras-category:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .category-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .category-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        border-radius: 50%;
+        margin-bottom: 20px;
+        color: white;
+        font-size: 2rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    .category-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+    }
+
+    .category-description {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        transition: color 0.3s ease;
+        font-weight: 400;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .services-list {
+        margin-bottom: 30px;
+        flex: 1;
+    }
+
+    .service-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        gap: 20px;
+    }
+
+    .service-item:last-child {
+        border-bottom: none;
+    }
+
+    .service-item:hover {
+        background: rgba(99, 102, 241, 0.05);
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 12px;
+    }
+
+    .service-info {
+        flex: 1;
+        min-width: 0;
+        padding-right: 15px;
+    }
+
+    .service-info h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+        transition: color 0.3s ease;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+
+    .service-info p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+        line-height: 1.5;
+        transition: color 0.3s ease;
+        font-weight: 400;
+    }
+
+    .service-price {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-align: right;
+        min-width: 120px;
+        max-width: 140px;
+        line-height: 1.3;
+        flex-shrink: 0;
+    }
+
+    .category-cta {
+        width: 100%;
+        padding: 16px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .category-cta:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Responsive Design for Extras */
+    @media (max-width: 1200px) {
+        .extras-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .extras-category:nth-child(1),
+        .extras-category:nth-child(2),
+        .extras-category:nth-child(3),
+        .extras-category:nth-child(4),
+        .extras-category:nth-child(5) {
+            grid-column: auto;
+        }
+        
+        .extras-category {
+            padding: 35px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .extras-section {
+            padding: 60px 0;
+        }
+        
+        .extras-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .extras-category {
+            padding: 30px 25px;
+        }
+        
+        .extras-filters {
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 10px 18px;
+            font-size: 0.85rem;
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 1.8rem;
+        }
+        
+        .category-title {
+            font-size: 1.6rem;
+        }
+        
+        .service-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .service-price {
+            text-align: left;
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .extras-container {
+            padding: 0 15px;
+        }
+        
+        .extras-category {
+            padding: 25px 20px;
+        }
+        
+        .extras-filters {
+            padding: 0 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+        
+        .category-title {
+            font-size: 1.4rem;
+        }
+        
+        .category-description {
+            font-size: 0.9rem;
+        }
+    }
     </style>
 </head>
 <body>
@@ -522,7 +890,7 @@
                                 <li>Ícones clicáveis para redes sociais</li>
                             </ul>
 
-                            <button class="cta-button">Escolher Essential</button>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Essencial&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Essencial%20(€150).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Essential</a>
                         </div>
 
                         <!-- Start Package -->
@@ -544,7 +912,7 @@
                                 <li>Ligação às redes sociais</li>
                             </ul>
 
-                            <button class="cta-button">Escolher Start</button>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Start&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Start%20(€200).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Start</a>
                         </div>
 
                         <!-- Presence Package -->
@@ -566,7 +934,7 @@
                                 <li>Instagram otimizado + 3 posts</li>
                             </ul>
 
-                            <button class="cta-button">Escolher Presence</button>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Presença&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Presença%20(€550).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Presence</a>
                         </div>
                     </div>
 
@@ -591,7 +959,7 @@
                                 <li>Instagram + 6 posts e 3 stories</li>
                             </ul>
 
-                            <button class="cta-button">Escolher Advanced</button>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Advanced&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Advanced%20(€750).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Advanced</a>
                         </div>
 
                         <!-- Pro Package -->
@@ -613,7 +981,7 @@
                                 <li>9 posts + 6 stories + interação</li>
                             </ul>
 
-                            <button class="cta-button">Escolher Pro</button>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Pro&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Pro%20(€1000).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Pro</a>
                         </div>
                     </div>
                 </div>
@@ -663,346 +1031,7 @@
             </div>
         </section>
     </main>
-    <style>
-    :root {
-        --primary-color: #6366f1;
-        --primary-dark: #4f46e5;
-        --primary-light: #a5b4fc;
-        --text-dark: #1f2937;
-        --text-light: #f3f4f6;
-        --text-muted: #6b7280;
-        --bg-light: #ffffff;
-        --bg-dark: #1f2937;
-        --bg-muted: #f9fafb;
-        --bg-card: #ffffff;
-        --border-color: #e5e7eb;
-        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        color: var(--text-dark);
-        background: var(--bg-light);
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-    }
-    .section-title {
-        text-align: center;
-        font-size: 2.2rem;
-        margin-bottom: 50px;
-        color: var(--text-dark);
-        font-weight: 800;
-    }
-    .extras-section {
-        padding: 80px 0;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        transition: background-color 0.3s ease;
-    }
-    .extras-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-    .extras-subtitle {
-        text-align: center;
-        font-size: 1.2rem;
-        color: var(--text-muted);
-        margin-bottom: 50px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        font-weight: 400;
-        line-height: 1.6;
-    }
-    .extras-filters {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-bottom: 50px;
-        flex-wrap: wrap;
-        padding: 0 20px;
-    }
-    .filter-btn {
-        padding: 12px 24px;
-        border: 2px solid var(--border-color);
-        background: var(--bg-card);
-        color: var(--text-dark);
-        border-radius: 25px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-weight: 500;
-        font-size: 0.9rem;
-        white-space: nowrap;
-    }
-    .filter-btn:hover,
-    .filter-btn.active {
-        background: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-    }
-    /* PYRAMID GRID LAYOUT */
-    .extras-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 30px;
-        margin-bottom: 80px;
-        max-width: 1600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    /* First row - 3 boxes */
-    .extras-grid:not(.filtered) .extras-category:nth-child(1) {
-        grid-column: 1 / 3;
-    }
-    .extras-grid:not(.filtered) .extras-category:nth-child(2) {
-        grid-column: 3 / 5;
-    }
-    .extras-grid:not(.filtered) .extras-category:nth-child(3) {
-        grid-column: 5 / 7;
-    }
-    /* Second row - 2 wider boxes */
-    .extras-grid:not(.filtered) .extras-category:nth-child(4) {
-        grid-column: 1 / 4;
-    }
-    .extras-grid:not(.filtered) .extras-category:nth-child(5) {
-    grid-column: 4 / 7;
-         }
-    /* When filtered, use auto-fit layout for full width */
-    .extras-grid.filtered {
-        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-    }
-    .extras-grid.filtered .extras-category {
-        grid-column: auto;
-    }
-    /* Full width technical box */
-    .extras-category.full-width {
-        grid-column: 1 / -1;
-    }
-    .extras-category {
-        background: var(--bg-card);
-        border-radius: 20px;
-        padding: 40px;
-        box-shadow: var(--shadow-md);
-        border: 1px solid var(--border-color);
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        opacity: 1;
-        transform: scale(1);
-    }
-    .extras-category.filter-hidden {
-        display: none !important;
-    }
-    .extras-category:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
-    }
-    .category-header {
-        text-align: center;
-        margin-bottom: 35px;
-    }
-    .category-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-        border-radius: 50%;
-        margin-bottom: 20px;
-        color: white;
-        font-size: 2rem;
-        box-shadow: var(--shadow-md);
-    }
-    .category-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--text-dark);
-        margin-bottom: 15px;
-        transition: color 0.3s ease;
-    }
-    .category-description {
-        color: var(--text-muted);
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 0;
-        transition: color 0.3s ease;
-        font-weight: 400;
-        max-width: 350px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .services-list {
-        margin-bottom: 30px;
-        flex: 1;
-    }
-    .service-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 20px 0;
-        border-bottom: 1px solid var(--border-color);
-        transition: all 0.3s ease;
-        gap: 20px;
-    }
-    .service-item:last-child {
-        border-bottom: none;
-    }
-    .service-item:hover {
-        background: rgba(99, 102, 241, 0.05);
-        margin-left: -15px;
-        margin-right: -15px;
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 12px;
-    }
-    .service-info {
-        flex: 1;
-        min-width: 0;
-        padding-right: 15px;
-    }
-    .service-info h4 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 8px;
-        transition: color 0.3s ease;
-        line-height: 1.4;
-        word-wrap: break-word;
-    }
-    .service-info p {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        margin-bottom: 0;
-        line-height: 1.5;
-        transition: color 0.3s ease;
-        font-weight: 400;
-    }
-    .service-price {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--primary-color);
-        text-align: right;
-        min-width: 120px;
-        max-width: 140px;
-        line-height: 1.3;
-        flex-shrink: 0;
-    }
-    .category-cta {
-        width: 100%;
-        padding: 16px;
-        background: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 12px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-top: 20px;
-    }
-    .category-cta:hover {
-        background: var(--primary-dark);
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-    }
-    /* Responsive Design */
-    @media (max-width: 1200px) {
-        .extras-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-        
-        .extras-category:nth-child(1),
-        .extras-category:nth-child(2),
-        .extras-category:nth-child(3),
-        .extras-category:nth-child(4),
-        .extras-category:nth-child(5) {
-            grid-column: auto;
-        }
-        
-        .extras-category {
-            padding: 35px;
-        }
-    }
-    @media (max-width: 768px) {
-        .extras-section {
-            padding: 60px 0;
-        }
-        
-        .extras-grid {
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-        
-        .extras-category {
-            padding: 30px 25px;
-        }
-        
-        .extras-filters {
-            gap: 10px;
-            justify-content: center;
-        }
-        
-        .filter-btn {
-            padding: 10px 18px;
-            font-size: 0.85rem;
-        }
-        
-        .category-icon {
-            width: 70px;
-            height: 70px;
-            font-size: 1.8rem;
-        }
-        
-        .category-title {
-            font-size: 1.6rem;
-        }
-        
-        .service-item {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        
-        .service-price {
-            text-align: left;
-            font-size: 1.2rem;
-        }
-    }
-    @media (max-width: 480px) {
-        .extras-container {
-            padding: 0 15px;
-        }
-        
-        .extras-category {
-            padding: 25px 20px;
-        }
-        
-        .extras-filters {
-            padding: 0 10px;
-        }
-        
-        .filter-btn {
-            padding: 8px 15px;
-            font-size: 0.8rem;
-        }
-        
-        .category-title {
-            font-size: 1.4rem;
-        }
-        
-        .category-description {
-            font-size: 0.9rem;
-        }
-    }
-    </style>
-</head>
-<body>
+
     <!-- EXTRAS Section -->
     <section class="extras-section" id="extras">
         <div class="extras-container">
@@ -1047,8 +1076,9 @@
                         </div>
                     </div>
                     
-                    <button class="category-cta">Orçamento Branding</button>
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Branding&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Branding%20e%20Identidade%20Visual.%0A%0AEstou%20interessado%20em:%0A-%20Personalização%20de%20logotipo,%20paleta%20de%20cores%20e%20tipografia%0A-%20Manual%20básico%20de%20identidade%20visual%0A%0ADetalhes%20do%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Estilo%20preferido:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Branding</a>
                 </div>
+
                 <!-- Criação de Conteúdo -->
                 <div class="extras-category" data-category="content">
                     <div class="category-header">
@@ -1074,8 +1104,9 @@
                         </div>
                     </div>
                     
-                    <button class="category-cta">Orçamento Conteúdo</button>
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Conteúdo&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Criação%20de%20Conteúdo.%0A%0AEstou%20interessado%20em:%0A-%20Redação%20de%20textos%20para%20site%0A-%20Revisão%20e%20otimização%20SEO%0A%0ADetalhes%20do%20projeto:%0A-%20Número%20de%20páginas:%0A-%20Tipo%20de%20conteúdo:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Conteúdo</a>
                 </div>
+
                 <!-- Otimização de Sites -->
                 <div class="extras-category" data-category="optimization">
                     <div class="category-header">
@@ -1107,8 +1138,9 @@
                         </div>
                     </div>
                     
-                    <button class="category-cta">Orçamento Otimização</button>
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Otimização&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Otimização%20de%20Sites.%0A%0AEstou%20interessado%20em:%0A-%20Atualização%20de%20site%20antigo%0A-%20Conversão%20para%20mobile/tablet%0A-%20Melhorias%20de%20acessibilidade%0A%0ADetalhes%20do%20projeto:%0A-%20URL%20do%20site%20atual:%0A-%20Principais%20problemas:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Otimização</a>
                 </div>
+
                 <!-- MIDDLE ROW - 2 CENTERED BOXES -->
                 <!-- Redes Sociais - Criação -->
                 <div class="extras-category" data-category="social">
@@ -1141,8 +1173,9 @@
                         </div>
                     </div>
                     
-                    <button class="category-cta">Orçamento Redes</button>
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Redes%20Sociais&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Redes%20Sociais.%0A%0AEstou%20interessado%20em:%0A-%20Criação%20de%20perfil%20profissional%0A-%20Design%20de%20posts%20personalizados%0A-%20Templates%20editáveis%20para%20Canva%0A%0ADetalhes%20do%20projeto:%0A-%20Plataforma%20(Instagram,%20Facebook,%20etc.):%0A-%20Tipo%20de%20negócio:%0A-%20Estilo%20preferido:%0A%0AObrigado!" class="category-cta">Orçamento Redes</a>
                 </div>
+
                 <!-- Gestão Mensal de Redes Sociais -->
                 <div class="extras-category" data-category="social">
                     <div class="category-header">
@@ -1174,8 +1207,9 @@
                         </div>
                     </div>
                     
-                    <button class="category-cta">Orçamento Gestão RRSS</button>
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Gestão%20de%20Redes%20Sociais&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20Gestão%20Mensal%20de%20Redes%20Sociais.%0A%0AEstou%20interessado%20em:%0A-%20Plano%20Básico%20(€200/mês)%0A-%20Plano%20Avançado%20(€350/mês)%0A-%20Desconto%20trimestral%0A%0ADetalhes%20do%20projeto:%0A-%20Plataformas%20a%20gerir:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivos%20principais:%0A%0AObrigado!" class="category-cta">Orçamento Gestão RRSS</a>
                 </div>
+
                 <!-- BOTTOM ROW - 1 FULL-WIDTH BOX -->
                 <!-- Funcionalidades Técnicas e Visuais -->
                 <div class="extras-category full-width" data-category="technical">
@@ -1187,7 +1221,7 @@
                         <p class="category-description">Recursos interativos para enriquecer a experiência do usuário</p>
                     </div>
                     
-                    <div class="services-list">
+                    <div class="services-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px;">
                         <div class="service-item">
                             <div class="service-info">
                                 <h4>Formulário de contacto funcional (envio automático)</h4>
@@ -1260,20 +1294,14 @@
                             </div>
                             <div class="service-price">€40</div>
                         </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Google Analytics instalado</h4>
-                            </div>
-                            <div class="service-price">€25</div>
-                        </div>
                     </div>
                     
-                    <button class="category-cta">Solicitar Features</button>
+                    <a href="contact.html?subject=Pedido%20de%20Informações%20sobre%20Features&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20informações%20sobre%20Funcionalidades%20Técnicas%20e%20Visuais.%0A%0AEstou%20interessado%20em:%0A-%20Formulários%20de%20contacto%0A-%20Animações%20CSS/JS%0A-%20Modo%20escuro/claro%0A-%20Outras%20funcionalidades%0A%0ADetalhes%20do%20projeto:%0A-%20Funcionalidades%20específicas:%0A-%20Site%20existente%20ou%20novo:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Técnico</a>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1285,7 +1313,7 @@
                 <div class="footer-links">
                     <div class="footer-nav">
                         <h4>Navegação</h4>
-                        <a href="index.html">início</a>
+                        <a href="index.html">Início</a>
                         <a href="about.html">Sobre Mim</a>
                         <a href="projects.html">Projetos</a>
                         <a href="contact.html">Contactos</a>
@@ -1294,7 +1322,7 @@
                         <h4>Conectar</h4>
                         <a href="https://github.com/nadiairina" target="_blank">GitHub</a>
                         <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank">LinkedIn</a>
-                        <a href="mailto:contact@nadiairina.com">Email: nadiairina934@gmail.com</a>
+                        <a href="mailto:nadiairina934@gmail.com">Email: nadiairina934@gmail.com</a>
                     </div>
                 </div>
             </div>
@@ -1303,42 +1331,43 @@
             </div>
         </div>
     </footer>
-    
-   <script>
-    // Filter functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const categories = document.querySelectorAll('.extras-category');
-        const grid = document.querySelector('.extras-grid');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const category = this.getAttribute('data-category');
-                
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                // Add/remove filtered class based on selection
-                if (category === 'all') {
-                    grid.classList.remove('filtered');
-                } else {
-                    grid.classList.add('filtered');
-                }
-                
-                // Filter categories
-                categories.forEach(cat => {
-                    const catCategory = cat.getAttribute('data-category');
-                    
-                    if (category === 'all' || catCategory === category) {
-                        cat.classList.remove('filter-hidden');
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const categories = document.querySelectorAll('.extras-category');
+            const grid = document.querySelector('.extras-grid');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-category');
+
+                    if (filterValue === 'all') {
+                        grid.classList.remove('filtered');
+                        categories.forEach(category => {
+                            category.classList.remove('filter-hidden');
+                        });
                     } else {
-                        cat.classList.add('filter-hidden');
+                        grid.classList.add('filtered');
+                        categories.forEach(category => {
+                            if (category.getAttribute('data-category') === filterValue) {
+                                category.classList.remove('filter-hidden');
+                            } else {
+                                category.classList.add('filter-hidden');
+                            }
+                        });
                     }
                 });
             });
         });
-    });
     </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
