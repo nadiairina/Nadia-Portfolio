@@ -384,6 +384,45 @@
         background: rgba(99, 102, 241, 0.2);
     }
 
+        /* Dark Mode Support for Extras Section */
+    body.dark .extras-section {
+        background-color: #1f2937;
+    }
+    body.dark .extras-category {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+    body.dark .category-title,
+    body.dark .category-header h3 {
+        color: var(--text-light);
+    }
+    body.dark .category-description,
+    body.dark .service-info h4 {
+        color: #9ca3af;
+    }
+    body.dark .service-price {
+        color: var(--primary-color);
+    }
+    body.dark .category-cta {
+        background: var(--primary-color);
+        color: white;
+    }
+    body.dark .category-cta:hover {
+        background: var(--primary-dark);
+        color: white;
+    }
+    body.dark .filter-btn {
+        background: #374151;
+        color: #9ca3af;
+        border-color: #4b5563;
+    }
+    body.dark .filter-btn:hover,
+    body.dark .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+        
     /* Responsive Design */
     @media (max-width: 1400px) {
         .packages-container {
