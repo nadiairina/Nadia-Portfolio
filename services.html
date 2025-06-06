@@ -13,1198 +13,2886 @@
     
     <style>
         :root {
-            --primary-color: #6366f1;
-            --primary-dark: #4f46e5;
-            --text-dark: #1f2937;
-            --text-muted: #6b7280;
-            --text-light: #f9fafb;
-            --bg-card: #ffffff;
-            --bg-muted: #f9fafb;
-            --border-color: #e5e7eb;
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --text-light: #f9fafb;
+    --bg-card: #ffffff;
+    --bg-muted: #f9fafb;
+    --border-color: #e5e7eb;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+    /* Packages Page Specific Styles */
 
-        /* Sticky Navigation */
-        .sticky-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
+    /* Hero Section - Matching Contact Page Style */
+    .contact-hero {
+        padding: 6rem 1rem 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background-color: #f8f9fa;
+        transition: background-color 0.3s ease;
+    }
 
-        .sticky-nav-container {
+    .contact-hero .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
+    }
+
+    .page-title {
+        font-size: 3rem;
+        font-weight: 900;
+        margin: 1rem 0;
+        line-height: 1.2;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .page-description {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+        line-height: 1.6;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Packages Section */
+    .packages-section {
+        padding: 80px 0;
+        background-color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+        font-weight: 800;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .packages-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .packages-pyramid {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin-bottom: 80px;
+    }
+
+    .packages-row {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .packages-row.top-row {
+        /* 3 packages on top */
+    }
+
+    
+
+    .package-card {
+    background: var(--bg-card);
+    border-radius: 25px;
+    padding: 60px 40px 50px 40px;  /* ← Add extra top padding */
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    overflow: visible;  /* ← Change to visible */
+    border: 1px solid var(--border-color);
+    min-height: 700px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+    /* Recommended Banner Styles */
+.recommended-banner {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    z-index: 10;
+    white-space: nowrap;
+    border: none;
+}
+
+.recommended-banner::before,
+.recommended-banner::after {
+    display: none;
+    content: none;
+}
+
+/* Purple Border for Recommended Cards */
+.package-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+
+.pricing-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+        
+    .package-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .package-card.featured {
+        border: 2px solid var(--primary-color);
+        transform: scale(1.02);
+    }
+
+    .package-card.featured:hover {
+        transform: scale(1.02) translateY(-10px);
+    }
+
+    .package-name {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-price {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: var(--primary-color);
+        margin-bottom: 25px;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-description {
+        color: var(--text-muted);
+        margin-bottom: 30px;
+        font-style: normal;
+        transition: color 0.3s ease;
+        font-size: 0.95rem;
+        text-align: center;
+        line-height: 1.6;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-target {
+        background: var(--bg-muted);
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        transition: background-color 0.3s ease;
+        flex-grow: 1;
+    }
+
+    .package-target h4 {
+        color: var(--text-dark);
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-target p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-features {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .package-features li {
+        padding: 8px 0;
+        padding-left: 25px;
+        position: relative;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 12px;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #27ae60;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .cta-button {
+        width: 100%;
+        padding: 16px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: auto;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .cta-button:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: var(--shadow-md);
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+        transition: background-color 0.3s ease;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .table-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+    }
+
+    .comparison-table table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+    }
+
+    .comparison-table th, 
+    .comparison-table td {
+        padding: 20px 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .comparison-table th {
+        background: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .comparison-table tr:nth-child(even) {
+        background: var(--bg-muted);
+    }
+
+    .comparison-table tr:hover {
+        background: rgba(99, 102, 241, 0.1);
+    }
+
+    .price-cell {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--primary-color);
+    }
+
+    /* Dark Mode Support */
+    body.dark .contact-hero {
+        background-color: #1f2937;
+    }
+
+    body.dark .page-title,
+    body.dark .page-description {
+        color: var(--text-light);
+    }
+
+    body.dark .packages-section {
+        background-color: #1f2937;
+    }
+
+    body.dark .package-card {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+
+    body.dark .package-target {
+        background: #3d3d3d;
+    }
+
+    body.dark .comparison-table {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+
+    body.dark .section-title,
+    body.dark .table-title,
+    body.dark .package-name,
+    body.dark .package-target h4 {
+        color: var(--text-light);
+    }
+
+    body.dark .package-description,
+    body.dark .package-features li,
+    body.dark .package-target p {
+        color: #9ca3af;
+    }
+
+    body.dark .comparison-table th,
+    body.dark .comparison-table td {
+        border-color: #374151;
+        color: var(--text-light);
+    }
+
+    body.dark .comparison-table tr:nth-child(even) {
+        background: #374151;
+    }
+
+    body.dark .comparison-table tr:hover {
+        background: rgba(99, 102, 241, 0.2);
+    }
+
+        /* Dark Mode Support for Extras Section */
+    body.dark .extras-section {
+        background-color: #1f2937;
+    }
+
+        /* Dark Mode Support for Content Creation Section */
+body.dark .includes-section,
+body.dark .pricing-section {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .includes-title,
+body.dark .pricing-title,
+body.dark .include-content h4 {
+    color: var(--text-light);
+}
+
+body.dark .include-content p {
+    color: #9ca3af;
+}
+
+body.dark .include-item {
+    background: #374151;
+    border-color: #4b5563;
+}
+
+body.dark .include-item:hover {
+    background: #3d3d3d;
+}
+        /* Dark Mode Support for Content Creation Section Background */
+body.dark .content-creation-section {
+    background: #1f2937 !important;
+}
+        
+    body.dark .extras-category {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+    body.dark .category-title,
+    body.dark .category-header h3 {
+        color: var(--text-light);
+    }
+    body.dark .category-description,
+    body.dark .service-info h4 {
+        color: #9ca3af;
+    }
+    body.dark .service-price {
+        color: var(--primary-color);
+    }
+    body.dark .category-cta {
+        background: var(--primary-color);
+        color: white;
+    }
+    body.dark .category-cta:hover {
+        background: var(--primary-dark);
+        color: white;
+    }
+    body.dark .filter-btn {
+        background: #374151;
+        color: #9ca3af;
+        border-color: #4b5563;
+    }
+    body.dark .filter-btn:hover,
+    body.dark .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+        
+    /* Responsive Design */
+    @media (max-width: 1400px) {
+        .packages-container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 60px;
         }
-
-        .nav-logo span {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        
+        .package-card {
+            width: 350px;
         }
+    }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+    @media (max-width: 1200px) {
+        .packages-row {
             gap: 30px;
         }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        
+        .package-card {
+            width: 320px;
+            min-height: 650px;
         }
+    }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
+    @media (max-width: 1024px) {
+        .packages-row.top-row {
+            flex-wrap: wrap;
+            justify-content: center;
         }
-
-        /* Dark mode sticky nav */
-        body.dark .sticky-nav {
-            background: rgba(31, 41, 55, 0.95);
-            border-bottom-color: #374151;
+        
+        .packages-row.bottom-row {
+            flex-wrap: wrap;
+            justify-content: center;
         }
-
-        body.dark .nav-links a {
-            color: var(--text-light);
+        
+        .package-card {
+            width: 300px;
         }
+    }
 
-        body.dark .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Mobile sticky nav */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .nav-links a {
-                font-size: 0.8rem;
-            }
-            
-            .nav-logo span {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Adjust page top margin for sticky nav */
+    @media (max-width: 768px) {
         .contact-hero {
-            margin-top: 60px;
-            padding: 6rem 1rem 3rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            background-color: #f8f9fa;
-            transition: background-color 0.3s ease;
+            padding: 4rem 1rem 2rem;
         }
-
-        .contact-hero .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 800px;
-        }
-
+        
         .page-title {
-            font-size: 3rem;
-            font-weight: 900;
-            margin: 1rem 0;
-            line-height: 1.2;
-            color: var(--text-dark);
-            transition: color 0.3s ease;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 2.5rem;
         }
 
         .page-description {
             font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            color: var(--text-muted);
-            transition: color 0.3s ease;
-            line-height: 1.6;
-            font-weight: 400;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
-        /* Packages Section */
-        .packages-section {
-            padding: 80px 0;
-            background-color: white;
-            transition: background-color 0.3s ease;
+        .packages-pyramid {
+            gap: 30px;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            color: var(--text-dark);
-            transition: color 0.3s ease;
-            font-weight: 800;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-
-        .packages-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
+        .packages-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
         }
 
         .package-card {
+            width: 90%;
+            max-width: 400px;
+            min-height: 600px;
+            padding: 40px 30px;
+        }
+
+        .comparison-table {
+            padding: 25px;
+        }
+
+        .comparison-table table {
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th, 
+        .comparison-table td {
+            padding: 15px 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-hero {
+            padding: 3rem 1rem 1.5rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .package-card {
+            width: 95%;
+            padding: 30px 25px;
+            min-height: 550px;
+        }
+
+        .package-price {
+            font-size: 2.2rem;
+        }
+
+        .packages-section {
+            padding: 60px 0;
+        }
+
+        .packages-row {
+            gap: 20px;
+        }
+    }
+
+    /* Extras Section Styles */
+    :root {
+        --primary-color: #6366f1;
+        --primary-dark: #4f46e5;
+        --primary-light: #a5b4fc;
+        --text-dark: #1f2937;
+        --text-light: #f3f4f6;
+        --text-muted: #6b7280;
+        --bg-light: #ffffff;
+        --bg-dark: #1f2937;
+        --bg-muted: #f9fafb;
+        --bg-card: #ffffff;
+        --border-color: #e5e7eb;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .extras-section {
+        padding: 80px 0 40px 0;
+        background-color: #f8f9fa;
+        transition: background-color 0.3s ease;
+    }
+
+    .extras-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .extras-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 400;
+        line-height: 1.6;
+    }
+
+    .extras-filters {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+
+    .filter-btn {
+        padding: 12px 24px;
+        border: 2px solid var(--border-color);
+        background: var(--bg-card);
+        color: var(--text-dark);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    /* PYRAMID GRID LAYOUT */
+    .extras-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 30px;
+        margin-bottom: 80px;
+        max-width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* First row - 3 boxes */
+    .extras-grid:not(.filtered) .extras-category:nth-child(1) {
+        grid-column: 1 / 3;
+    }
+
+    .extras-grid:not(.filtered) .extras-category:nth-child(2) {
+        grid-column: 3 / 5;
+    }
+
+    .extras-grid:not(.filtered) .extras-category:nth-child(3) {
+        grid-column: 5 / 7;
+    }
+
+    /* Second row - 2 wider boxes */
+    .extras-grid:not(.filtered) .extras-category:nth-child(4) {
+        grid-column: 1 / 4;
+    }
+
+    .extras-grid:not(.filtered) .extras-category:nth-child(5) {
+        grid-column: 4 / 7;
+    }
+
+    /* When filtered, use auto-fit layout for full width */
+    .extras-grid.filtered {
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    }
+
+    .extras-grid.filtered .extras-category {
+        grid-column: auto;
+    }
+
+    /* Full width technical box */
+    .extras-category.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .extras-category {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .extras-category.filter-hidden {
+        display: none !important;
+    }
+
+    .extras-category:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .category-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .category-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        border-radius: 50%;
+        margin-bottom: 20px;
+        color: white;
+        font-size: 2rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    .category-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+    }
+
+    .category-description {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        transition: color 0.3s ease;
+        font-weight: 400;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .services-list {
+        margin-bottom: 30px;
+        flex: 1;
+    }
+
+    .service-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        gap: 20px;
+    }
+
+    .service-item:last-child {
+        border-bottom: none;
+    }
+
+    .service-item:hover {
+        background: rgba(99, 102, 241, 0.05);
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 12px;
+    }
+
+    .service-info {
+        flex: 1;
+        min-width: 0;
+        padding-right: 15px;
+    }
+
+    .service-info h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+        transition: color 0.3s ease;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+
+    .service-info p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+        line-height: 1.5;
+        transition: color 0.3s ease;
+        font-weight: 400;
+    }
+
+    .service-price {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-align: right;
+        min-width: 120px;
+        max-width: 140px;
+        line-height: 1.3;
+        flex-shrink: 0;
+    }
+
+    .category-cta {
+        width: 100%;
+        padding: 16px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .category-cta:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Responsive Design for Extras */
+    @media (max-width: 1200px) {
+        .extras-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .extras-category:nth-child(1),
+        .extras-category:nth-child(2),
+        .extras-category:nth-child(3),
+        .extras-category:nth-child(4),
+        .extras-category:nth-child(5) {
+            grid-column: auto;
+        }
+        
+        .extras-category {
+            padding: 35px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .extras-section {
+            padding: 60px 0;
+        }
+        
+        .extras-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .extras-category {
+            padding: 30px 25px;
+        }
+        
+        .extras-filters {
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 10px 18px;
+            font-size: 0.85rem;
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 1.8rem;
+        }
+        
+        .category-title {
+            font-size: 1.6rem;
+        }
+        
+        .service-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .service-price {
+            text-align: left;
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .extras-container {
+            padding: 0 15px;
+        }
+        
+        .extras-category {
+            padding: 25px 20px;
+        }
+        
+        .extras-filters {
+            padding: 0 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+        
+        .category-title {
+            font-size: 1.4rem;
+        }
+        
+        .category-description {
+            font-size: 0.9rem;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
+            <nav class="nav">
+                <a href="index.html" aria-label="Home">Início</a>
+                <a href="about.html" aria-label="About Me">Sobre Mim</a>
+                <a href="projects.html" aria-label="Projects">Projetos</a>
+                <a href="services.html" class="active" aria-label="Serviços">Serviços</a>
+                <a href="contact.html" aria-label="Contact">Contactos</a>
+                
+            </nav>
+
+            <div class="actions">
+                <a class="resume-btn" href="assets/Nadia-Irina-CV.pdf" download aria-label="Download Currículo">Currículo</a>
+                <div class="social-icons">
+                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+                
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section - Matching Contact Page Style -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1 class="page-title">Os Meus Pacotes</h1>
+            <p class="page-description">
+                Escolhe o pacote ideal para levar a tua presença online ao próximo nível!
+            </p>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <main>
+        <section class="packages-section">
+            <div class="packages-container">
+                
+                
+                <div class="packages-pyramid">
+                    <!-- Top Row - 3 Packages -->
+                    <div class="packages-row top-row">
+                        <!-- Essential Package -->
+                        <div class="package-card">
+                            <h3 class="package-name">Essential</h3>
+                            <div class="package-price">€150</div>
+                            <p class="package-description">Ideal para quem quer começar com um site moderno, funcional e direto ao ponto.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Precisas de uma presença online rápida e profissional. Queres uma página única com as principais informações sobre ti ou o teu serviço.</p>
+                            </div>
+
+                            <ul class="package-features">
+                                <li>1 página com scroll único</li>
+                                <li>Design responsivo</li>
+                                <li>Formulário de contacto funcional</li>
+                                <li>Animações suaves ao fazer scroll</li>
+                                <li>Ícones clicáveis para redes sociais</li>
+                            </ul>
+
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Essencial&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Essencial%20(€150).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Essential</a>
+                        </div>
+
+                        <!-- Start Package -->
+                        <div class="package-card">
+                            <h3 class="package-name">Start</h3>
+                            <div class="package-price">€200</div>
+                            <p class="package-description">Ideal para quem precisa de uma solução simples, elegante e eficaz para apresentar o seu serviço.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Estás a começar e queres um site profissional de página única. Queres apresentar-te de forma clara e apelativa.</p>
+                            </div>
+
+                            <ul class="package-features">
+                                <li>Página única com scroll suave</li>
+                                <li>Design responsivo</li>
+                                <li>Formulário de contacto funcional</li>
+                                <li>Animações suaves ao fazer scroll</li>
+                                <li>Ligação às redes sociais</li>
+                            </ul>
+
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Start&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Start%20(€200).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Start</a>
+                        </div>
+
+                        <!-- Presence Package -->
+                        <div class="package-card">
+                            <h3 class="package-name">Presence</h3>
+                            <div class="package-price">€550</div>
+                            <p class="package-description">Ideal para negócios em crescimento que querem site institucional e Instagram otimizado.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Precisas de um site com estrutura clara. Queres uma identidade visual coerente entre site e redes sociais.</p>
+                            </div>
+
+                            <ul class="package-features">
+                                <li>Site institucional (3 páginas)</li>
+                                <li>Design responsivo + SEO básico</li>
+                                <li>Formulário de contacto funcional</li>
+                                <li>Otimização leve de performance</li>
+                                <li>Instagram otimizado + 3 posts</li>
+                            </ul>
+
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Presença&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Presença%20(€550).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Presence</a>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Row - 2 Packages -->
+                    <div class="packages-row bottom-row">
+                        <!-- Advanced Package -->
+                        
+<div class="package-card recommended">
+    <div class="recommended-banner">RECOMENDADO</div>
+    <h3 class="package-name">Advanced</h3>
+                            <div class="package-price">€750</div>
+                            <p class="package-description">Ideal para quem quer um site completo de até 5 páginas com animações dinâmicas.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Queres apresentar serviços e galeria de forma profissional. Pretendes animações que tornem a navegação dinâmica.</p>
+                            </div>
+
+                            <ul class="package-features">
+                                <li>Site completo (5 páginas)</li>
+                                <li>Design responsivo + animações</li>
+                                <li>SEO técnico básico</li>
+                                <li>Formulário de contacto funcional</li>
+                                <li>Instagram + 6 posts e 3 stories</li>
+                            </ul>
+
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Advanced&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Advanced%20(€750).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Advanced</a>
+                        </div>
+
+                        <!-- Pro Package -->
+                        <div class="package-card">
+                            <h3 class="package-name">Pro</h3>
+                            <div class="package-price">€1000</div>
+                            <p class="package-description">Ideal para quem quer tudo entregue e o Instagram gerido por um mês completo.</p>
+                            
+                            <div class="package-target">
+                                <h4>Este pacote é para ti se:</h4>
+                                <p>Queres funcionalidades avançadas. Não tens tempo para gerir redes ou preferes delegar completamente.</p>
+                            </div>
+
+                            <ul class="package-features">
+                                <li>Site institucional (7 páginas)</li>
+                                <li>Modo escuro/claro + animações</li>
+                                <li>Integrações (Maps, WhatsApp)</li>
+                                <li>Gestão de Instagram (1 mês)</li>
+                                <li>9 posts + 6 stories + interação</li>
+                            </ul>
+
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Pro&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Pro%20(€1000).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Pro</a>
+                        </div>
+                    </div>
+                </div>
+    </main>
+
+    <!-- PDF Download Section -->
+<section class="pdf-download-section">
+    <div class="pdf-download-container">
+        <div class="pdf-download-card">
+            <div class="pdf-icon">
+                <i class="fas fa-file-pdf"></i>
+            </div>
+            <h3 class="pdf-title">Guia Completo de Serviços</h3>
+            <p class="pdf-description">
+                Descarregue o guia detalhado em PDF com informações completas sobre todos os serviços, 
+                preços e condições.
+            </p>
+            <a href="https://drive.google.com/uc?id=1cC6CCy7PsEiOpNNPSM5qqO663F8JF-Rl&export=download" class="pdf-download-button" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-download"></i>
+                Ver Guia Detalhado (PDF)
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- EXTRAS Section -->
+    <section class="extras-section" id="extras">
+        <div class="extras-container">
+            <h2 class="section-title">Extras</h2>
+            <p class="extras-subtitle">Serviços adicionais para potencializar o teu projeto digital</p>
+            
+            <!-- Filter Buttons -->
+            <div class="extras-filters">
+                <button class="filter-btn active" data-category="all">Todos</button>
+                <button class="filter-btn" data-category="branding">Branding</button>
+                <button class="filter-btn" data-category="content">Conteúdo</button>
+                <button class="filter-btn" data-category="optimization">Otimização</button>
+                <button class="filter-btn" data-category="technical">Técnico</button>
+                <button class="filter-btn" data-category="social">Redes Sociais</button>
+            </div>
+            
+            <!-- Services Grid - PYRAMID LAYOUT -->
+            <div class="extras-grid">
+                <!-- TOP ROW - 3 BOXES -->
+                <!-- Branding & Identidade Visual -->
+                <div class="extras-category" data-category="branding">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="category-title">Branding & Identidade Visual</h3>
+                        <p class="category-description">Construa uma identidade visual consistente e memorável</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Personalização de logotipo, paleta de cores e tipografia</h4>
+                            </div>
+                            <div class="service-price">desde €150</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Manual básico de identidade visual</h4>
+                            </div>
+                            <div class="service-price">desde €80</div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Branding&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Branding%20e%20Identidade%20Visual.%0A%0AEstou%20interessado%20em:%0A-%20Personalização%20de%20logotipo,%20paleta%20de%20cores%20e%20tipografia%0A-%20Manual%20básico%20de%20identidade%20visual%0A%0ADetalhes%20do%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Estilo%20preferido:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Branding</a>
+                </div>
+
+                <!-- Criação de Conteúdo -->
+                <div class="extras-category" data-category="content">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3 class="category-title">Criação de Conteúdo</h3>
+                        <p class="category-description">Textos profissionais e otimizados para o seu site</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Redação de textos para site</h4>
+                            </div>
+                            <div class="service-price">desde €100 por página</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Revisão e otimização SEO de texto</h4>
+                            </div>
+                            <div class="service-price">desde €50 por página</div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Conteúdo&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Criação%20de%20Conteúdo.%0A%0AEstou%20interessado%20em:%0A-%20Redação%20de%20textos%20para%20site%0A-%20Revisão%20e%20otimização%20SEO%0A%0ADetalhes%20do%20projeto:%0A-%20Número%20de%20páginas:%0A-%20Tipo%20de%20conteúdo:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Conteúdo</a>
+                </div>
+
+                <!-- Otimização de Sites -->
+                <div class="extras-category" data-category="optimization">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="category-title">Otimização de Sites</h3>
+                        <p class="category-description">Melhore a performance e acessibilidade do seu site</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Atualização de site antigo (visual moderno e leve)</h4>
+                            </div>
+                            <div class="service-price">desde €100</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Conversão para mobile/tablet</h4>
+                            </div>
+                            <div class="service-price">desde €100</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Melhorias de acessibilidade (teclado, contraste)</h4>
+                            </div>
+                            <div class="service-price">desde €80</div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Otimização&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Otimização%20de%20Sites.%0A%0AEstou%20interessado%20em:%0A-%20Atualização%20de%20site%20antigo%0A-%20Conversão%20para%20mobile/tablet%0A-%20Melhorias%20de%20acessibilidade%0A%0ADetalhes%20do%20projeto:%0A-%20URL%20do%20site%20atual:%0A-%20Principais%20problemas:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Otimização</a>
+                </div>
+
+                <!-- MIDDLE ROW - 2 CENTERED BOXES -->
+                <!-- Redes Sociais - Criação -->
+                <div class="extras-category" data-category="social">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3 class="category-title">Redes Sociais</h3>
+                        <p class="category-description">Criação e design para suas redes sociais</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Criação de perfil profissional (bio, destaques, 6 posts)</h4>
+                            </div>
+                            <div class="service-price">€90</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Design de posts personalizados (9 imagens)</h4>
+                            </div>
+                            <div class="service-price">€70</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Templates editáveis para Canva</h4>
+                            </div>
+                            <div class="service-price">€50</div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Redes%20Sociais&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Redes%20Sociais.%0A%0AEstou%20interessado%20em:%0A-%20Criação%20de%20perfil%20profissional%0A-%20Design%20de%20posts%20personalizados%0A-%20Templates%20editáveis%20para%20Canva%0A%0ADetalhes%20do%20projeto:%0A-%20Plataforma%20(Instagram,%20Facebook,%20etc.):%0A-%20Tipo%20de%20negócio:%0A-%20Estilo%20preferido:%0A%0AObrigado!" class="category-cta">Orçamento Redes</a>
+                </div>
+
+                <!-- Gestão Mensal de Redes Sociais -->
+                <div class="extras-category" data-category="social">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="category-title">Gestão Mensal de Redes Sociais</h3>
+                        <p class="category-description">Gestão completa das suas redes sociais por mês</p>
+                    </div>
+                    
+                    <div class="services-list">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Plano Básico (4–6 posts + 2 stories/semana, legendas e hashtags)</h4>
+                            </div>
+                            <div class="service-price">€200/mês</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Plano Avançado (8–12 posts + 4 stories/semana, legendas, hashtags e gestão de DMs,)</h4>
+                            </div>
+                            <div class="service-price">€350/mês</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Desconto trimestral - 10% desconto em pagamento de 3 meses</h4>
+                            </div>
+                            <div class="service-price">desde €180/mês</div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Gestão%20de%20Redes%20Sociais&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20Gestão%20Mensal%20de%20Redes%20Sociais.%0A%0AEstou%20interessado%20em:%0A-%20Plano%20Básico%20(€200/mês)%0A-%20Plano%20Avançado%20(€350/mês)%0A-%20Desconto%20trimestral%0A%0ADetalhes%20do%20projeto:%0A-%20Plataformas%20a%20gerir:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivos%20principais:%0A%0AObrigado!" class="category-cta">Orçamento Gestão RRSS</a>
+                </div>
+
+                <!-- BOTTOM ROW - 1 FULL-WIDTH BOX -->
+               <!-- Funcionalidades Técnicas e Visuais -->
+<div class="extras-category full-width recommended" data-category="technical">
+    <div class="recommended-banner">RECOMENDADO</div>
+    <div class="category-header">
+        <div class="category-icon">
+            <i class="fas fa-cogs"></i>
+        </div>
+        <h3 class="category-title">Funcionalidades Técnicas e Visuais</h3>
+                        <p class="category-description">Recursos interativos para enriquecer a experiência do usuário</p>
+                    </div>
+                    
+                    <div class="services-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px;">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Formulário de contacto funcional (envio automático)</h4>
+                            </div>
+                            <div class="service-price">€50</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Formulário avançado com integrações</h4>
+                            </div>
+                            <div class="service-price">€40</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Animações CSS/JS suaves (scroll, botões)</h4>
+                            </div>
+                            <div class="service-price">desde €60</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Modo escuro/claro com toggle</h4>
+                            </div>
+                            <div class="service-price">€40</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Slider/carrossel de imagens</h4>
+                            </div>
+                            <div class="service-price">€60</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Pop-up informativo ou CTA</h4>
+                            </div>
+                            <div class="service-price">€40</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Galeria interativa</h4>
+                            </div>
+                            <div class="service-price">€30</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Google Maps integrado</h4>
+                            </div>
+                            <div class="service-price">€15</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Botões de contacto flutuantes</h4>
+                            </div>
+                            <div class="service-price">€20</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Feed Instagram</h4>
+                            </div>
+                            <div class="service-price">€30</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Botão de pagamento</h4>
+                            </div>
+                            <div class="service-price">€50</div>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-info">
+                                <h4>Calendário de marcações</h4>
+                            </div>
+                            <div class="service-price">€40</div>
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html?subject=Pedido%20de%20Informações%20sobre%20Features&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20informações%20sobre%20Funcionalidades%20Técnicas%20e%20Visuais.%0A%0AEstou%20interessado%20em:%0A-%20Formulários%20de%20contacto%0A-%20Animações%20CSS/JS%0A-%20Modo%20escuro/claro%0A-%20Outras%20funcionalidades%0A%0ADetalhes%20do%20projeto:%0A-%20Funcionalidades%20específicas:%0A-%20Site%20existente%20ou%20novo:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Técnico</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Support Section Styles */
+.support-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.support-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.support-content {
+    text-align: center;
+}
+
+.support-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-intro {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.support-item {
+    display: flex;
+    flex-direction: column;
+          align-items: center;
+    gap: 25px;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.support-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.support-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.support-content-item h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-content-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-cta {
+    text-align: center;
+}
+
+.support-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Dark Mode Support for Support Section */
+body.dark .support-section {
+    background-color: #1f2937;
+}
+
+body.dark .support-item {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .support-item:hover {
+    background: #374151;
+}
+
+body.dark .support-title,
+body.dark .support-content-item h4 {
+    color: var(--text-light);
+}
+
+body.dark .support-intro,
+body.dark .support-content-item p {
+    color: #9ca3af;
+}
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --bg-card: #ffffff;
+            --bg-muted: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        /* Content Creation Service Section Styles */
+        .content-creation-section {
+            padding: 40px 0 80px 0;
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .content-creation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.1"><polygon points="0,0 1000,0 1000,100 0,80"/></svg>') no-repeat center center;
+            background-size: cover;
+            pointer-events: none;
+        }
+
+        .content-creation-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Service Header */
+        .service-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .service-badge {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Green Banner Styling */
+.recommended-banner {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    z-index: 10;
+    white-space: nowrap;
+    border: none;
+}
+
+.recommended-banner::before,
+.recommended-banner::after {
+    display: none;
+    content: none;
+}
+
+/* Purple Border for Recommended Cards */
+.package-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+
+.extras-category.recommended {
+    border: 3px solid #6366f1;
+    
+}
+
+.recommended-banner::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid #cc4125;
+    border-top: 6px solid #cc4125;
+}
+
+        .service-badge span {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .service-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .service-description {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Service Content */
+        .service-content {
+            display: grid;
+            gap: 80px;
+        }
+
+        /* Includes Section */
+        .includes-section {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .includes-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .includes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .include-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            padding: 30px;
+            background: var(--bg-muted);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .include-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .include-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .include-content h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .include-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .package-card {
+    /* Keep all existing properties, but change these: */
+    overflow: visible;  /* Change from "hidden" to "visible" */
+    padding: 60px 40px 50px 40px;  /* Add extra top padding */
+}
+
+.extras-category {
+    /* Keep all existing properties, but add these: */
+    overflow: visible;
+    padding: 50px 40px 40px 40px;
+    position: relative;
+}
+
+        /* Pricing Section */
+        .pricing-section {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .pricing-card {
             background: var(--bg-card);
             border-radius: 25px;
-            padding: 60px 40px 50px 40px;
-            box-shadow: var(--shadow-md);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
             position: relative;
-            overflow: visible;
-            border: 1px solid var(--border-color);
-            min-height: 700px;
             display: flex;
             flex-direction: column;
+            min-height: 500px;
         }
 
-        .package-card:hover {
+        .pricing-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
-        /* Recommended Banner */
-        .recommended-banner {
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .featured-badge {
             position: absolute;
-            top: -12px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
             padding: 8px 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-            z-index: 10;
-            white-space: nowrap;
-            border: none;
         }
 
-        .package-card.recommended {
-            border: 3px solid #6366f1;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .package-name {
             font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 15px;
             color: var(--text-dark);
-            transition: color 0.3s ease;
-            text-align: center;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin-bottom: 15px;
         }
 
         .package-price {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: var(--primary-color);
-            margin-bottom: 25px;
-            text-align: center;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin-bottom: 10px;
         }
 
-        .package-description {
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            font-style: normal;
-            transition: color 0.3s ease;
-            font-size: 0.95rem;
-            text-align: center;
-            line-height: 1.6;
-            font-weight: 400;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-
-        .package-target {
-            background: var(--bg-muted);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            transition: background-color 0.3s ease;
-            flex-grow: 1;
-        }
-
-        .package-target h4 {
-            color: var(--text-dark);
-            margin-bottom: 15px;
-            transition: color 0.3s ease;
+        .package-limit {
             font-size: 1rem;
-            font-weight: 600;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-
-        .package-target p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 0;
             color: var(--text-muted);
-            transition: color 0.3s ease;
-            font-weight: 400;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            font-style: italic;
         }
 
         .package-features {
             list-style: none;
             padding: 0;
             margin-bottom: 30px;
+            flex-grow: 1;
         }
 
         .package-features li {
-            padding: 8px 0;
-            padding-left: 25px;
+            padding: 12px 0;
+            padding-left: 30px;
             position: relative;
             color: var(--text-muted);
-            transition: color 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             line-height: 1.5;
-            margin-bottom: 12px;
-            font-weight: 400;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
         }
 
         .package-features li::before {
             content: "✓";
             position: absolute;
             left: 0;
-            color: #27ae60;
+            color: #10b981;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
-        .cta-button {
+        .pricing-cta {
             width: 100%;
             padding: 16px;
             background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
             margin-top: auto;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
         }
 
-        .cta-button:hover {
+        .pricing-cta:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
             color: white;
             text-decoration: none;
         }
 
-        /* PDF Download Section */
-        .pdf-download-section {
-            padding: 60px 0;
-            background: var(--bg-muted);
-            text-align: center;
-        }
-
-        .pdf-download-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .pdf-download-button {
-            display: inline-block;
-            padding: 18px 35px;
+        .pricing-card.custom .pricing-cta {
             background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            margin-top: 20px;
         }
 
-        .pdf-download-button:hover {
+        .pricing-card.custom .pricing-cta:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            text-decoration: none;
-            color: white;
         }
 
-        /* Monthly Plan Section */
-        .monthly-plan-section {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .monthly-plan-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .monthly-plan-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: var(--shadow-lg);
-            border: 2px solid var(--primary-color);
-            text-align: center;
-        }
-
-        .monthly-plan-badge {
-            background: var(--primary-color);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .monthly-plan-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-
-        .monthly-plan-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .monthly-plan-price {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-        }
-
-        .monthly-plan-price span {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-        }
-
-        .plan-list {
-            list-style: none;
-            padding: 0;
-            text-align: left;
-            margin: 20px 0;
-        }
-
-        .plan-list li {
-            padding: 8px 0;
-            padding-left: 25px;
+        .pricing-card.recommended {
+            border: 3px solid #6366f1 !important;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05)) !important;
             position: relative;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .plan-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-        .monthly-plan-button {
-            display: inline-block;
-            padding: 18px 40px;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            margin-top: 30px;
-        }
-
-        .monthly-plan-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            text-decoration: none;
-            color: white;
-        }
-
-        /* Condensed Extras Section */
-        .extras-section {
-            padding: 80px 0;
-            background: var(--bg-muted);
-            transition: background-color 0.3s ease;
-        }
-
-        .extras-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .extras-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-        }
-
-        .extras-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .category-item {
-            background: var(--bg-card);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .category-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .category-item h4 {
-            color: var(--text-dark);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            transition: color 0.3s ease;
-        }
-
-        .category-item p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0;
-            transition: color 0.3s ease;
-        }
-
-        /* Content Creation Section - Condensed */
-        .content-creation-section {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .content-creation-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-
-        .service-badge {
-            background: var(--primary-color);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .service-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-
-        .service-description {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 40px;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 80px 0;
-            background: var(--bg-muted);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .faq-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 50px;
-        }
-
-        .faq-item {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-        }
-
-        .faq-question {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-        }
-
-        .faq-answer {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* Support Section */
-        .support-section {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .support-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .support-title {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 50px;
-        }
-
-        .support-content {
-            display: grid;
-            gap: 30px;
-        }
-
-        .support-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .support-icon {
-            background: var(--primary-color);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .support-content-item h4 {
-            color: var(--text-dark);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .support-content-item p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .support-button {
-            display: inline-block;
-            padding: 18px 40px;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            margin-top: 40px;
-        }
-
-        .support-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            text-decoration: none;
-            color: white;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 80px 0;
-            background: var(--primary-color);
-            text-align: center;
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .contact-section .section-title {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-description {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-        }
-
-        .contact-button {
-            display: inline-block;
-            padding: 18px 40px;
-            background: white;
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            text-decoration: none;
-            color: var(--primary-color);
-        }
-
-        /* Final PDF Section */
-        .final-pdf-section {
-            padding: 60px 0;
-            background: var(--bg-card);
-            text-align: center;
-        }
-
-        .final-pdf-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .final-pdf-container h3 {
-            color: var(--text-dark);
-            font-size: 2rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .final-pdf-container p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .final-pdf-button {
-            display: inline-block;
-            padding: 16px 30px;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .final-pdf-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            text-decoration: none;
-            color: white;
+            overflow: visible;
         }
 
         /* Dark Mode Support */
-        body.dark .contact-hero {
-            background-color: #1f2937;
-        }
-
-        body.dark .page-title,
-        body.dark .page-description {
-            color: var(--text-light);
-        }
-
-        body.dark .packages-section,
-        body.dark .monthly-plan-section,
-        body.dark .content-creation-section,
-        body.dark .support-section {
-            background-color: #1f2937;
-        }
-
-        body.dark .extras-section,
-        body.dark .faq-section {
+        body.dark .content-creation-section {
             background: #1f2937;
         }
 
-        body.dark .package-card,
-        body.dark .monthly-plan-card,
-        body.dark .faq-item,
-        body.dark .category-item {
+        body.dark .includes-section,
+        body.dark .pricing-section {
             background: #2d2d2d;
             border-color: #374151;
         }
 
-        body.dark .package-target {
-            background: #3d3d3d;
-        }
-
-        body.dark .section-title,
-        body.dark .package-name,
-        body.dark .package-target h4,
-        body.dark .monthly-plan-title,
-        body.dark .faq-title,
-        body.dark .faq-question,
-        body.dark .support-title,
-        body.dark .support-content-item h4,
         body.dark .service-title,
-        body.dark .category-item h4,
-        body.dark .final-pdf-container h3 {
-            color: var(--text-light);
+        body.dark .includes-title,
+        body.dark .pricing-title,
+        body.dark .package-name {
+            color: #f9fafb;
         }
 
-        body.dark .package-description,
-        body.dark .package-features li,
-        body.dark .package-target p,
-        body.dark .monthly-plan-subtitle,
-        body.dark .faq-answer,
-        body.dark .support-content-item p,
         body.dark .service-description,
-        body.dark .extras-subtitle,
-        body.dark .category-item p,
-        body.dark .final-pdf-container p {
+        body.dark .include-content p,
+        body.dark .package-features li,
+        body.dark .package-limit {
             color: #9ca3af;
         }
 
-        body.dark .final-pdf-section {
-            background: #2d2d2d;
+        body.dark .include-content h4 {
+            color: #f9fafb;
         }
 
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            z-index: 999;
+        body.dark .include-item {
+            background: #374151;
+            border-color: #4b5563;
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-lg);
+        body.dark .include-item:hover {
+            background: #4b5563;
+        }
+
+        body.dark .pricing-card {
+            background: #374151;
+            border-color: #4b5563;
+        }
+
+        body.dark .pricing-card.featured {
+            border-color: var(--primary-color);
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-creation-container {
+                padding: 0 15px;
+            }
+            
+            .includes-section,
+            .pricing-section {
+                padding: 40px 30px;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
-            .page-title {
+            .content-creation-section {
+                padding: 60px 0;
+            }
+            
+            .service-title {
                 font-size: 2.5rem;
             }
             
-            .packages-grid {
+            .service-description {
+                font-size: 1.1rem;
+            }
+            
+            .includes-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 25px;
             }
             
-            .package-card {
-                padding: 40px 30px;
-                min-height: auto;
+            .include-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
             }
             
-            .monthly-plan-card {
-                padding: 30px;
+            .includes-section,
+            .pricing-section {
+                padding: 30px 20px;
             }
             
-            .extras-categories {
+            .pricing-cards {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
+            }
+            
+            .pricing-card {
+                padding: 30px 20px;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
             }
         }
+
+        @media (max-width: 480px) {
+            .service-title {
+                font-size: 2rem;
+            }
+            
+            .includes-title,
+            .pricing-title {
+                font-size: 2rem;
+            }
+            
+            .package-price {
+                font-size: 2rem;
+            }
+        }
+        /* Support Section Styles */
+.support-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.support-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.support-content {
+    text-align: center;
+}
+
+.support-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-intro {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.support-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.support-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.support-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.support-content-item h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-content-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-cta {
+    text-align: center;
+}
+
+.support-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Dark Mode Support for Support Section */
+body.dark .support-section {
+    background-color: #1f2937;
+}
+
+body.dark .support-item {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .support-item:hover {
+    background: #374151;
+}
+
+body.dark .support-title,
+body.dark .support-content-item h4 {
+    color: var(--text-light);
+}
+
+body.dark .support-intro,
+body.dark .support-content-item p {
+    color: #9ca3af;
+}
+
+/* Monthly Plan Section */
+.monthly-plan-section {
+    padding: 80px 0;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.monthly-plan-container {
+     max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
+     border: 1px solid var(--primary-color);
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.monthly-plan-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.monthly-plan-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.monthly-plan-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.monthly-plan-price {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.monthly-plan-price span {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.monthly-plan-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.plan-includes,
+.plan-excludes {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.plan-includes h4,
+.plan-excludes h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-includes h4 {
+    color: #059669;
+}
+
+.plan-excludes h4 {
+    color: #dc2626;
+}
+
+.plan-includes h4::before {
+    content: "✓";
+    background: #059669;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.plan-excludes h4::before {
+    content: "✗";
+    background: #dc2626;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-list li {
+    padding: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    color: var(--text-muted);
+    line-height: 1.5;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.plan-list li:last-child {
+    border-bottom: none;
+}
+
+.plan-includes .plan-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.plan-excludes .plan-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #dc2626;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.monthly-plan-cta {
+    text-align: center;
+}
+
+.monthly-plan-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+     color: white !important;
+    padding: 18px 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.monthly-plan-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+    color: white !important;
+    text-decoration: none !important;
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3);
+    }
+        
+    .monthly-plan-button:visited {
+    color: white !important;
+    text-decoration: none !important;
+    }
+        
+    .monthly-plan-button:focus {
+    color: white !important;
+    text-decoration: none !important;
+    outline: none;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+/* FAQ Section Styles */
+.faq-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 30px;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.faq-answer {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Dark Mode Support for FAQ Section */
+body.dark .faq-section {
+    background-color: #1f2937;
+}
+
+body.dark .faq-item {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .faq-title {
+    color: var(--text-light);
+}
+
+body.dark .faq-question {
+    color: var(--primary-color);
+}
+
+body.dark .faq-answer {
+    color: #9ca3af;
+}
+
+/* Responsive Design for FAQ Section */
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .faq-item {
+        padding: 25px;
+    }
+
+    .faq-title {
+        font-size: 2rem;
+    }
+
+    .faq-question {
+        font-size: 1.1rem;
+    }
+
+    .faq-answer {
+        font-size: 0.95rem;
+    }
+}        
+
+/* Dark Mode Support */
+body.dark .monthly-plan-section {
+    background-color: #1f2937;
+}
+
+body.dark .monthly-plan-card,
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.15));
+}
+
+body.dark .monthly-plan-title {
+    color: var(--text-light);
+}
+
+body.dark .monthly-plan-subtitle,
+body.dark .plan-list li {
+    color: #9ca3af;
+}
+
+/* PDF Download Section Styles */
+.pdf-download-section {
+    padding: 80px 0;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.pdf-download-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pdf-download-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
+    border: 1px solid var(--primary-color);
+    border-radius: 25px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+    transition: all 0.3s ease;
+}
+
+.pdf-download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(99, 102, 241, 0.15);
+}
+
+.pdf-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.pdf-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.pdf-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.pdf-download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white !important;
+    padding: 18px 35px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.pdf-download-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+    color: white !important;
+    text-decoration: none !important;
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3);
+}
+
+.pdf-download-button:visited {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.pdf-download-button:focus {
+    color: white !important;
+    text-decoration: none !important;
+    outline: none;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+.pdf-download-button i {
+    font-size: 1.2rem;
+}
+
+/* Dark Mode Support for PDF Download Section */
+body.dark .pdf-download-section {
+    background-color: #1f2937;
+}
+
+body.dark .pdf-download-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.15));
+    border-color: var(--primary-color);
+}
+
+body.dark .pdf-title {
+    color: var(--text-light);
+}
+
+body.dark .pdf-description {
+    color: #9ca3af;
+}
+
+/* Responsive Design for PDF Download Section */
+@media (max-width: 768px) {
+    .pdf-download-card {
+        padding: 35px 25px;
+    }
+
+    .pdf-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .pdf-title {
+        font-size: 1.5rem;
+    }
+
+    .pdf-description {
+        font-size: 1rem;
+    }
+
+    .pdf-download-button {
+        padding: 15px 25px;
+        font-size: 1rem;
+    }
+}
     </style>
 </head>
-
 <body>
-    <!-- Sticky Navigation -->
-    <nav class="sticky-nav">
-        <div class="sticky-nav-container">
-            <div class="nav-logo">
-                <span>Nadia Irina</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#packages">Pacotes</a></li>
-                <li><a href="#monthly-plan">Plano Mensal</a></li>
-                <li><a href="#extras">Extras</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
-        🌙
-    </button>
-
-    <!-- Hero Section -->
-    <section class="contact-hero">
-        <div class="container">
-            <h1 class="page-title">Serviços de Web Design</h1>
-            <p class="page-description">
-                Olá, o meu nome é Nadia Irina e sou Front-End Developer & Marketeer. 
-                Ofereço soluções completas de web design para ajudar a sua empresa a destacar-se no mundo digital.
-            </p>
-        </div>
-    </section>
-
-    <!-- Packages Section -->
-    <section id="packages" class="packages-section">
-        <div class="packages-container">
-            <h2 class="section-title">Pacotes de Web Design</h2>
-            <div class="packages-grid">
-                <!-- Essential Package -->
-                <div class="package-card">
-                    <h3 class="package-name">Essential</h3>
-                    <div class="package-price">€250</div>
-                    <p class="package-description">Ideal para começar a sua presença online</p>
-                    <div class="package-target">
-                        <h4>Este pacote é para ti se:</h4>
-                        <p>Precisas de um website simples e profissional para estabelecer a tua presença online.</p>
-                    </div>
-                    <ul class="package-features">
-                        <li>Website de 1 página (landing page)</li>
-                        <li>Design responsivo</li>
-                        <li>Formulário de contacto</li>
-                        <li>Otimização SEO básica</li>
-                        <li>1 semana de suporte gratuito</li>
-                    </ul>
-                    <a href="#contact" class="cta-button">Escolher Essential</a>
+    <!-- Content Creation Service Section -->
+    <section class="content-creation-section" id="content-creation">
+        <div class="content-creation-container">
+            <div class="service-header">
+                <div class="service-badge">
+                    <span>SERVIÇO EXTRA</span>
                 </div>
-
-                <!-- Start Package -->
-                <div class="package-card">
-                    <h3 class="package-name">Start</h3>
-                    <div class="package-price">€450</div>
-                    <p class="package-description">Para pequenas empresas em crescimento</p>
-                    <div class="package-target">
-                        <h4>Este pacote é para ti se:</h4>
-                        <p>Tens uma pequena empresa e precisas de um website com várias páginas para mostrar os teus serviços.</p>
-                    </div>
-                    <ul class="package-features">
-                        <li>Website até 3 páginas</li>
-                        <li>Design responsivo profissional</li>
-                        <li>Formulário de contacto avançado</li>
-                        <li>Otimização SEO</li>
-                        <li>Integração com redes sociais</li>
-                        <li>2 semanas de suporte gratuito</li>
-                    </ul>
-                    <a href="#contact" class="cta-button">Escolher Start</a>
-                </div>
-
-                <!-- Presence Package -->
-                <div class="package-card recommended">
-                    <div class="recommended-banner">RECOMENDADO</div>
-                    <h3 class="package-name">Presence</h3>
-                    <div class="package-price">€650</div>
-                    <p class="package-description">Perfeito para empresas estabelecidas</p>
-                    <div class="package-target">
-                        <h4>Este pacote é para ti se:</h4>
-                        <p>Queres um website completo e profissional que represente verdadeiramente a tua marca.</p>
-                    </div>
-                    <ul class="package-features">
-                        <li>Website até 6 páginas</li>
-                        <li>Design 100% personalizado</li>
-                        <li>Sistema de gestão de conteúdo</li>
-                        <li>Otimização SEO avançada</li>
-                        <li>Blog integrado</li>
-                        <li>1 mês de suporte gratuito</li>
-                    </ul>
-                    <a href="#contact" class="cta-button">Escolher Presence</a>
-                </div>
-
-                <!-- Advanced Package -->
-                <div class="package-card">
-                    <h3 class="package-name">Advanced</h3>
-                    <div class="package-price">€950</div>
-                    <p class="package-description">Para empresas que precisam de funcionalidades avançadas</p>
-                    <div class="package-target">
-                        <h4>Este pacote é para ti se:</h4>
-                        <p>Precisas de um website com funcionalidades especiais como e-commerce ou área de membros.</p>
-                    </div>
-                    <ul class="package-features">
-                        <li>Website até 10 páginas</li>
-                        <li>E-commerce básico (até 50 produtos)</li>
-                        <li>Área de cliente/membro</li>
-                        <li>Integração com sistemas de pagamento</li>
-                        <li>Analytics avançados</li>
-                        <li>2 meses de suporte gratuito</li>
-                    </ul>
-                    <a href="#contact" class="cta-button">Escolher Advanced</a>
-                </div>
-
-                <!-- Pro Package -->
-                <div class="package-card">
-                    <h3 class="package-name">Pro</h3>
-                    <div class="package-price">€1500</div>
-                    <p class="package-description">Solução completa para grandes projetos</p>
-                    <div class="package-target">
-                        <h4>Este pacote é para ti se:</h4>
-                        <p>Tens um projeto complexo que requer uma solução totalmente personalizada e avançada.</p>
-                    </div>
-                    <ul class="package-features">
-                        <li>Website ilimitado de páginas</li>
-                        <li>E-commerce completo</li>
-                        <li>Funcionalidades personalizadas</li>
-                        <li>Integração com sistemas externos</li>
-                        <li>Otimização de performance</li>
-                        <li>3 meses de suporte gratuito</li>
-                    </ul>
-                    <a href="#contact" class="cta-button">Escolher Pro</a>
-                </div>
+                <h2 class="service-title">Criação de Conteúdo para Website</h2>
+                <p class="service-description">
+                    Ofereço um serviço dedicado à redação de textos profissionais e edição básica de imagens, 
+                    garantindo que o conteúdo do seu site esteja alinhado com a sua marca e objetivos.
+                </p>
             </div>
 
-            <!-- PDF Download -->
-            <div class="pdf-download-section">
-                <div class="pdf-download-container">
-                    <h3>Quer conhecer todos os detalhes?</h3>
-                    <p>Descarregue o nosso guia completo com informações detalhadas sobre todos os pacotes, comparações e extras disponíveis.</p>
-                    <a href="https://drive.google.com/uc?id=1cC6CCy7PsEiOpNNPSM5qqO663F8JF-Rl&export=download" class="pdf-download-button">
-                        Descarregar Guia Completo de Serviços (PDF)
-                    </a>
+            <div class="service-content">
+                <div class="includes-section">
+                    <h3 class="includes-title">Inclui:</h3>
+                    <div class="includes-grid">
+                        <div class="include-item">
+                            <div class="include-icon">
+                                <i class="fas fa-pen-fancy"></i>
+                            </div>
+                            <div class="include-content">
+                                <h4>Redação de Textos</h4>
+                                <p>Textos para páginas essenciais do site (ex: Quem Somos, Serviços, Contacto)</p>
+                            </div>
+                        </div>
+
+                        <div class="include-item">
+                            <div class="include-icon">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="include-content">
+                                <h4>Edição Básica de Imagens</h4>
+                                <p>Ajustes, cortes, correção de cor para otimizar as suas imagens</p>
+                            </div>
+                        </div>
+
+                        <div class="include-item">
+                            <div class="include-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="include-content">
+                                <h4>Sugestões de Melhoria</h4>
+                                <p>Sugestões para melhorar a comunicação textual e visual do seu site</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h3 class="pricing-title">Preços (desde):</h3>
+                    <div class="pricing-cards">
+                        <div class="pricing-card basic">
+                            <div class="pricing-header">
+                                <h4 class="package-name">Pacote Básico</h4>
+                                <div class="package-price">€150</div>
+                                <p class="package-limit">até 500 palavras</p>
+                            </div>
+                            <ul class="package-features">
+                                <li>Redação de textos profissionais</li>
+                                <li>Edição básica de 3 imagens</li>
+                                <li>1 revisão incluída</li>
+                                <li>Entrega em 5 dias úteis</li>
+                            </ul>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Básico%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Básico%20de%20Criação%20de%20Conteúdo%20(€150).%0A%0ADetalhes%20do%20projeto:%0A-%20Páginas%20a%20redigir:%0A-%20Tipo%20de%20negócio:%0A-%20Tom%20de%20comunicação%20desejado:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Escolher Básico</a>
+                        </div>
+
+                        <div class="pricing-card complete featured recommended">
+                            <div class="featured-badge">
+                                <span>MAIS POPULAR</span>
+                            </div>
+                            <div class="pricing-header">
+                                <h4 class="package-name">Pacote Completo</h4>
+                                <div class="package-price">€280</div>
+                                <p class="package-limit">até 1000 palavras</p>
+                            </div>
+                            <ul class="package-features">
+                                <li>Redação de textos profissionais</li>
+                                <li>Edição básica de 6 imagens</li>
+                                <li>2 revisões incluídas</li>
+                                <li>Otimização SEO básica</li>
+                                <li>Sugestões de melhorias</li>
+                                <li>Entrega em 7 dias úteis</li>
+                            </ul>
+                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Completo%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Completo%20de%20Criação%20de%20Conteúdo%20(€280).%0A%0ADetalhes%20do%20projeto:%0A-%20Páginas%20a%20redigir:%0A-%20Tipo%20de%20negócio:%0A-%20Tom%20de%20comunicação%20desejado:%0A-%20Objetivos%20SEO:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Escolher Completo</a>
+                        </div>
+
+                        <div class="pricing-card custom">
+                            <div class="pricing-header">
+                                <h4 class="package-name">Serviço Personalizado</h4>
+                                <div class="package-price">Orçamento à parte</div>
+                                <p class="package-limit">conteúdo personalizado</p>
+                            </div>
+                            <ul class="package-features">
+                                <li>Análise detalhada das necessidades</li>
+                                <li>Conteúdo totalmente personalizado</li>
+                                <li>Revisões ilimitadas</li>
+                                <li>Estratégia de conteúdo</li>
+                                <li>Suporte contínuo</li>
+                                <li>Prazo flexível</li>
+                            </ul>
+                            <a href="contact.html?subject=Interesse%20no%20Serviço%20Personalizado%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Serviço%20Personalizado%20de%20Criação%20de%20Conteúdo.%0A%0ADetalhes%20do%20projeto:%0A-%20Tipo%20de%20conteúdo%20necessário:%0A-%20Volume%20de%20texto%20estimado:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivos%20específicos:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Solicitar Orçamento</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Monthly Maintenance Plan Section -->
-    <section id="monthly-plan" class="monthly-plan-section">
-        <div class="monthly-plan-container">
-            <div class="monthly-plan-card">
-                <div class="monthly-plan-badge">
-                    PLANO MENSAL
-                </div>
-                
-                <h2 class="monthly-plan-title">Plano Mensal de Manutenção e Suporte</h2>
-                
-                <p class="monthly-plan-subtitle">
-                    Mantenha o seu website sempre atualizado, seguro e a funcionar sem preocupações, com suporte rápido quando precisar.
-                </p>
-                
-                <div class="monthly-plan-price">
-                    €60<span>/mês</span>
-                </div>
-                
-                <div class="monthly-plan-content">
-                    <div class="plan-includes">
-                        <h4>Inclui:</h4>
-                        <ul class="plan-list">
-                            <li>Atualizações regulares do sistema, plugins e correções básicas</li>
-                            <li>Backup automático semanal para segurança dos dados</li>
-                            <li>Monitorização para garantir que o site está sempre online</li>
-                            <li>Suporte técnico por e-mail para dúvidas e pequenos ajustes (até 2 horas por mês)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="plan-excludes">
-                        <h4>Não Inclui:</h4>
-                        <ul class="plan-list">
-                            <li>Ajustes mais complexos ou criação de conteúdo (orçamentados à parte)</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="monthly-plan-cta">
-                    <a href="contact.html?subject=Interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte%20(€60/mês).%0A%0ADetalhes%20que%20gostaria%20de%20esclarecer:%0A-%20Como%20funciona%20o%20processo%20de%20subscrição%0A-%20Quando%20começaria%20o%20serviço%0A-%20Formas%20de%20pagamento%20disponíveis%0A%0AO%20meu%20website%20é:%20[inserir%20URL%20do%20website]%0A%0AObrigado!" class="monthly-plan-button">
-                        Pedir Plano de Manutenção
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Extras Section - Condensed -->
-    <section id="extras" class="extras-section">
-        <div class="extras-container">
-            <h2 class="section-title">Serviços Adicionais (Extras)</h2>
-            <p class="extras-subtitle">Serviços complementares para potencializar o seu projeto digital</p>
-            
-            <div class="extras-categories">
-                <div class="category-item">
-                    <h4>Branding & Identidade Visual</h4>
-                    <p>Crie ou reforce a personalidade da sua marca com elementos visuais únicos e coerentes.</p>
-                </div>
-                
-                <div class="category-item">
-                    <h4>Otimização de Sites</h4>
-                    <p>Melhore a performance, velocidade e posicionamento do seu website nos motores de busca.</p>
-                </div>
-                
-                <div class="category-item">
-                    <h4>Redes Sociais</h4>
-                    <p>Gestão completa das suas redes sociais com conteúdo estratégico e consistente.</p>
-                </div>
-                
-                <div class="category-item">
-                    <h4>Gestão Mensal de Redes Sociais</h4>
-                    <p>Planos mensais para manter as suas redes sociais ativas e profissionais.</p>
-                </div>
-                
-                <div class="category-item">
-                    <h4>Funcionalidades Técnicas e Visuais</h4>
-                    <p>Recursos interativos e funcionalidades avançadas para enriquecer a experiência do utilizador.</p>
-                </div>
+<section class="monthly-plan-section">
+    <div class="monthly-plan-container">
+        <div class="monthly-plan-card">
+            <div class="monthly-plan-badge">
+                PLANO MENSAL
             </div>
             
-            <div class="extras-cta">
-                <p style="text-align: center; margin-top: 40px; font-size: 1.1rem; color: var(--text-muted);">
-                    Para ver a lista detalhada de <strong>todos os extras disponíveis, com descrições e preços específicos</strong>,
-                </p>
-                <div style="text-align: center; margin-top: 20px;">
-                    <a href="https://drive.google.com/uc?id=1cC6CCy7PsEiOpNNPSM5qqO663F8JF-Rl&export=download" class="pdf-download-button">
-                        descarregue o nosso Guia Completo de Serviços aqui
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Creation Section - Condensed -->
-    <section class="content-creation-section">
-        <div class="content-creation-container">
-            <div class="service-badge">SERVIÇO ESPECIALIZADO</div>
-            <h2 class="service-title">Criação de Conteúdo para Website</h2>
-            <p class="service-description">
-                Ofereço um serviço dedicado à redação de textos profissionais e edição básica de imagens para complementar o seu projeto de web design.
+            <h2 class="monthly-plan-title">Plano Mensal de Manutenção e Suporte</h2>
+            
+            <p class="monthly-plan-subtitle">
+                Mantenha o seu website sempre atualizado, seguro e a funcionar sem preocupações, com suporte rápido quando precisar.
             </p>
             
-            <div class="content-summary">
-                <p style="text-align: center; margin-top: 30px; font-size: 1.1rem; color: var(--text-muted);">
-                    Temos diferentes pacotes de criação de conteúdo (Básico, Completo e Personalizado) para se adaptarem às suas necessidades.
-                </p>
-                <div style="text-align: center; margin-top: 20px;">
-                    <a href="https://drive.google.com/uc?id=1cC6CCy7PsEiOpNNPSM5qqO663F8JF-Rl&export=download" class="pdf-download-button">
-                        Descarregar Guia Completo para Ver os Pacotes e Preços de Criação de Conteúdo (PDF)
-                    </a>
+            <div class="monthly-plan-price">
+                €60<span>/mês</span>
+            </div>
+            
+            <div class="monthly-plan-content">
+                <div class="plan-includes">
+                    <h4>Inclui:</h4>
+                    <ul class="plan-list">
+                        <li>Atualizações regulares do sistema, plugins e correções básicas</li>
+                        <li>Backup automático semanal para segurança dos dados</li>
+                        <li>Monitorização para garantir que o site está sempre online</li>
+                        <li>Suporte técnico por e-mail para dúvidas e pequenos ajustes (até 2 horas por mês)</li>
+                    </ul>
+                </div>
+                
+                <div class="plan-excludes">
+                    <h4>Não Inclui:</h4>
+                    <ul class="plan-list">
+                        <li>Ajustes mais complexos ou criação de conteúdo (orçamentados à parte)</li>
+                    </ul>
                 </div>
             </div>
+            
+            <div class="monthly-plan-cta">
+                <a href="contact.html?subject=Interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte%20(€60/mês).%0A%0ADetalhes%20que%20gostaria%20de%20esclarecer:%0A-%20Como%20funciona%20o%20processo%20de%20subscrição%0A-%20Quando%20começaria%20o%20serviço%0A-%20Formas%20de%20pagamento%20disponíveis%0A%0AO%20meu%20website%20é:%20[inserir%20URL%20do%20website]%0A%0AObrigado!" class="monthly-plan-button">
+                  Pedir Plano de Manutenção
+                </a>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-        <div class="faq-container">
+<section class="faq-section">
+    <div class="faq-container">
+        <div class="faq-header">
             <h2 class="faq-title">Perguntas Frequentes (FAQ)</h2>
+        </div>
+        
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3 class="faq-question">Quando devo pagar?</h3>
+                <p class="faq-answer">
+                    É pedido um adiantamento de 50% na aprovação da proposta para iniciar o projeto. 
+                    O restante é pago na entrega do site ou conforme acordado.
+                </p>
+            </div>
             
             <div class="faq-item">
-                <h3 class="faq-question">Como funciona o processo de pagamento?</h3>
+                <h3 class="faq-question">Quais as formas de pagamento aceites?</h3>
                 <p class="faq-answer">
-                    Trabalho com um sistema de pagamento dividido: 50% no início do projeto para começar o desenvolvimento, 
-                    e os restantes 50% na entrega final. Aceito transferência bancária e MB Way.
+                    Aceito transferência bancária e MB WAY.
                 </p>
             </div>
-
+            
             <div class="faq-item">
-                <h3 class="faq-question">Que métodos de desenvolvimento utiliza?</h3>
+                <h3 class="faq-question">E se houver atrasos no envio de conteúdos?</h3>
                 <p class="faq-answer">
-                    Utilizo tecnologias modernas como HTML5, CSS3, JavaScript, e frameworks como React quando necessário. 
-                    Todos os websites são desenvolvidos com design responsivo e otimizados para SEO.
+                    O prazo de entrega do projeto será ajustado conforme o atraso no envio do material pelo cliente.
                 </p>
             </div>
-
+            
             <div class="faq-item">
-                <h3 class="faq-question">E se eu atrasar o fornecimento de conteúdo?</h3>
+                <h3 class="faq-question">Posso cancelar o projeto?</h3>
                 <p class="faq-answer">
-                    Compreendo que por vezes é difícil reunir todo o conteúdo. O prazo de entrega será ajustado conforme o atraso, 
-                    e mantenho comunicação regular para vos ajudar no processo.
-                </p>
-            </div>
-
-            <div class="faq-item">
-                <h3 class="faq-question">Posso cancelar o projeto a meio?</h3>
-                <p class="faq-answer">
-                    Sim, mas o valor pago inicialmente (50%) não é reembolsável, pois corresponde ao trabalho já desenvolvido. 
-                    Entrego todo o progresso realizado até ao momento do cancelamento.
+                    Cancelamentos devem ser comunicados por escrito. O adiantamento pago não é reembolsável, 
+                    pois cobre o tempo e recursos já investidos.
                 </p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Support Section -->
-    <section class="support-section">
-        <div class="support-container">
-            <h2 class="support-title">Suporte Pós-Entrega / Garantia de Satisfação</h2>
+    <!-- Support and Guarantee Section -->
+<section class="support-section">
+    <div class="support-container">
+        <div class="support-content">
+            <h2 class="support-title">Suporte e Garantia de Satisfação</h2>
+            <p class="support-intro">
+                O meu compromisso é entregar um website que satisfaça totalmente as suas expectativas e funcione na perfeição.
+            </p>
             
-            <div class="support-content">
+            <div class="support-grid">
                 <div class="support-item">
                     <div class="support-icon">
                         <i class="fas fa-shield-alt"></i>
@@ -1236,127 +2924,91 @@
                 </div>
             </div>
 
-            <div style="text-align: center;">
-                <a href="#contact" class="support-button">Contactar para Mais Informações</a>
+            <div class="support-cta">
+                <a href="contact.html?subject=Informações%20sobre%20Suporte&message=Olá%20Nadia,%0A%0AGostaria%20de%20obter%20mais%20informações%20sobre%20o%20suporte%20e%20garantia%20dos%20seus%20serviços.%0A%0AObrigado!" class="support-button">Contactar para Mais Informações</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="contact-container">
-            <h2 class="section-title">Pronto para Começar?</h2>
-            <p class="contact-description">
-                Entre em contacto comigo para discutirmos o seu projeto e encontrarmos a solução perfeita para as suas necessidades.
-            </p>
-            <div class="contact-cta">
-                <a href="mailto:nadiairina934@gmail.com" class="contact-button">
-                    Contactar Agora
-                </a>
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Vamos Trabalhar Juntos</h2>
+            <p>Procura um Programador Front-End com experiência em Marketing? Adoraria saber mais sobre o seu projeto!</p>
+            <div class="cta-buttons">
+                
+                <a href="contact.html" class="btn primary">Contacta-me</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Final PDF Download -->
-    <section class="final-pdf-section">
-        <div class="final-pdf-container">
-            <h3>Precisa de Mais Detalhes?</h3>
-            <p>Descarregue o nosso guia completo com todos os serviços, preços e informações detalhadas.</p>
-            <a href="https://drive.google.com/uc?id=1cC6CCy7PsEiOpNNPSM5qqO663F8JF-Rl&export=download" class="final-pdf-button">
-                Descarregar Guia Completo de Serviços (PDF)
-            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer style="background: #1f2937; color: white; padding: 60px 0 30px;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
-                <div>
-                    <h3 style="color: #6366f1; font-size: 1.5rem; margin-bottom: 20px;">Nadia Irina</h3>
-                    <p style="color: #9ca3af; line-height: 1.6;">Front-End Developer & Marketeer especializada em criar websites modernos e funcionais.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
+                    <p>Front-End Developer & Marketeer</p>
                 </div>
-                <div>
-                    <h4 style="color: white; margin-bottom: 20px;">Navegação</h4>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="#" style="color: #9ca3af; text-decoration: none;">Início</a>
-                        <a href="#" style="color: #9ca3af; text-decoration: none;">Sobre Mim</a>
-                        <a href="#" style="color: #9ca3af; text-decoration: none;">Projetos</a>
-                        <a href="#" style="color: #9ca3af; text-decoration: none;">Contactos</a>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h4>Navegação</h4>
+                        <a href="index.html">Início</a>
+                        <a href="about.html">Sobre Mim</a>
+                        <a href="projects.html">Projetos</a>
+                        <a href="contact.html">Contactos</a>
                     </div>
-                </div>
-                <div>
-                    <h4 style="color: white; margin-bottom: 20px;">Contacto</h4>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="mailto:nadiairina934@gmail.com" style="color: #9ca3af; text-decoration: none;">nadiairina934@gmail.com</a>
-                        <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" style="color: #9ca3af; text-decoration: none;">LinkedIn</a>
-                        <a href="https://github.com/nadiairina" target="_blank" style="color: #9ca3af; text-decoration: none;">GitHub</a>
+                    <div class="footer-social">
+                        <h4>Conectar</h4>
+                        <a href="https://github.com/nadiairina" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank">LinkedIn</a>
+                        <a href="mailto:nadiairina934@gmail.com">Email: nadiairina934@gmail.com</a>
                     </div>
                 </div>
             </div>
-            <div style="text-align: center; padding-top: 30px; border-top: 1px solid #374151; color: #6b7280;">
+            <div class="copyright">
                 <p>&copy; 2023 Nadia Irina. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Theme Toggle Functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const categories = document.querySelectorAll('.extras-category');
+            const grid = document.querySelector('.extras-grid');
 
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'dark') {
-            body.classList.add('dark');
-            themeToggle.textContent = '☀️';
-        }
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            
-            if (body.classList.contains('dark')) {
-                themeToggle.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeToggle.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        });
+                    const filterValue = btn.getAttribute('data-category');
 
-        // Smooth Scrolling for Navigation Links
-        document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').slice(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80; // Account for sticky nav height
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Smooth scrolling for other internal links
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').slice(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
+                    if (filterValue === 'all') {
+                        grid.classList.remove('filtered');
+                        categories.forEach(category => {
+                            category.classList.remove('filter-hidden');
+                        });
+                    } else {
+                        grid.classList.add('filtered');
+                        categories.forEach(category => {
+                            if (category.getAttribute('data-category') === filterValue) {
+                                category.classList.remove('filter-hidden');
+                            } else {
+                                category.classList.add('filter-hidden');
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
