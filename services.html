@@ -24,10 +24,90 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+/* Sticky Navigation */
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sticky-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.nav-logo span {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Dark mode sticky nav */
+body.dark .sticky-nav {
+    background: rgba(31, 41, 55, 0.95);
+    border-bottom-color: #374151;
+}
+
+body.dark .nav-links a {
+    color: var(--text-light);
+}
+
+body.dark .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Mobile sticky nav */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+    
+    .nav-logo span {
+        font-size: 1.2rem;
+    }
+}
+        
     /* Packages Page Specific Styles */
 
     /* Hero Section - Matching Contact Page Style */
     .contact-hero {
+        margin-top: 60px;
         padding: 6rem 1rem 3rem;
         display: flex;
         flex-direction: column;
@@ -938,9 +1018,79 @@ body.dark .content-creation-section {
             font-size: 0.9rem;
         }
     }
+        /* Condensed Extras Section */
+.extras-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.category-item {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.category-item h4 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.category-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.pdf-download-button {
+    display: inline-block;
+    padding: 16px 30px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.pdf-download-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    color: white;
+}
     </style>
 </head>
 <body>
+    <!-- Sticky Navigation -->
+<nav class="sticky-nav">
+    <div class="sticky-nav-container">
+        <div class="nav-logo">
+            <span>Nadia Irina</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#packages">Pacotes</a></li>
+            <li><a href="#monthly-plan">Plano Mensal</a></li>
+            <li><a href="#extras">Extras</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </div>
+</nav>
     <!-- Header/Navbar -->
     <header class="header" id="header">
         <div class="container">
@@ -982,7 +1132,7 @@ body.dark .content-creation-section {
 
     <!-- Packages Section -->
     <main>
-        <section class="packages-section">
+        <section id="packages" class="packages-section"
             <div class="packages-container">
                 
                 
@@ -1127,276 +1277,51 @@ body.dark .content-creation-section {
     </div>
 </section>
 
-    <!-- EXTRAS Section -->
-    <section class="extras-section" id="extras">
-        <div class="extras-container">
-            <h2 class="section-title">Extras</h2>
-            <p class="extras-subtitle">Serviços adicionais para potencializar o teu projeto digital</p>
-            
-            <!-- Filter Buttons -->
-            <div class="extras-filters">
-                <button class="filter-btn active" data-category="all">Todos</button>
-                <button class="filter-btn" data-category="branding">Branding</button>
-                <button class="filter-btn" data-category="content">Conteúdo</button>
-                <button class="filter-btn" data-category="optimization">Otimização</button>
-                <button class="filter-btn" data-category="technical">Técnico</button>
-                <button class="filter-btn" data-category="social">Redes Sociais</button>
+    <!-- Extras Section - Condensed -->
+<section id="extras" class="extras-section">
+    <div class="extras-container">
+        <h2 class="section-title">Serviços Adicionais (Extras)</h2>
+        <p class="extras-subtitle">Serviços complementares para potencializar o seu projeto digital</p>
+        
+        <div class="extras-categories">
+            <div class="category-item">
+                <h4>Branding & Identidade Visual</h4>
+                <p>Crie ou reforce a personalidade da sua marca com elementos visuais únicos e coerentes.</p>
             </div>
             
-            <!-- Services Grid - PYRAMID LAYOUT -->
-            <div class="extras-grid">
-                <!-- TOP ROW - 3 BOXES -->
-                <!-- Branding & Identidade Visual -->
-                <div class="extras-category" data-category="branding">
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3 class="category-title">Branding & Identidade Visual</h3>
-                        <p class="category-description">Construa uma identidade visual consistente e memorável</p>
-                    </div>
-                    
-                    <div class="services-list">
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Personalização de logotipo, paleta de cores e tipografia</h4>
-                            </div>
-                            <div class="service-price">desde €150</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Manual básico de identidade visual</h4>
-                            </div>
-                            <div class="service-price">desde €80</div>
-                        </div>
-                    </div>
-                    
-                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Branding&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Branding%20e%20Identidade%20Visual.%0A%0AEstou%20interessado%20em:%0A-%20Personalização%20de%20logotipo,%20paleta%20de%20cores%20e%20tipografia%0A-%20Manual%20básico%20de%20identidade%20visual%0A%0ADetalhes%20do%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Estilo%20preferido:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Branding</a>
-                </div>
-
-                <!-- Criação de Conteúdo -->
-                <div class="extras-category" data-category="content">
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <i class="fas fa-edit"></i>
-                        </div>
-                        <h3 class="category-title">Criação de Conteúdo</h3>
-                        <p class="category-description">Textos profissionais e otimizados para o seu site</p>
-                    </div>
-                    
-                    <div class="services-list">
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Redação de textos para site</h4>
-                            </div>
-                            <div class="service-price">desde €100 por página</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Revisão e otimização SEO de texto</h4>
-                            </div>
-                            <div class="service-price">desde €50 por página</div>
-                        </div>
-                    </div>
-                    
-                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Conteúdo&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Criação%20de%20Conteúdo.%0A%0AEstou%20interessado%20em:%0A-%20Redação%20de%20textos%20para%20site%0A-%20Revisão%20e%20otimização%20SEO%0A%0ADetalhes%20do%20projeto:%0A-%20Número%20de%20páginas:%0A-%20Tipo%20de%20conteúdo:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Conteúdo</a>
-                </div>
-
-                <!-- Otimização de Sites -->
-                <div class="extras-category" data-category="optimization">
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3 class="category-title">Otimização de Sites</h3>
-                        <p class="category-description">Melhore a performance e acessibilidade do seu site</p>
-                    </div>
-                    
-                    <div class="services-list">
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Atualização de site antigo (visual moderno e leve)</h4>
-                            </div>
-                            <div class="service-price">desde €100</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Conversão para mobile/tablet</h4>
-                            </div>
-                            <div class="service-price">desde €100</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Melhorias de acessibilidade (teclado, contraste)</h4>
-                            </div>
-                            <div class="service-price">desde €80</div>
-                        </div>
-                    </div>
-                    
-                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Otimização&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Otimização%20de%20Sites.%0A%0AEstou%20interessado%20em:%0A-%20Atualização%20de%20site%20antigo%0A-%20Conversão%20para%20mobile/tablet%0A-%20Melhorias%20de%20acessibilidade%0A%0ADetalhes%20do%20projeto:%0A-%20URL%20do%20site%20atual:%0A-%20Principais%20problemas:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Otimização</a>
-                </div>
-
-                <!-- MIDDLE ROW - 2 CENTERED BOXES -->
-                <!-- Redes Sociais - Criação -->
-                <div class="extras-category" data-category="social">
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <i class="fas fa-share-alt"></i>
-                        </div>
-                        <h3 class="category-title">Redes Sociais</h3>
-                        <p class="category-description">Criação e design para suas redes sociais</p>
-                    </div>
-                    
-                    <div class="services-list">
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Criação de perfil profissional (bio, destaques, 6 posts)</h4>
-                            </div>
-                            <div class="service-price">€90</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Design de posts personalizados (9 imagens)</h4>
-                            </div>
-                            <div class="service-price">€70</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Templates editáveis para Canva</h4>
-                            </div>
-                            <div class="service-price">€50</div>
-                        </div>
-                    </div>
-                    
-                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Redes%20Sociais&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20serviços%20de%20Redes%20Sociais.%0A%0AEstou%20interessado%20em:%0A-%20Criação%20de%20perfil%20profissional%0A-%20Design%20de%20posts%20personalizados%0A-%20Templates%20editáveis%20para%20Canva%0A%0ADetalhes%20do%20projeto:%0A-%20Plataforma%20(Instagram,%20Facebook,%20etc.):%0A-%20Tipo%20de%20negócio:%0A-%20Estilo%20preferido:%0A%0AObrigado!" class="category-cta">Orçamento Redes</a>
-                </div>
-
-                <!-- Gestão Mensal de Redes Sociais -->
-                <div class="extras-category" data-category="social">
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <h3 class="category-title">Gestão Mensal de Redes Sociais</h3>
-                        <p class="category-description">Gestão completa das suas redes sociais por mês</p>
-                    </div>
-                    
-                    <div class="services-list">
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Plano Básico (4–6 posts + 2 stories/semana, legendas e hashtags)</h4>
-                            </div>
-                            <div class="service-price">€200/mês</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Plano Avançado (8–12 posts + 4 stories/semana, legendas, hashtags e gestão de DMs,)</h4>
-                            </div>
-                            <div class="service-price">€350/mês</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Desconto trimestral - 10% desconto em pagamento de 3 meses</h4>
-                            </div>
-                            <div class="service-price">desde €180/mês</div>
-                        </div>
-                    </div>
-                    
-                    <a href="contact.html?subject=Pedido%20de%20Orçamento%20para%20Gestão%20de%20Redes%20Sociais&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20um%20orçamento%20para%20Gestão%20Mensal%20de%20Redes%20Sociais.%0A%0AEstou%20interessado%20em:%0A-%20Plano%20Básico%20(€200/mês)%0A-%20Plano%20Avançado%20(€350/mês)%0A-%20Desconto%20trimestral%0A%0ADetalhes%20do%20projeto:%0A-%20Plataformas%20a%20gerir:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivos%20principais:%0A%0AObrigado!" class="category-cta">Orçamento Gestão RRSS</a>
-                </div>
-
-                <!-- BOTTOM ROW - 1 FULL-WIDTH BOX -->
-               <!-- Funcionalidades Técnicas e Visuais -->
-<div class="extras-category full-width recommended" data-category="technical">
-    <div class="recommended-banner">RECOMENDADO</div>
-    <div class="category-header">
-        <div class="category-icon">
-            <i class="fas fa-cogs"></i>
-        </div>
-        <h3 class="category-title">Funcionalidades Técnicas e Visuais</h3>
-                        <p class="category-description">Recursos interativos para enriquecer a experiência do usuário</p>
-                    </div>
-                    
-                    <div class="services-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px;">
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Formulário de contacto funcional (envio automático)</h4>
-                            </div>
-                            <div class="service-price">€50</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Formulário avançado com integrações</h4>
-                            </div>
-                            <div class="service-price">€40</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Animações CSS/JS suaves (scroll, botões)</h4>
-                            </div>
-                            <div class="service-price">desde €60</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Modo escuro/claro com toggle</h4>
-                            </div>
-                            <div class="service-price">€40</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Slider/carrossel de imagens</h4>
-                            </div>
-                            <div class="service-price">€60</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Pop-up informativo ou CTA</h4>
-                            </div>
-                            <div class="service-price">€40</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Galeria interativa</h4>
-                            </div>
-                            <div class="service-price">€30</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Google Maps integrado</h4>
-                            </div>
-                            <div class="service-price">€15</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Botões de contacto flutuantes</h4>
-                            </div>
-                            <div class="service-price">€20</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Feed Instagram</h4>
-                            </div>
-                            <div class="service-price">€30</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Botão de pagamento</h4>
-                            </div>
-                            <div class="service-price">€50</div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-info">
-                                <h4>Calendário de marcações</h4>
-                            </div>
-                            <div class="service-price">€40</div>
-                        </div>
-                    </div>
-                    
-                    <a href="contact.html?subject=Pedido%20de%20Informações%20sobre%20Features&message=Olá%20Nadia,%0A%0AGostaria%20de%20solicitar%20informações%20sobre%20Funcionalidades%20Técnicas%20e%20Visuais.%0A%0AEstou%20interessado%20em:%0A-%20Formulários%20de%20contacto%0A-%20Animações%20CSS/JS%0A-%20Modo%20escuro/claro%0A-%20Outras%20funcionalidades%0A%0ADetalhes%20do%20projeto:%0A-%20Funcionalidades%20específicas:%0A-%20Site%20existente%20ou%20novo:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="category-cta">Orçamento Técnico</a>
-                </div>
+            <div class="category-item">
+                <h4>Otimização de Sites</h4>
+                <p>Melhore a performance, velocidade e posicionamento do seu website nos motores de busca.</p>
+            </div>
+            
+            <div class="category-item">
+                <h4>Redes Sociais</h4>
+                <p>Gestão completa das suas redes sociais com conteúdo estratégico e consistente.</p>
+            </div>
+            
+            <div class="category-item">
+                <h4>Gestão Mensal de Redes Sociais</h4>
+                <p>Planos mensais para manter as suas redes sociais ativas e profissionais.</p>
+            </div>
+            
+            <div class="category-item">
+                <h4>Funcionalidades Técnicas e Visuais</h4>
+                <p>Recursos interativos e funcionalidades avançadas para enriquecer a experiência do utilizador.</p>
             </div>
         </div>
-    </section>
+        
+        <div class="extras-cta">
+            <p style="text-align: center; margin-top: 40px; font-size: 1.1rem; color: var(--text-muted);">
+                Para ver a lista detalhada de <strong>todos os extras disponíveis, com descrições e preços específicos</strong>,
+            </p>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://drive.google.com/uc?id=1cC6CCy7PsEiOpNNPSM5qqO663F8JF-Rl&export=download" class="pdf-download-button">
+                    descarregue o Guia Completo de Serviços aqui
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
     <style>
         /* Support Section Styles */
@@ -2797,7 +2722,7 @@ body.dark .pdf-description {
     </section>
 
     <!-- Monthly Maintenance Plan Section -->
-<section class="monthly-plan-section">
+<section id="monthly-plan" class="monthly-plan-section"
     <div class="monthly-plan-container">
         <div class="monthly-plan-card">
             <div class="monthly-plan-badge">
@@ -2843,7 +2768,7 @@ body.dark .pdf-description {
 </section>
 
     <!-- FAQ Section -->
-<section class="faq-section">
+<section id="faq" class="faq-section"
     <div class="faq-container">
         <div class="faq-header">
             <h2 class="faq-title">Perguntas Frequentes (FAQ)</h2>
@@ -3010,5 +2935,24 @@ body.dark .pdf-description {
     </script>
 
     <script src="script.js"></script>
+
+    <script>
+// Smooth Scrolling for Navigation Links
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').slice(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+</script>
 </body>
 </html>
