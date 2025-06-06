@@ -2430,6 +2430,117 @@ body.dark .support-content-item p {
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
 }
 
+/* FAQ Section Styles */
+.faq-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 30px;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.faq-answer {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Dark Mode Support for FAQ Section */
+body.dark .faq-section {
+    background-color: #1f2937;
+}
+
+body.dark .faq-item {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .faq-title {
+    color: var(--text-light);
+}
+
+body.dark .faq-question {
+    color: var(--primary-color);
+}
+
+body.dark .faq-answer {
+    color: #9ca3af;
+}
+
+/* Responsive Design for FAQ Section */
+@media (max-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .faq-item {
+        padding: 25px;
+    }
+
+    .faq-title {
+        font-size: 2rem;
+    }
+
+    .faq-question {
+        font-size: 1.1rem;
+    }
+
+    .faq-answer {
+        font-size: 0.95rem;
+    }
+}        
+
 /* Dark Mode Support */
 body.dark .monthly-plan-section {
     background-color: #1f2937;
@@ -2609,6 +2720,47 @@ body.dark .plan-list li {
                 <a href="contact.html?subject=Interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte%20(€60/mês).%0A%0ADetalhes%20que%20gostaria%20de%20esclarecer:%0A-%20Como%20funciona%20o%20processo%20de%20subscrição%0A-%20Quando%20começaria%20o%20serviço%0A-%20Formas%20de%20pagamento%20disponíveis%0A%0AO%20meu%20website%20é:%20[inserir%20URL%20do%20website]%0A%0AObrigado!" class="monthly-plan-button">
                   Pedir Plano de Manutenção
                 </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- FAQ Section -->
+<section class="faq-section">
+    <div class="faq-container">
+        <div class="faq-header">
+            <h2 class="faq-title">Perguntas Frequentes (FAQ)</h2>
+        </div>
+        
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3 class="faq-question">Quando devo pagar?</h3>
+                <p class="faq-answer">
+                    É pedido um adiantamento de 50% na aprovação da proposta para iniciar o projeto. 
+                    O restante é pago na entrega do site ou conforme acordado.
+                </p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">Quais as formas de pagamento aceites?</h3>
+                <p class="faq-answer">
+                    Aceito transferência bancária e MB WAY.
+                </p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">E se houver atrasos no envio de conteúdos?</h3>
+                <p class="faq-answer">
+                    O prazo de entrega do projeto será ajustado conforme o atraso no envio do material pelo cliente.
+                </p>
+            </div>
+            
+            <div class="faq-item">
+                <h3 class="faq-question">Posso cancelar o projeto?</h3>
+                <p class="faq-answer">
+                    Cancelamentos devem ser comunicados por escrito. O adiantamento pago não é reembolsável, 
+                    pois cobre o tempo e recursos já investidos.
+                </p>
             </div>
         </div>
     </div>
