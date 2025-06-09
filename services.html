@@ -27,17 +27,18 @@
 /* Services Page Navigation Enhancement */
 .services-nav-links {
     position: fixed;
-    top: 80px; /* Below your existing nav */
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
-    border-radius: 50px;
-    padding: 12px 20px;
+    border-radius: 15px;
+    padding: 15px 8px;
     z-index: 999;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 12px;
     box-shadow: var(--shadow-md);
 }
 
@@ -45,15 +46,18 @@
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
-    font-size: 0.85rem;
-    padding: 8px 16px;
-    border-radius: 25px;
+    font-size: 0.8rem;
+    padding: 10px 15px;
+    border-radius: 10px;
     transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .services-nav-links a:hover {
     background: var(--primary-color);
     color: white;
+    transform: translateX(-3px);
 }
 
 body.dark .services-nav-links {
@@ -67,14 +71,14 @@ body.dark .services-nav-links a {
 
 @media (max-width: 768px) {
     .services-nav-links {
-        top: 70px;
-        padding: 8px 12px;
-        gap: 10px;
+        right: 15px;
+        padding: 12px 6px;
+        gap: 8px;
     }
     
     .services-nav-links a {
         font-size: 0.75rem;
-        padding: 6px 12px;
+        padding: 8px 12px;
     }
 }
         
@@ -1076,11 +1080,10 @@ body.dark .content-creation-section {
                     </a>
                 </div>
 
-                <!-- Services Page Quick Navigation -->
-<div class="services-nav-links">
+                <div class="services-nav-links">
     <a href="#packages">Pacotes</a>
-    <a href="#monthly-plan">Plano Mensal</a>
     <a href="#extras">Extras</a>
+    <a href="#monthly-plan">Plano Mensal</a>
     <a href="#faq">FAQ</a>
     <a href="#contact">Contacto</a>
 </div>
@@ -2578,6 +2581,50 @@ body.dark .pdf-description {
         font-size: 1rem;
     }
 }
+/* Contact Section */
+.contact-section {
+    padding: 80px 0;
+    background: var(--primary-color);
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contact-section .section-title {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.contact-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.contact-button {
+    display: inline-block;
+    padding: 18px 40px;
+    background: white;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: var(--primary-color);
+}
     </style>
 </head>
 <body>
@@ -2826,17 +2873,20 @@ body.dark .pdf-description {
     </div>
 </section>
 
-    <!-- Call to Action -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Vamos Trabalhar Juntos</h2>
-            <p>Procura um Programador Front-End com experiência em Marketing? Adoraria saber mais sobre o seu projeto!</p>
-            <div class="cta-buttons">
-                
-                <a href="contact.html" class="btn primary">Contacta-me</a>
-            </div>
+    <!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+        <h2 class="section-title">Pronto para Começar?</h2>
+        <p class="contact-description">
+            Entra em contacto comigo para discutirmos o teu projeto e encontrarmos a solução perfeita para as tuas necessidades.
+        </p>
+        <div class="contact-cta">
+            <a href="mailto:nadiairina934@gmail.com" class="contact-button">
+                Contactar Agora
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
