@@ -730,36 +730,27 @@ body.dark .content-creation-section {
 
     /* PYRAMID GRID LAYOUT */
     .extras-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 30px;
-        margin-bottom: 80px;
-        max-width: 1600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* First row - 3 boxes */
-    .extras-grid:not(.filtered) .extras-category:nth-child(1) {
-        grid-column: 1 / 3;
-    }
-
-    .extras-grid:not(.filtered) .extras-category:nth-child(2) {
-        grid-column: 3 / 5;
-    }
-
-    .extras-grid:not(.filtered) .extras-category:nth-child(3) {
-        grid-column: 5 / 7;
-    }
-
-    /* Second row - 2 wider boxes */
-    .extras-grid:not(.filtered) .extras-category:nth-child(4) {
-        grid-column: 1 / 4;
-    }
-
-    .extras-grid:not(.filtered) .extras-category:nth-child(5) {
-        grid-column: 4 / 7;
-    }
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1400px;
+    justify-items: center;
+}
+/* First row - 3 boxes */
+.extras-category:nth-child(1) { grid-column: 1; grid-row: 1; }
+.extras-category:nth-child(2) { grid-column: 2; grid-row: 1; }
+.extras-category:nth-child(3) { grid-column: 3; grid-row: 1; }
+/* Second row - 2 boxes centered */
+.extras-category:nth-child(4) { 
+    grid-column: 1 / 3; 
+    grid-row: 2;
+    justify-self: end;
+    margin-right: 15px;
+}
+.extras-category:nth-child(5) { 
+    grid-column: 2 / 4; 
+    grid-row: 2;
+    justify-self: start;
+    margin-left: 15px;
+}
 
     /* When filtered, use auto-fit layout for full width */
     .extras-grid.filtered {
@@ -819,7 +810,7 @@ body.dark .content-creation-section {
     .category-title {
         font-size: 1.8rem;
         font-weight: 700;
-        color: var(--text-dark);
+        color: var(--primary-color);
         margin-bottom: 15px;
         transition: color 0.3s ease;
     }
@@ -932,13 +923,16 @@ body.dark .content-creation-section {
             gap: 30px;
         }
         
-        .extras-category:nth-child(1),
-        .extras-category:nth-child(2),
-        .extras-category:nth-child(3),
-        .extras-category:nth-child(4),
-        .extras-category:nth-child(5) {
-            grid-column: auto;
-        }
+        .extras-grid:not(.filtered) .extras-category:nth-child(1),
+.extras-grid:not(.filtered) .extras-category:nth-child(2),
+.extras-grid:not(.filtered) .extras-category:nth-child(3),
+.extras-grid:not(.filtered) .extras-category:nth-child(4),
+.extras-grid:not(.filtered) .extras-category:nth-child(5) {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: center;
+    margin: 0;
+}
         
         .extras-category {
             padding: 35px;
@@ -1273,7 +1267,7 @@ body.dark .content-creation-section {
     <!-- Extras Section - Condensed -->
 <section id="extras" class="extras-section">
     <div class="extras-container">
-        <h2 class="section-title">Serviços Adicionais (Extras)</h2>
+        <h2 class="section-title">Serviços Adicionais</h2>
         <p class="extras-subtitle">Serviços complementares para potencializar o seu projeto digital</p>
         
         <div class="extras-categories">
