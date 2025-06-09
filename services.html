@@ -27,22 +27,23 @@
 /* Services Page Navigation Enhancement */
 .services-nav-links {
     position: fixed;
-    top: 50%;
+    top: 60%;
     right: 30px;
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     border-radius: 15px;
-    padding: 15px 8px;
-    z-index: 999;
+    padding: 12px 6px;
+    z-index: 998;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     box-shadow: var(--shadow-md);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    max-height: 300px;
 }
 
 .services-nav-links.visible {
@@ -54,9 +55,9 @@
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
-    font-size: 0.8rem;
-    padding: 10px 15px;
-    border-radius: 10px;
+    font-size: 0.75rem;
+    padding: 8px 12px;
+    border-radius: 8px;
     transition: all 0.3s ease;
     text-align: center;
     white-space: nowrap;
@@ -80,13 +81,14 @@ body.dark .services-nav-links a {
 @media (max-width: 768px) {
     .services-nav-links {
         right: 15px;
-        padding: 12px 6px;
-        gap: 8px;
+        top: 65%;
+        padding: 10px 5px;
+        gap: 6px;
     }
     
     .services-nav-links a {
-        font-size: 0.75rem;
-        padding: 8px 12px;
+        font-size: 0.7rem;
+        padding: 6px 10px;
     }
 }
         
