@@ -40,6 +40,14 @@
     flex-direction: column;
     gap: 12px;
     box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.services-nav-links.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .services-nav-links a {
@@ -2959,6 +2967,41 @@ body.dark .pdf-description {
     <script>
 // Smooth Scrolling for Navigation Links
 document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').slice(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+</script>
+    <script>
+// Show/Hide navigation based on scroll position
+window.addEventListener('scroll', function() {
+    const navLinks = document.querySelector('.services-nav-links');
+    const packagesSection = document.getElementById('packages');
+    
+    if (packagesSection) {
+        const packagesPosition = packagesSection.offsetTop - 200; // Show 200px before packages section
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition >= packagesPosition) {
+            navLinks.classList.add('visible');
+        } else {
+            navLinks.classList.remove('visible');
+        }
+    }
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('.services-nav-links a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').slice(1);
