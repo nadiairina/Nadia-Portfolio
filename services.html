@@ -957,6 +957,18 @@ body.dark .content-creation-section {
         .extras-grid {
             grid-template-columns: 1fr;
             gap: 25px;
+            max-width: 500px;
+        }
+
+        .extras-grid:not(.filtered) .extras-category:nth-child(1),
+        .extras-grid:not(.filtered) .extras-category:nth-child(2),
+        .extras-grid:not(.filtered) .extras-category:nth-child(3),
+        .extras-grid:not(.filtered) .extras-category:nth-child(4),
+        .extras-grid:not(.filtered) .extras-category:nth-child(5) {
+            grid-column: 1;
+            grid-row: auto;
+            justify-self: center;
+            margin: 0;
         }
         
         .extras-category {
@@ -1104,18 +1116,19 @@ body.dark .content-creation-section {
                     </a>
                 </div>
 
-                <div class="services-nav-links">
-    <a href="#packages">Pacotes</a>
-    <a href="#extras">Extras</a>
-    <a href="#monthly-plan">Plano Mensal</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contacto</a>
-</div>
-                
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
         </div>
     </header>
+
+    <!-- Services Navigation -->
+    <div class="services-nav-links">
+        <a href="#packages">Pacotes</a>
+        <a href="#extras">Extras</a>
+        <a href="#monthly-plan">Plano Mensal</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contacto</a>
+    </div>
 
     <!-- Hero Section - Matching Contact Page Style -->
     <section class="contact-hero">
@@ -1129,7 +1142,7 @@ body.dark .content-creation-section {
 
     <!-- Packages Section -->
     <main>
-        <section id="packages" class="packages-section"
+        <section id="packages" class="packages-section">
             <div class="packages-container">
                 
                 
