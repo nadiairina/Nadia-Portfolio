@@ -27,8 +27,9 @@
 /* Services Page Navigation Enhancement */
 .services-nav-links {
     position: fixed;
-    bottom: 100px;
+    top: 50vh;
     right: 20px;
+    transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
@@ -81,7 +82,6 @@ body.dark .services-nav-links a {
 @media (max-width: 768px) {
     .services-nav-links {
         right: 10px;
-        bottom: 80px;
         width: 70px;
         padding: 6px 3px;
         gap: 3px;
