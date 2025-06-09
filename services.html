@@ -24,82 +24,57 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-/* Sticky Navigation */
-.sticky-nav {
+/* Services Page Navigation Enhancement */
+.services-nav-links {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 80px; /* Below your existing nav */
+    left: 50%;
+    transform: translateX(-50%);
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.sticky-nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 12px 20px;
+    z-index: 999;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
+    gap: 20px;
+    box-shadow: var(--shadow-md);
 }
 
-.nav-logo span {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 30px;
-}
-
-.nav-links a {
+.services-nav-links a {
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
 }
 
-.nav-links a:hover {
-    color: var(--primary-color);
+.services-nav-links a:hover {
+    background: var(--primary-color);
+    color: white;
 }
 
-/* Dark mode sticky nav */
-body.dark .sticky-nav {
+body.dark .services-nav-links {
     background: rgba(31, 41, 55, 0.95);
-    border-bottom-color: #374151;
+    border-color: #374151;
 }
 
-body.dark .nav-links a {
+body.dark .services-nav-links a {
     color: var(--text-light);
 }
 
-body.dark .nav-links a:hover {
-    color: var(--primary-color);
-}
-
-/* Mobile sticky nav */
 @media (max-width: 768px) {
-    .nav-links {
-        gap: 15px;
+    .services-nav-links {
+        top: 70px;
+        padding: 8px 12px;
+        gap: 10px;
     }
     
-    .nav-links a {
-        font-size: 0.8rem;
-    }
-    
-    .nav-logo span {
-        font-size: 1.2rem;
+    .services-nav-links a {
+        font-size: 0.75rem;
+        padding: 6px 12px;
     }
 }
         
@@ -107,7 +82,7 @@ body.dark .nav-links a:hover {
 
     /* Hero Section - Matching Contact Page Style */
     .contact-hero {
-        margin-top: 60px;
+        margin-top: 120px;
         padding: 6rem 1rem 3rem;
         display: flex;
         flex-direction: column;
@@ -1076,21 +1051,7 @@ body.dark .content-creation-section {
     </style>
 </head>
 <body>
-    <!-- Sticky Navigation -->
-<nav class="sticky-nav">
-    <div class="sticky-nav-container">
-        <div class="nav-logo">
-            <span>Nadia Irina</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#packages">Pacotes</a></li>
-            <li><a href="#monthly-plan">Plano Mensal</a></li>
-            <li><a href="#extras">Extras</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contacto</a></li>
-        </ul>
-    </div>
-</nav>
+   
     <!-- Header/Navbar -->
     <header class="header" id="header">
         <div class="container">
@@ -1114,6 +1075,15 @@ body.dark .content-creation-section {
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
+
+                <!-- Services Page Quick Navigation -->
+<div class="services-nav-links">
+    <a href="#packages">Pacotes</a>
+    <a href="#monthly-plan">Plano Mensal</a>
+    <a href="#extras">Extras</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contacto</a>
+</div>
                 
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
