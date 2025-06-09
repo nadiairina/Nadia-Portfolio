@@ -96,7 +96,11 @@ body.dark .services-nav-links a {
     }
 }
 body {
-    background: white;
+    background: linear-gradient(to bottom, 
+        #f8f9fa 0%, 
+        #f8f9fa 300px, 
+        white 300px, 
+        white 100%);
 }
         
     /* Packages Page Specific Styles */
@@ -724,38 +728,37 @@ body.dark .content-creation-section {
         box-shadow: var(--shadow-md);
     }
 
-    /* 2x2 GRID LAYOUT */
+    /* PYRAMID GRID LAYOUT */
     .extras-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 30px;
         margin-bottom: 80px;
-        max-width: 1200px;
+        max-width: 1600px;
         margin-left: auto;
         margin-right: auto;
-        justify-items: center;
     }
 
-    /* First row - 2 boxes */
+    /* First row - 3 boxes */
     .extras-grid:not(.filtered) .extras-category:nth-child(1) {
-        grid-column: 1;
-        grid-row: 1;
+        grid-column: 1 / 3;
     }
 
     .extras-grid:not(.filtered) .extras-category:nth-child(2) {
-        grid-column: 2;
-        grid-row: 1;
+        grid-column: 3 / 5;
     }
 
-    /* Second row - 2 boxes */
     .extras-grid:not(.filtered) .extras-category:nth-child(3) {
-        grid-column: 1;
-        grid-row: 2;
+        grid-column: 5 / 7;
     }
 
+    /* Second row - 2 wider boxes */
     .extras-grid:not(.filtered) .extras-category:nth-child(4) {
-        grid-column: 2;
-        grid-row: 2;
+        grid-column: 1 / 4;
+    }
+
+    .extras-grid:not(.filtered) .extras-category:nth-child(5) {
+        grid-column: 4 / 7;
     }
 
     /* When filtered, use auto-fit layout for full width */
@@ -816,7 +819,7 @@ body.dark .content-creation-section {
     .category-title {
         font-size: 1.8rem;
         font-weight: 700;
-        color: var(--primary-color);
+        color: var(--text-dark);
         margin-bottom: 15px;
         transition: color 0.3s ease;
     }
@@ -1270,7 +1273,7 @@ body.dark .content-creation-section {
     <!-- Extras Section - Condensed -->
 <section id="extras" class="extras-section">
     <div class="extras-container">
-        <h2 class="section-title">Serviços Adicionais</h2>
+        <h2 class="section-title">Serviços Adicionais (Extras)</h2>
         <p class="extras-subtitle">Serviços complementares para potencializar o seu projeto digital</p>
         
         <div class="extras-categories">
