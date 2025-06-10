@@ -768,17 +768,19 @@ body.dark .content-creation-section {
 }
 
     .extras-category {
-        background: var(--bg-card);
-        border-radius: 20px;
-        padding: 40px;
-        box-shadow: var(--shadow-md);
-        border: 1px solid var(--border-color);
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        opacity: 1;
-        transform: scale(1);
-    }
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: scale(1);
+    width: 100%;           /* ADD THIS */
+    max-width: 350px;      /* ADD THIS */
+}
 
     .extras-category.filter-hidden {
         display: none !important;
