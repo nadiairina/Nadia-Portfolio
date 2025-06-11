@@ -2674,10 +2674,156 @@ body.dark .pdf-description {
     background-color: white;
     transition: background-color 0.3s ease;
 }
+        
 .monthly-plan-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+.monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
+    border: 1px solid var(--primary-color);
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+.monthly-plan-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.monthly-plan-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+.monthly-plan-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.monthly-plan-price {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+.monthly-plan-price span {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+.monthly-plan-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+.plan-includes,
+.plan-excludes {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+.plan-includes h4,
+.plan-excludes h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+.plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.plan-list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--text-muted);
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+.plan-includes .plan-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.plan-excludes .plan-list li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.monthly-plan-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+.monthly-plan-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    text-decoration: none;
+    color: white;
+}
+/* Dark Mode Support for Monthly Plan */
+body.dark .monthly-plan-section {
+    background-color: #1f2937;
+}
+body.dark .monthly-plan-card {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+body.dark .monthly-plan-title {
+    color: var(--text-light);
+}
+body.dark .monthly-plan-subtitle {
+    color: #9ca3af;
+}
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #3d3d3d;
+    border-color: #374151;
+}
+body.dark .plan-includes h4,
+body.dark .plan-excludes h4 {
+    color: var(--text-light);
+}
+body.dark .plan-list li {
+    color: #9ca3af;
 }
 
     </style>
