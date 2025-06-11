@@ -2676,7 +2676,7 @@ body.dark .pdf-description {
 }
         
 .monthly-plan-container {
-    max-width: 450px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -2684,10 +2684,10 @@ body.dark .pdf-description {
 .monthly-plan-card {
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
     border: 1px solid var(--primary-color);
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 25px;
+    padding: 50px;
     text-align: center;
-    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
     position: relative;
     overflow: hidden;
 }
@@ -2704,25 +2704,28 @@ body.dark .pdf-description {
     margin-bottom: 20px;
 }
 .monthly-plan-title {
-    font-size: 2rem;
-    font-weight: 900;
+    font-size: 2.2rem;
+    font-weight: 800;
     color: var(--text-dark);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 .monthly-plan-subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     line-height: 1.6;
-    max-width: 500px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 .monthly-plan-price {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 900;
     color: var(--primary-color);
-    margin-bottom: 25px;
+    margin-bottom: 40px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 .monthly-plan-price span {
     font-size: 1rem;
@@ -2730,17 +2733,17 @@ body.dark .pdf-description {
     font-weight: 500;
 }
 .monthly-plan-content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
     text-align: left;
 }
 .plan-includes,
 .plan-excludes {
     background: white;
-     border-radius: 12px;
-    padding: 15px;
+    border-radius: 15px;
+    padding: 25px;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
 }
@@ -2782,13 +2785,13 @@ body.dark .pdf-description {
 }
 .monthly-plan-button {
     display: inline-block;
-    padding: 12px 25px;
+    padding: 18px 40px;
     background: var(--primary-color);
     color: white;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
