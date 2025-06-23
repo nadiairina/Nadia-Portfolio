@@ -187,7 +187,7 @@ body.dark .services-nav-links a {
 body {
     background: white;
 }
-        /* Header/Navigation Bar Styling */
+        /* Header/Navigation Bar Styling - Sticky Navigation */
 .header {
     background-color: white;
     padding: 15px 0;
@@ -197,6 +197,14 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
         
     /* Packages Page Specific Styles */
@@ -2943,94 +2951,22 @@ body.dark .plan-list li {
             <div class="service-content">
                 <div class="includes-section">
                     <h3 class="includes-title">Inclui:</h3>
-                    <div class="includes-grid">
-                        <div class="include-item">
-                            <div class="include-icon">
-                                <i class="fas fa-pen-fancy"></i>
-                            </div>
-                            <div class="include-content">
-                                <h4>Redação de Textos</h4>
-                                <p>Textos para páginas essenciais do site (ex: Quem Somos, Serviços, Contacto)</p>
-                            </div>
-                        </div>
-
-                        <div class="include-item">
-                            <div class="include-icon">
-                                <i class="fas fa-image"></i>
-                            </div>
-                            <div class="include-content">
-                                <h4>Edição Básica de Imagens</h4>
-                                <p>Ajustes, cortes, correção de cor para otimizar as suas imagens</p>
-                            </div>
-                        </div>
-
-                        <div class="include-item">
-                            <div class="include-icon">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <div class="include-content">
-                                <h4>Sugestões de Melhoria</h4>
-                                <p>Sugestões para melhorar a comunicação textual e visual do seu site</p>
-                            </div>
-                        </div>
+                    <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left;">
+                        <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; margin: 0;">
+                            Este serviço inclui redação profissional de textos, edição básica de imagens e sugestões para otimizar a comunicação textual e visual do seu site.
+                        </p>
                     </div>
                 </div>
 
-                <div class="pricing-section">
-                    <h3 class="pricing-title">Preços (desde):</h3>
-                    <div class="pricing-cards">
-                        <div class="pricing-card basic">
-                            <div class="pricing-header">
-                                <h4 class="package-name">Pacote Básico</h4>
-                                <div class="package-price">€150</div>
-                                <p class="package-limit">até 500 palavras</p>
-                            </div>
-                            <ul class="package-features">
-                                <li>Redação de textos profissionais</li>
-                                <li>Edição básica de 3 imagens</li>
-                                <li>1 revisão incluída</li>
-                                <li>Entrega em 5 dias úteis</li>
-                            </ul>
-                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Básico%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Básico%20de%20Criação%20de%20Conteúdo%20(€150).%0A%0ADetalhes%20do%20projeto:%0A-%20Páginas%20a%20redigir:%0A-%20Tipo%20de%20negócio:%0A-%20Tom%20de%20comunicação%20desejado:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Escolher Básico</a>
-                        </div>
-
-                        <div class="pricing-card complete featured recommended">
-                            <div class="featured-badge">
-                                <span>MAIS POPULAR</span>
-                            </div>
-                            <div class="pricing-header">
-                                <h4 class="package-name">Pacote Completo</h4>
-                                <div class="package-price">€280</div>
-                                <p class="package-limit">até 1000 palavras</p>
-                            </div>
-                            <ul class="package-features">
-                                <li>Redação de textos profissionais</li>
-                                <li>Edição básica de 6 imagens</li>
-                                <li>2 revisões incluídas</li>
-                                <li>Otimização SEO básica</li>
-                                <li>Sugestões de melhorias</li>
-                                <li>Entrega em 7 dias úteis</li>
-                            </ul>
-                            <a href="contact.html?subject=Interesse%20no%20Pacote%20Completo%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Completo%20de%20Criação%20de%20Conteúdo%20(€280).%0A%0ADetalhes%20do%20projeto:%0A-%20Páginas%20a%20redigir:%0A-%20Tipo%20de%20negócio:%0A-%20Tom%20de%20comunicação%20desejado:%0A-%20Objetivos%20SEO:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Escolher Completo</a>
-                        </div>
-
-                        <div class="pricing-card custom">
-                            <div class="pricing-header">
-                                <h4 class="package-name">Serviço Personalizado</h4>
-                                <div class="package-price">Orçamento à parte</div>
-                                <p class="package-limit">conteúdo personalizado</p>
-                            </div>
-                            <ul class="package-features">
-                                <li>Análise detalhada das necessidades</li>
-                                <li>Conteúdo totalmente personalizado</li>
-                                <li>Revisões ilimitadas</li>
-                                <li>Estratégia de conteúdo</li>
-                                <li>Suporte contínuo</li>
-                                <li>Prazo flexível</li>
-                            </ul>
-                            <a href="contact.html?subject=Interesse%20no%20Serviço%20Personalizado%20-%20Criação%20de%20Conteúdo&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Serviço%20Personalizado%20de%20Criação%20de%20Conteúdo.%0A%0ADetalhes%20do%20projeto:%0A-%20Tipo%20de%20conteúdo%20necessário:%0A-%20Volume%20de%20texto%20estimado:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivos%20específicos:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="pricing-cta">Solicitar Orçamento</a>
-                        </div>
-                    </div>
+                <!-- Simplified Content Creation CTA Section -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 25px;">
+                        Temos diferentes pacotes de criação de conteúdo (Básico, Completo e Personalizado) para se adaptarem às suas necessidades.
+                    </p>
+                    <a href="caminho/para/o/seu/Guia-de-Serviços.pdf" class="pdf-download-button">
+                        <i class="fas fa-download"></i>
+                        Descarregar Guia Completo para Ver os Pacotes e Preços de Criação de Conteúdo (PDF)
+                    </a>
                 </div>
             </div>
         </div>
@@ -3361,6 +3297,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 100);
 });
+
+// Sticky Navigation functionality
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
 </script>
 
 <!-- FINAL OVERRIDE CSS FOR COMPACT MONTHLY PLAN -->
@@ -3449,6 +3395,21 @@ document.addEventListener('DOMContentLoaded', function() {
     border: 1px solid var(--border-color) !important;
 }
 </style>
+
+    <!-- Final PDF Download CTA Section -->
+    <section style="padding: 60px 0; background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.12)); text-align: center;">
+        <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
+            <h3 style="font-size: 2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 20px;">Não perca nenhum detalhe</h3>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 35px; line-height: 1.6;">
+                Descarregue o nosso guia completo com informações detalhadas sobre todos os serviços, 
+                preços e condições especiais.
+            </p>
+            <a href="caminho/para/o/seu/Guia-de-Serviços.pdf" class="pdf-download-button">
+                <i class="fas fa-download"></i>
+                Descarregar Guia Completo de Serviços (PDF)
+            </a>
+        </div>
+    </section>
 
 </body>
 </html>
