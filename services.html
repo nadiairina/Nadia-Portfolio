@@ -2134,28 +2134,30 @@ body.dark .support-content-item p {
     color: #9ca3af;
 }
 
-/* Monthly Plan Section */
+/* Monthly Plan Section - FORCED COMPACT VERSION */
 .monthly-plan-section {
-    padding: 30px 0 !important;
-    background-color: white;
-    transition: background-color 0.3s ease;
+    padding: 40px 0 !important;
+    background-color: white !important;
+    transition: background-color 0.3s ease !important;
 }
 
 .monthly-plan-container {
-    max-width: 600px !important;
-    margin: 0 auto;
+    max-width: 550px !important;
+    margin: 0 auto !important;
     padding: 0 20px !important;
 }
 
 .monthly-plan-card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
-    border: 1px solid var(--primary-color);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important;
+    border: 1px solid var(--primary-color) !important;
     border-radius: 20px !important;
-    padding: 30px 40px !important;
-    text-align: center;
+    padding: 30px !important;
+    text-align: center !important;
     box-shadow: 0 8px 20px rgba(99, 102, 241, 0.1) !important;
-    position: relative;
+    position: relative !important;
     overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
 }
 
 
@@ -2214,8 +2216,9 @@ body.dark .support-content-item p {
 .plan-includes,
 .plan-excludes {
     background: white;
-     border-radius: 2px !important;
-    padding: 15x-shadow: var(--shadow-md);
+    border-radius: 12px !important;
+    padding: 15px !important;
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
 }
 
@@ -3215,5 +3218,93 @@ document.querySelectorAll('.services-nav-links a[href^="#"]').forEach(link => {
     });
 });
 </script>
+
+<!-- FINAL OVERRIDE CSS FOR COMPACT MONTHLY PLAN -->
+<style>
+/* Ultimate override for monthly plan - compact version */
+#monthly-plan .monthly-plan-container,
+.monthly-plan-section .monthly-plan-container {
+    max-width: 550px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+#monthly-plan .monthly-plan-card,
+.monthly-plan-section .monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important;
+    border: 1px solid var(--primary-color) !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    text-align: center !important;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.1) !important;
+    position: relative !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+#monthly-plan .monthly-plan-title,
+.monthly-plan-section .monthly-plan-title {
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 20px !important;
+    line-height: 1.3 !important;
+}
+
+#monthly-plan .monthly-plan-subtitle,
+.monthly-plan-section .monthly-plan-subtitle {
+    font-size: 1.1rem !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 30px !important;
+    line-height: 1.6 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 450px !important;
+}
+
+#monthly-plan .monthly-plan-price,
+.monthly-plan-section .monthly-plan-price {
+    font-size: 2.5rem !important;
+    font-weight: 900 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 25px !important;
+}
+
+#monthly-plan .monthly-plan-badge,
+.monthly-plan-section .monthly-plan-badge {
+    display: inline-block !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 15px !important;
+}
+
+#monthly-plan .monthly-plan-content,
+.monthly-plan-section .monthly-plan-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    margin-bottom: 25px !important;
+    text-align: left !important;
+}
+
+#monthly-plan .plan-includes,
+#monthly-plan .plan-excludes,
+.monthly-plan-section .plan-includes,
+.monthly-plan-section .plan-excludes {
+    background: white !important;
+    border-radius: 12px !important;
+    padding: 15px !important;
+    box-shadow: var(--shadow-md) !important;
+    border: 1px solid var(--border-color) !important;
+}
+</style>
+
 </body>
 </html>
