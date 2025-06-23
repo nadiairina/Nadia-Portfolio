@@ -24,6 +24,95 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
+/* SUPER AGGRESSIVE OVERRIDE FOR MONTHLY PLAN - COMPACT VERSION */
+html body .monthly-plan-section .monthly-plan-container,
+html body #monthly-plan .monthly-plan-container {
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    padding: 0 15px !important;
+}
+
+html body .monthly-plan-section .monthly-plan-card,
+html body #monthly-plan .monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important;
+    border: 1px solid var(--primary-color) !important;
+    border-radius: 15px !important;
+    padding: 20px !important;
+    text-align: center !important;
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1) !important;
+    position: relative !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+html body .monthly-plan-section .monthly-plan-title,
+html body #monthly-plan .monthly-plan-title {
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 15px !important;
+    line-height: 1.2 !important;
+}
+
+html body .monthly-plan-section .monthly-plan-subtitle,
+html body #monthly-plan .monthly-plan-subtitle {
+    font-size: 0.95rem !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 20px !important;
+    line-height: 1.4 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 320px !important;
+}
+
+html body .monthly-plan-section .monthly-plan-price,
+html body #monthly-plan .monthly-plan-price {
+    font-size: 2.2rem !important;
+    font-weight: 900 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 20px !important;
+}
+
+html body .monthly-plan-section .monthly-plan-badge,
+html body #monthly-plan .monthly-plan-badge {
+    display: inline-block !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    padding: 5px 12px !important;
+    border-radius: 15px !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 12px !important;
+}
+
+html body .monthly-plan-section .monthly-plan-content,
+html body #monthly-plan .monthly-plan-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+    text-align: left !important;
+}
+
+html body .monthly-plan-section .plan-includes,
+html body .monthly-plan-section .plan-excludes,
+html body #monthly-plan .plan-includes,
+html body #monthly-plan .plan-excludes {
+    background: white !important;
+    border-radius: 10px !important;
+    padding: 12px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+html body .monthly-plan-section,
+html body #monthly-plan {
+    padding: 30px 0 !important;
+}
 /* Services Page Navigation Enhancement */
 .services-nav-links {
     position: fixed;
@@ -3216,6 +3305,61 @@ document.querySelectorAll('.services-nav-links a[href^="#"]').forEach(link => {
             });
         }
     });
+});
+
+// FORCE COMPACT MONTHLY PLAN VIA JAVASCRIPT
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        // Force compact monthly plan styles
+        const container = document.querySelector('.monthly-plan-container');
+        const card = document.querySelector('.monthly-plan-card');
+        const title = document.querySelector('.monthly-plan-title');
+        const subtitle = document.querySelector('.monthly-plan-subtitle');
+        const price = document.querySelector('.monthly-plan-price');
+        const badge = document.querySelector('.monthly-plan-badge');
+        const content = document.querySelector('.monthly-plan-content');
+        const includes = document.querySelectorAll('.plan-includes, .plan-excludes');
+        
+        if (container) {
+            container.style.cssText = 'max-width: 400px !important; margin: 0 auto !important; padding: 0 15px !important;';
+        }
+        
+        if (card) {
+            card.style.cssText = 'background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important; border: 1px solid var(--primary-color) !important; border-radius: 15px !important; padding: 20px !important; text-align: center !important; box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1) !important; position: relative !important; overflow: visible !important; max-width: 100% !important; width: 100% !important;';
+        }
+        
+        if (title) {
+            title.style.cssText = 'font-size: 1.6rem !important; font-weight: 800 !important; color: var(--text-dark) !important; margin-bottom: 15px !important; line-height: 1.2 !important;';
+        }
+        
+        if (subtitle) {
+            subtitle.style.cssText = 'font-size: 0.95rem !important; color: var(--text-muted) !important; margin-bottom: 20px !important; line-height: 1.4 !important; margin-left: auto !important; margin-right: auto !important; max-width: 320px !important;';
+        }
+        
+        if (price) {
+            price.style.cssText = 'font-size: 2.2rem !important; font-weight: 900 !important; color: var(--primary-color) !important; margin-bottom: 20px !important;';
+        }
+        
+        if (badge) {
+            badge.style.cssText = 'display: inline-block !important; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important; color: white !important; padding: 5px 12px !important; border-radius: 15px !important; font-size: 0.7rem !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; margin-bottom: 12px !important;';
+        }
+        
+        if (content) {
+            content.style.cssText = 'display: flex !important; flex-direction: column !important; gap: 12px !important; margin-bottom: 20px !important; text-align: left !important;';
+        }
+        
+        includes.forEach(function(element) {
+            if (element) {
+                element.style.cssText = 'background: white !important; border-radius: 10px !important; padding: 12px !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; border: 1px solid var(--border-color) !important;';
+            }
+        });
+        
+        // Force section padding
+        const section = document.querySelector('.monthly-plan-section, #monthly-plan');
+        if (section) {
+            section.style.cssText = 'padding: 30px 0 !important;';
+        }
+    }, 100);
 });
 </script>
 
