@@ -12,6 +12,53 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --text-light: #f9fafb;
+    --bg-card: #ffffff;
+    --bg-muted: #f9fafb;
+    --border-color: #e5e7eb;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Header/Navigation Bar Styling - Sticky Navigation */
+.header {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+body {
+    background: white;
+}
+
+/* Dark Mode Support for Header */
+body.dark .header {
+    background-color: #1f2937;
+    border-bottom-color: #374151;
+}
+
+body.dark .header.scrolled {
+    background-color: rgba(31, 41, 55, 0.95);
+}
+
 /* Add this to your styles or in a style tag in the head */
 .project-card .project-image {
     height: 180px; /* Reduced height */
@@ -68,7 +115,6 @@
                 <a href="projects.html" aria-label="Projects">Projetos</a>
                 <a href="services.html" aria-label="Serviços">Serviços</a>
                 <a href="contact.html" aria-label="Contact">Contactos</a>
-                
             </nav>
 
             <div class="actions">
@@ -81,7 +127,6 @@
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
-                
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
         </div>
@@ -131,7 +176,6 @@
                     <p>Showroom digital polido com exposição de mobiliário responsiva, filtragem inteligente por categoria e galerias de imagens dinâmicas para uma visualização aprimorada dos produtos.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">HTML5</span>
-                        
                         <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">Design Responsivo</span>
@@ -192,10 +236,8 @@
                         <span class="skill-tag">Estratégia de Marketing</span>
                         <span class="skill-tag">Neuromarketing</span>
                         <span class="skill-tag">Comunicação Visual</span>
-                       
                     </div>
                 </div>
-                
             </div>
         </div>
     </section>
