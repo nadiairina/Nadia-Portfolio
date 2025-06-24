@@ -100,16 +100,23 @@ body.dark .hero {
 /* Hero Text Styling - Consistent with other pages */
 .hero .greeting {
     color: var(--primary-color) !important;
-    font-weight: 600;
+    font-weight: 600 !important;
 }
 
-.hero .job-title .highlight {
+.hero .job-title .highlight,
+.hero .job-title .typewriter-effect {
     color: var(--primary-color) !important;
+    font-weight: 600 !important;
 }
 
 .hero .subtitle .highlight {
     color: var(--primary-color) !important;
-    font-weight: 600;
+    font-weight: 600 !important;
+}
+
+/* Ensure typewriter text gets the right color */
+#typewriter {
+    color: var(--primary-color) !important;
 }
 
 /* Add this to your styles or in a style tag in the head */
