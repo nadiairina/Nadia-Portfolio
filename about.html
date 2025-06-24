@@ -10,6 +10,269 @@
     <link rel="stylesheet" href="typewriter-and-darkmode.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --text-light: #f9fafb;
+    --bg-card: #ffffff;
+    --bg-muted: #f9fafb;
+    --border-color: #e5e7eb;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Header/Navigation Bar Styling - Sticky Navigation */
+.header {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+body {
+    background: white;
+}
+
+/* Enhanced Hero Section - IDENTICAL to Services Page */
+.about-hero {
+    margin-top: 70px;
+    padding: 80px 1rem 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.about-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+}
+
+.page-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin: 1rem 0 2rem 0;
+    line-height: 1.1;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 2;
+}
+
+/* About content styling */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1000px;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.about-image {
+    flex-shrink: 0;
+}
+
+.about-image .profile-img {
+    width: 290px;
+    height: 290px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #6366f1;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.about-text h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    color: var(--text-muted);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.personal-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.detail {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(99, 102, 241, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    transition: all 0.3s ease;
+}
+
+.detail:hover {
+    background-color: rgba(99, 102, 241, 0.1);
+    transform: translateY(-2px);
+}
+
+.detail span:first-child {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.detail span:last-child {
+    display: block;
+    color: var(--text-dark);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .about-text {
+        text-align: center;
+    }
+    
+    .about-image .profile-img {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .about-text h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dark Mode Support */
+body.dark .about-hero {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+}
+
+body.dark .header {
+    background-color: #1f2937;
+    border-bottom-color: #374151;
+}
+
+body.dark .header.scrolled {
+    background-color: rgba(31, 41, 55, 0.95);
+}
+
+body.dark .about-text h2,
+body.dark .detail span:last-child {
+    color: #f9fafb;
+}
+
+body.dark .about-text p {
+    color: #9ca3af;
+}
+
+body.dark .detail {
+    background-color: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+body.dark .detail:hover {
+    background-color: rgba(99, 102, 241, 0.15);
+}
+    </style>
 </head>
 <body>
     <!-- Header/Navbar -->
@@ -22,7 +285,6 @@
                 <a href="projects.html" aria-label="Projects">Projetos</a>
                 <a href="services.html" aria-label="Serviços">Serviços</a>
                 <a href="contact.html" aria-label="Contact">Contactos</a>
-                
             </nav>
 
             <div class="actions">
@@ -35,7 +297,6 @@
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
-                
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
         </div>
@@ -46,21 +307,20 @@
         <div class="container">
             <h1 class="page-title">Sobre Mim</h1>
             
-            <!-- Flex container for the layout -->
-            <div style="display: flex; flex-wrap: wrap; margin-top: 2rem; align-items: flex-start;">
+            <!-- Content container -->
+            <div class="about-content">
                 <!-- Left side - Image -->
-                <div style="margin-right: 3rem; margin-bottom: 2rem;">
-                    <div style="width: 290px; height: 290px; border-radius: 50%; overflow: hidden; border: 3px solid #6366f1; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+                <div class="about-image">
+                    <div class="profile-img">
                         <img src="assets/images/projects/profile.jpg" 
-                             alt="Nadia Irina - Front-End Developer e Marketeer" 
-                             style="width: 100%; height: 100%; object-fit: cover;">
+                             alt="Nadia Irina - Front-End Developer e Marketeer">
                     </div>
                 </div>
                 
                 <!-- Right side - Content -->
-                <div style="flex: 1; min-width: 300px;">
+                <div class="about-text">
                     <h2>Nadia Irina</h2>
-                    <h3 style="margin-bottom: 1.5rem;">Marketeer & Front-end Developer</h3>
+                    <h3>Marketeer & Front-end Developer</h3>
                     
                     <p>
                         Com a minha paixão por Desenvolvimento Front-End, dedico-me a criar experiências web que são não só responsivas e fáceis de usar, mas também estratégicas. A minha base em Marketing permite-me abordar cada projeto com um olhar único, unindo o rigor técnico ao foco na verdadeira interação com o utilizador.
@@ -69,18 +329,18 @@
                        A minha jornada começou em Marketing, onde aprendi a importância de compreender as necessidades e comportamentos do utilizador. Este conhecimento tem sido inestimável na minha transição para o Desenvolvimento Front-End, permitindo-me criar interfaces que não só são visualmente apelativas, mas que também servem eficazmente as necessidades dos utilizadores.
                     </p>
                     
-                    <div class="personal-details" style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 2rem; gap: 1rem;">
-                        <div class="detail" style="flex: 1; min-width: 150px; text-align: center; padding: 1rem; background-color: rgba(99, 102, 241, 0.05); border-radius: 12px;">
-                            <span style="display: block; font-weight: 600; margin-bottom: 5px; color: var(--primary-color);">Localização:</span>
-                            <span style="display: block;">Lisboa</span>
+                    <div class="personal-details">
+                        <div class="detail">
+                            <span>Localização:</span>
+                            <span>Lisboa</span>
                         </div>
-                        <div class="detail" style="flex: 1; min-width: 150px; text-align: center; padding: 1rem; background-color: rgba(99, 102, 241, 0.05); border-radius: 12px;">
-                            <span style="display: block; font-weight: 600; margin-bottom: 5px; color: var(--primary-color);">Email:</span>
-                            <span style="display: block;">nadiairina934@gmail.com</span>
+                        <div class="detail">
+                            <span>Email:</span>
+                            <span>nadiairina934@gmail.com</span>
                         </div>
-                        <div class="detail" style="flex: 1; min-width: 150px; text-align: center; padding: 1rem; background-color: rgba(99, 102, 241, 0.05); border-radius: 12px;">
-                            <span style="display: block; font-weight: 600; margin-bottom: 5px; color: var(--primary-color);">Disponibilidade:</span>
-                            <span style="display: block;">Aberta a oportunidades</span>
+                        <div class="detail">
+                            <span>Disponibilidade:</span>
+                            <span>Aberta a oportunidades</span>
                         </div>
                     </div>
                 </div>
