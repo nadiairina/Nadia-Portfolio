@@ -209,7 +209,7 @@ body {
         
     /* Packages Page Specific Styles */
 
-    /* Hero Section - Matching Contact Page Style */
+    /* Enhanced Hero Section */
     .contact-hero {
     margin-top: 70px;
     padding: 150px 1rem 150px;
@@ -217,8 +217,25 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #f8f9fa;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    position: relative;
+    overflow: hidden;
     transition: background-color 0.3s ease;
+}
+
+.contact-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.4;
+    pointer-events: none;
 }
 
     .contact-hero .container {
@@ -229,23 +246,33 @@ body {
     }
 
     .page-title {
-        font-size: 3rem;
-        font-weight: 800;
+        font-size: 3.2rem;
+        font-weight: 900;
         margin: 1rem 0;
-        line-height: 1.2;
+        line-height: 1.1;
         color: var(--text-dark);
-        transition: color 0.3s ease;
+        transition: all 0.3s ease;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fadeInUp 0.8s ease-out;
+        position: relative;
+        z-index: 2;
     }
 
    .page-description {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-muted);
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     line-height: 1.6;
-    font-weight: 400;
+    font-weight: 500;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    position: relative;
+    z-index: 2;
 }
 
     /* Packages Section */
@@ -293,41 +320,43 @@ body {
     .package-card {
     background: var(--bg-card);
     border-radius: 25px;
-    padding: 60px 40px 50px 40px;  /* ← Add extra top padding */
-    box-shadow: var(--shadow-md);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    padding: 60px 40px 50px 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
-    overflow: visible;  /* ← Change to visible */
-    border: 1px solid var(--border-color);
+    overflow: visible;
+    border: 2px solid transparent;
+    background-clip: padding-box;
     min-height: 700px;
     width: 400px;
     display: flex;
     flex-direction: column;
+    animation: slideInScale 0.6s ease-out both;
 }
-    /* Recommended Banner Styles */
+    /* Enhanced Recommended Banner */
 .recommended-banner {
     position: absolute;
-    top: -12px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, #10b981, #059669);
     color: white;
-    padding: 8px 20px;
-    font-size: 0.75rem;
+    padding: 12px 24px;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    letter-spacing: 1px;
+    border-radius: 25px;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
     z-index: 10;
     white-space: nowrap;
-    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    animation: slideInScale 0.6s ease-out 0.3s both;
 }
 
-.recommended-banner::before,
-.recommended-banner::after {
-    display: none;
-    content: none;
+.recommended-banner::before {
+    content: "⭐";
+    margin-right: 8px;
 }
 
 /* Purple Border for Recommended Cards */
@@ -342,8 +371,9 @@ body {
 }
         
     .package-card:hover {
-        transform: translateY(-10px);
-        box-shadow: var(--shadow-lg);
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: var(--primary-color);
     }
 
     .package-card.featured {
@@ -366,12 +396,18 @@ body {
     }
 
     .package-price {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
         font-weight: 900;
         color: var(--primary-color);
         margin-bottom: 25px;
         text-align: center;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+        padding: 15px 25px;
+        border-radius: 15px;
+        border: 2px solid rgba(99, 102, 241, 0.2);
     }
 
     .package-description {
@@ -433,14 +469,41 @@ body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
+    .package-features li {
+        position: relative;
+        padding-left: 35px !important;
+        display: flex;
+        align-items: center;
+    }
+
     .package-features li::before {
-        content: "✓";
         position: absolute;
         left: 0;
-        color: #27ae60;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: white;
         font-weight: bold;
-        font-size: 1.1rem;
     }
+
+    /* Feature Icons */
+    .package-features li[data-feature="responsive"]::before { content: "📱"; }
+    .package-features li[data-feature="contact"]::before { content: "✉️"; }
+    .package-features li[data-feature="animations"]::before { content: "⚡"; }
+    .package-features li[data-feature="social"]::before { content: "🔗"; }
+    .package-features li[data-feature="seo"]::before { content: "🎯"; }
+    .package-features li[data-feature="pages"]::before { content: "📄"; }
+    .package-features li[data-feature="gallery"]::before { content: "🖼️"; }
+    .package-features li[data-feature="cms"]::before { content: "⚙️"; }
+    .package-features li[data-feature="ecommerce"]::before { content: "🛒"; }
+    .package-features li[data-feature="analytics"]::before { content: "📊"; }
 
     .cta-button {
         width: 100%;
@@ -458,6 +521,27 @@ body {
         text-decoration: none;
         display: inline-block;
         text-align: center;
+    }
+
+    .cta-button {
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+    }
+
+    .cta-button:hover::before {
+        left: 100%;
     }
 
     .cta-button:hover {
@@ -578,6 +662,98 @@ body {
     body.dark .comparison-table tr:hover {
         background: rgba(99, 102, 241, 0.2);
     }
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Card Staggered Animation */
+.package-card:nth-child(1) { animation-delay: 0.1s; }
+.package-card:nth-child(2) { animation-delay: 0.2s; }
+.package-card:nth-child(3) { animation-delay: 0.3s; }
+.package-card:nth-child(4) { animation-delay: 0.4s; }
+.package-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Section Dividers */
+.section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+    margin: 80px 0;
+}
+
+/* Alternating Section Backgrounds */
+.extras-section {
+    background: #f9fafb;
+}
+
+.content-creation-section {
+    background: white;
+}
+
+/* Extras Category Icons */
+.category-icon {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.extras-category[data-category="branding"] .category-icon::after { content: "🎨"; }
+.extras-category[data-category="optimization"] .category-icon::after { content: "🚀"; }
+.extras-category[data-category="social-media"] .category-icon::after { content: "📱"; }
+.extras-category[data-category="monthly-management"] .category-icon::after { content: "📅"; }
+.extras-category[data-category="technical"] .category-icon::after { content: "⚡"; }
+
+.category-icon::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+}
+
+/* Enhanced PDF Download Button */
+.pdf-download-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.pdf-download-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.pdf-download-button:hover::before {
+    left: 100%;
+}
 
         /* Dark Mode Support for Extras Section */
     body.dark .extras-section {
@@ -1258,11 +1434,11 @@ body.dark .content-creation-section {
                             </div>
 
                             <ul class="package-features">
-                                <li>1 página com scroll único</li>
-                                <li>Design responsivo</li>
-                                <li>Formulário de contacto funcional</li>
-                                <li>Animações suaves ao fazer scroll</li>
-                                <li>Ícones clicáveis para redes sociais</li>
+                                <li data-feature="pages">1 página com scroll único</li>
+                                <li data-feature="responsive">Design responsivo</li>
+                                <li data-feature="contact">Formulário de contacto funcional</li>
+                                <li data-feature="animations">Animações suaves ao fazer scroll</li>
+                                <li data-feature="social">Ícones clicáveis para redes sociais</li>
                             </ul>
 
                             <a href="contact.html?subject=Interesse%20no%20Pacote%20Essencial&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Essencial%20(€150).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Essential</a>
@@ -1280,11 +1456,11 @@ body.dark .content-creation-section {
                             </div>
 
                             <ul class="package-features">
-                                <li>Página única com scroll suave</li>
-                                <li>Design responsivo</li>
-                                <li>Formulário de contacto funcional</li>
-                                <li>Animações suaves ao fazer scroll</li>
-                                <li>Ligação às redes sociais</li>
+                                <li data-feature="pages">Página única com scroll suave</li>
+                                <li data-feature="responsive">Design responsivo</li>
+                                <li data-feature="contact">Formulário de contacto funcional</li>
+                                <li data-feature="animations">Animações suaves ao fazer scroll</li>
+                                <li data-feature="social">Ligação às redes sociais</li>
                             </ul>
 
                             <a href="contact.html?subject=Interesse%20no%20Pacote%20Start&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Start%20(€200).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Start</a>
@@ -1302,11 +1478,11 @@ body.dark .content-creation-section {
                             </div>
 
                             <ul class="package-features">
-                                <li>Site institucional (3 páginas)</li>
-                                <li>Design responsivo + SEO básico</li>
-                                <li>Formulário de contacto funcional</li>
-                                <li>Otimização leve de performance</li>
-                                <li>Instagram otimizado + 3 posts</li>
+                                <li data-feature="pages">Site institucional (3 páginas)</li>
+                                <li data-feature="seo">Design responsivo + SEO básico</li>
+                                <li data-feature="contact">Formulário de contacto funcional</li>
+                                <li data-feature="analytics">Otimização leve de performance</li>
+                                <li data-feature="social">Instagram otimizado + 3 posts</li>
                             </ul>
 
                             <a href="contact.html?subject=Interesse%20no%20Pacote%20Presença&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Presença%20(€550).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Presence</a>
@@ -1329,11 +1505,11 @@ body.dark .content-creation-section {
                             </div>
 
                             <ul class="package-features">
-                                <li>Site completo (5 páginas)</li>
-                                <li>Design responsivo + animações</li>
-                                <li>SEO técnico básico</li>
-                                <li>Formulário de contacto funcional</li>
-                                <li>Instagram + 6 posts e 3 stories</li>
+                                <li data-feature="pages">Site completo (5 páginas)</li>
+                                <li data-feature="animations">Design responsivo + animações</li>
+                                <li data-feature="seo">SEO técnico básico</li>
+                                <li data-feature="contact">Formulário de contacto funcional</li>
+                                <li data-feature="social">Instagram + 6 posts e 3 stories</li>
                             </ul>
 
                             <a href="contact.html?subject=Interesse%20no%20Pacote%20Advanced&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Advanced%20(€750).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Advanced</a>
@@ -1351,11 +1527,11 @@ body.dark .content-creation-section {
                             </div>
 
                             <ul class="package-features">
-                                <li>Site institucional (7 páginas)</li>
-                                <li>Modo escuro/claro + animações</li>
-                                <li>Integrações (Maps, WhatsApp)</li>
-                                <li>Gestão de Instagram (1 mês)</li>
-                                <li>9 posts + 6 stories + interação</li>
+                                <li data-feature="pages">Site institucional (7 páginas)</li>
+                                <li data-feature="animations">Modo escuro/claro + animações</li>
+                                <li data-feature="cms">Integrações (Maps, WhatsApp)</li>
+                                <li data-feature="social">Gestão de Instagram (1 mês)</li>
+                                <li data-feature="social">9 posts + 6 stories + interação</li>
                             </ul>
 
                             <a href="contact.html?subject=Interesse%20no%20Pacote%20Pro&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Pacote%20Pro%20(€1000).%0A%0ADetalhes%20do%20meu%20projeto:%0A-%20Tipo%20de%20negócio:%0A-%20Objetivo%20principal%20do%20site:%0A-%20Prazo%20desejado:%0A%0AObrigado!" class="cta-button">Escolher Pro</a>
@@ -1411,7 +1587,7 @@ body.dark .content-creation-section {
                 </div>
             </div>
 
-            <div class="extras-category" data-category="social">
+            <div class="extras-category" data-category="social-media">
                 <div class="category-header">
                     <div class="category-icon">
                         <i class="fas fa-share-alt"></i>
@@ -1421,7 +1597,7 @@ body.dark .content-creation-section {
                 </div>
             </div>
 
-            <div class="extras-category" data-category="monthly">
+            <div class="extras-category" data-category="monthly-management">
                 <div class="category-header">
                     <div class="category-icon">
                         <i class="fas fa-calendar-alt"></i>
