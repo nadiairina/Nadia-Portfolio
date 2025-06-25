@@ -49,14 +49,19 @@ body {
     background: white;
 }
 
+/* Dark Mode - Pure Black Background */
+body.dark {
+    background-color: #000000 !important;
+}
+
 /* Dark Mode Support for Header */
 body.dark .header {
-    background-color: #1f2937;
-    border-bottom-color: #374151;
+    background-color: #000000;
+    border-bottom-color: #333333;
 }
 
 body.dark .header.scrolled {
-    background-color: rgba(31, 41, 55, 0.95);
+    background-color: rgba(0, 0, 0, 0.95);
 }
 
 /* Hero Section Styling - IDENTICAL to other pages */
@@ -91,10 +96,10 @@ body.dark .header.scrolled {
 
 /* Dark Mode Support for Hero */
 body.dark .hero {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
     background-image: 
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
 }
 
 /* Hero Text Styling with Gradient Effect */
@@ -112,6 +117,41 @@ body.dark .hero {
     animation: fadeInUp 0.8s ease-out;
     position: relative;
     z-index: 2;
+}
+
+/* Dark Mode Gradient Text Override */
+body.dark .greeting {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark .hero .title {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark .hero .job-title {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark .highlight,
+body.dark .typewriter-effect,
+body.dark #typewriter {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark .hero .subtitle {
+    color: #cccccc;
 }
 
 .hero .title {
@@ -200,6 +240,79 @@ body.dark .hero {
 /* Work section background override */
 .work {
     background-color: white !important;
+}
+
+/* Dark Mode Support for Work Section */
+body.dark .work {
+    background-color: #000000 !important;
+}
+
+body.dark .work h2 {
+    color: #ffffff;
+}
+
+body.dark .work .project-card {
+    background-color: #111111;
+    border: 1px solid #333333;
+    color: #ffffff;
+}
+
+body.dark .work .project-card h3 {
+    color: #ffffff;
+}
+
+body.dark .work .project-card p {
+    color: #cccccc;
+}
+
+body.dark .work .tech-tag {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+body.dark .work .project-link {
+    color: var(--primary-color);
+}
+
+body.dark .work .view-all-btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+/* Dark Mode Support for Skills Section */
+body.dark .skills {
+    background-color: #000000;
+}
+
+body.dark .skills h2,
+body.dark .skills h3 {
+    color: #ffffff;
+}
+
+body.dark .skill-category {
+    background-color: #111111;
+    border: 1px solid #333333;
+}
+
+body.dark .skill-tag {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+/* Dark Mode Support for Footer */
+body.dark .footer {
+    background-color: #000000;
+    border-top: 1px solid #333333;
+}
+
+body.dark .footer h4,
+body.dark .footer p,
+body.dark .footer a {
+    color: #ffffff;
+}
+
+body.dark .footer a:hover {
+    color: var(--primary-color);
 }
 
 /* Some of my latest work section specific styles */
