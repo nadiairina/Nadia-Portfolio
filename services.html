@@ -729,22 +729,23 @@ body {
 }
         /* Header/Navigation Bar Styling - Sticky Navigation */
 .header {
-    background-color: white;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(79, 70, 229, 0.95));
     padding: 15px 0;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.98), rgba(79, 70, 229, 0.98));
+    backdrop-filter: blur(15px);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
 }
         
     /* Packages Page Specific Styles */
@@ -1935,15 +1936,15 @@ body.dark .content-creation-section {
             <div class="actions">
                 <a class="resume-btn" href="assets/Nadia-Irina-CV.pdf" download aria-label="Download Currículo">Currículo</a>
                 <div class="social-icons">
-                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
+                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub" style="color: white;">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn" style="color: white;">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
 
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode" style="color: white; border: 1px solid rgba(255,255,255,0.3);">🌙</button>
             </div>
         </div>
     </header>
