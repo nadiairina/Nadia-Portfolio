@@ -863,6 +863,75 @@ body.dark .footer a:hover {
     color: var(--primary-color);
 }
 
+/* Additional Dark Mode Overrides for ALL White Backgrounds */
+body.dark .hero-section,
+body.dark .contact-hero,
+body.dark .packages-section,
+body.dark .extras-section,
+body.dark .content-creation-section,
+body.dark .monthly-plan-section,
+body.dark .faq-section,
+body.dark .support-section,
+body.dark .cta-section,
+body.dark .download-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Monthly Plan Section Dark Mode */
+body.dark .monthly-plan-section {
+    background: #000000 !important;
+}
+
+body.dark .monthly-plan-card {
+    background: #111111 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+/* Content Creation Cards Dark Mode */
+body.dark .content-creation-card,
+body.dark .service-card,
+body.dark .includes-card {
+    background: #111111 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+/* CTA Button White Dark Mode */
+body.dark .cta-button-white {
+    background: #111111 !important;
+    color: #ffffff !important;
+    border: 1px solid #333333 !important;
+}
+
+/* Override ALL white backgrounds in dark mode */
+body.dark * {
+    background-color: inherit;
+}
+
+body.dark *[style*="background: white"],
+body.dark *[style*="background-color: white"] {
+    background: #111111 !important;
+    background-color: #111111 !important;
+    color: #ffffff !important;
+}
+
+/* Specific inline style overrides */
+body.dark section[style*="background: white"] {
+    background: #000000 !important;
+}
+
+body.dark div[style*="background: white"] {
+    background: #111111 !important;
+    color: #ffffff !important;
+}
+
+/* Force all white text to be visible on dark backgrounds */
+body.dark *[style*="color: white"] {
+    color: #ffffff !important;
+}
+
 body.dark .monthly-plan-title,
 body.dark .plan-section h4 {
     color: var(--text-light);
@@ -4250,7 +4319,7 @@ body.dark .plan-list li {
 
 
     <!-- Monthly Maintenance Plan Section -->
-    <section id="monthly-plan" style="padding: 60px 0; background: white; text-align: center;">
+    <section id="monthly-plan" style="padding: 60px 0; background: white; text-align: center;" class="monthly-plan-section">
         <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
             <div style="background: white; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 15px; padding: 50px 40px; text-align: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
                 
@@ -4393,7 +4462,7 @@ body.dark .plan-list li {
             Descarrega o guia completo com informações detalhadas sobre todos os serviços, 
             preços e condições especiais.
         </p>
-        <a href="caminho/para/o/seu/Guia-de-Serviços.pdf" style="display: inline-block; padding: 18px 40px; background: white; color: var(--primary-color); text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">
+        <a href="caminho/para/o/seu/Guia-de-Serviços.pdf" style="display: inline-block; padding: 18px 40px; background: white; color: var(--primary-color); text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;" class="cta-button-white">
     <i class="fas fa-download" style="margin-right: 8px;"></i>
     Descarregar Guia Completo de Serviços (PDF)
 </a>
@@ -4566,6 +4635,7 @@ document.addEventListener('DOMContentLoaded', function() {
         includes.forEach(function(element) {
             if (element) {
                 element.style.cssText = 'background: white !important; border-radius: 10px !important; padding: 12px !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; border: 1px solid var(--border-color) !important;';
+                element.classList.add('content-creation-card');
             }
         });
         
