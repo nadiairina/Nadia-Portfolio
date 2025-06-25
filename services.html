@@ -46,7 +46,7 @@
 }
 
 .monthly-plan-container {
-    max-width: 580px;
+    max-width: 750px;
     margin: 0 auto;
     padding: 0 20px;
     position: relative;
@@ -55,14 +55,18 @@
 
 .monthly-plan-card {
     background: white;
-    border-radius: 30px;
-    padding: 50px 40px;
+    border-radius: 25px;
+    padding: 35px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
     border: 3px solid transparent;
     background-clip: padding-box;
     position: relative;
     overflow: hidden;
     transition: all 0.4s ease;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: start;
 }
 
 .monthly-plan-card::before {
@@ -149,7 +153,7 @@
 }
 
 .monthly-plan-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: var(--text-dark);
     margin-bottom: 15px;
@@ -157,16 +161,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    line-height: 1.2;
 }
 
 .monthly-plan-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 30px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    line-height: 1.5;
+    margin-bottom: 25px;
 }
 
 /* Price Section */
@@ -198,12 +200,18 @@
 }
 
 .monthly-plan-price {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 900;
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     position: relative;
     z-index: 1;
+}
+
+.monthly-plan-price span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
 }
 
 .price-period {
@@ -440,6 +448,133 @@
     font-weight: 600;
 }
 
+/* Column Styles */
+.plan-left-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+}
+
+.plan-right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.monthly-plan-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+.plan-includes, .plan-excludes {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 18px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.plan-includes:hover, .plan-excludes:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.plan-includes h4 {
+    color: #059669;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.plan-includes h4::before {
+    content: "✓";
+    background: #10b981;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.plan-excludes h4 {
+    color: #dc2626;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.plan-excludes h4::before {
+    content: "✗";
+    background: #ef4444;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-list li {
+    padding: 8px 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.plan-list li:last-child {
+    border-bottom: none;
+}
+
+.monthly-plan-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.monthly-plan-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .monthly-plan-container {
@@ -448,26 +583,28 @@
     }
     
     .monthly-plan-card {
-        padding: 40px 25px;
-        border-radius: 25px;
+        padding: 30px 20px;
+        border-radius: 20px;
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
     
-    .plan-content-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    .plan-left-column {
+        min-height: auto;
+        text-align: center;
     }
     
     .monthly-plan-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
     
     .monthly-plan-price {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
-    .modern-cta-button {
-        padding: 16px 30px;
-        font-size: 1rem;
+    .monthly-plan-button {
+        padding: 14px 25px;
+        font-size: 0.9rem;
     }
 }
 
@@ -3882,43 +4019,49 @@ body.dark .plan-list li {
 <section id="monthly-plan" class="monthly-plan-section">
     <div class="monthly-plan-container">
         <div class="monthly-plan-card">
-            <div class="monthly-plan-badge">
-                PLANO MENSAL
-            </div>
-            
-            <h2 class="monthly-plan-title">Plano Mensal de Manutenção e Suporte</h2>
-            
-            <p class="monthly-plan-subtitle">
-                Mantenha o seu website sempre atualizado, seguro e a funcionar sem preocupações, com suporte rápido quando precisar.
-            </p>
-            
-            <div class="monthly-plan-price">
-                €60<span>/mês</span>
-            </div>
-            
-            <div class="monthly-plan-content">
-                <div class="plan-includes">
-                    <h4>Inclui:</h4>
-                    <ul class="plan-list">
-                        <li>Atualizações regulares do sistema, plugins e correções básicas</li>
-                        <li>Backup automático semanal para segurança dos dados</li>
-                        <li>Monitorização para garantir que o site está sempre online</li>
-                        <li>Suporte técnico por e-mail para dúvidas e pequenos ajustes (até 2 horas por mês)</li>
-                    </ul>
+            <!-- Left Column: Header + Price + CTA -->
+            <div class="plan-left-column">
+                <div class="monthly-plan-badge">
+                    PLANO MENSAL
                 </div>
                 
-                <div class="plan-excludes">
-                    <h4>Não Inclui:</h4>
-                    <ul class="plan-list">
-                        <li>Ajustes mais complexos ou criação de conteúdo (orçamentados à parte)</li>
-                    </ul>
+                <h2 class="monthly-plan-title">Plano Mensal de Manutenção e Suporte</h2>
+                
+                <p class="monthly-plan-subtitle">
+                    Mantenha o seu website sempre atualizado, seguro e a funcionar sem preocupações, com suporte rápido quando precisar.
+                </p>
+                
+                <div class="monthly-plan-price">
+                    €60<span>/mês</span>
+                </div>
+                
+                <div class="monthly-plan-cta">
+                    <a href="contact.html?subject=Interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte%20(€60/mês).%0A%0ADetalhes%20que%20gostaria%20de%20esclarecer:%0A-%20Como%20funciona%20o%20processo%20de%20subscrição%0A-%20Quando%20começaria%20o%20serviço%0A-%20Formas%20de%20pagamento%20disponíveis%0A%0AO%20meu%20website%20é:%20[inserir%20URL%20do%20website]%0A%0AObrigado!" class="monthly-plan-button">
+                      Pedir Plano de Manutenção
+                    </a>
                 </div>
             </div>
             
-            <div class="monthly-plan-cta">
-                <a href="contact.html?subject=Interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte%20(€60/mês).%0A%0ADetalhes%20que%20gostaria%20de%20esclarecer:%0A-%20Como%20funciona%20o%20processo%20de%20subscrição%0A-%20Quando%20começaria%20o%20serviço%0A-%20Formas%20de%20pagamento%20disponíveis%0A%0AO%20meu%20website%20é:%20[inserir%20URL%20do%20website]%0A%0AObrigado!" class="monthly-plan-button">
-                  Pedir Plano de Manutenção
-                </a>
+            <!-- Right Column: Lists -->
+            <div class="plan-right-column">
+                <div class="monthly-plan-content">
+                    <div class="plan-includes">
+                        <h4>Inclui:</h4>
+                        <ul class="plan-list">
+                            <li>Atualizações regulares do sistema, plugins e correções básicas</li>
+                            <li>Backup automático semanal para segurança dos dados</li>
+                            <li>Monitorização para garantir que o site está sempre online</li>
+                            <li>Suporte técnico por e-mail para dúvidas e pequenos ajustes (até 2 horas por mês)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="plan-excludes">
+                        <h4>Não Inclui:</h4>
+                        <ul class="plan-list">
+                            <li>Ajustes mais complexos ou criação de conteúdo (orçamentados à parte)</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
