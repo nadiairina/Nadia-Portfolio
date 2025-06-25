@@ -623,19 +623,244 @@
     }
 }
 
-/* Dark Mode Support */
+/* Dark Mode Support - Pure Black Background */
 body.dark .monthly-plan-section {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
 }
 
 body.dark .monthly-plan-card {
-    background: #2d2d2d;
-    border-color: #374151;
+    background: #111111;
+    border-color: #333333;
 }
 
 body.dark .plan-section {
-    background: linear-gradient(135deg, rgba(45, 45, 45, 0.8), rgba(45, 45, 45, 0.6));
-    border-color: #374151;
+    background: linear-gradient(135deg, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.6));
+    border-color: #333333;
+}
+
+/* Dark Mode Support for Header */
+body.dark .header {
+    background-color: #000000;
+    border-bottom-color: #333333;
+}
+
+body.dark .header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* Dark Mode Support for Hero Section */
+body.dark .contact-hero {
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+}
+
+body.dark .page-title {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark .page-description {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Packages Section */
+body.dark .packages-section {
+    background-color: #000000;
+}
+
+body.dark .package-card {
+    background: #111111;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.dark .package-card:hover {
+    background: #222222;
+}
+
+body.dark .package-name {
+    color: #ffffff;
+}
+
+body.dark .package-price {
+    color: var(--primary-color);
+}
+
+body.dark .package-description {
+    color: #cccccc;
+}
+
+body.dark .package-features li {
+    color: #cccccc;
+}
+
+body.dark .package-cta {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+/* Dark Mode Support for Extras Section */
+body.dark .extras-section {
+    background-color: #000000;
+}
+
+body.dark .extras-section h2 {
+    color: #ffffff;
+}
+
+body.dark .extra-card {
+    background: #111111;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.dark .extra-card:hover {
+    background: #222222;
+}
+
+body.dark .extra-card h3 {
+    color: #ffffff;
+}
+
+body.dark .extra-card p {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Content Creation Section */
+body.dark .content-creation-section {
+    background-color: #000000;
+}
+
+body.dark .content-creation-section h2 {
+    color: #ffffff;
+}
+
+body.dark .content-creation-container {
+    background: #111111;
+    border-color: #333333;
+}
+
+body.dark .service-card {
+    background: #222222;
+    border-color: #333333;
+}
+
+body.dark .service-card:hover {
+    background: #333333;
+}
+
+body.dark .service-card h4 {
+    color: #ffffff;
+}
+
+body.dark .service-card p {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Monthly Plan */
+body.dark .monthly-plan-title,
+body.dark .monthly-plan-section h2 {
+    color: #ffffff;
+}
+
+body.dark .monthly-plan-subtitle,
+body.dark .monthly-plan-section p {
+    color: #cccccc;
+}
+
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #222222 !important;
+    border-color: #333333 !important;
+}
+
+body.dark .plan-includes h4 {
+    color: #10b981;
+}
+
+body.dark .plan-excludes h4 {
+    color: #ef4444;
+}
+
+body.dark .benefit-text {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for FAQ Section */
+body.dark .faq-section {
+    background-color: #000000;
+}
+
+body.dark .faq-section h2 {
+    color: #ffffff;
+}
+
+body.dark .faq-item {
+    background: #111111;
+    border-color: #333333;
+}
+
+body.dark .faq-question {
+    color: #ffffff;
+}
+
+body.dark .faq-answer {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Support Section */
+body.dark .support-section {
+    background-color: #000000;
+}
+
+body.dark .support-section h2 {
+    color: #ffffff;
+}
+
+body.dark .support-card {
+    background: #111111;
+    border-color: #333333;
+}
+
+body.dark .support-card h3 {
+    color: #ffffff;
+}
+
+body.dark .support-card p {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for CTA Sections */
+body.dark .cta-section {
+    background-color: #000000 !important;
+}
+
+body.dark .cta-section h2 {
+    color: #ffffff;
+}
+
+body.dark .cta-section p {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Footer */
+body.dark .footer {
+    background-color: #000000;
+    border-top: 1px solid #333333;
+}
+
+body.dark .footer h4,
+body.dark .footer p,
+body.dark .footer a {
+    color: #ffffff;
+}
+
+body.dark .footer a:hover {
+    color: var(--primary-color);
 }
 
 body.dark .monthly-plan-title,
@@ -726,6 +951,11 @@ body.dark .services-nav-links a {
 }
 body {
     background: white;
+}
+
+/* Dark Mode - Pure Black Background */
+body.dark {
+    background-color: #000000 !important;
 }
         /* Header/Navigation Bar Styling - Sticky Navigation */
 .header {
