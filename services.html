@@ -28,20 +28,8 @@
 /* COMPACT MONTHLY PLAN SECTION - Same as PDF Download */
 .monthly-plan-section {
     padding: 60px 0;
-    background: #000000;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.12));
     text-align: center;
-}
-
-.monthly-plan-card {
-    background: #111111;
-    border: 1px solid #333333;
-    border-radius: 15px;
-    padding: 50px 40px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
-    margin: 0 auto;
-    color: #ffffff;
 }
 
 .monthly-plan-section::before {
@@ -64,7 +52,16 @@
     z-index: 1;
 }
 
-
+.monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.12));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 15px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
 
 .monthly-plan-card:hover {
     transform: translateY(-3px);
@@ -141,14 +138,14 @@
 .monthly-plan-title {
     font-size: 2rem;
     font-weight: 800;
-    color: #ffffff;
+    color: var(--text-dark);
     margin-bottom: 20px;
     line-height: 1.2;
 }
 
 .monthly-plan-subtitle {
     font-size: 1.05rem;
-    color: #cccccc;
+    color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 480px;
@@ -158,8 +155,8 @@
 
 /* Price Section */
 .price-container {
-    background: #222222;
-    border: 2px solid #444444;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+    border: 2px solid rgba(99, 102, 241, 0.2);
     border-radius: 20px;
     padding: 30px;
     text-align: center;
@@ -216,12 +213,12 @@
 }
 
 .plan-section {
-    background: #111111;
-    border: 1px solid #333333;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
     border-radius: 20px;
     padding: 25px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
     transition: all 0.3s ease;
-    color: #ffffff;
 }
 
 .plan-section:hover {
@@ -320,15 +317,15 @@
 
 .benefit-text {
     font-size: 0.95rem;
-    color: #cccccc;
+    color: var(--text-muted);
     line-height: 1.5;
     flex: 1;
 }
 
 /* Guarantee Section */
 .guarantee-section {
-    background: #1a2e1a;
-    border: 2px solid #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));
+    border: 2px solid rgba(16, 185, 129, 0.2);
     border-radius: 20px;
     padding: 25px;
     margin-bottom: 30px;
@@ -358,7 +355,7 @@
 
 .guarantee-text {
     font-size: 0.9rem;
-    color: #cccccc;
+    color: var(--text-muted);
     line-height: 1.5;
 }
 
@@ -424,7 +421,7 @@
 
 .contact-text {
     font-size: 0.9rem;
-    color: #cccccc;
+    color: var(--text-muted);
     margin-bottom: 10px;
 }
 
@@ -454,17 +451,16 @@
 }
 
 .plan-includes, .plan-excludes {
-    background: #222222;
-    border: 1px solid #444444;
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 12px;
+    border: 1px solid rgba(99, 102, 241, 0.06);
     transition: all 0.2s ease;
-    color: #ffffff;
 }
 
 .plan-includes:hover, .plan-excludes:hover {
-    background: #333333;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .plan-includes h4 {
@@ -629,7 +625,7 @@
 
 /* Dark Mode Support - Pure Black Background */
 body.dark .monthly-plan-section {
-    background: #000000 !important;
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
 }
 
 body.dark .monthly-plan-card {
@@ -660,7 +656,6 @@ body.dark .contact-hero {
         radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
 }
 
-/* Dark Mode Gradient Text Override */
 body.dark .page-title {
     background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
     -webkit-background-clip: text;
@@ -678,15 +673,13 @@ body.dark .packages-section {
 }
 
 body.dark .package-card {
-    background: #111111 !important;
-    border-color: #333333 !important;
-    color: #ffffff !important;
+    background: #111111;
+    border-color: #333333;
+    color: #ffffff;
 }
 
 body.dark .package-card:hover {
-    background: #222222 !important;
-    border-color: #444444 !important;
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2) !important;
+    background: #222222;
 }
 
 body.dark .package-name {
@@ -720,15 +713,13 @@ body.dark .extras-section h2 {
 }
 
 body.dark .extra-card {
-    background: #111111 !important;
-    border-color: #333333 !important;
-    color: #ffffff !important;
+    background: #111111;
+    border-color: #333333;
+    color: #ffffff;
 }
 
 body.dark .extra-card:hover {
-    background: #222222 !important;
-    border-color: #444444 !important;
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2) !important;
+    background: #222222;
 }
 
 body.dark .extra-card h3 {
@@ -801,7 +792,7 @@ body.dark .benefit-text {
 
 /* Dark Mode Support for FAQ Section */
 body.dark .faq-section {
-    background-color: #000000 !important;
+    background-color: #000000;
 }
 
 body.dark .faq-section h2 {
@@ -809,8 +800,8 @@ body.dark .faq-section h2 {
 }
 
 body.dark .faq-item {
-    background: #111111 !important;
-    border-color: #333333 !important;
+    background: #111111;
+    border-color: #333333;
 }
 
 body.dark .faq-question {
@@ -823,7 +814,7 @@ body.dark .faq-answer {
 
 /* Dark Mode Support for Support Section */
 body.dark .support-section {
-    background-color: #000000 !important;
+    background-color: #000000;
 }
 
 body.dark .support-section h2 {
@@ -831,15 +822,8 @@ body.dark .support-section h2 {
 }
 
 body.dark .support-card {
-    background: #111111 !important;
-    border-color: #333333 !important;
-    color: #ffffff !important;
-}
-
-body.dark .support-card:hover {
-    background: #222222 !important;
-    border-color: #444444 !important;
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2) !important;
+    background: #111111;
+    border-color: #333333;
 }
 
 body.dark .support-card h3 {
@@ -1072,7 +1056,7 @@ body.dark {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, #000000 0%, #111111 100%);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     background-image: 
         radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
@@ -1173,21 +1157,20 @@ body.dark {
     
 
     .package-card {
-    background: #111111;
-    border: 1px solid #333333;
+    background: var(--bg-card);
     border-radius: 25px;
     padding: 60px 40px 50px 40px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     overflow: visible;
+    border: 2px solid transparent;
     background-clip: padding-box;
     min-height: 700px;
     width: 400px;
     display: flex;
     flex-direction: column;
     animation: slideInScale 0.6s ease-out both;
-    color: #ffffff;
 }
     /* Enhanced Recommended Banner */
 .recommended-banner {
@@ -1228,9 +1211,8 @@ body.dark {
         
     .package-card:hover {
         transform: translateY(-15px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        border-color: #444444;
-        background-color: #222222;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: var(--primary-color);
     }
 
     .package-card.featured {
@@ -1560,11 +1542,11 @@ body.dark {
 
 /* Alternating Section Backgrounds */
 .extras-section {
-    background: #000000;
+    background: #f9fafb;
 }
 
 .content-creation-section {
-    background: #000000;
+    background: white;
 }
 
 /* Extras Category Icons */
@@ -1624,7 +1606,7 @@ body.dark {
 
         /* Dark Mode Support for Extras Section */
     body.dark .extras-section {
-        background-color: #000000 !important;
+        background-color: #1f2937;
     }
 
         /* Dark Mode Support for Content Creation Section */
@@ -1822,7 +1804,7 @@ body.dark .content-creation-section {
 
     .extras-section {
         padding: 80px 0 40px 0;
-        background-color: #000000;
+        background-color: white;
         transition: background-color 0.3s ease;
     }
 
@@ -3532,13 +3514,12 @@ body.dark .support-content-item p {
 }
 
 .faq-item {
-    background: #111111;
-    border: 1px solid #333333;
+    background: white;
     border-radius: 15px;
     padding: 35px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    color: #ffffff;
+    border: 1px solid var(--border-color);
 }
 
 .faq-item:hover {
@@ -3566,13 +3547,12 @@ body.dark .support-content-item p {
 
 /* Dark Mode Support for FAQ Section */
 body.dark .faq-section {
-    background-color: #000000 !important;
+    background-color: #1f2937;
 }
 
 body.dark .faq-item {
-    background: #111111 !important;
-    border-color: #333333 !important;
-    color: #ffffff !important;
+    background: #2d2d2d;
+    border-color: #374151;
 }
 
 body.dark .faq-title {
@@ -4052,7 +4032,7 @@ body.dark .plan-list li {
 /* IMPROVED CONTENT CREATION SECTION */
 .content-creation-section {
     padding: 80px 0 !important;
-    background: linear-gradient(135deg, #000000 0%, #111111 100%) !important;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
     position: relative !important;
     overflow: hidden !important;
 }
@@ -4134,15 +4114,14 @@ body.dark .plan-list li {
 }
 
 .content-creation-section .include-item {
-    background: #111111 !important;
-    border: 1px solid #333333 !important;
+    background: white !important;
     border-radius: 20px !important;
     padding: 35px !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    border: 2px solid transparent !important;
     transition: all 0.4s ease !important;
     position: relative !important;
     overflow: hidden !important;
-    color: #ffffff !important;
 }
 
 .content-creation-section .include-item::before {
@@ -4176,8 +4155,7 @@ body.dark .plan-list li {
 }
 
 .content-creation-section .package-types-section {
-    background: #111111 !important;
-    border: 1px solid #333333 !important;
+    background: white !important;
     border-radius: 25px !important;
     padding: 40px !important;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
@@ -4192,13 +4170,12 @@ body.dark .plan-list li {
 }
 
 .content-creation-section .package-type {
-    background: #222222 !important;
-    border: 1px solid #444444 !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
     border-radius: 15px !important;
     padding: 25px !important;
     text-align: center !important;
     transition: all 0.3s ease !important;
-    color: #ffffff !important;
 }
 
 .content-creation-section .package-type:hover {
@@ -4220,15 +4197,15 @@ body.dark .plan-list li {
     display: inline-flex !important;
     align-items: center !important;
     gap: 15px !important;
-    background: var(--primary-color) !important;
-    color: white !important;
+    background: white !important;
+    color: var(--primary-color) !important;
     padding: 20px 40px !important;
     border-radius: 15px !important;
     font-size: 1.1rem !important;
     font-weight: 700 !important;
     text-decoration: none !important;
     transition: all 0.4s ease !important;
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
 }
 
 .content-creation-section .enhanced-download-button:hover {
@@ -4322,7 +4299,7 @@ body.dark .plan-list li {
                 </div>
 
                 <!-- Enhanced CTA Section -->
-                <div class="content-cta-section" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white; padding: 80px 0; text-align: center; border-radius: 0; position: relative; overflow: hidden;">
+                <div class="content-cta-section">
                     <div style="position: relative; z-index: 1;">
                         <h3 style="font-size: 2.2rem; font-weight: 800; color: white; margin-bottom: 20px;">Não Percas Nenhum Detalhe!</h3>
                         <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto;">
@@ -4342,9 +4319,9 @@ body.dark .plan-list li {
 
 
     <!-- Monthly Maintenance Plan Section -->
-    <section id="monthly-plan" class="monthly-plan-section">
+    <section id="monthly-plan" style="padding: 60px 0; background: white; text-align: center;" class="monthly-plan-section">
         <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
-            <div class="monthly-plan-card">
+            <div style="background: white; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 15px; padding: 50px 40px; text-align: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
                 
                 <div style="display: inline-block; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">
                     PLANO MENSAL
