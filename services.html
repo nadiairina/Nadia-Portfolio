@@ -623,35 +623,150 @@
     }
 }
 
-/* Resume Button - Always Visible with Gradient */
-.resume-btn {
-    display: inline-flex;
+/* Header/Navigation Bar Styling - Sticky Navigation */
+.header {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 8px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    color: var(--primary-color);
+}
+
+.logo .dot {
+    color: var(--primary-color);
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav a:hover {
+    color: var(--primary-color);
+}
+
+.nav a.active {
+    color: var(--primary-color);
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Resume Button - Always Visible */
+.resume-btn {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
-    padding: 12px 24px;
-    border-radius: 25px;
+    padding: 10px 20px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    border: 2px solid transparent;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
 }
 
 .resume-btn:hover {
-    color: white;
-    text-decoration: none;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: white;
+    text-decoration: none;
 }
 
-.resume-btn i {
-    font-size: 1rem;
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-icons a {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.theme-toggle:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
 }
 
 /* Dark Mode Support - Pure Black Background */
@@ -878,18 +993,57 @@ body.dark .cta-section p {
     color: #cccccc;
 }
 
+/* Dark Mode Support for Header */
+body.dark .header {
+    background-color: #000000;
+    border-bottom-color: #333333;
+}
+
+body.dark .header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+body.dark .logo {
+    color: var(--primary-color);
+}
+
+body.dark .nav a {
+    color: #ffffff;
+}
+
+body.dark .nav a:hover,
+body.dark .nav a.active {
+    color: var(--primary-color);
+}
+
+body.dark .social-icons a {
+    color: #ffffff;
+}
+
+body.dark .social-icons a:hover {
+    color: var(--primary-color);
+}
+
+body.dark .theme-toggle {
+    color: #ffffff;
+}
+
+body.dark .theme-toggle:hover {
+    color: var(--primary-color);
+}
+
 /* Dark Mode Support for Resume Button */
 body.dark .resume-btn {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: #ffffff;
-    border: 2px solid var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 body.dark .resume-btn:hover {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-    color: #ffffff;
+    color: white;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
 }
 
 /* Dark Mode Support for Footer */
