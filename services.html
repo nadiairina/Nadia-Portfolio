@@ -2368,6 +2368,45 @@ body.dark .header.scrolled {
     color: white !important;
     text-decoration: none !important;
 }
+
+/* ESTILO DAS CAIXAS DOS PACOTES - IGUAL ÀS CAIXAS DOS PROJETOS */
+.package-card {
+    background-color: #111111 !important;
+    border: 1px solid #333333 !important;
+    color: #ffffff !important;
+    transition: all 0.3s ease !important;
+}
+
+.package-card:hover {
+    background-color: #222222 !important;
+    border-color: #444444 !important;
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* Texto das caixas dos pacotes */
+.package-card h3,
+.package-card .package-name {
+    color: #ffffff !important;
+}
+
+.package-card .package-price {
+    color: var(--primary-color) !important;
+}
+
+.package-card .package-description,
+.package-card p {
+    color: #cccccc !important;
+}
+
+.package-card .package-features li {
+    color: #cccccc !important;
+}
+
+/* Dark mode forçado para toda a secção dos pacotes */
+.packages-section {
+    background-color: #000000 !important;
+}
     </style>
 </head>
 <body>
