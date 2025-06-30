@@ -239,25 +239,34 @@ body.dark .monthly-plan-section .monthly-plan-description {
     color: #ffffff !important;
 }
 
-/* TEXTOS ESPECÍFICOS BRANCOS APENAS NO DARK MODE */
-body.dark .faq-answer,
-body.dark .support-intro,
-body.dark .support-content-item p,
-body.dark .package-card p:not(.package-price),
-body.dark .package-card li,
-body.dark .pricing-card p:not(.package-price),
-body.dark .pricing-card li,
-body.dark .service-card p:not(.package-price),
-body.dark .service-card li,
-body.dark .pdf-download-section p,
-body.dark .content-creation-section p,
-body.dark .extras-section p {
+/* FORÇAR TEXTOS BRANCOS NO DARK MODE - SOBRESCREVER CSS EXTERNO */
+html body.dark .faq-answer,
+html body.dark .support-intro,
+html body.dark .support-content-item p,
+html body.dark .package-card p:not(.package-price),
+html body.dark .package-card li,
+html body.dark .pricing-card p:not(.package-price),
+html body.dark .pricing-card li,
+html body.dark .service-card p:not(.package-price),
+html body.dark .service-card li,
+html body.dark .pdf-download-section p,
+html body.dark .content-creation-section p,
+html body.dark .extras-section p,
+html body.dark .faq-item p,
+html body.dark .support-content-item,
+html body.dark .package-description {
     color: #ffffff !important;
+    text-shadow: none !important;
 }
 
-/* TÍTULO "O QUE INCLUI" BRANCO NO DARK MODE */
-body.dark .includes-title {
+/* TÍTULO "O QUE INCLUI" BRANCO NO DARK MODE - FORÇAR */
+html body.dark .includes-title,
+html body.dark h3.includes-title,
+html body.dark .content-creation-section .includes-title {
     color: #ffffff !important;
+    background: none !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: none !important;
 }
 
 /* CONTEÚDO DAS CAIXAS BRANCO NO DARK MODE */
