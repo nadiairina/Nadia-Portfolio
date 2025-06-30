@@ -28,7 +28,7 @@
 /* COMPACT MONTHLY PLAN SECTION - Same as PDF Download */
 .monthly-plan-section {
     padding: 60px 0;
-    background: #000000 !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.12));
     text-align: center;
 }
 
@@ -138,14 +138,14 @@
 .monthly-plan-title {
     font-size: 2rem;
     font-weight: 800;
-    color: #ffffff !important;
+    color: var(--text-dark);
     margin-bottom: 20px;
     line-height: 1.2;
 }
 
 .monthly-plan-subtitle {
     font-size: 1.05rem;
-    color: #cccccc !important;
+    color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 30px;
     max-width: 480px;
@@ -2367,103 +2367,6 @@ body.dark .header.scrolled {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
     color: white !important;
     text-decoration: none !important;
-}
-
-/* ESTILO DAS CAIXAS DOS PACOTES - IGUAL ÀS CAIXAS DOS PROJETOS */
-.pricing-card {
-    background-color: #111111 !important;
-    border: 1px solid #333333 !important;
-    color: #ffffff !important;
-    transition: all 0.3s ease !important;
-}
-
-.pricing-card:hover {
-    background-color: #222222 !important;
-    border-color: #444444 !important;
-    transform: translateY(-8px) !important;
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2) !important;
-}
-
-.pricing-card.recommended {
-    background-color: #111111 !important;
-    border: 2px solid #6366f1 !important;
-}
-
-.pricing-card.recommended:hover {
-    background-color: #222222 !important;
-    border-color: #6366f1 !important;
-}
-
-/* Texto das caixas dos pacotes */
-.pricing-card .package-name {
-    color: #ffffff !important;
-}
-
-.pricing-card .package-price {
-    color: var(--primary-color) !important;
-}
-
-.pricing-card .package-limit {
-    color: #cccccc !important;
-}
-
-.pricing-card .package-features li {
-    color: #cccccc !important;
-    border-bottom-color: #333333 !important;
-}
-
-.pricing-card .package-features li::before {
-    color: #10b981 !important;
-}
-
-/* Dark mode forçado para toda a secção dos pacotes */
-.pricing-section {
-    background-color: #000000 !important;
-}
-
-/* FORÇA DARK MODE SEMPRE - IGUAL AOS PROJETOS */
-body .pricing-card {
-    background-color: #111111 !important;
-    border: 1px solid #333333 !important;
-    color: #ffffff !important;
-}
-
-body .pricing-card:hover {
-    background-color: #222222 !important;
-    border-color: #444444 !important;
-    transform: translateY(-8px) !important;
-    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2) !important;
-}
-
-body .pricing-card .package-name {
-    color: #ffffff !important;
-}
-
-body .pricing-card .package-price {
-    color: #6366f1 !important;
-}
-
-body .pricing-card .package-limit,
-body .pricing-card .package-features li {
-    color: #cccccc !important;
-}
-
-body .pricing-card .package-features li {
-    border-bottom-color: #333333 !important;
-}
-
-body .pricing-card .package-features li::before {
-    color: #10b981 !important;
-}
-
-body .pricing-card.recommended {
-    background-color: #111111 !important;
-    border: 2px solid #6366f1 !important;
-}
-
-body .pricing-card.recommended:hover {
-    background-color: #222222 !important;
-    border-color: #6366f1 !important;
 }
     </style>
 </head>
