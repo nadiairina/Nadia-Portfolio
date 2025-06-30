@@ -61,21 +61,84 @@ body.dark .plan-excludes h4,
 body.dark .plan-excludes ul,
 body.dark .plan-excludes li,
 body.dark .monthly-plan-price span,
-body.dark .price-period {
+body.dark .price-period,
+body.dark .benefit-text,
+body.dark .benefit-item {
+    color: #ffffff !important;
+}
+
+/* PLANO MENSAL - TEXTO SEMPRE BRANCO NO DARK MODE */
+body.dark .monthly-plan-section,
+body.dark .monthly-plan-section *,
+body.dark .monthly-plan-section p,
+body.dark .monthly-plan-section div,
+body.dark .monthly-plan-section span,
+body.dark .monthly-plan-section li {
     color: #ffffff !important;
 }
 
 /* BOTÕES SEMPRE ROXOS PARA DESTAQUE */
 .modern-cta-button,
 .package-cta,
-.service-cta {
+.service-cta,
+.contact-cta,
+.btn-primary,
+.hero-cta,
+.pricing-cta,
+.cta-button,
+button[style*="background"],
+a[style*="background"] {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
     color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
 }
 
-/* TÍTULOS DOS PACOTES SEMPRE ROXOS */
-.package-name,
+/* TODOS OS BOTÕES DOS PACOTES SEMPRE ROXOS */
+.packages-section .btn,
+.packages-section button,
+.packages-section a[class*="btn"],
+.pricing-card .btn,
+.pricing-card button,
+.pricing-card a {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* BOTÃO "CONTACTAR PARA MAIS INFORMAÇÕES" SEMPRE ROXO */
+.monthly-plan-section .modern-cta-button,
+.monthly-plan-section a,
+.monthly-plan-section button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* TÍTULOS DOS PACOTES SEMPRE ROXOS E MAIORES */
+.package-name {
+    color: var(--primary-color) !important;
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 15px !important;
+}
+
 .package-price {
+    color: var(--primary-color) !important;
+    font-size: 2.8rem !important;
+    font-weight: 900 !important;
+}
+
+/* TÍTULOS DE SEÇÕES MAIORES TAMBÉM */
+.pricing-card h3,
+.service-card h3,
+.extra-card h3 {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
     color: var(--primary-color) !important;
 }
 
