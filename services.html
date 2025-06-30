@@ -239,11 +239,30 @@ body.dark .monthly-plan-section .monthly-plan-description {
     color: #ffffff !important;
 }
 
-/* FORÇAR TODOS OS TEXTOS ESPECÍFICOS A BRANCO NO DARK MODE */
-body.dark p,
-body.dark li,
-body.dark span:not(.package-price):not(.btn):not([class*="price"]),
-body.dark div:not([class*="price"]):not(.btn):not(.package-price) {
+/* TEXTOS ESPECÍFICOS BRANCOS APENAS NO DARK MODE */
+body.dark .faq-answer,
+body.dark .support-intro,
+body.dark .support-content-item p,
+body.dark .package-card p:not(.package-price),
+body.dark .package-card li,
+body.dark .pricing-card p:not(.package-price),
+body.dark .pricing-card li,
+body.dark .service-card p:not(.package-price),
+body.dark .service-card li,
+body.dark .pdf-download-section p,
+body.dark .content-creation-section p,
+body.dark .extras-section p {
+    color: #ffffff !important;
+}
+
+/* TÍTULO "O QUE INCLUI" BRANCO NO DARK MODE */
+body.dark .includes-title {
+    color: #ffffff !important;
+}
+
+/* CONTEÚDO DAS CAIXAS BRANCO NO DARK MODE */
+body.dark .include-item h4,
+body.dark .include-item p {
     color: #ffffff !important;
 }
 
