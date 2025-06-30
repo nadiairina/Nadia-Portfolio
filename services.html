@@ -174,6 +174,53 @@ body.dark .package-name {
     color: #ffffff !important;
 }
 
+/* TEXTO DOS PACOTES BRANCO NO DARK MODE (EXCETO PREÇOS) */
+body.dark .package-card p,
+body.dark .package-card span:not(.package-price),
+body.dark .package-card div:not([class*="price"]),
+body.dark .package-description,
+body.dark .pricing-card p,
+body.dark .pricing-card span:not(.package-price),
+body.dark .pricing-card li,
+body.dark .service-card p,
+body.dark .service-card span:not(.package-price),
+body.dark .service-card div:not([class*="price"]) {
+    color: #ffffff !important;
+}
+
+/* MANTER PREÇOS ROXOS */
+body.dark .package-price,
+body.dark .pricing-card .package-price,
+body.dark .service-card .package-price {
+    color: var(--primary-color) !important;
+}
+
+/* TEXTO DO GUIA PDF BRANCO NO DARK MODE */
+body.dark .pdf-download-section p,
+body.dark .pdf-download-section div:not(.pdf-download-btn),
+body.dark .pdf-download-section span:not(.btn) {
+    color: #ffffff !important;
+}
+
+/* DESCRIÇÕES DOS SERVIÇOS BRANCAS NO DARK MODE */
+body.dark .category-description,
+body.dark .service-description,
+body.dark .content-creation-section .category-description,
+body.dark .extras-section p,
+body.dark .extras-section .section-description,
+body.dark .content-creation-section h2,
+body.dark .content-creation-section .section-title,
+body.dark .includes-title,
+body.dark h3:contains("O Que Inclui"),
+body.dark h4:contains("O Que Inclui"),
+body.dark .terms-section p,
+body.dark .payment-terms,
+body.dark .conditions-text,
+body.dark .support-commitment,
+body.dark .guarantee-text {
+    color: #ffffff !important;
+}
+
 .package-price {
     color: var(--primary-color) !important;
     font-size: 2.8rem !important;
