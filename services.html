@@ -183,10 +183,10 @@ h4:contains("Não Inclui"),
     font-weight: 700 !important;
 }
 
-/* FORCE COLORS WITH !IMPORTANT */
+/* FORCE COLORS WITH !IMPORTANT - DARK MODE */
 body.dark .monthly-plan-price,
 body.dark .price-period {
-    color: var(--primary-color) !important;
+    color: #6366f1 !important;
 }
 
 body.dark .plan-includes h4 {
@@ -194,6 +194,35 @@ body.dark .plan-includes h4 {
 }
 
 body.dark .plan-excludes h4 {
+    color: #ef4444 !important;
+}
+
+/* FORÇAR CORES ESPECÍFICAS NO DARK MODE */
+body.dark *:contains("€60"),
+body.dark *:contains("/mês") {
+    color: #6366f1 !important;
+}
+
+body.dark *:contains("Inclui:") {
+    color: #10b981 !important;
+}
+
+body.dark *:contains("Não Inclui:") {
+    color: #ef4444 !important;
+}
+
+/* ESPECÍFICO PARA O PLANO MENSAL */
+body.dark .monthly-plan-section .monthly-plan-price {
+    color: #6366f1 !important;
+    font-size: 2.5rem !important;
+    font-weight: 900 !important;
+}
+
+body.dark .monthly-plan-section h4:first-child {
+    color: #10b981 !important;
+}
+
+body.dark .monthly-plan-section h4:last-child {
     color: #ef4444 !important;
 }
 
