@@ -160,6 +160,43 @@ a:contains("Contactar"),
     color: var(--primary-color) !important;
 }
 
+/* CORES ESPECÍFICAS PLANO MENSAL */
+.monthly-plan-price,
+.price-period {
+    color: var(--primary-color) !important;
+    font-weight: 900 !important;
+}
+
+/* "INCLUI:" VERDE */
+.plan-includes h4,
+h4:contains("Inclui"),
+*:contains("Inclui:") {
+    color: #10b981 !important;
+    font-weight: 700 !important;
+}
+
+/* "NÃO INCLUI:" VERMELHO */
+.plan-excludes h4,
+h4:contains("Não Inclui"),
+*:contains("Não Inclui:") {
+    color: #ef4444 !important;
+    font-weight: 700 !important;
+}
+
+/* FORCE COLORS WITH !IMPORTANT */
+body.dark .monthly-plan-price,
+body.dark .price-period {
+    color: var(--primary-color) !important;
+}
+
+body.dark .plan-includes h4 {
+    color: #10b981 !important;
+}
+
+body.dark .plan-excludes h4 {
+    color: #ef4444 !important;
+}
+
 /* COMPACT MONTHLY PLAN SECTION - Same as PDF Download */
 .monthly-plan-section {
     padding: 60px 0;
