@@ -25,6 +25,36 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+/* FORÇAR FUNDO PRETO EM TODA A PÁGINA */
+body,
+html,
+.hero-section,
+.packages-section,
+.extras-section,
+.content-creation-section,
+.monthly-plan-section,
+.faq-section,
+.support-section,
+.comparison-section,
+.contact-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* FORÇAR TEXTO BRANCO EM TODA A PÁGINA */
+body,
+body *,
+h1, h2, h3, h4, h5, h6,
+p, span, div, li {
+    color: #ffffff !important;
+}
+
+/* EXCEÇÃO: Manter seção PDF roxa */
+.pdf-download-section {
+    background: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+}
+
 /* COMPACT MONTHLY PLAN SECTION - Same as PDF Download */
 .monthly-plan-section {
     padding: 60px 0;
