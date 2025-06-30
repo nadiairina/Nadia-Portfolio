@@ -25,6 +25,60 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+/* DARK MODE - FUNDOS PRETOS APENAS NO DARK MODE */
+body.dark .monthly-plan-section,
+body.dark .content-creation-section {
+    background: #000000 !important;
+}
+
+/* DARK MODE - SEÇÃO "GUIA COMPLETO DE SERVIÇOS" PRETA */
+body.dark .pdf-download-section {
+    background: #000000 !important;
+}
+
+/* DARK MODE - CAIXAS PRETAS PARA SERVIÇOS */
+body.dark .service-card,
+body.dark .monthly-plan-card,
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #111111 !important;
+    border-color: #333333 !important;
+}
+
+/* DARK MODE - TEXTO BRANCO */
+body.dark .content-creation-section h2,
+body.dark .content-creation-section p,
+body.dark .monthly-plan-title,
+body.dark .monthly-plan-subtitle,
+body.dark .monthly-plan-content,
+body.dark .monthly-plan-content p,
+body.dark .monthly-plan-content ul,
+body.dark .monthly-plan-content li,
+body.dark .plan-includes h4,
+body.dark .plan-includes ul,
+body.dark .plan-includes li,
+body.dark .plan-excludes h4,
+body.dark .plan-excludes ul,
+body.dark .plan-excludes li,
+body.dark .monthly-plan-price span,
+body.dark .price-period {
+    color: #ffffff !important;
+}
+
+/* BOTÕES SEMPRE ROXOS PARA DESTAQUE */
+.modern-cta-button,
+.package-cta,
+.service-cta {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+}
+
+/* TÍTULOS DOS PACOTES SEMPRE ROXOS */
+.package-name,
+.package-price {
+    color: var(--primary-color) !important;
+}
+
 /* COMPACT MONTHLY PLAN SECTION - Same as PDF Download */
 .monthly-plan-section {
     padding: 60px 0;
