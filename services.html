@@ -217,8 +217,43 @@ body.dark .terms-section p,
 body.dark .payment-terms,
 body.dark .conditions-text,
 body.dark .support-commitment,
-body.dark .guarantee-text {
+body.dark .guarantee-text,
+body.dark .faq-answer,
+body.dark .support-intro,
+body.dark .support-content-item p,
+body.dark .faq-item p,
+body.dark .includes-title,
+body.dark .package-card p:not(.package-price),
+body.dark .package-card li,
+body.dark .package-card .package-description,
+body.dark .pricing-card p:not(.package-price),
+body.dark .pricing-card li,
+body.dark .service-card p:not(.package-price),
+body.dark .service-card li,
+body.dark .pdf-download-section .pdf-description,
+body.dark .content-creation-section .category-description,
+body.dark .content-creation-section .section-description,
+body.dark .extras-section .extras-description,
+body.dark .content-creation-title,
+body.dark .monthly-plan-section .monthly-plan-description {
     color: #ffffff !important;
+}
+
+/* FORÇAR TODOS OS TEXTOS ESPECÍFICOS A BRANCO NO DARK MODE */
+body.dark p,
+body.dark li,
+body.dark span:not(.package-price):not(.btn):not([class*="price"]),
+body.dark div:not([class*="price"]):not(.btn):not(.package-price) {
+    color: #ffffff !important;
+}
+
+/* MANTER PREÇOS ROXOS SEMPRE */
+body.dark .package-price,
+body.dark [class*="price"],
+body.dark .pricing-card .package-price,
+body.dark .service-card .package-price,
+body.dark .monthly-plan-price {
+    color: var(--primary-color) !important;
 }
 
 .package-price {
