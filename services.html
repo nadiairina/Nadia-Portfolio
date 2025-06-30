@@ -128,11 +128,60 @@ a:contains("Contactar"),
 
 /* FORÇAR BOTÃO CONTACTAR ESPECÍFICO */
 [onclick*="mailto"],
-[href*="mailto"] {
+[href*="mailto"],
+.support-button,
+a[href*="contact.html"] {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
     color: white !important;
     border: 2px solid var(--primary-color) !important;
     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+    padding: 12px 30px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+}
+
+/* FORÇA TOTAL - BOTÃO ESPECÍFICO */
+a[href*="Informações"]:contains("Contactar"),
+a.support-button:contains("Contactar") {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: #ffffff !important;
+    border: 2px solid #6366f1 !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* CSS ADICIONAL PARA BOTÕES ROXOS */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: none;
+    outline: none;
+}
+
+.btn.primary,
+.support-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+    padding: 12px 30px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+}
+
+.btn.primary:hover,
+.support-button:hover {
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
 }
 
 /* TÍTULOS DOS PACOTES SEMPRE ROXOS E MAIORES */
