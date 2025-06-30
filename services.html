@@ -25,11 +25,13 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* COMPACT MONTHLY PLAN SECTION - Same as PDF Download */
+/* ENHANCED MONTHLY PLAN SECTION */
 .monthly-plan-section {
-    padding: 60px 0;
+    padding: 80px 0;
     background: #000000 !important;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .monthly-plan-section::before {
@@ -39,13 +41,21 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-    opacity: 0.6;
+    background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+    opacity: 0.7;
     pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
 }
 
 .monthly-plan-container {
-    max-width: 600px;
+    max-width: 750px;
     margin: 0 auto;
     padding: 0 20px;
     position: relative;
@@ -53,20 +63,41 @@
 }
 
 .monthly-plan-card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.12));
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    border-radius: 15px;
-    padding: 30px 25px;
+    background: #111111 !important;
+    border: 2px solid #333333 !important;
+    border-radius: 25px;
+    padding: 50px 40px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.monthly-plan-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #7c3aed, var(--primary-color));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }
 
 .monthly-plan-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-    border-color: rgba(99, 102, 241, 0.2);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(99, 102, 241, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-color);
 }
 
 /* Popular Badge */
@@ -108,15 +139,16 @@
     display: inline-block;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 0.9rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 25px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
 }
 
 .monthly-plan-badge::before {
@@ -126,82 +158,99 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    animation: shimmer 3s infinite;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: badgeShimmer 4s infinite;
 }
 
-@keyframes shimmer {
+@keyframes badgeShimmer {
     0% { left: -100%; }
     100% { left: 100%; }
 }
 
 .monthly-plan-title {
-    font-size: 2rem;
-    font-weight: 800;
+    font-size: 2.5rem;
+    font-weight: 900;
     color: #ffffff !important;
-    margin-bottom: 20px;
-    line-height: 1.2;
+    margin-bottom: 25px;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff, #e5e7eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .monthly-plan-subtitle {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     color: #cccccc !important;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 400;
 }
 
-/* Price Section */
+/* Enhanced Price Section */
 .price-container {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
-    border: 2px solid rgba(99, 102, 241, 0.2);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.08));
+    border: 2px solid var(--primary-color);
     border-radius: 20px;
-    padding: 30px;
+    padding: 40px 30px;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
 }
 
 .price-container::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.05), transparent);
-    animation: rotate 8s linear infinite;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color), #7c3aed, var(--primary-color), #7c3aed);
+    background-size: 400% 400%;
+    border-radius: 20px;
+    z-index: -1;
+    animation: gradientRotate 4s ease infinite;
 }
 
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes gradientRotate {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .monthly-plan-price {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 900;
     color: var(--primary-color);
     margin: 0;
     position: relative;
     z-index: 1;
+    text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+    animation: priceGlow 3s ease-in-out infinite;
+}
+
+@keyframes priceGlow {
+    0%, 100% { text-shadow: 0 0 30px rgba(99, 102, 241, 0.5); }
+    50% { text-shadow: 0 0 40px rgba(99, 102, 241, 0.8), 0 0 60px rgba(99, 102, 241, 0.4); }
 }
 
 .monthly-plan-price span {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--text-muted);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffffff;
 }
 
 .price-period {
-    font-size: 1rem;
-    color: var(--text-muted);
+    font-size: 1.1rem;
+    color: #ffffff;
     font-weight: 500;
     position: relative;
     z-index: 1;
+    margin-top: 5px;
 }
 
 /* Content Grid */
@@ -450,54 +499,99 @@
     gap: 15px;
 }
 
+/* Enhanced Plan Sections */
+.plan-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
 .plan-includes, .plan-excludes {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: 1px solid rgba(99, 102, 241, 0.06);
-    transition: all 0.2s ease;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 15px;
+    padding: 25px 20px;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.plan-includes::before, .plan-excludes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 15px 15px 0 0;
+}
+
+.plan-includes::before {
+    background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.plan-excludes::before {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
 }
 
 .plan-includes:hover, .plan-excludes:hover {
-    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .plan-includes h4 {
-    color: #059669;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+    color: #10b981 !important;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 
 .plan-includes h4::before {
     content: "✓";
-    background: #10b981;
+    background: linear-gradient(135deg, #10b981, #059669);
     color: white;
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     font-weight: bold;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .plan-excludes h4 {
-    color: #dc2626;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+    color: #ef4444 !important;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 
 .plan-excludes h4::before {
+    content: "✕";
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
     content: "✗";
     background: #ef4444;
     color: white;
@@ -4297,6 +4391,78 @@ div[style*="background: rgba(255, 255, 255"],
 .monthly-plan-section li,
 .monthly-plan-section p {
     color: #ffffff !important;
+}
+
+/* FORÇAR APENAS AS CAIXAS DA SEÇÃO CRIAÇÃO DE CONTEÚDO */
+/* Título da seção Criação de Conteúdo visível */
+.content-creation-section h1,
+.content-creation-section h2 {
+    color: #ffffff !important;
+}
+
+/* Caixas específicas da seção Criação de Conteúdo */
+.content-creation-section .package-grid .pricing-card {
+    background: #111111 !important;
+    border: 2px solid #333333 !important;
+}
+
+/* Se existirem divs com estilos inline brancos na seção de criação de conteúdo */
+.content-creation-section div[style*="background: white"],
+.content-creation-section div[style*="background-color: white"],
+.content-creation-section div[style*="background: #fff"],
+.content-creation-section div[style*="background-color: #fff"] {
+    background: #111111 !important;
+    border: 2px solid #333333 !important;
+}
+
+/* FORÇAR FUNDO PRETO EM TODA A PÁGINA - EXCETO SEÇÃO PDF */
+body,
+html,
+.hero-section,
+.packages-section,
+.extras-section,
+.content-creation-section,
+.faq-section,
+.support-section,
+.comparison-section,
+.contact-section,
+.footer-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* FORÇAR TEXTO BRANCO EM TODA A PÁGINA */
+body,
+body * {
+    color: #ffffff !important;
+}
+
+/* Manter apenas a seção PDF com fundo roxo */
+.pdf-download-section {
+    background: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+}
+
+.pdf-download-section,
+.pdf-download-section * {
+    color: #ffffff !important;
+}
+
+/* Garantir que todas as caixas sejam dark mode */
+div,
+section,
+.card,
+.box {
+    background: #111111 !important;
+    border-color: #333333 !important;
+}
+
+/* Exceção para a seção PDF - manter roxo */
+.pdf-download-section div,
+.pdf-download-section section,
+.pdf-download-section .card,
+.pdf-download-section .box {
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
 body.dark .pdf-download-card {
