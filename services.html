@@ -4207,6 +4207,98 @@ body.dark .monthly-plan-section {
     color: #ffffff !important;
 }
 
+/* TODOS OS BOTÕES ROXOS COM ANIMAÇÃO DO PDF */
+.cta-button,
+.modern-cta-button,
+button,
+.btn,
+a[href*="mailto"],
+input[type="submit"] {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Animação de brilho em todos os botões */
+.cta-button::before,
+.modern-cta-button::before,
+button::before,
+.btn::before,
+a[href*="mailto"]::before,
+input[type="submit"]::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+    transition: left 0.6s ease !important;
+}
+
+.cta-button:hover::before,
+.modern-cta-button:hover::before,
+button:hover::before,
+.btn:hover::before,
+a[href*="mailto"]:hover::before,
+input[type="submit"]:hover::before {
+    left: 100% !important;
+}
+
+.cta-button:hover,
+.modern-cta-button:hover,
+button:hover,
+.btn:hover,
+a[href*="mailto"]:hover,
+input[type="submit"]:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4) !important;
+    color: white !important;
+    text-decoration: none !important;
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
+}
+
+/* FORÇAR CAIXAS BRANCAS PARA DARK MODE COM MAIS FORÇA */
+/* Todas as caixas de serviços */
+.content-creation-section .package-grid > div,
+.package-grid > div,
+.pricing-card,
+div[style*="background"] {
+    background: #111111 !important;
+    border: 2px solid #333333 !important;
+}
+
+/* Caixas específicas que ainda estão brancas */
+div[style*="background: linear-gradient(135deg, rgba(255, 255, 255"],
+div[style*="background: rgba(255, 255, 255"],
+.plan-section,
+.plan-includes,
+.plan-excludes,
+.include-item {
+    background: #111111 !important;
+    border: 2px solid #333333 !important;
+}
+
+/* FORÇAR TEXTO DO PLANO MENSAL BRANCO */
+.monthly-plan-section,
+.monthly-plan-section * {
+    color: #ffffff !important;
+}
+
+.monthly-plan-section .plan-includes h4,
+.monthly-plan-section .plan-excludes h4 {
+    color: #ffffff !important;
+}
+
+.monthly-plan-section .benefit-text,
+.monthly-plan-section li,
+.monthly-plan-section p {
+    color: #ffffff !important;
+}
+
 body.dark .pdf-download-card {
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.15));
     border-color: var(--primary-color);
