@@ -110,7 +110,25 @@ a[style*="background"] {
 /* BOTÃO "CONTACTAR PARA MAIS INFORMAÇÕES" SEMPRE ROXO */
 .monthly-plan-section .modern-cta-button,
 .monthly-plan-section a,
-.monthly-plan-section button {
+.monthly-plan-section button,
+a[href*="mailto"],
+a[href*="contact"],
+button:contains("Contactar"),
+a:contains("Contactar"),
+.support-section button,
+.support-section a,
+.contact-section button,
+.contact-section a {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+    text-decoration: none !important;
+}
+
+/* FORÇAR BOTÃO CONTACTAR ESPECÍFICO */
+[onclick*="mailto"],
+[href*="mailto"] {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
     color: white !important;
     border: 2px solid var(--primary-color) !important;
