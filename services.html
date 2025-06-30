@@ -25,59 +25,10 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* FORÇAR FUNDO PRETO EM TODA A PÁGINA */
-body,
-html,
-.hero-section,
-.packages-section,
-.extras-section,
-.content-creation-section,
-.monthly-plan-section,
-.faq-section,
-.support-section,
-.comparison-section,
-.contact-section {
-    background: #000000 !important;
-    background-color: #000000 !important;
-}
-
-/* FORÇAR TEXTO BRANCO EM TODA A PÁGINA */
-body,
-body *,
-h1, h2, h3, h4, h5, h6,
-p, span, div, li {
-    color: #ffffff !important;
-}
-
-/* EXCEÇÃO: Manter seção PDF roxa */
+/* SEÇÃO PDF SEMPRE ROXA */
 .pdf-download-section {
     background: var(--primary-color) !important;
     background-color: var(--primary-color) !important;
-}
-
-/* FORÇAR CAIXAS PRETAS NA SEÇÃO DE CRIAÇÃO DE CONTEÚDO */
-.service-card,
-.pricing-card,
-.extra-card,
-.faq-item,
-.support-card,
-.plan-section,
-.plan-includes,
-.plan-excludes {
-    background: #111111 !important;
-    border-color: #333333 !important;
-}
-
-/* TÍTULO BRANCO PARA CRIAÇÃO DE CONTEÚDO */
-.content-creation-section h2 {
-    color: #ffffff !important;
-}
-
-/* ÍCONES ROXOS */
-.service-card .fas,
-.pricing-card .fas,
-.extra-card .fas {
-    color: var(--primary-color) !important;
 }
 
 /* COMPACT MONTHLY PLAN SECTION - Same as PDF Download */
@@ -5371,7 +5322,133 @@ window.addEventListener('scroll', function() {
     box-shadow: var(--shadow-md) !important;
     border: 1px solid var(--border-color) !important;
 }
+
+/* ESTILOS PRETOS APENAS NO DARK MODE */
+body.dark,
+body.dark .hero-section,
+body.dark .packages-section,
+body.dark .extras-section,
+body.dark .content-creation-section,
+body.dark .monthly-plan-section,
+body.dark .faq-section,
+body.dark .support-section,
+body.dark .comparison-section,
+body.dark .contact-section,
+body.dark section,
+body.dark div,
+body.dark main,
+body.dark .container {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+body.dark *,
+body.dark h1, 
+body.dark h2, 
+body.dark h3, 
+body.dark h4, 
+body.dark h5, 
+body.dark h6,
+body.dark p, 
+body.dark span, 
+body.dark div, 
+body.dark li,
+body.dark .section-title,
+body.dark .package-name,
+body.dark .package-description,
+body.dark .service-intro h2,
+body.dark .service-intro p,
+body.dark .content-creation-section h2,
+body.dark .content-creation-section p {
+    color: #ffffff !important;
+}
+
+body.dark .service-card,
+body.dark .pricing-card,
+body.dark .extra-card,
+body.dark .faq-item,
+body.dark .support-card,
+body.dark .plan-section,
+body.dark .plan-includes,
+body.dark .plan-excludes,
+body.dark .comparison-table,
+body.dark .project-card {
+    background: #111111 !important;
+    border-color: #333333 !important;
+}
+
+.pdf-download-section {
+    background: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+}
+
+body.dark .service-card .fas,
+body.dark .pricing-card .fas,
+body.dark .extra-card .fas {
+    color: var(--primary-color) !important;
+}
 </style>
+
+<script>
+// FORCE DARK MODE STYLES ONLY WHEN DARK MODE IS ACTIVE
+document.addEventListener('DOMContentLoaded', function() {
+    // Force dark styles only when body has dark class
+    function forceDarkTheme() {
+        if (document.body.classList.contains('dark')) {
+            document.body.style.setProperty('background', '#000000', 'important');
+            document.body.style.setProperty('background-color', '#000000', 'important');
+            
+            // Force all sections to black only in dark mode
+            const sections = document.querySelectorAll('section, div, .hero-section, .packages-section, .content-creation-section, .monthly-plan-section, .faq-section, .support-section, .contact-section');
+            sections.forEach(section => {
+                section.style.setProperty('background', '#000000', 'important');
+                section.style.setProperty('background-color', '#000000', 'important');
+            });
+            
+            // Force all text to white only in dark mode
+            const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div, li');
+            textElements.forEach(element => {
+                element.style.setProperty('color', '#ffffff', 'important');
+            });
+            
+            // Force cards to dark only in dark mode
+            const cards = document.querySelectorAll('.service-card, .pricing-card, .extra-card, .faq-item, .support-card');
+            cards.forEach(card => {
+                card.style.setProperty('background', '#111111', 'important');
+                card.style.setProperty('border-color', '#333333', 'important');
+            });
+        }
+        
+        // Keep PDF section purple always
+        const pdfSection = document.querySelector('.pdf-download-section');
+        if (pdfSection) {
+            pdfSection.style.setProperty('background', '#6366f1', 'important');
+            pdfSection.style.setProperty('background-color', '#6366f1', 'important');
+        }
+    }
+    
+    // Apply immediately
+    forceDarkTheme();
+    
+    // Apply again after delays
+    setTimeout(forceDarkTheme, 100);
+    setTimeout(forceDarkTheme, 500);
+    
+    // Listen for theme changes
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                forceDarkTheme();
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+});
+</script>
 
 </body>
 </html>
