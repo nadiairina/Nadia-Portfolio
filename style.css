@@ -1875,25 +1875,52 @@ body.dark .footer {
         font-size: 0.8rem;
     }
 }
-/* FORÇAR DARK MODE - COLOCAR NO FINAL DO ARQUIVO */
-html body.dark,
+/* FORÇAR DARK MODE - FINAL DO ARQUIVO */
+html body.dark {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+}
+
 html body.dark * {
     color: #ffffff !important;
 }
 
-html body.dark {
-    background-color: #0f172a !important;
+html body.dark .header {
+    background-color: rgba(31, 41, 55, 0.95) !important;
+    border-bottom-color: #374151 !important;
 }
 
 html body.dark .service-card,
 html body.dark .package-card,
 html body.dark .pricing-card,
-html body.dark .project-card {
+html body.dark .project-card,
+html body.dark .monthly-plan-card {
     background-color: #1e293b !important;
     border-color: #334155 !important;
+    color: #ffffff !important;
+}
+
+html body.dark .work {
+    background-color: #111827 !important;
 }
 
 html body.dark .package-price,
 html body.dark .monthly-plan-price {
     color: #6366f1 !important;
+}
+
+html body.dark .plan-includes h4 {
+    color: #10b981 !important;
+}
+
+html body.dark .plan-excludes h4 {
+    color: #ef4444 !important;
+}
+
+html body.dark .btn,
+html body.dark button,
+html body.dark .modern-cta-button {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: #ffffff !important;
+    border-color: #6366f1 !important;
 }
