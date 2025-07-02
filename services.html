@@ -2736,6 +2736,31 @@ body.dark .header.scrolled {
     color: white !important;
     text-decoration: none !important;
 }
+        /* Estilo aplicado apenas no dark mode */
+[data-theme="dark"] body {
+  background-color: #000;
+  color: #fff;
+}
+
+[data-theme="dark"] .card {
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Títulos dos cartões */
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .card p {
+  color: #fff;
+}
+
+/* Ícones SVG dentro dos cartões */
+[data-theme="dark"] .card svg {
+  color: #a259ff; /* ou o roxo que usas no resto do site */
+  fill: #a259ff;
+}
+
     </style>
 </head>
 <body>
