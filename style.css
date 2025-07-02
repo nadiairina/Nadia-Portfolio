@@ -1875,36 +1875,55 @@ body.dark .footer {
         font-size: 0.8rem;
     }
 }
-/* ========== CORREÇÃO PARA SEÇÃO EXTRAS (CRIAÇÃO DE CONTEÚDO) ========== */
+/* ========== DARK MODE FORÇA TOTAL PARA SEÇÃO EXTRAS ========== */
 
-/* Seção Extras - Dark Mode */
-body.dark #extras {
+/* FORÇA MÁXIMA - SEÇÃO EXTRAS */
+html body.dark #extras,
+html body.dark section#extras {
     background: #000000 !important;
+    background-color: #000000 !important;
 }
 
-/* Cards dos extras - Dark Mode */
-body.dark #extras .extras-category {
+/* FORÇA MÁXIMA - CARDS DOS EXTRAS */
+html body.dark #extras .extras-category,
+html body.dark #extras .service-card,
+html body.dark #extras .card,
+html body.dark #extras [class*="card"],
+html body.dark #extras [class*="category"] {
     background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
     border-color: #333333 !important;
 }
 
-/* Títulos e textos da seção extras */
-body.dark #extras h2,
-body.dark #extras h3,
-body.dark #extras h4,
-body.dark #extras p,
-body.dark #extras .extras-description,
-body.dark #extras .extra-description,
-body.dark #extras .extra-features li {
+/* FORÇA MÁXIMA - TEXTO BRANCO */
+html body.dark #extras h1,
+html body.dark #extras h2,
+html body.dark #extras h3,
+html body.dark #extras h4,
+html body.dark #extras h5,
+html body.dark #extras h6,
+html body.dark #extras p,
+html body.dark #extras span:not([class*="price"]),
+html body.dark #extras div:not([class*="price"]),
+html body.dark #extras li,
+html body.dark #extras .extras-description,
+html body.dark #extras .extra-description,
+html body.dark #extras .category-description {
     color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
 
-/* Preços da seção extras */
-body.dark #extras .extra-price {
+/* FORÇA MÁXIMA - PREÇOS ROXOS */
+html body.dark #extras .extra-price,
+html body.dark #extras [class*="price"],
+html body.dark #extras .price {
     color: #6366f1 !important;
+    -webkit-text-fill-color: #6366f1 !important;
 }
 
-/* Ícones mantêm-se roxos */
-body.dark #extras .extra-icon {
+/* FORÇA MÁXIMA - ÍCONES ROXOS */
+html body.dark #extras .extra-icon,
+html body.dark #extras i,
+html body.dark #extras .fa {
     color: #6366f1 !important;
 }
