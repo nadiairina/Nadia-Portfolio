@@ -1875,3 +1875,25 @@ body.dark .footer {
         font-size: 0.8rem;
     }
 }
+/* FORÇAR DARK MODE - COLOCAR NO FINAL DO ARQUIVO */
+html body.dark,
+html body.dark * {
+    color: #ffffff !important;
+}
+
+html body.dark {
+    background-color: #0f172a !important;
+}
+
+html body.dark .service-card,
+html body.dark .package-card,
+html body.dark .pricing-card,
+html body.dark .project-card {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+html body.dark .package-price,
+html body.dark .monthly-plan-price {
+    color: #6366f1 !important;
+}
