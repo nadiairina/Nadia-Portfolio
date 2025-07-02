@@ -490,3 +490,25 @@ themeToggle.addEventListener('click', function() {
     this.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 });
 </script>
+// CORREÇÃO PARA O BOTÃO DARK MODE
+const themeToggleBtn = document.getElementById('theme-toggle');
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', function() {
+        document.body.classList.toggle('dark');
+        
+        // Atualiza o ícone
+        if (document.body.classList.contains('dark')) {
+            this.textContent = '☀️';
+        } else {
+            this.textContent = '🌙';
+        }
+        
+        // Salva no localStorage
+        localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    });
+}
+
+// FORÇA DARK MODE NA INICIALIZAÇÃO SE SALVO
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark');
+}
