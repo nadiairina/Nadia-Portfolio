@@ -1875,52 +1875,121 @@ body.dark .footer {
         font-size: 0.8rem;
     }
 }
-/* FORÇAR DARK MODE - FINAL DO ARQUIVO */
+/* ========================================
+   DARK MODE DEFINITIVO - MÁXIMA ESPECIFICIDADE
+   ======================================== */
+
+/* Forçar fundo escuro */
+body.dark,
 html body.dark {
     background-color: #0f172a !important;
     color: #ffffff !important;
 }
 
-html body.dark * {
+/* Forçar TODO o texto branco - máxima especificidade */
+body.dark *,
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark p,
+body.dark span,
+body.dark div,
+body.dark li,
+body.dark a,
+body.dark label,
+html body.dark *,
+html body.dark h1,
+html body.dark h2,
+html body.dark h3,
+html body.dark h4,
+html body.dark h5,
+html body.dark h6,
+html body.dark p,
+html body.dark span,
+html body.dark div,
+html body.dark li,
+html body.dark a,
+html body.dark label {
     color: #ffffff !important;
 }
 
+/* Cards escuros */
+body.dark .service-card,
+body.dark .package-card,
+body.dark .pricing-card,
+body.dark .project-card,
+body.dark .monthly-plan-card,
+body.dark .modern-project-card,
+body.dark .contact-info,
+body.dark .contact-form-container,
+body.dark .education-item,
+html body.dark .service-card,
+html body.dark .package-card,
+html body.dark .pricing-card,
+html body.dark .project-card,
+html body.dark .monthly-plan-card,
+html body.dark .modern-project-card,
+html body.dark .contact-info,
+html body.dark .contact-form-container,
+html body.dark .education-item {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+/* Seções escuras */
+body.dark .work,
+body.dark .monthly-plan-section,
+body.dark .content-creation-section,
+body.dark .pdf-download-section,
+body.dark .contact-hero,
+html body.dark .work,
+html body.dark .monthly-plan-section,
+html body.dark .content-creation-section,
+html body.dark .pdf-download-section,
+html body.dark .contact-hero {
+    background-color: #111827 !important;
+}
+
+/* Header escuro */
+body.dark .header,
 html body.dark .header {
     background-color: rgba(31, 41, 55, 0.95) !important;
     border-bottom-color: #374151 !important;
 }
 
-html body.dark .service-card,
-html body.dark .package-card,
-html body.dark .pricing-card,
-html body.dark .project-card,
-html body.dark .monthly-plan-card {
-    background-color: #1e293b !important;
-    border-color: #334155 !important;
-    color: #ffffff !important;
-}
-
-html body.dark .work {
-    background-color: #111827 !important;
-}
-
+/* Exceções - manter cores específicas */
+body.dark .package-price,
+body.dark .monthly-plan-price,
 html body.dark .package-price,
 html body.dark .monthly-plan-price {
     color: #6366f1 !important;
 }
 
+body.dark .plan-includes h4,
 html body.dark .plan-includes h4 {
     color: #10b981 !important;
 }
 
+body.dark .plan-excludes h4,
 html body.dark .plan-excludes h4 {
     color: #ef4444 !important;
 }
 
+/* Botões roxos */
+body.dark .btn,
+body.dark button,
+body.dark .modern-cta-button,
+body.dark .submit-btn,
 html body.dark .btn,
 html body.dark button,
-html body.dark .modern-cta-button {
+html body.dark .modern-cta-button,
+html body.dark .submit-btn {
     background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
     color: #ffffff !important;
     border-color: #6366f1 !important;
 }
+
+/* ======================================== */
