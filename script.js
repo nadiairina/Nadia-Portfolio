@@ -483,3 +483,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+<script>
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark');
+    this.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+</script>
