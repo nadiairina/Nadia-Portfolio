@@ -25,278 +25,54 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* DARK MODE - FUNDOS PRETOS APENAS NO DARK MODE */
-body.dark .monthly-plan-section,
-body.dark .content-creation-section {
-    background: #000000 !important;
+/* Dark Mode Base */
+body.dark {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
 }
 
-/* DARK MODE - SEÇÃO "GUIA COMPLETO DE SERVIÇOS" PRETA */
-body.dark .pdf-download-section {
-    background: #000000 !important;
-}
-
-/* DARK MODE - CAIXAS PRETAS PARA SERVIÇOS */
+/* Dark Mode Cards */
 body.dark .service-card,
 body.dark .monthly-plan-card,
-body.dark .plan-includes,
-body.dark .plan-excludes {
-    background: #111111 !important;
-    border-color: #333333 !important;
-}
-
-/* DARK MODE - TEXTO BRANCO */
-body.dark .content-creation-section h2,
-body.dark .content-creation-section p,
-body.dark .monthly-plan-title,
-body.dark .monthly-plan-subtitle,
-body.dark .monthly-plan-content,
-body.dark .monthly-plan-content p,
-body.dark .monthly-plan-content ul,
-body.dark .monthly-plan-content li,
-body.dark .plan-includes h4,
-body.dark .plan-includes ul,
-body.dark .plan-includes li,
-body.dark .plan-excludes h4,
-body.dark .plan-excludes ul,
-body.dark .plan-excludes li,
-body.dark .monthly-plan-price span,
-body.dark .price-period,
-body.dark .benefit-text,
-body.dark .benefit-item {
+body.dark .package-card,
+body.dark .pricing-card {
+    background: #1e293b !important;
+    border-color: #334155 !important;
     color: #ffffff !important;
 }
 
-/* PLANO MENSAL - TEXTO SEMPRE BRANCO NO DARK MODE */
+/* Dark Mode Sections */
 body.dark .monthly-plan-section,
-body.dark .monthly-plan-section *,
-body.dark .monthly-plan-section p,
-body.dark .monthly-plan-section div,
-body.dark .monthly-plan-section span,
-body.dark .monthly-plan-section li {
+body.dark .content-creation-section,
+body.dark .pdf-download-section {
+    background: #0f172a !important;
+}
+
+/* Dark Mode Text */
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6,
+body.dark p, body.dark span, body.dark li, body.dark div {
     color: #ffffff !important;
 }
 
-/* BOTÕES SEMPRE ROXOS PARA DESTAQUE */
-.modern-cta-button,
-.package-cta,
-.service-cta,
-.contact-cta,
-.btn-primary,
-.hero-cta,
-.pricing-cta,
-.cta-button,
-button[style*="background"],
-a[style*="background"] {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
-    color: white !important;
-    border: 2px solid var(--primary-color) !important;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
-}
-
-/* TODOS OS BOTÕES DOS PACOTES SEMPRE ROXOS */
-.packages-section .btn,
-.packages-section button,
-.packages-section a[class*="btn"],
-.pricing-card .btn,
-.pricing-card button,
-.pricing-card a {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
-    color: white !important;
-    border: 2px solid var(--primary-color) !important;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
-}
-
-/* BOTÃO "CONTACTAR PARA MAIS INFORMAÇÕES" SEMPRE ROXO */
-.monthly-plan-section .modern-cta-button,
-.monthly-plan-section a,
-.monthly-plan-section button,
-a[href*="mailto"],
-a[href*="contact"],
-button:contains("Contactar"),
-a:contains("Contactar"),
-.support-section button,
-.support-section a,
-.contact-section button,
-.contact-section a {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
-    color: white !important;
-    border: 2px solid var(--primary-color) !important;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
-    text-decoration: none !important;
-}
-
-/* FORÇAR BOTÃO CONTACTAR ESPECÍFICO - EXCETO EMAIL NO FOOTER */
-[onclick*="mailto"]:not(.footer-social a),
-[href*="mailto"]:not(.footer-social a) {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
-    color: white !important;
-    border: 2px solid var(--primary-color) !important;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
-}
-
-/* EMAIL DO FOOTER SEM FUNDO ROXO */
-.footer-social a[href*="mailto"] {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    color: inherit !important;
-    padding: 0 !important;
-}
-
-/* BOTÃO "CONTACTAR PARA MAIS INFORMAÇÕES" SEMPRE ROXO */
-.support-button,
-a.support-button,
-a[href*="contact.html"][href*="Informações"] {
-    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
-    color: white !important;
-    border: 2px solid #6366f1 !important;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
-    padding: 12px 30px !important;
-    border-radius: 8px !important;
-    text-decoration: none !important;
-    font-weight: 600 !important;
-    display: inline-block !important;
-}
-
-/* TÍTULOS DOS PACOTES SEMPRE ROXOS E MAIORES */
-.package-name {
-    color: var(--primary-color) !important;
-    font-size: 2.2rem !important;
-    font-weight: 800 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    margin-bottom: 15px !important;
-}
-
-/* TÍTULOS DOS PACOTES BRANCOS NO DARK MODE */
-body.dark .package-name {
-    color: #ffffff !important;
-}
-
-/* TEXTO DOS PACOTES BRANCO NO DARK MODE (EXCETO PREÇOS) */
-body.dark .package-card p,
-body.dark .package-card span:not(.package-price),
-body.dark .package-card div:not([class*="price"]),
-body.dark .package-description,
-body.dark .pricing-card p,
-body.dark .pricing-card span:not(.package-price),
-body.dark .pricing-card li,
-body.dark .service-card p,
-body.dark .service-card span:not(.package-price),
-body.dark .service-card div:not([class*="price"]) {
-    color: #ffffff !important;
-}
-
-/* MANTER PREÇOS ROXOS */
+/* Keep Important Colors */
 body.dark .package-price,
-body.dark .pricing-card .package-price,
-body.dark .service-card .package-price {
-    color: var(--primary-color) !important;
-}
-
-/* TEXTO DO GUIA PDF BRANCO NO DARK MODE */
-body.dark .pdf-download-section p,
-body.dark .pdf-download-section div:not(.pdf-download-btn),
-body.dark .pdf-download-section span:not(.btn) {
-    color: #ffffff !important;
-}
-
-/* DESCRIÇÕES DOS SERVIÇOS BRANCAS NO DARK MODE */
-body.dark .category-description,
-body.dark .service-description,
-body.dark .content-creation-section .category-description,
-body.dark .extras-section p,
-body.dark .extras-section .section-description,
-body.dark .content-creation-section h2,
-body.dark .content-creation-section .section-title,
-body.dark .includes-title,
-body.dark h3:contains("O Que Inclui"),
-body.dark h4:contains("O Que Inclui"),
-body.dark .terms-section p,
-body.dark .payment-terms,
-body.dark .conditions-text,
-body.dark .support-commitment,
-body.dark .guarantee-text,
-body.dark .faq-answer,
-body.dark .support-intro,
-body.dark .support-content-item p,
-body.dark .faq-item p,
-body.dark .includes-title,
-body.dark .package-card p:not(.package-price),
-body.dark .package-card li,
-body.dark .package-card .package-description,
-body.dark .pricing-card p:not(.package-price),
-body.dark .pricing-card li,
-body.dark .service-card p:not(.package-price),
-body.dark .service-card li,
-body.dark .pdf-download-section .pdf-description,
-body.dark .content-creation-section .category-description,
-body.dark .content-creation-section .section-description,
-body.dark .extras-section .extras-description,
-body.dark .content-creation-title,
-body.dark .monthly-plan-section .monthly-plan-description {
-    color: #ffffff !important;
-}
-
-/* FORÇAR TEXTOS BRANCOS NO DARK MODE - SOBRESCREVER CSS EXTERNO */
-html body.dark .faq-answer,
-html body.dark .support-intro,
-html body.dark .support-content-item p,
-html body.dark .package-card p:not(.package-price),
-html body.dark .package-card li,
-html body.dark .pricing-card p:not(.package-price),
-html body.dark .pricing-card li,
-html body.dark .service-card p:not(.package-price),
-html body.dark .service-card li,
-html body.dark .pdf-download-section p,
-html body.dark .content-creation-section p,
-html body.dark .extras-section p,
-html body.dark .faq-item p,
-html body.dark .support-content-item,
-html body.dark .package-description {
-    color: #ffffff !important;
-    text-shadow: none !important;
-}
-
-/* TÍTULO "O QUE INCLUI" BRANCO NO DARK MODE - FORÇAR */
-html body.dark .includes-title,
-html body.dark h3.includes-title,
-html body.dark .content-creation-section .includes-title {
-    color: #ffffff !important;
-    background: none !important;
-    -webkit-text-fill-color: #ffffff !important;
-    text-shadow: none !important;
-}
-
-/* CONTEÚDO DAS CAIXAS BRANCO NO DARK MODE */
-body.dark .include-item h4,
-body.dark .include-item p {
-    color: #ffffff !important;
-}
-
-/* MANTER PREÇOS ROXOS SEMPRE */
-body.dark .package-price,
-body.dark [class*="price"],
-body.dark .pricing-card .package-price,
-body.dark .service-card .package-price,
 body.dark .monthly-plan-price {
-    color: var(--primary-color) !important;
+    color: #6366f1 !important;
 }
 
-.package-price {
-    color: var(--primary-color) !important;
-    font-size: 2.8rem !important;
-    font-weight: 900 !important;
+body.dark .plan-includes h4 {
+    color: #10b981 !important;
 }
 
-/* TÍTULOS DE SEÇÕES MAIORES TAMBÉM */
-.pricing-card h3,
-.service-card h3,
-.extra-card h3 {
-    font-size: 1.8rem !important;
-    font-weight: 700 !important;
-    color: var(--primary-color) !important;
+body.dark .plan-excludes h4 {
+    color: #ef4444 !important;
+}
+
+/* Buttons Always Purple */
+body.dark .btn, body.dark button, body.dark .modern-cta-button {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: #ffffff !important;
+    border-color: #6366f1 !important;
 }
 
 /* CORES ESPECÍFICAS PLANO MENSAL */
