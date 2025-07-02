@@ -1876,47 +1876,28 @@ body.dark .footer {
     }
 }
 /* ========================================
-   DARK MODE DEFINITIVO - MÁXIMA ESPECIFICIDADE
+   DARK MODE FORÇADO - FUNDO PRETO
    ======================================== */
 
-/* Forçar fundo escuro */
+/* FUNDO PRETO TOTAL */
 body.dark,
-html body.dark {
-    background-color: #0f172a !important;
-    color: #ffffff !important;
-}
-
-/* Forçar TODO o texto branco - máxima especificidade */
+html body.dark,
 body.dark *,
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark h4,
-body.dark h5,
-body.dark h6,
-body.dark p,
-body.dark span,
-body.dark div,
-body.dark li,
-body.dark a,
-body.dark label,
-html body.dark *,
-html body.dark h1,
-html body.dark h2,
-html body.dark h3,
-html body.dark h4,
-html body.dark h5,
-html body.dark h6,
-html body.dark p,
-html body.dark span,
-html body.dark div,
-html body.dark li,
-html body.dark a,
-html body.dark label {
+html body.dark * {
+    background-color: #000000 !important;
     color: #ffffff !important;
 }
 
-/* Cards escuros */
+/* FORÇAR TEXTO BRANCO - TODOS OS ELEMENTOS */
+body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6,
+body.dark p, body.dark span, body.dark div, body.dark li, body.dark a, body.dark label,
+html body.dark h1, html body.dark h2, html body.dark h3, html body.dark h4, html body.dark h5, html body.dark h6,
+html body.dark p, html body.dark span, html body.dark div, html body.dark li, html body.dark a, html body.dark label {
+    color: #ffffff !important;
+    background: transparent !important;
+}
+
+/* CAIXAS ESCURAS - COMO AS OUTRAS SEÇÕES */
 body.dark .service-card,
 body.dark .package-card,
 body.dark .pricing-card,
@@ -1935,50 +1916,51 @@ html body.dark .modern-project-card,
 html body.dark .contact-info,
 html body.dark .contact-form-container,
 html body.dark .education-item {
-    background-color: #1e293b !important;
-    border-color: #334155 !important;
+    background-color: #1a1a1a !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
 }
 
-/* Seções escuras */
+/* TODAS AS SEÇÕES PRETAS */
 body.dark .work,
 body.dark .monthly-plan-section,
 body.dark .content-creation-section,
 body.dark .pdf-download-section,
 body.dark .contact-hero,
+body.dark .hero,
 html body.dark .work,
 html body.dark .monthly-plan-section,
 html body.dark .content-creation-section,
 html body.dark .pdf-download-section,
-html body.dark .contact-hero {
-    background-color: #111827 !important;
+html body.dark .contact-hero,
+html body.dark .hero {
+    background-color: #000000 !important;
 }
 
-/* Header escuro */
+/* HEADER PRETO */
 body.dark .header,
 html body.dark .header {
-    background-color: rgba(31, 41, 55, 0.95) !important;
-    border-bottom-color: #374151 !important;
+    background-color: rgba(0, 0, 0, 0.95) !important;
+    border-bottom-color: #333333 !important;
 }
 
-/* Exceções - manter cores específicas */
+/* ÍCONES E PREÇOS ROXOS */
 body.dark .package-price,
 body.dark .monthly-plan-price,
+body.dark .dot,
+body.dark .highlight,
+body.dark i,
+body.dark .fa,
 html body.dark .package-price,
-html body.dark .monthly-plan-price {
+html body.dark .monthly-plan-price,
+html body.dark .dot,
+html body.dark .highlight,
+html body.dark i,
+html body.dark .fa {
     color: #6366f1 !important;
 }
 
-body.dark .plan-includes h4,
-html body.dark .plan-includes h4 {
-    color: #10b981 !important;
-}
-
-body.dark .plan-excludes h4,
-html body.dark .plan-excludes h4 {
-    color: #ef4444 !important;
-}
-
-/* Botões roxos */
+/* BOTÕES ROXOS */
 body.dark .btn,
 body.dark button,
 body.dark .modern-cta-button,
@@ -1987,9 +1969,20 @@ html body.dark .btn,
 html body.dark button,
 html body.dark .modern-cta-button,
 html body.dark .submit-btn {
-    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background: #6366f1 !important;
     color: #ffffff !important;
     border-color: #6366f1 !important;
+}
+
+/* VERDE/VERMELHO ESPECÍFICOS */
+body.dark .plan-includes h4,
+html body.dark .plan-includes h4 {
+    color: #10b981 !important;
+}
+
+body.dark .plan-excludes h4,
+html body.dark .plan-excludes h4 {
+    color: #ef4444 !important;
 }
 
 /* ======================================== */
