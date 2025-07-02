@@ -1875,114 +1875,34 @@ body.dark .footer {
         font-size: 0.8rem;
     }
 }
-/* ========================================
-   DARK MODE FORÇADO - FUNDO PRETO
-   ======================================== */
+/* ========== CORREÇÃO ESPECÍFICA PARA SEÇÃO "CRIAÇÃO DE CONTEÚDO" ========== */
 
-/* FUNDO PRETO TOTAL */
-body.dark,
-html body.dark,
-body.dark *,
-html body.dark * {
-    background-color: #000000 !important;
-    color: #ffffff !important;
+/* Seção Criação de Conteúdo - Dark Mode */
+body.dark .content-creation-section {
+    background: #000000 !important;
 }
 
-/* FORÇAR TEXTO BRANCO - TODOS OS ELEMENTOS */
-body.dark h1, body.dark h2, body.dark h3, body.dark h4, body.dark h5, body.dark h6,
-body.dark p, body.dark span, body.dark div, body.dark li, body.dark a, body.dark label,
-html body.dark h1, html body.dark h2, html body.dark h3, html body.dark h4, html body.dark h5, html body.dark h6,
-html body.dark p, html body.dark span, html body.dark div, html body.dark li, html body.dark a, html body.dark label {
-    color: #ffffff !important;
-    background: transparent !important;
-}
-
-/* CAIXAS ESCURAS - COMO AS OUTRAS SEÇÕES */
-body.dark .service-card,
-body.dark .package-card,
-body.dark .pricing-card,
-body.dark .project-card,
-body.dark .monthly-plan-card,
-body.dark .modern-project-card,
-body.dark .contact-info,
-body.dark .contact-form-container,
-body.dark .education-item,
-html body.dark .service-card,
-html body.dark .package-card,
-html body.dark .pricing-card,
-html body.dark .project-card,
-html body.dark .monthly-plan-card,
-html body.dark .modern-project-card,
-html body.dark .contact-info,
-html body.dark .contact-form-container,
-html body.dark .education-item {
-    background-color: #1a1a1a !important;
+/* Service Content Box - Dark Mode */
+body.dark .service-content {
+    background: #1a1a1a !important;
     border-color: #333333 !important;
+}
+
+/* Títulos específicos desta seção */
+body.dark .content-creation-section .service-title,
+body.dark .content-creation-section .service-description,
+body.dark .content-creation-section .includes-title {
     color: #ffffff !important;
 }
 
-/* TODAS AS SEÇÕES PRETAS */
-body.dark .work,
-body.dark .monthly-plan-section,
-body.dark .content-creation-section,
-body.dark .pdf-download-section,
-body.dark .contact-hero,
-body.dark .hero,
-html body.dark .work,
-html body.dark .monthly-plan-section,
-html body.dark .content-creation-section,
-html body.dark .pdf-download-section,
-html body.dark .contact-hero,
-html body.dark .hero {
-    background-color: #000000 !important;
+/* Include Items desta seção */
+body.dark .content-creation-section .include-item {
+    background: #2d2d2d !important;
+    border-color: #374151 !important;
 }
 
-/* HEADER PRETO */
-body.dark .header,
-html body.dark .header {
-    background-color: rgba(0, 0, 0, 0.95) !important;
-    border-bottom-color: #333333 !important;
-}
-
-/* ÍCONES E PREÇOS ROXOS */
-body.dark .package-price,
-body.dark .monthly-plan-price,
-body.dark .dot,
-body.dark .highlight,
-body.dark i,
-body.dark .fa,
-html body.dark .package-price,
-html body.dark .monthly-plan-price,
-html body.dark .dot,
-html body.dark .highlight,
-html body.dark i,
-html body.dark .fa {
-    color: #6366f1 !important;
-}
-
-/* BOTÕES ROXOS */
-body.dark .btn,
-body.dark button,
-body.dark .modern-cta-button,
-body.dark .submit-btn,
-html body.dark .btn,
-html body.dark button,
-html body.dark .modern-cta-button,
-html body.dark .submit-btn {
-    background: #6366f1 !important;
+/* Textos dos include items */
+body.dark .content-creation-section .include-content h4,
+body.dark .content-creation-section .include-content p {
     color: #ffffff !important;
-    border-color: #6366f1 !important;
 }
-
-/* VERDE/VERMELHO ESPECÍFICOS */
-body.dark .plan-includes h4,
-html body.dark .plan-includes h4 {
-    color: #10b981 !important;
-}
-
-body.dark .plan-excludes h4,
-html body.dark .plan-excludes h4 {
-    color: #ef4444 !important;
-}
-
-/* ======================================== */
