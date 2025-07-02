@@ -1875,34 +1875,36 @@ body.dark .footer {
         font-size: 0.8rem;
     }
 }
-/* ========== CORREÇÃO ESPECÍFICA PARA SEÇÃO "CRIAÇÃO DE CONTEÚDO" ========== */
+/* ========== CORREÇÃO PARA SEÇÃO EXTRAS (CRIAÇÃO DE CONTEÚDO) ========== */
 
-/* Seção Criação de Conteúdo - Dark Mode */
-body.dark .content-creation-section {
+/* Seção Extras - Dark Mode */
+body.dark #extras {
     background: #000000 !important;
 }
 
-/* Service Content Box - Dark Mode */
-body.dark .service-content {
+/* Cards dos extras - Dark Mode */
+body.dark #extras .extras-category {
     background: #1a1a1a !important;
     border-color: #333333 !important;
 }
 
-/* Títulos específicos desta seção */
-body.dark .content-creation-section .service-title,
-body.dark .content-creation-section .service-description,
-body.dark .content-creation-section .includes-title {
+/* Títulos e textos da seção extras */
+body.dark #extras h2,
+body.dark #extras h3,
+body.dark #extras h4,
+body.dark #extras p,
+body.dark #extras .extras-description,
+body.dark #extras .extra-description,
+body.dark #extras .extra-features li {
     color: #ffffff !important;
 }
 
-/* Include Items desta seção */
-body.dark .content-creation-section .include-item {
-    background: #2d2d2d !important;
-    border-color: #374151 !important;
+/* Preços da seção extras */
+body.dark #extras .extra-price {
+    color: #6366f1 !important;
 }
 
-/* Textos dos include items */
-body.dark .content-creation-section .include-content h4,
-body.dark .content-creation-section .include-content p {
-    color: #ffffff !important;
+/* Ícones mantêm-se roxos */
+body.dark #extras .extra-icon {
+    color: #6366f1 !important;
 }
