@@ -1918,3 +1918,22 @@ html body.dark #extras [style*="color: var(--primary-color)"] {
     color: #6366f1 !important;
     -webkit-text-fill-color: #6366f1 !important;
 }
+/* FORÇA ABSOLUTA - MÁXIMA ESPECIFICIDADE */
+html body.dark section.content-creation-section,
+html body.dark section.extras-section,
+html body.dark section[class*="content"],
+html body.dark section[class*="extras"] {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+html body.dark .content-creation-section .include-item,
+html body.dark .content-creation-section .service-card,
+html body.dark .extras-section .extras-category,
+html body.dark .content-creation-section .pricing-card,
+html body.dark section[class*="content"] .bg-white,
+html body.dark section[class*="extras"] .bg-white {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+    border-color: #333333 !important;
+}
