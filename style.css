@@ -1875,57 +1875,46 @@ body.dark .footer {
         font-size: 0.8rem;
     }
 }
-/* ========== FORÇA MÁXIMA PARA SEÇÃO CRIAÇÃO DE CONTEÚDO ========== */
-
-/* FORÇA ABSOLUTA - QUALQUER SEÇÃO COM "CONTENT" OU "CREATION" */
-html body.dark [id*="content"],
-html body.dark [class*="content"],
-html body.dark [id*="creation"],
-html body.dark [class*="creation"],
-html body.dark [id*="extras"],
-html body.dark [class*="extras"],
-html body.dark section:nth-of-type(3),
-html body.dark section:nth-of-type(4),
-html body.dark section:nth-of-type(5) {
+/* FORÇA MÁXIMA - SOBRESCREVE TUDO */
+html body.dark section#extras,
+html body.dark .content-creation-section,
+html body.dark section[id*="extras"] {
     background: #000000 !important;
     background-color: #000000 !important;
 }
 
-/* FORÇA ABSOLUTA - TODOS OS CARDS */
-html body.dark [id*="content"] > *,
-html body.dark [class*="content"] > *,
-html body.dark [id*="creation"] > *,
-html body.dark [class*="creation"] > *,
-html body.dark [id*="extras"] > *,
-html body.dark [class*="extras"] > *,
-html body.dark section:nth-of-type(3) > *,
-html body.dark section:nth-of-type(4) > *,
-html body.dark section:nth-of-type(5) > * {
+/* FORÇA MÁXIMA - CARDS ESCUROS */
+html body.dark #extras .bg-white,
+html body.dark #extras .card,
+html body.dark #extras .service-card,
+html body.dark #extras .include-item,
+html body.dark #extras .pricing-card,
+html body.dark #extras .package-card,
+html body.dark #extras [style*="background: white"],
+html body.dark #extras [style*="background-color: white"],
+html body.dark #extras [style*="background-color: #fff"],
+html body.dark #extras [style*="background: #fff"] {
     background: #1a1a1a !important;
     background-color: #1a1a1a !important;
     border-color: #333333 !important;
-    color: #ffffff !important;
 }
 
-/* FORÇA ABSOLUTA - TODO TEXTO BRANCO */
-html body.dark [id*="content"] *,
-html body.dark [class*="content"] *,
-html body.dark [id*="creation"] *,
-html body.dark [class*="creation"] *,
-html body.dark [id*="extras"] *,
-html body.dark [class*="extras"] *,
-html body.dark section:nth-of-type(3) *,
-html body.dark section:nth-of-type(4) *,
-html body.dark section:nth-of-type(5) * {
+/* FORÇA MÁXIMA - TEXTO BRANCO */
+html body.dark #extras h2,
+html body.dark #extras h3,
+html body.dark #extras h4,
+html body.dark #extras p,
+html body.dark #extras div:not([class*="price"]),
+html body.dark #extras span:not([class*="price"]),
+html body.dark #extras li {
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
 }
 
-/* FORÇA ABSOLUTA - PREÇOS ROXOS */
-html body.dark [class*="price"],
-html body.dark [id*="price"],
-html body.dark *[class*="price"],
-html body.dark *[id*="price"] {
+/* FORÇA MÁXIMA - PREÇOS ROXOS */
+html body.dark #extras .package-price,
+html body.dark #extras [class*="price"],
+html body.dark #extras [style*="color: var(--primary-color)"] {
     color: #6366f1 !important;
     -webkit-text-fill-color: #6366f1 !important;
 }
