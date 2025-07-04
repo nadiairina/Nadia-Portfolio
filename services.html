@@ -6,9 +6,2737 @@
     <meta name="description" content="Pacotes de Web Design - Nadia Irina">
     <title>Serviços | Nadia Irina</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="typewriter-and-darkmode.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --text-light: #f9fafb;
+    --bg-card: #ffffff;
+    --bg-muted: #f9fafb;
+    --border-color: #e5e7eb;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* DARK MODE - FUNDOS PRETOS APENAS NO DARK MODE */
+body.dark .monthly-plan-section,
+body.dark .content-creation-section {
+    background: #000000 !important;
+}
+
+/* DARK MODE - SEÇÃO "GUIA COMPLETO DE SERVIÇOS" PRETA */
+body.dark .pdf-download-section {
+    background: #000000 !important;
+}
+
+/* DARK MODE - CAIXAS PRETAS PARA SERVIÇOS */
+body.dark .service-card,
+body.dark .monthly-plan-card,
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #111111 !important;
+    border-color: #333333 !important;
+}
+
+/* DARK MODE - TEXTO BRANCO */
+body.dark .content-creation-section h2,
+body.dark .content-creation-section p,
+body.dark .monthly-plan-title,
+body.dark .monthly-plan-subtitle,
+body.dark .monthly-plan-content,
+body.dark .monthly-plan-content p,
+body.dark .monthly-plan-content ul,
+body.dark .monthly-plan-content li,
+body.dark .plan-includes h4,
+body.dark .plan-includes ul,
+body.dark .plan-includes li,
+body.dark .plan-excludes h4,
+body.dark .plan-excludes ul,
+body.dark .plan-excludes li,
+body.dark .monthly-plan-price span,
+body.dark .price-period,
+body.dark .benefit-text,
+body.dark .benefit-item {
+    color: #ffffff !important;
+}
+
+/* PLANO MENSAL - TEXTO SEMPRE BRANCO NO DARK MODE */
+body.dark .monthly-plan-section,
+body.dark .monthly-plan-section *,
+body.dark .monthly-plan-section p,
+body.dark .monthly-plan-section div,
+body.dark .monthly-plan-section span,
+body.dark .monthly-plan-section li {
+    color: #ffffff !important;
+}
+
+/* BOTÕES SEMPRE ROXOS PARA DESTAQUE */
+.modern-cta-button,
+.package-cta,
+.service-cta,
+.contact-cta,
+.btn-primary,
+.hero-cta,
+.pricing-cta,
+.cta-button,
+button[style*="background"],
+a[style*="background"] {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* TODOS OS BOTÕES DOS PACOTES SEMPRE ROXOS */
+.packages-section .btn,
+.packages-section button,
+.packages-section a[class*="btn"],
+.pricing-card .btn,
+.pricing-card button,
+.pricing-card a {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* BOTÃO "CONTACTAR PARA MAIS INFORMAÇÕES" SEMPRE ROXO */
+.monthly-plan-section .modern-cta-button,
+.monthly-plan-section a,
+.monthly-plan-section button,
+a[href*="mailto"],
+a[href*="contact"],
+button:contains("Contactar"),
+a:contains("Contactar"),
+.support-section button,
+.support-section a,
+.contact-section button,
+.contact-section a {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+    text-decoration: none !important;
+}
+
+/* FORÇAR BOTÃO CONTACTAR ESPECÍFICO - EXCETO EMAIL NO FOOTER */
+[onclick*="mailto"]:not(.footer-social a),
+[href*="mailto"]:not(.footer-social a) {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* EMAIL DO FOOTER SEM FUNDO ROXO */
+.footer-social a[href*="mailto"] {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: inherit !important;
+    padding: 0 !important;
+}
+
+/* BOTÃO "CONTACTAR PARA MAIS INFORMAÇÕES" SEMPRE ROXO */
+.support-button,
+a.support-button,
+a[href*="contact.html"][href*="Informações"] {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border: 2px solid #6366f1 !important;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3) !important;
+    padding: 12px 30px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+}
+
+/* TÍTULOS DOS PACOTES SEMPRE ROXOS E MAIORES */
+.package-name {
+    color: var(--primary-color) !important;
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 15px !important;
+}
+
+/* TÍTULOS DOS PACOTES BRANCOS NO DARK MODE */
+body.dark .package-name {
+    color: #ffffff !important;
+}
+
+/* TEXTO DOS PACOTES BRANCO NO DARK MODE (EXCETO PREÇOS) */
+body.dark .package-card p,
+body.dark .package-card span:not(.package-price),
+body.dark .package-card div:not([class*="price"]),
+body.dark .package-description,
+body.dark .pricing-card p,
+body.dark .pricing-card span:not(.package-price),
+body.dark .pricing-card li,
+body.dark .service-card p,
+body.dark .service-card span:not(.package-price),
+body.dark .service-card div:not([class*="price"]) {
+    color: #ffffff !important;
+}
+
+/* MANTER PREÇOS ROXOS */
+body.dark .package-price,
+body.dark .pricing-card .package-price,
+body.dark .service-card .package-price {
+    color: var(--primary-color) !important;
+}
+
+/* TEXTO DO GUIA PDF BRANCO NO DARK MODE */
+body.dark .pdf-download-section p,
+body.dark .pdf-download-section div:not(.pdf-download-btn),
+body.dark .pdf-download-section span:not(.btn) {
+    color: #ffffff !important;
+}
+
+/* DESCRIÇÕES DOS SERVIÇOS BRANCAS NO DARK MODE */
+body.dark .category-description,
+body.dark .service-description,
+body.dark .content-creation-section .category-description,
+body.dark .extras-section p,
+body.dark .extras-section .section-description,
+body.dark .content-creation-section h2,
+body.dark .content-creation-section .section-title,
+body.dark .includes-title,
+body.dark h3:contains("O Que Inclui"),
+body.dark h4:contains("O Que Inclui"),
+body.dark .terms-section p,
+body.dark .payment-terms,
+body.dark .conditions-text,
+body.dark .support-commitment,
+body.dark .guarantee-text,
+body.dark .faq-answer,
+body.dark .support-intro,
+body.dark .support-content-item p,
+body.dark .faq-item p,
+body.dark .includes-title,
+body.dark .package-card p:not(.package-price),
+body.dark .package-card li,
+body.dark .package-card .package-description,
+body.dark .pricing-card p:not(.package-price),
+body.dark .pricing-card li,
+body.dark .service-card p:not(.package-price),
+body.dark .service-card li,
+body.dark .pdf-download-section .pdf-description,
+body.dark .content-creation-section .category-description,
+body.dark .content-creation-section .section-description,
+body.dark .extras-section .extras-description,
+body.dark .content-creation-title,
+body.dark .monthly-plan-section .monthly-plan-description {
+    color: #ffffff !important;
+}
+
+/* FORÇAR TEXTOS BRANCOS NO DARK MODE - SOBRESCREVER CSS EXTERNO */
+html body.dark .faq-answer,
+html body.dark .support-intro,
+html body.dark .support-content-item p,
+html body.dark .package-card p:not(.package-price),
+html body.dark .package-card li,
+html body.dark .pricing-card p:not(.package-price),
+html body.dark .pricing-card li,
+html body.dark .service-card p:not(.package-price),
+html body.dark .service-card li,
+html body.dark .pdf-download-section p,
+html body.dark .content-creation-section p,
+html body.dark .extras-section p,
+html body.dark .faq-item p,
+html body.dark .support-content-item,
+html body.dark .package-description {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+/* TÍTULO "O QUE INCLUI" BRANCO NO DARK MODE - FORÇAR */
+html body.dark .includes-title,
+html body.dark h3.includes-title,
+html body.dark .content-creation-section .includes-title {
+    color: #ffffff !important;
+    background: none !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+/* CONTEÚDO DAS CAIXAS BRANCO NO DARK MODE */
+body.dark .include-item h4,
+body.dark .include-item p {
+    color: #ffffff !important;
+}
+
+/* MANTER PREÇOS ROXOS SEMPRE */
+body.dark .package-price,
+body.dark [class*="price"],
+body.dark .pricing-card .package-price,
+body.dark .service-card .package-price,
+body.dark .monthly-plan-price {
+    color: var(--primary-color) !important;
+}
+
+.package-price {
+    color: var(--primary-color) !important;
+    font-size: 2.8rem !important;
+    font-weight: 900 !important;
+}
+
+/* TÍTULOS DE SEÇÕES MAIORES TAMBÉM */
+.pricing-card h3,
+.service-card h3,
+.extra-card h3 {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    color: var(--primary-color) !important;
+}
+
+/* CORES ESPECÍFICAS PLANO MENSAL */
+.monthly-plan-price,
+.price-period {
+    color: var(--primary-color) !important;
+    font-weight: 900 !important;
+}
+
+/* "INCLUI:" VERDE */
+.plan-includes h4,
+h4:contains("Inclui"),
+*:contains("Inclui:") {
+    color: #10b981 !important;
+    font-weight: 700 !important;
+}
+
+/* "NÃO INCLUI:" VERMELHO */
+.plan-excludes h4,
+h4:contains("Não Inclui"),
+*:contains("Não Inclui:") {
+    color: #ef4444 !important;
+    font-weight: 700 !important;
+}
+
+/* FORCE COLORS WITH !IMPORTANT - DARK MODE */
+body.dark .monthly-plan-price,
+body.dark .price-period {
+    color: #6366f1 !important;
+}
+
+body.dark .plan-includes h4 {
+    color: #10b981 !important;
+}
+
+body.dark .plan-excludes h4 {
+    color: #ef4444 !important;
+}
+
+/* FORÇAR CORES ESPECÍFICAS NO DARK MODE */
+body.dark *:contains("€60"),
+body.dark *:contains("/mês") {
+    color: #6366f1 !important;
+}
+
+body.dark *:contains("Inclui:") {
+    color: #10b981 !important;
+}
+
+body.dark *:contains("Não Inclui:") {
+    color: #ef4444 !important;
+}
+
+/* ESPECÍFICO PARA O PLANO MENSAL */
+body.dark .monthly-plan-section .monthly-plan-price {
+    color: #6366f1 !important;
+    font-size: 2.5rem !important;
+    font-weight: 900 !important;
+}
+
+/* SOBRESCREVER CORES INLINE NO DARK MODE */
+body.dark h4[style*="color: #059669"] {
+    color: #10b981 !important;
+}
+
+body.dark h4[style*="color: #dc2626"] {
+    color: #ef4444 !important;
+}
+
+body.dark span[style*="color: var(--text-muted)"] {
+    color: #6366f1 !important;
+}
+
+/* FORÇAR PREÇO ROXO NO DARK MODE */
+body.dark .monthly-plan-section div[style*="font-size: 2.5rem"] {
+    color: #6366f1 !important;
+}
+
+body.dark .monthly-plan-section span[style*="font-size: 1.1rem"] {
+    color: #6366f1 !important;
+}
+
+/* PREÇO €60 ROXO ESPECÍFICO */
+body.dark div:contains("€60") {
+    color: #6366f1 !important;
+}
+
+body.dark span:contains("/mês") {
+    color: #ffffff !important;
+}
+
+/* FORÇAR TODO O PREÇO ROXO */
+body.dark .monthly-plan-section div[style*="margin-bottom: 25px"] {
+    color: #6366f1 !important;
+}
+
+/* COMPACT MONTHLY PLAN SECTION - Same as PDF Download */
+.monthly-plan-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.12));
+    text-align: center;
+}
+
+.monthly-plan-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.monthly-plan-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.12));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 15px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.monthly-plan-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* Popular Badge */
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 10px 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+    z-index: 10;
+    animation: pulse 2s infinite;
+}
+
+.popular-badge::before {
+    content: "🔥";
+    margin-right: 8px;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+}
+
+/* Header Section */
+.plan-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.monthly-plan-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.monthly-plan-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.monthly-plan-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.monthly-plan-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Price Section */
+.price-container {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+    border: 2px solid rgba(99, 102, 241, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.price-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.05), transparent);
+    animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.monthly-plan-price {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.monthly-plan-price span {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.price-period {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+/* Content Grid */
+.plan-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.plan-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.plan-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.plan-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.plan-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.plan-includes .plan-icon {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.plan-excludes .plan-icon {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.plan-section h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.plan-includes h4 {
+    color: #059669;
+}
+
+.plan-excludes h4 {
+    color: #dc2626;
+}
+
+.benefit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.benefit-item:last-child {
+    border-bottom: none;
+}
+
+.benefit-item:hover {
+    background: rgba(99, 102, 241, 0.02);
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.benefit-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.plan-includes .benefit-icon {
+    background: #10b981;
+    color: white;
+}
+
+.plan-excludes .benefit-icon {
+    background: #ef4444;
+    color: white;
+}
+
+.benefit-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    flex: 1;
+}
+
+/* Guarantee Section */
+.guarantee-section {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));
+    border: 2px solid rgba(16, 185, 129, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.guarantee-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.guarantee-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #059669;
+    margin-bottom: 8px;
+}
+
+.guarantee-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* CTA Section */
+.plan-cta {
+    text-align: center;
+}
+
+.modern-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 18px 40px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.modern-cta-button:hover::before {
+    left: 100%;
+}
+
+.modern-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.cta-icon {
+    font-size: 1.2rem;
+}
+
+/* Contact Info */
+.contact-info {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.contact-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.contact-highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Responsive styles for horizontal layout */
+@media (max-width: 768px) {
+    .monthly-plan-card div[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .monthly-plan-card div[style*="flex: 0 0 200px"] {
+        flex: none !important;
+        text-align: center !important;
+    }
+}
+
+/* Content Styles */
+.monthly-plan-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.plan-includes, .plan-excludes {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(99, 102, 241, 0.06);
+    transition: all 0.2s ease;
+}
+
+.plan-includes:hover, .plan-excludes:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.plan-includes h4 {
+    color: #059669;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.plan-includes h4::before {
+    content: "✓";
+    background: #10b981;
+    color: white;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+.plan-excludes h4 {
+    color: #dc2626;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.plan-excludes h4::before {
+    content: "✗";
+    background: #ef4444;
+    color: white;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+.plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-list li {
+    padding: 3px 0;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.3;
+}
+
+.monthly-plan-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 18px 40px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.monthly-plan-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.monthly-plan-button:hover::before {
+    left: 100%;
+}
+
+.monthly-plan-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .monthly-plan-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .monthly-plan-card {
+        padding: 25px 20px;
+        border-radius: 18px;
+        grid-template-areas: 
+            "header"
+            "price"
+            "content"
+            "button";
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .plan-price-area,
+    .plan-content-area {
+        text-align: center;
+    }
+    
+    .monthly-plan-title {
+        font-size: 1.6rem;
+    }
+    
+    .monthly-plan-subtitle {
+        font-size: 1rem;
+    }
+    
+    .monthly-plan-price {
+        font-size: 2.2rem;
+    }
+    
+    .monthly-plan-button {
+        padding: 16px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .plan-section {
+        padding: 20px 15px;
+    }
+    
+    .price-container {
+        padding: 25px 20px;
+    }
+    
+    .monthly-plan-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* Dark Mode Support - Pure Black Background */
+body.dark .monthly-plan-section {
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
+}
+
+body.dark .monthly-plan-card {
+    background: #111111;
+    border-color: #333333;
+}
+
+body.dark .plan-section {
+    background: linear-gradient(135deg, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.6));
+    border-color: #333333;
+}
+
+/* Dark Mode Support for Header */
+body.dark .header {
+    background-color: #000000;
+    border-bottom-color: #333333;
+}
+
+body.dark .header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* Dark Mode Support for Hero Section */
+body.dark .contact-hero {
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+}
+
+body.dark .page-title {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark .page-description {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Packages Section */
+body.dark .packages-section {
+    background-color: #000000;
+}
+
+body.dark .package-card {
+    background: #111111;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.dark .package-card:hover {
+    background: #222222;
+}
+
+body.dark .package-name {
+    color: #ffffff;
+}
+
+body.dark .package-price {
+    color: var(--primary-color);
+}
+
+body.dark .package-description {
+    color: #cccccc;
+}
+
+body.dark .package-features li {
+    color: #cccccc;
+}
+
+body.dark .package-cta {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+/* Dark Mode Support for Extras Section */
+body.dark .extras-section {
+    background-color: #000000;
+}
+
+body.dark .extras-section h2 {
+    color: #ffffff;
+}
+
+body.dark .extra-card {
+    background: #111111;
+    border-color: #333333;
+    color: #ffffff;
+}
+
+body.dark .extra-card:hover {
+    background: #222222;
+}
+
+body.dark .extra-card h3 {
+    color: #ffffff;
+}
+
+body.dark .extra-card p {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Content Creation Section */
+body.dark .content-creation-section {
+    background-color: #000000;
+}
+
+body.dark .content-creation-section h2 {
+    color: #ffffff;
+}
+
+body.dark .content-creation-container {
+    background: #111111;
+    border-color: #333333;
+}
+
+body.dark .service-card {
+    background: #222222;
+    border-color: #333333;
+}
+
+body.dark .service-card:hover {
+    background: #333333;
+}
+
+body.dark .service-card h4 {
+    color: #ffffff;
+}
+
+body.dark .service-card p {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Monthly Plan */
+body.dark .monthly-plan-title,
+body.dark .monthly-plan-section h2 {
+    color: #ffffff;
+}
+
+body.dark .monthly-plan-subtitle,
+body.dark .monthly-plan-section p {
+    color: #cccccc;
+}
+
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #222222 !important;
+    border-color: #333333 !important;
+}
+
+body.dark .plan-includes h4 {
+    color: #10b981;
+}
+
+body.dark .plan-excludes h4 {
+    color: #ef4444;
+}
+
+body.dark .benefit-text {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for FAQ Section */
+body.dark .faq-section {
+    background-color: #000000;
+}
+
+body.dark .faq-section h2 {
+    color: #ffffff;
+}
+
+body.dark .faq-item {
+    background: #111111;
+    border-color: #333333;
+}
+
+body.dark .faq-question {
+    color: #ffffff;
+}
+
+body.dark .faq-answer {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Support Section */
+body.dark .support-section {
+    background-color: #000000;
+}
+
+body.dark .support-section h2 {
+    color: #ffffff;
+}
+
+body.dark .support-card {
+    background: #111111;
+    border-color: #333333;
+}
+
+body.dark .support-card h3 {
+    color: #ffffff;
+}
+
+body.dark .support-card p {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for CTA Sections */
+body.dark .cta-section {
+    background-color: #000000 !important;
+}
+
+body.dark .cta-section h2 {
+    color: #ffffff;
+}
+
+body.dark .cta-section p {
+    color: #cccccc;
+}
+
+/* Dark Mode Support for Footer */
+body.dark .footer {
+    background-color: #000000;
+    border-top: 1px solid #333333;
+}
+
+body.dark .footer h4,
+body.dark .footer p,
+body.dark .footer a {
+    color: #ffffff;
+}
+
+body.dark .footer a:hover {
+    color: var(--primary-color);
+}
+
+/* Additional Dark Mode Overrides for ALL White Backgrounds */
+body.dark .hero-section,
+body.dark .contact-hero,
+body.dark .packages-section,
+body.dark .extras-section,
+body.dark .content-creation-section,
+body.dark .monthly-plan-section,
+body.dark .faq-section,
+body.dark .support-section,
+body.dark .cta-section,
+body.dark .download-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Monthly Plan Section Dark Mode */
+body.dark .monthly-plan-section {
+    background: #000000 !important;
+}
+
+body.dark .monthly-plan-card {
+    background: #111111 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+/* Content Creation Cards Dark Mode */
+body.dark .content-creation-card,
+body.dark .service-card,
+body.dark .includes-card {
+    background: #111111 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+/* CTA Button White Dark Mode */
+body.dark .cta-button-white {
+    background: #111111 !important;
+    color: #ffffff !important;
+    border: 1px solid #333333 !important;
+}
+
+/* Override ALL white backgrounds in dark mode */
+body.dark * {
+    background-color: inherit;
+}
+
+body.dark *[style*="background: white"],
+body.dark *[style*="background-color: white"] {
+    background: #111111 !important;
+    background-color: #111111 !important;
+    color: #ffffff !important;
+}
+
+/* Specific inline style overrides */
+body.dark section[style*="background: white"] {
+    background: #000000 !important;
+}
+
+body.dark div[style*="background: white"] {
+    background: #111111 !important;
+    color: #ffffff !important;
+}
+
+/* Force all white text to be visible on dark backgrounds */
+body.dark *[style*="color: white"] {
+    color: #ffffff !important;
+}
+
+body.dark .monthly-plan-title,
+body.dark .plan-section h4 {
+    color: var(--text-light);
+}
+
+body.dark .monthly-plan-subtitle,
+body.dark .benefit-text,
+body.dark .contact-text {
+    color: #9ca3af;
+}
+        .content-creation-section .includes-title {
+    font-size: 1.4rem !important;
+    margin-bottom: 18px !important;
+}
+        
+/* Services Page Navigation Enhancement */
+.services-nav-links {
+    position: fixed;
+    top: 50vh;
+    right: 20px;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 10px 6px;
+    z-index: 998;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    width: 90px;
+    min-height: 200px;
+}
+
+.services-nav-links.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.services-nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.7rem;
+    padding: 8px 6px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+    line-height: 1.3;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.services-nav-links a:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+body.dark .services-nav-links {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: #374151;
+}
+
+body.dark .services-nav-links a {
+    color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .services-nav-links {
+        right: 10px;
+        width: 80px;
+        padding: 8px 4px;
+        gap: 4px;
+        min-height: 180px;
+    }
+    
+    .services-nav-links a {
+        font-size: 0.65rem;
+        padding: 6px 4px;
+    }
+}
+body {
+    background: white;
+}
+
+/* Dark Mode - Pure Black Background */
+body.dark {
+    background-color: #000000 !important;
+}
+        /* Header/Navigation Bar Styling - Sticky Navigation */
+.header {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+        
+    /* Packages Page Specific Styles */
+
+    /* Enhanced Hero Section */
+    .contact-hero {
+    margin-top: 70px;
+    padding: 150px 1rem 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.contact-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+    .contact-hero .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
+    }
+
+    .page-title {
+        font-size: 3.2rem;
+        font-weight: 900;
+        margin: 1rem 0;
+        line-height: 1.1;
+        color: var(--text-dark);
+        transition: all 0.3s ease;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fadeInUp 0.8s ease-out;
+        position: relative;
+        z-index: 2;
+    }
+
+   .page-description {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    line-height: 1.6;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    position: relative;
+    z-index: 2;
+}
+
+    /* Packages Section */
+   .packages-section {
+    padding: 120px 0 80px 0;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+    .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 50px;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+        font-weight: 800;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .packages-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .packages-pyramid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+    .packages-row {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .packages-row.top-row {
+        /* 3 packages on top */
+    }
+
+    
+
+    .package-card {
+    background: var(--bg-card);
+    border-radius: 25px;
+    padding: 60px 40px 50px 40px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: visible;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    min-height: 700px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    animation: slideInScale 0.6s ease-out both;
+}
+    /* Enhanced Recommended Banner */
+.recommended-banner {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 12px 24px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 25px;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    z-index: 10;
+    white-space: nowrap;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    animation: slideInScale 0.6s ease-out 0.3s both;
+}
+
+.recommended-banner::before {
+    content: "⭐";
+    margin-right: 8px;
+}
+
+/* Purple Border for Recommended Cards */
+.package-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+
+.pricing-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+        
+    .package-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: var(--primary-color);
+    }
+
+    .package-card.featured {
+        border: 2px solid var(--primary-color);
+        transform: scale(1.02);
+    }
+
+    .package-card.featured:hover {
+        transform: scale(1.02) translateY(-10px);
+    }
+
+    .package-name {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-price {
+        font-size: 2.8rem;
+        font-weight: 900;
+        color: var(--primary-color);
+        margin-bottom: 25px;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+        padding: 15px 25px;
+        border-radius: 15px;
+        border: 2px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .package-description {
+        color: var(--text-muted);
+        margin-bottom: 30px;
+        font-style: normal;
+        transition: color 0.3s ease;
+        font-size: 0.95rem;
+        text-align: center;
+        line-height: 1.6;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-target {
+        background: var(--bg-muted);
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        transition: background-color 0.3s ease;
+        flex-grow: 1;
+    }
+
+    .package-target h4 {
+        color: var(--text-dark);
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-target p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-features {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .package-features li {
+        padding: 8px 0;
+        padding-left: 25px;
+        position: relative;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 12px;
+        font-weight: 400;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    .package-features li {
+        position: relative;
+        padding-left: 35px !important;
+        display: flex;
+        align-items: center;
+    }
+
+    .package-features li::before {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: white;
+        font-weight: bold;
+    }
+
+    /* Feature Icons */
+    .package-features li[data-feature="responsive"]::before { content: "📱"; }
+    .package-features li[data-feature="contact"]::before { content: "✉️"; }
+    .package-features li[data-feature="animations"]::before { content: "⚡"; }
+    .package-features li[data-feature="social"]::before { content: "🔗"; }
+    .package-features li[data-feature="seo"]::before { content: "🎯"; }
+    .package-features li[data-feature="pages"]::before { content: "📄"; }
+    .package-features li[data-feature="gallery"]::before { content: "🖼️"; }
+    .package-features li[data-feature="cms"]::before { content: "⚙️"; }
+    .package-features li[data-feature="ecommerce"]::before { content: "🛒"; }
+    .package-features li[data-feature="analytics"]::before { content: "📊"; }
+
+    .cta-button {
+        width: 100%;
+        padding: 16px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: auto;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .cta-button {
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s ease;
+    }
+
+    .cta-button:hover::before {
+        left: 100%;
+    }
+
+    .cta-button:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+        background: var(--bg-card);
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: var(--shadow-md);
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+        transition: background-color 0.3s ease;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .table-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+        color: var(--text-dark);
+        transition: color 0.3s ease;
+    }
+
+    .comparison-table table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+    }
+
+    .comparison-table th, 
+    .comparison-table td {
+        padding: 20px 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .comparison-table th {
+        background: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .comparison-table tr:nth-child(even) {
+        background: var(--bg-muted);
+    }
+
+    .comparison-table tr:hover {
+        background: rgba(99, 102, 241, 0.1);
+    }
+
+    .price-cell {
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--primary-color);
+    }
+
+    /* Dark Mode Support */
+    body.dark .contact-hero {
+        background-color: #1f2937;
+    }
+
+    body.dark .page-title,
+    body.dark .page-description {
+        color: var(--text-light);
+    }
+
+    body.dark .packages-section {
+        background-color: #1f2937;
+    }
+
+    body.dark .package-card {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+
+    body.dark .package-target {
+        background: #3d3d3d;
+    }
+
+    body.dark .comparison-table {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+
+    body.dark .section-title,
+    body.dark .table-title,
+    body.dark .package-name,
+    body.dark .package-target h4 {
+        color: var(--text-light);
+    }
+
+    body.dark .package-description,
+    body.dark .package-features li,
+    body.dark .package-target p {
+        color: #9ca3af;
+    }
+
+    body.dark .comparison-table th,
+    body.dark .comparison-table td {
+        border-color: #374151;
+        color: var(--text-light);
+    }
+
+    body.dark .comparison-table tr:nth-child(even) {
+        background: #374151;
+    }
+
+    body.dark .comparison-table tr:hover {
+        background: rgba(99, 102, 241, 0.2);
+    }
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Card Staggered Animation */
+.package-card:nth-child(1) { animation-delay: 0.1s; }
+.package-card:nth-child(2) { animation-delay: 0.2s; }
+.package-card:nth-child(3) { animation-delay: 0.3s; }
+.package-card:nth-child(4) { animation-delay: 0.4s; }
+.package-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Section Dividers */
+.section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+    margin: 80px 0;
+}
+
+/* Alternating Section Backgrounds */
+.extras-section {
+    background: #f9fafb;
+}
+
+.content-creation-section {
+    background: white;
+}
+
+/* Extras Category Icons */
+.category-icon {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.extras-category[data-category="branding"] .category-icon::after { content: "🎨"; }
+.extras-category[data-category="optimization"] .category-icon::after { content: "🚀"; }
+.extras-category[data-category="social-media"] .category-icon::after { content: "📱"; }
+.extras-category[data-category="monthly-management"] .category-icon::after { content: "📅"; }
+.extras-category[data-category="technical"] .category-icon::after { content: "⚡"; }
+
+.category-icon::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+}
+
+/* Enhanced PDF Download Button */
+.pdf-download-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.pdf-download-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.pdf-download-button:hover::before {
+    left: 100%;
+}
+
+/* Enhanced "Inclui:" Text Styling for Content Creation Section */
+.content-creation-section .includes-title {
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: #374151 !important;
+    margin-bottom: 25px !important;
+    letter-spacing: 0.5px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+        /* Dark Mode Support for Extras Section */
+    body.dark .extras-section {
+        background-color: #1f2937;
+    }
+
+        /* Dark Mode Support for Content Creation Section */
+body.dark .includes-section,
+body.dark .pricing-section {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .includes-title,
+body.dark .pricing-title,
+body.dark .include-content h4 {
+    color: var(--text-light);
+}
+
+body.dark .include-content p {
+    color: #9ca3af;
+}
+
+body.dark .include-item {
+    background: #374151;
+    border-color: #4b5563;
+}
+
+body.dark .include-item:hover {
+    background: #3d3d3d;
+}
+        /* Dark Mode Support for Content Creation Section Background */
+body.dark .content-creation-section {
+    background: #1f2937 !important;
+}
+        
+    body.dark .extras-category {
+        background: #2d2d2d;
+        border-color: #374151;
+    }
+    body.dark .category-title,
+    body.dark .category-header h3 {
+        color: var(--text-light);
+    }
+    body.dark .category-description,
+    body.dark .service-info h4 {
+        color: #9ca3af;
+    }
+    body.dark .service-price {
+        color: var(--primary-color);
+    }
+    body.dark .category-cta {
+        background: var(--primary-color);
+        color: white;
+    }
+    body.dark .category-cta:hover {
+        background: var(--primary-dark);
+        color: white;
+    }
+    body.dark .filter-btn {
+        background: #374151;
+        color: #9ca3af;
+        border-color: #4b5563;
+    }
+    body.dark .filter-btn:hover,
+    body.dark .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+        
+    /* Responsive Design */
+    @media (max-width: 1400px) {
+        .packages-container {
+            max-width: 1200px;
+        }
+        
+        .package-card {
+            width: 350px;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        .packages-row {
+            gap: 30px;
+        }
+        
+        .package-card {
+            width: 320px;
+            min-height: 650px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .packages-row.top-row {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .packages-row.bottom-row {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .package-card {
+            width: 300px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact-hero {
+            padding: 4rem 1rem 2rem;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+        }
+
+        .page-description {
+            font-size: 1.2rem;
+        }
+
+        .packages-pyramid {
+            gap: 30px;
+        }
+
+        .packages-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .package-card {
+            width: 90%;
+            max-width: 400px;
+            min-height: 600px;
+            padding: 40px 30px;
+        }
+
+        .comparison-table {
+            padding: 25px;
+        }
+
+        .comparison-table table {
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th, 
+        .comparison-table td {
+            padding: 15px 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-hero {
+            padding: 3rem 1rem 1.5rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .package-card {
+            width: 95%;
+            padding: 30px 25px;
+            min-height: 550px;
+        }
+
+        .package-price {
+            font-size: 2.2rem;
+        }
+
+        .packages-section {
+            padding: 60px 0;
+        }
+
+        .packages-row {
+            gap: 20px;
+        }
+    }
+
+    /* Extras Section Styles */
+    :root {
+        --primary-color: #6366f1;
+        --primary-dark: #4f46e5;
+        --primary-light: #a5b4fc;
+        --text-dark: #1f2937;
+        --text-light: #f3f4f6;
+        --text-muted: #6b7280;
+        --bg-light: #ffffff;
+        --bg-dark: #1f2937;
+        --bg-muted: #f9fafb;
+        --bg-card: #ffffff;
+        --border-color: #e5e7eb;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .extras-section {
+        padding: 80px 0 40px 0;
+        background-color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    .extras-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .extras-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 400;
+        line-height: 1.6;
+    }
+
+    .extras-filters {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+
+    .filter-btn {
+        padding: 12px 24px;
+        border: 2px solid var(--border-color);
+        background: var(--bg-card);
+        color: var(--text-dark);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+   /* 3-2 PYRAMID GRID LAYOUT */
+.extras-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+    margin-bottom: 80px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: center;
+}
+
+/* First row - 3 boxes */
+.extras-grid .extras-category:nth-child(1) {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.extras-grid .extras-category:nth-child(2) {
+    grid-column: 3 / 5;
+    grid-row: 1;
+}
+
+.extras-grid .extras-category:nth-child(3) {
+    grid-column: 5 / 7;
+    grid-row: 1;
+}
+
+/* Second row - 2 boxes closer together for pyramid effect */
+.extras-grid .extras-category:nth-child(4) {
+    grid-column: 2 / 4;
+    grid-row: 2;
+}
+
+.extras-grid .extras-category:nth-child(5) {
+    grid-column: 4 / 6;
+    grid-row: 2;
+}
+
+    .extras-category {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: scale(1);
+    width: 100%;           /* ADD THIS */
+    max-width: 350px;      /* ADD THIS */
+}
+
+    .extras-category.filter-hidden {
+        display: none !important;
+    }
+
+    .extras-category:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .category-header {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .category-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        border-radius: 50%;
+        margin-bottom: 20px;
+        color: white;
+        font-size: 2rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    .category-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+        transition: color 0.3s ease;
+    }
+
+    .category-description {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+        transition: color 0.3s ease;
+        font-weight: 400;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .services-list {
+        margin-bottom: 30px;
+        flex: 1;
+    }
+
+    .service-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        gap: 20px;
+    }
+
+    .service-item:last-child {
+        border-bottom: none;
+    }
+
+    .service-item:hover {
+        background: rgba(99, 102, 241, 0.05);
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 12px;
+    }
+
+    .service-info {
+        flex: 1;
+        min-width: 0;
+        padding-right: 15px;
+    }
+
+    .service-info h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+        transition: color 0.3s ease;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+
+    .service-info p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 0;
+        line-height: 1.5;
+        transition: color 0.3s ease;
+        font-weight: 400;
+    }
+
+    .service-price {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-align: right;
+        min-width: 120px;
+        max-width: 140px;
+        line-height: 1.3;
+        flex-shrink: 0;
+    }
+
+    .category-cta {
+        width: 100%;
+        padding: 16px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .category-cta:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Responsive Design for Extras */
+    @media (max-width: 1200px) {
+        .extras-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .extras-grid:not(.filtered) .extras-category:nth-child(1),
+.extras-grid:not(.filtered) .extras-category:nth-child(2),
+.extras-grid:not(.filtered) .extras-category:nth-child(3),
+.extras-grid:not(.filtered) .extras-category:nth-child(4),
+.extras-grid:not(.filtered) .extras-category:nth-child(5) {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: center;
+    margin: 0;
+}
+        
+        .extras-category {
+            padding: 35px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .extras-section {
+            padding: 60px 0;
+        }
+        
+        .extras-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+            max-width: 500px;
+        }
+
+        .extras-grid .extras-category:nth-child(1),
+        .extras-grid .extras-category:nth-child(2),
+        .extras-grid .extras-category:nth-child(3),
+        .extras-grid .extras-category:nth-child(4),
+        .extras-grid .extras-category:nth-child(5) {
+            grid-column: 1;
+            grid-row: auto;
+            justify-self: center;
+            margin: 0;
+        }
+        
+        .extras-category {
+            padding: 30px 25px;
+        }
+        
+        .extras-filters {
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 10px 18px;
+            font-size: 0.85rem;
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 1.8rem;
+        }
+        
+        .category-title {
+            font-size: 1.6rem;
+        }
+        
+        .service-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .service-price {
+            text-align: left;
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .extras-container {
+            padding: 0 15px;
+        }
+        
+        .extras-category {
+            padding: 25px 20px;
+        }
+        
+        .extras-filters {
+            padding: 0 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+        
+        .category-title {
+            font-size: 1.4rem;
+        }
+        
+        .category-description {
+            font-size: 0.9rem;
+        }
+    }
+        /* Condensed Extras Section */
+.extras-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.category-item {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.category-item h4 {
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.category-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.pdf-download-button {
+    display: inline-block;
+    padding: 16px 30px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.pdf-download-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    color: white;
+}
+        .faq-section,
+.support-section {
+    background-color: white !important;
+}
+
+/* EFEITOS DA PÁGINA DOS PROJETOS - HEADER FIXO E DARK MODE */
+
+/* Header/Navigation Bar Styling - Sticky Navigation */
+.header {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* Dark Mode - Pure Black Background */
+body.dark {
+    background-color: #000000 !important;
+}
+
+/* Enhanced Hero Section - IDENTICAL to Projects Page */
+.services-hero {
+    margin-top: 70px;
+    padding: 150px 1rem 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.services-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.services-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+}
+
+.page-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    margin: 1rem 0;
+    line-height: 1.1;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 2;
+}
+
+.page-description {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    line-height: 1.6;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+    position: relative;
+    z-index: 2;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dark Mode Support - Pure Black Background */
+body.dark .services-hero {
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+}
+
+/* Dark Mode Gradient Text Override */
+body.dark .page-title {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.dark .page-description {
+    color: #cccccc;
+}
+
+body.dark .header {
+    background-color: #000000;
+    border-bottom-color: #333333;
+}
+
+body.dark .header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* BOTÃO CURRÍCULO SEMPRE VISÍVEL - EXATO DA PÁGINA PROJETOS */
+.resume-btn {
+    background-color: #6366f1 !important;
+    color: white !important;
+    padding: 0.5rem 1.25rem !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+.resume-btn:hover {
+    background-color: #4f46e5 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+    </style>
 </head>
 <body>
    
@@ -186,8 +2914,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
     </main>
 
     <!-- PDF Download Section -->
@@ -269,10 +2995,10 @@
         </div>
         
         <div class="extras-cta">
-            <p class="extras-cta-text">
+            <p style="text-align: center; margin-top: 40px; font-size: 1.1rem; color: var(--text-muted);">
                 Para ver a lista detalhada de <strong>todos os extras disponíveis, com descrições e preços específicos</strong>,
             </p>
-            <div class="extras-cta-button">
+            <div style="text-align: center; margin-top: 20px;">
                 <a href="https://drive.google.com/uc?id=1cC6CCy7PsEiOpNNPSM5qqO663F8JF-Rl&export=download" class="pdf-download-button">
                     Descarrega o Guia Completo de Serviços aqui
                 </a>
@@ -281,6 +3007,1738 @@
     </div>
 </section>
 
+    <style>
+        /* Support Section Styles */
+.support-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.support-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.support-content {
+    text-align: center;
+}
+
+.support-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-intro {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.support-item {
+    display: flex;
+    flex-direction: column;
+          align-items: center;
+    gap: 25px;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.support-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.support-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.support-content-item h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-content-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-cta {
+    text-align: center;
+}
+
+.support-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Dark Mode Support for Support Section */
+body.dark .support-section {
+    background-color: #1f2937;
+}
+
+body.dark .support-item {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .support-item:hover {
+    background: #374151;
+}
+
+body.dark .support-title,
+body.dark .support-content-item h4 {
+    color: var(--text-light);
+}
+
+body.dark .support-intro,
+body.dark .support-content-item p {
+    color: #9ca3af;
+}
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --bg-card: #ffffff;
+            --bg-muted: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+
+        /* Content Creation Service Section Styles */
+        .content-creation-section {
+    padding: 80px 0 30px 0;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+       
+
+        .content-creation-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Service Header */
+        .service-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+        .service-badge {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Green Banner Styling */
+.recommended-banner {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 8px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    z-index: 10;
+    white-space: nowrap;
+    border: none;
+}
+
+.recommended-banner::before,
+.recommended-banner::after {
+    display: none;
+    content: none;
+}
+
+/* Purple Border for Recommended Cards */
+.package-card.recommended {
+    border: 3px solid #6366f1;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05));
+}
+
+.extras-category.recommended {
+    border: 3px solid #6366f1;
+    
+}
+
+.recommended-banner::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid #cc4125;
+    border-top: 6px solid #cc4125;
+}
+
+        .service-badge span {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .service-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .service-description {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Service Content */
+        .service-content {
+    background: white;
+    border-radius: 30px;
+    padding: 40px;
+    border: 1px solid var(--border-color);
+}
+/* Includes Section */
+        .includes-section {
+    margin-bottom: 50px;
+}
+        .includes-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #374151;
+            margin-bottom: 25px;
+            text-align: left;
+            letter-spacing: 0.5px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .includes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .include-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            padding: 30px;
+            background: var(--bg-muted);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .include-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .include-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .include-content h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .include-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .package-card {
+    /* Keep all existing properties, but change these: */
+    overflow: visible;  /* Change from "hidden" to "visible" */
+    padding: 60px 40px 50px 40px;  /* Add extra top padding */
+}
+
+.extras-category {
+    /* Keep all existing properties, but add these: */
+    overflow: visible;
+    padding: 50px 40px 40px 40px;
+    position: relative;
+}
+
+      /* Pricing Section - now part of unified service-content box */
+.pricing-section {
+    margin-top: 40px;
+}
+
+        .pricing-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border-radius: 25px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .package-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .package-limit {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin: 0;
+            font-style: italic;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .package-features li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .pricing-cta {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .pricing-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .pricing-card.custom .pricing-cta {
+            background: var(--primary-color);
+        }
+
+        .pricing-card.custom .pricing-cta:hover {
+            background: var(--primary-dark);
+        }
+
+        .pricing-card.recommended {
+            border: 3px solid #6366f1 !important;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(99, 102, 241, 0.05)) !important;
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Dark Mode Support */
+        body.dark .content-creation-section {
+            background: #1f2937;
+        }
+
+        body.dark .includes-section,
+        body.dark .pricing-section {
+            background: #2d2d2d;
+            border-color: #374151;
+        }
+
+        body.dark .service-title,
+        body.dark .includes-title,
+        body.dark .pricing-title,
+        body.dark .package-name {
+            color: #f9fafb;
+        }
+
+        body.dark .service-description,
+        body.dark .include-content p,
+        body.dark .package-features li,
+        body.dark .package-limit {
+            color: #9ca3af;
+        }
+
+        body.dark .include-content h4 {
+            color: #f9fafb;
+        }
+
+        body.dark .include-item {
+            background: #374151;
+            border-color: #4b5563;
+        }
+
+        body.dark .include-item:hover {
+            background: #4b5563;
+        }
+
+        body.dark .pricing-card {
+            background: #374151;
+            border-color: #4b5563;
+        }
+
+        body.dark .pricing-card.featured {
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-creation-container {
+                padding: 0 15px;
+            }
+            
+            .includes-section,
+            .pricing-section {
+                padding: 40px 30px;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-creation-section {
+                padding: 60px 0;
+            }
+            
+            .service-title {
+                font-size: 2.5rem;
+            }
+            
+            .service-description {
+                font-size: 1.1rem;
+            }
+            
+            .includes-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .include-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+            
+            .includes-section,
+            .pricing-section {
+                padding: 30px 20px;
+            }
+            
+            .pricing-cards {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .pricing-card {
+                padding: 30px 20px;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-title {
+                font-size: 2rem;
+            }
+            
+            .includes-title,
+            .pricing-title {
+                font-size: 2rem;
+            }
+            
+            .package-price {
+                font-size: 2rem;
+            }
+        }
+        /* Support Section Styles */
+.support-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.support-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.support-content {
+    text-align: center;
+}
+
+.support-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-intro {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.support-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.support-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.support-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.support-content-item h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-content-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-cta {
+    text-align: center;
+}
+
+.support-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.support-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Dark Mode Support for Support Section */
+body.dark .support-section {
+    background-color: #1f2937;
+}
+
+body.dark .support-item {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .support-item:hover {
+    background: #374151;
+}
+
+body.dark .support-title,
+body.dark .support-content-item h4 {
+    color: var(--text-light);
+}
+
+body.dark .support-intro,
+body.dark .support-content-item p {
+    color: #9ca3af;
+}
+
+/* Monthly Plan Section - FORCED COMPACT VERSION */
+.monthly-plan-section {
+    padding: 40px 0 !important;
+    background-color: white !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.monthly-plan-container {
+    max-width: 550px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+.monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important;
+    border: 1px solid var(--primary-color) !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    text-align: center !important;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.1) !important;
+    position: relative !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+
+.monthly-plan-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.monthly-plan-title {
+    font-size: 2rem !important;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 20px !important;
+    line-height: 1.3 !important;
+}
+
+.monthly-plan-subtitle {
+    font-size: 1.1rem !important;
+    color: var(--text-muted);
+    margin-bottom: 30px !important;
+    line-height: 1.6 !important;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px !important;
+}
+
+.monthly-plan-price {
+    font-size: 2.5rem !important;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 25px !important;
+}
+
+.monthly-plan-price span {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.monthly-plan-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px !important;
+    margin-bottom: 25px !important;
+    text-align: left;
+}
+
+.plan-includes,
+.plan-excludes {
+    background: white;
+    border-radius: 12px !important;
+    padding: 15px !important;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.plan-includes h4,
+.plan-excludes h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-includes h4 {
+    color: #059669;
+}
+
+.plan-excludes h4 {
+    color: #dc2626;
+}
+
+.plan-includes h4::before {
+    content: "✓";
+    background: #059669;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.plan-excludes h4::before {
+    content: "✗";
+    background: #dc2626;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-list li {
+    padding: 12px 0;
+    padding-left: 30px;
+    position: relative;
+    color: var(--text-muted);
+    line-height: 1.5;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.plan-list li:last-child {
+    border-bottom: none;
+}
+
+.plan-includes .plan-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.plan-excludes .plan-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #dc2626;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.monthly-plan-cta {
+    text-align: center;
+}
+
+.monthly-plan-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+     color: white !important;
+    padding: 18px 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.monthly-plan-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+    color: white;
+    text-decoration: none;
+    color: white !important;
+    text-decoration: none !important;
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3);
+    }
+        
+    .monthly-plan-button:visited {
+    color: white !important;
+    text-decoration: none !important;
+    }
+        
+    .monthly-plan-button:focus {
+    color: white !important;
+    text-decoration: none !important;
+    outline: none;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+/* FAQ Section Styles */
+.faq-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.faq-answer {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Dark Mode Support for FAQ Section */
+body.dark .faq-section {
+    background-color: #1f2937;
+}
+
+body.dark .faq-item {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .faq-title {
+    color: var(--text-light);
+}
+
+body.dark .faq-question {
+    color: var(--primary-color);
+}
+
+body.dark .faq-answer {
+    color: #9ca3af;
+}
+
+/* Responsive Design for FAQ Section */
+@media (max-width: 768px) {
+    .faq-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .faq-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        gap: 25px;
+    }
+
+    .faq-item {
+        padding: 25px;
+    }
+
+    .faq-title {
+        font-size: 2rem;
+    }
+
+    .faq-question {
+        font-size: 1.1rem;
+    }
+
+    .faq-answer {
+        font-size: 0.95rem;
+    }
+}        
+
+/* Dark Mode Support */
+body.dark .monthly-plan-section {
+    background-color: #1f2937;
+}
+
+body.dark .monthly-plan-card,
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+
+body.dark .monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.15));
+}
+
+body.dark .monthly-plan-title {
+    color: var(--text-light);
+}
+
+body.dark .monthly-plan-subtitle,
+body.dark .plan-list li {
+    color: #9ca3af;
+}
+
+/* PDF Download Section Styles */
+.pdf-download-section {
+    padding: 30px 0;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.pdf-download-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pdf-download-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
+    border: 1px solid var(--primary-color);
+    border-radius: 25px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+    transition: all 0.3s ease;
+}
+
+.pdf-download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(99, 102, 241, 0.15);
+}
+
+.pdf-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.pdf-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.pdf-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.pdf-download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white !important;
+    padding: 18px 35px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.pdf-download-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+    color: white !important;
+    text-decoration: none !important;
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3);
+}
+
+.pdf-download-button:visited {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.pdf-download-button:focus {
+    color: white !important;
+    text-decoration: none !important;
+    outline: none;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+.pdf-download-button i {
+    font-size: 1.2rem;
+}
+
+/* Dark Mode Support for PDF Download Section */
+body.dark .pdf-download-section {
+    background-color: #1f2937;
+}
+
+body.dark .pdf-download-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.15));
+    border-color: var(--primary-color);
+}
+
+body.dark .pdf-title {
+    color: var(--text-light);
+}
+
+body.dark .pdf-description {
+    color: #9ca3af;
+}
+
+/* Responsive Design for PDF Download Section */
+@media (max-width: 768px) {
+    .pdf-download-card {
+        padding: 35px 25px;
+    }
+
+    .pdf-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .pdf-title {
+        font-size: 1.5rem;
+    }
+
+    .pdf-description {
+        font-size: 1rem;
+    }
+
+    .pdf-download-button {
+        padding: 15px 25px;
+        font-size: 1rem;
+    }
+}
+/* Contact Section */
+.contact-section {
+    padding: 80px 0;
+    background: var(--primary-color);
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.contact-section .section-title {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.contact-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.contact-button {
+    display: inline-block;
+    padding: 18px 40px;
+    background: white;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: var(--primary-color);
+}
+        /* Monthly Plan Section */
+.monthly-plan-section {
+    padding: 40px 0 !important;
+    background-color: white !important;
+    transition: background-color 0.3s ease !important;
+}
+        
+.monthly-plan-container {
+    max-width: 280px !important;
+    margin: 0 auto !important;
+    padding: 0 15px !important;
+}
+
+.monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important;
+    border: 1px solid var(--primary-color) !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
+    text-align: center !important;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: auto !important;
+    max-width: 100% !important;
+}
+.monthly-plan-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.monthly-plan-title {
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 15px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+.monthly-plan-subtitle {
+    font-size: 0.95rem !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 25px !important;
+    line-height: 1.5 !important;
+    max-width: 250px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+.monthly-plan-price {
+    font-size: 2.2rem !important;
+    font-weight: 900 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 25px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+.monthly-plan-price span {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+.monthly-plan-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+.plan-includes,
+.plan-excludes {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+.plan-includes h4,
+.plan-excludes h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+.plan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.plan-list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--text-muted);
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+.plan-includes .plan-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.plan-excludes .plan-list li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.monthly-plan-button {
+    display: inline-block;
+    padding: 18px 40px;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+.monthly-plan-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    text-decoration: none;
+    color: white;
+}
+/* Dark Mode Support for Monthly Plan */
+body.dark .monthly-plan-section {
+    background-color: #1f2937;
+}
+body.dark .monthly-plan-card {
+    background: #2d2d2d;
+    border-color: #374151;
+}
+body.dark .monthly-plan-title {
+    color: var(--text-light);
+}
+body.dark .monthly-plan-subtitle {
+    color: #9ca3af;
+}
+body.dark .plan-includes,
+body.dark .plan-excludes {
+    background: #3d3d3d;
+    border-color: #374151;
+}
+body.dark .plan-includes h4,
+body.dark .plan-excludes h4 {
+    color: var(--text-light);
+}
+body.dark .plan-list li {
+    color: #9ca3af;
+}
+
+/* COMPACT STYLING FOR CONTENT CREATION SECTION */
+.content-creation-section {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.content-creation-section .service-header {
+    margin-bottom: 20px !important;
+}
+
+.content-creation-section .service-title {
+    margin-bottom: 12px !important;
+    font-size: 1.8rem !important;
+}
+
+.content-creation-section .service-description {
+    margin-bottom: 15px !important;
+    line-height: 1.5 !important;
+}
+
+.content-creation-section .service-content {
+    margin-top: 15px !important;
+}
+
+.content-creation-section .includes-section {
+    margin-bottom: 20px !important;
+}
+
+.content-creation-section .includes-title {
+    margin-bottom: 10px !important;
+    font-size: 1.3rem !important;
+}
+
+.content-creation-section .pdf-cta-section {
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+    padding: 25px !important;
+}
+
+.content-creation-section .pdf-cta-section h3 {
+    margin-bottom: 10px !important;
+    font-size: 1.4rem !important;
+}
+
+.content-creation-section .pdf-cta-section p {
+    margin-bottom: 15px !important;
+}
+        .faq-section,
+.support-section {
+    background-color: white !important;
+}
+.pdf-final-section a:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* IMPROVED CONTENT CREATION SECTION */
+.content-creation-section {
+    padding: 80px 0 !important;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.content-creation-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.content-creation-section .service-badge span {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    border-radius: 30px !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.content-creation-section .service-badge span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.content-creation-section .service-title {
+    font-size: 3.2rem !important;
+    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+.content-creation-section .includes-title {
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    position: relative !important;
+}
+
+.content-creation-section .includes-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 2px;
+}
+
+.content-creation-section .includes-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+    gap: 30px !important;
+    margin-bottom: 40px !important;
+}
+
+.content-creation-section .include-item {
+    background: white !important;
+    border-radius: 20px !important;
+    padding: 35px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    border: 2px solid transparent !important;
+    transition: all 0.4s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.content-creation-section .include-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+.content-creation-section .include-item:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.content-creation-section .include-icon {
+    width: 70px !important;
+    height: 70px !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 25px !important;
+    color: white !important;
+    font-size: 2rem !important;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3) !important;
+}
+
+.content-creation-section .package-types-section {
+    background: white !important;
+    border-radius: 25px !important;
+    padding: 40px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+    margin-bottom: 50px !important;
+}
+
+.content-creation-section .package-types-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 25px !important;
+    margin-bottom: 30px !important;
+}
+
+.content-creation-section .package-type {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+    border-radius: 15px !important;
+    padding: 25px !important;
+    text-align: center !important;
+    transition: all 0.3s ease !important;
+}
+
+.content-creation-section .package-type:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.content-creation-section .content-cta-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    border-radius: 25px !important;
+    padding: 50px !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.content-creation-section .enhanced-download-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    background: white !important;
+    color: var(--primary-color) !important;
+    padding: 20px 40px !important;
+    border-radius: 15px !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    transition: all 0.4s ease !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.content-creation-section .enhanced-download-button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3) !important;
+    text-decoration: none !important;
+    color: var(--primary-color) !important;
+}
+    </style>
+</head>
+<body>
     <!-- Improved Content Creation Service Section -->
     <section class="content-creation-section" id="content-creation">
         <div class="content-creation-container">
@@ -333,40 +4791,40 @@
 
                 <!-- Package Types Section -->
                 <div class="package-types-section">
-                    <h3 class="package-types-title">
+                    <h3 style="font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; gap: 15px;">
                         <i class="fas fa-box-open"></i>
                         Pacotes Disponíveis
                     </h3>
                     <div class="package-types-grid">
                         <div class="package-type">
-                            <div class="package-type-icon">
+                            <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;">
                                 <i class="fas fa-layer-group"></i>
                             </div>
-                            <h4 class="package-type-name">Básico</h4>
-                            <p class="package-type-description">Ideal para sites simples com conteúdo essencial</p>
+                            <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px;">Básico</h4>
+                            <p style="font-size: 0.95rem; color: var(--text-muted);">Ideal para sites simples com conteúdo essencial</p>
                         </div>
                         <div class="package-type">
-                            <div class="package-type-icon">
+                            <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;">
                                 <i class="fas fa-star"></i>
                             </div>
-                            <h4 class="package-type-name">Completo</h4>
-                            <p class="package-type-description">Solução abrangente para sites corporativos</p>
+                            <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px;">Completo</h4>
+                            <p style="font-size: 0.95rem; color: var(--text-muted);">Solução abrangente para sites corporativos</p>
                         </div>
                         <div class="package-type">
-                            <div class="package-type-icon">
+                            <div style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px;">
                                 <i class="fas fa-crown"></i>
                             </div>
-                            <h4 class="package-type-name">Personalizado</h4>
-                            <p class="package-type-description">Adaptado às suas necessidades específicas</p>
+                            <h4 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px;">Personalizado</h4>
+                            <p style="font-size: 0.95rem; color: var(--text-muted);">Adaptado às suas necessidades específicas</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Enhanced CTA Section -->
                 <div class="content-cta-section">
-                    <div class="content-cta-inner">
-                        <h3 class="content-cta-title">Não Percas Nenhum Detalhe!</h3>
-                        <p class="content-cta-description">
+                    <div style="position: relative; z-index: 1;">
+                        <h3 style="font-size: 2.2rem; font-weight: 800; color: white; margin-bottom: 20px;">Não Percas Nenhum Detalhe!</h3>
+                        <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto;">
                             Descarrega o guia completo com informações detalhadas sobre todos os pacotes de criação de conteúdo, 
                             preços específicos e exemplos de trabalhos realizados.
                         </p>
@@ -380,47 +4838,49 @@
         </div>
     </section>
 
+
+
     <!-- Monthly Maintenance Plan Section -->
-    <section id="monthly-plan" class="monthly-plan-section">
-        <div class="monthly-plan-container">
-            <div class="monthly-plan-card">
+    <section id="monthly-plan" style="padding: 60px 0; background: white; text-align: center;" class="monthly-plan-section">
+        <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+            <div style="background: white; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 15px; padding: 50px 40px; text-align: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
                 
-                <div class="monthly-plan-badge">
+                <div style="display: inline-block; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">
                     PLANO MENSAL
                 </div>
                 
-                <h3 class="monthly-plan-title">
+                <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-dark); margin-bottom: 15px;">
                     Plano Mensal de Manutenção e Suporte
                 </h3>
                 
-                <p class="monthly-plan-subtitle">
+                <p style="font-size: 1.1rem; color: #1f2937; margin-bottom: 25px; line-height: 1.5;">
                     Mantém o teu website sempre atualizado, seguro e a funcionar sem preocupações, com suporte rápido quando precisares.
                 </p>
                 
-                <div class="monthly-plan-price">
-                    €60<span class="price-period">/mês</span>
+                <div style="font-size: 2.2rem; margin-bottom: 25px; color: var(--primary-color); font-weight: 900;">
+                    €60<span style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500;">/mês</span>
                 </div>
                 
-                <div class="monthly-plan-content">
-                    <div class="plan-includes">
-                        <h4>Inclui:</h4>
-                        <ul class="plan-list">
-                            <li>• Atualizações regulares do sistema, plugins e correções básicas</li>
-                            <li>• Backup automático semanal para segurança dos dados</li>
-                            <li>• Monitorização para garantir que o site está sempre online</li>
-                            <li>• Suporte técnico por e-mail para dúvidas e pequenos ajustes (até 2 horas por mês)</li>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; text-align: left; font-size: 1rem;">
+                    <div>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 12px; color: #059669; font-weight: 700;">Inclui:</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: #1f2937;">
+                            <li style="padding: 4px 0; line-height: 1.4;">• Atualizações regulares do sistema, plugins e correções básicas</li>
+                            <li style="padding: 4px 0; line-height: 1.4;">• Backup automático semanal para segurança dos dados</li>
+                            <li style="padding: 4px 0; line-height: 1.4;">• Monitorização para garantir que o site está sempre online</li>
+                            <li style="padding: 4px 0; line-height: 1.4;">• Suporte técnico por e-mail para dúvidas e pequenos ajustes (até 2 horas por mês)</li>
                         </ul>
                     </div>
                     
-                    <div class="plan-excludes">
-                        <h4>Não Inclui:</h4>
-                        <ul class="plan-list">
-                            <li>• Ajustes mais complexos ou criação de conteúdo (orçamentados à parte)</li>
+                    <div>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 12px; color: #dc2626; font-weight: 700;">Não Inclui:</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: #1f2937;">
+                            <li style="padding: 4px 0; line-height: 1.4;">• Ajustes mais complexos ou criação de conteúdo (orçamentados à parte)</li>
                         </ul>
                     </div>
                 </div>
                 
-                <a href="contact.html?subject=Interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte%20(€60/mês).%0A%0ADetalhes%20que%20gostaria%20de%20esclarecer:%0A-%20Como%20funciona%20o%20processo%20de%20subscrição%0A-%20Quando%20começaria%20o%20serviço%0A-%20Formas%20de%20pagamento%20disponíveis%0A%0AO%20meu%20website%20é:%20[inserir%20URL%20do%20website]%0A%0AObrigado!" class="monthly-plan-button">
+                <a href="contact.html?subject=Interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte&message=Olá%20Nadia,%0A%0ATenho%20interesse%20no%20Plano%20Mensal%20de%20Manutenção%20e%20Suporte%20(€60/mês).%0A%0ADetalhes%20que%20gostaria%20de%20esclarecer:%0A-%20Como%20funciona%20o%20processo%20de%20subscrição%0A-%20Quando%20começaria%20o%20serviço%0A-%20Formas%20de%20pagamento%20disponíveis%0A%0AO%20meu%20website%20é:%20[inserir%20URL%20do%20website]%0A%0AObrigado!" style="display: inline-block; padding: 15px 35px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">
                     Pedir Plano De Manutenção
                 </a>
                 
@@ -429,7 +4889,7 @@
     </section>
 
     <!-- FAQ Section -->
-<section id="faq" class="faq-section">
+<section id="faq" class="faq-section"
     <div class="faq-container">
         <div class="faq-header">
             <h2 class="faq-title">Perguntas Frequentes (FAQ)</h2>
@@ -518,17 +4978,19 @@
 </section>
 
     <!-- Final PDF Download CTA Section -->
-<section class="pdf-final-section">
-    <h2 class="pdf-final-title">Não Percas Nenhum Detalhe!</h2>
-        <p class="pdf-final-description">
+<section class="pdf-final-section" style="padding: 80px 0; background: var(--primary-color); text-align: center;">
+    <h2 style="font-size: 2.5rem; font-weight: 400; color: white;">Não Percas Nenhum Detalhe!</h2>
+        <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9);">
             Descarrega o guia completo com informações detalhadas sobre todos os serviços, 
             preços e condições especiais.
         </p>
-        <a href="caminho/para/o/seu/Guia-de-Serviços.pdf" class="cta-button-white">
-    <i class="fas fa-download"></i>
+        <a href="caminho/para/o/seu/Guia-de-Serviços.pdf" style="display: inline-block; padding: 18px 40px; background: white; color: var(--primary-color); text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;" class="cta-button-white">
+    <i class="fas fa-download" style="margin-right: 8px;"></i>
     Descarregar Guia Completo de Serviços (PDF)
 </a>
 </section>
+
+    
 
     <!-- Footer -->
     <footer class="footer">
@@ -595,6 +5057,8 @@
             });
         });
     </script>
+
+    <script src="script.js"></script>
 
     <script>
 // Smooth Scrolling for Navigation Links
@@ -714,29 +5178,94 @@ window.addEventListener('scroll', function() {
         header.classList.remove('scrolled');
     }
 });
+</script>
 
-// Dark mode toggle functionality
-function toggleTheme() {
-    const body = document.body;
-    const themeIcon = document.getElementById('theme-icon');
-    
-    body.classList.toggle('dark');
-    
-    if (body.classList.contains('dark')) {
-        themeIcon.className = 'fas fa-sun';
-    } else {
-        themeIcon.className = 'fas fa-moon';
-    }
+<!-- FINAL OVERRIDE CSS FOR COMPACT MONTHLY PLAN -->
+<style>
+/* Ultimate override for monthly plan - compact version */
+#monthly-plan .monthly-plan-container,
+.monthly-plan-section .monthly-plan-container {
+    max-width: 550px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
 }
 
-// Initialize theme toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
-});
-</script>
+#monthly-plan .monthly-plan-card,
+.monthly-plan-section .monthly-plan-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important;
+    border: 1px solid var(--primary-color) !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    text-align: center !important;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.1) !important;
+    position: relative !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+#monthly-plan .monthly-plan-title,
+.monthly-plan-section .monthly-plan-title {
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 20px !important;
+    line-height: 1.3 !important;
+}
+
+#monthly-plan .monthly-plan-subtitle,
+.monthly-plan-section .monthly-plan-subtitle {
+    font-size: 1.1rem !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 30px !important;
+    line-height: 1.6 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 450px !important;
+}
+
+#monthly-plan .monthly-plan-price,
+.monthly-plan-section .monthly-plan-price {
+    font-size: 2.5rem !important;
+    font-weight: 900 !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 25px !important;
+}
+
+#monthly-plan .monthly-plan-badge,
+.monthly-plan-section .monthly-plan-badge {
+    display: inline-block !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    padding: 6px 16px !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 15px !important;
+}
+
+#monthly-plan .monthly-plan-content,
+.monthly-plan-section .monthly-plan-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    margin-bottom: 25px !important;
+    text-align: left !important;
+}
+
+#monthly-plan .plan-includes,
+#monthly-plan .plan-excludes,
+.monthly-plan-section .plan-includes,
+.monthly-plan-section .plan-excludes {
+    background: white !important;
+    border-radius: 12px !important;
+    padding: 15px !important;
+    box-shadow: var(--shadow-md) !important;
+    border: 1px solid var(--border-color) !important;
+}
+</style>
 
 </body>
 </html>
