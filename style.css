@@ -1880,8 +1880,8 @@ body.dark .content-creation-section i {
 /* Target any remaining inline styles that override */
 body.dark .content-creation-section div[style*="background"],
 body.dark .content-creation-section section[style*="background"] {
-    background: #111111 !important;
-    background-color: #111111 !important;
+    background: #1a1a2e !important;
+background-color: #1a1a2e !important;
 }
 
 /* Ultra-specific override for any stubborn elements */
