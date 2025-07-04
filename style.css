@@ -1816,17 +1816,22 @@ body.dark .project-image.placeholder-img {
         font-size: 0.8rem;
     }
 }
-/* Content Creation Dark Mode Fix - COMPLETE */
-body.dark .content-creation-section {
+/* SUPER TARGETED FIX: Content Creation Section Dark Mode Only */
+
+/* Force BLACK background - override all gradients */
+body.dark .content-creation-section,
+body.dark section.content-creation-section {
     background: #000000 !important;
+    background-color: #000000 !important;
     background-image: none !important;
 }
 
+/* Remove the blue gradient background pattern */
 body.dark .content-creation-section::before {
     display: none !important;
 }
 
-/* ALL containers and cards - dark blue like Extras */
+/* Target the exact container and all child elements */
 body.dark .content-creation-section .content-creation-container,
 body.dark .content-creation-section .service-content,
 body.dark .content-creation-section .includes-section,
@@ -1834,46 +1839,54 @@ body.dark .content-creation-section .includes-grid,
 body.dark .content-creation-section .include-item,
 body.dark .content-creation-section .pricing-section,
 body.dark .content-creation-section .pricing-cards,
-body.dark .content-creation-section .pricing-card {
-    background: #1a1a2e !important;
-    background-color: #1a1a2e !important;
-    background-image: none !important;
-}
-
-/* PDF Download box - PURPLE */
+body.dark .content-creation-section .pricing-card,
 body.dark .content-creation-section .pdf-cta-section {
-    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
-    background-color: #6366f1 !important;
+    background: #111111 !important;
+    background-color: #111111 !important;
+    background-image: none !important;
+    border-color: #333333 !important;
 }
 
-/* Title - PURPLE */
-body.dark .content-creation-section h2.service-title {
-    color: #6366f1 !important;
-}
-
-/* Other titles - WHITE */
+/* FORCE WHITE titles with ultra-high specificity */
+body.dark .content-creation-section h2.service-title,
+body.dark .content-creation-section .service-header h2,
+body.dark .content-creation-section h3.includes-title,
+body.dark .content-creation-section .include-content h4,
+body.dark .content-creation-section h1,
+body.dark .content-creation-section h2,
 body.dark .content-creation-section h3,
 body.dark .content-creation-section h4 {
     color: #ffffff !important;
 }
 
-/* Text - LIGHT GRAY */
-body.dark .content-creation-section p {
+/* FORCE light gray text */
+body.dark .content-creation-section p.service-description,
+body.dark .content-creation-section .include-content p,
+body.dark .content-creation-section p,
+body.dark .content-creation-section li {
     color: #cccccc !important;
 }
 
-/* Icons - PURPLE */
+/* FORCE purple icons */
+body.dark .content-creation-section .include-icon i,
+body.dark .content-creation-section i.fas,
 body.dark .content-creation-section i {
     color: #6366f1 !important;
 }
 
-/* PDF section text - WHITE */
-body.dark .content-creation-section .pdf-cta-section * {
-    color: #ffffff !important;
+/* Target any remaining inline styles that override */
+body.dark .content-creation-section div[style*="background"],
+body.dark .content-creation-section section[style*="background"] {
+    background: #111111 !important;
+    background-color: #111111 !important;
 }
 
-/* Force override any inline styles */
-body.dark .content-creation-section div[style*="background"] {
-    background: #1a1a2e !important;
-    background-color: #1a1a2e !important;
+/* Ultra-specific override for any stubborn elements */
+body.dark section#content-creation,
+body.dark section#content-creation * {
+    background-color: inherit !important;
+}
+
+body.dark section#content-creation {
+    background-color: #000000 !important;
 }
