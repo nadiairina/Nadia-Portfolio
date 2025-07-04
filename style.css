@@ -1816,58 +1816,77 @@ body.dark .project-image.placeholder-img {
         font-size: 0.8rem;
     }
 }
-/* TARGETED FIX: Content Creation Section Dark Mode Only */
+/* SUPER TARGETED FIX: Content Creation Section Dark Mode Only */
 
-/* Dark mode background for content creation section - BLACK not blue */
-body.dark .content-creation-section {
+/* Force BLACK background - override all gradients */
+body.dark .content-creation-section,
+body.dark section.content-creation-section {
     background: #000000 !important;
     background-color: #000000 !important;
+    background-image: none !important;
 }
 
-/* Dark mode for ALL content creation containers and cards */
+/* Remove the blue gradient background pattern */
+body.dark .content-creation-section::before {
+    display: none !important;
+}
+
+/* Target the exact container and all child elements */
 body.dark .content-creation-section .content-creation-container,
+body.dark .content-creation-section .service-content,
 body.dark .content-creation-section .includes-section,
-body.dark .content-creation-section .pricing-section,
+body.dark .content-creation-section .includes-grid,
 body.dark .content-creation-section .include-item,
+body.dark .content-creation-section .pricing-section,
+body.dark .content-creation-section .pricing-cards,
 body.dark .content-creation-section .pricing-card,
-body.dark .content-creation-section .service-card,
 body.dark .content-creation-section .pdf-cta-section {
     background: #111111 !important;
     background-color: #111111 !important;
+    background-image: none !important;
     border-color: #333333 !important;
 }
 
-/* Dark mode title - WHITE text */
-body.dark .content-creation-section .service-title,
+/* FORCE WHITE titles with ultra-high specificity */
+body.dark .content-creation-section h2.service-title,
+body.dark .content-creation-section .service-header h2,
+body.dark .content-creation-section h3.includes-title,
+body.dark .content-creation-section .include-content h4,
 body.dark .content-creation-section h1,
 body.dark .content-creation-section h2,
 body.dark .content-creation-section h3,
-body.dark .content-creation-section h4,
-body.dark .content-creation-section .includes-title,
-body.dark .content-creation-section .pricing-title {
+body.dark .content-creation-section h4 {
     color: #ffffff !important;
 }
 
-/* Dark mode descriptions and text */
-body.dark .content-creation-section .service-description,
+/* FORCE light gray text */
+body.dark .content-creation-section p.service-description,
+body.dark .content-creation-section .include-content p,
 body.dark .content-creation-section p,
 body.dark .content-creation-section li {
     color: #cccccc !important;
 }
 
-/* Purple icons in dark mode */
-body.dark .content-creation-section .include-icon,
+/* FORCE purple icons */
+body.dark .content-creation-section .include-icon i,
+body.dark .content-creation-section i.fas,
 body.dark .content-creation-section i {
     color: #6366f1 !important;
 }
 
-/* Fix any white backgrounds that might still show */
-body.dark .content-creation-section * {
-    border-color: #333333 !important;
-}
-
-body.dark .content-creation-section *[style*="background: white"],
-body.dark .content-creation-section *[style*="background-color: white"] {
+/* Target any remaining inline styles that override */
+body.dark .content-creation-section div[style*="background"],
+body.dark .content-creation-section section[style*="background"] {
     background: #111111 !important;
     background-color: #111111 !important;
+}
+
+/* Ultra-specific override for any stubborn elements */
+body.dark section#content-creation,
+body.dark section#content-creation * {
+    background-color: inherit !important;
+}
+
+body.dark section#content-creation {
+    background-color: #000000 !important;
 }
