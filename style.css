@@ -1816,7 +1816,7 @@ body.dark .project-image.placeholder-img {
         font-size: 0.8rem;
     }
 }
-/* Content Creation Dark Mode Fix */
+/* Content Creation Dark Mode Fix - COMPLETE */
 body.dark .content-creation-section {
     background: #000000 !important;
     background-image: none !important;
@@ -1826,33 +1826,54 @@ body.dark .content-creation-section::before {
     display: none !important;
 }
 
+/* ALL containers and cards - dark blue like Extras */
+body.dark .content-creation-section .content-creation-container,
+body.dark .content-creation-section .service-content,
+body.dark .content-creation-section .includes-section,
+body.dark .content-creation-section .includes-grid,
 body.dark .content-creation-section .include-item,
+body.dark .content-creation-section .pricing-section,
+body.dark .content-creation-section .pricing-cards,
 body.dark .content-creation-section .pricing-card {
     background: #1a1a2e !important;
+    background-color: #1a1a2e !important;
     background-image: none !important;
 }
 
+/* PDF Download box - PURPLE */
 body.dark .content-creation-section .pdf-cta-section {
     background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
 }
 
+/* Title - PURPLE */
 body.dark .content-creation-section h2.service-title {
     color: #6366f1 !important;
 }
 
+/* Other titles - WHITE */
 body.dark .content-creation-section h3,
 body.dark .content-creation-section h4 {
     color: #ffffff !important;
 }
 
+/* Text - LIGHT GRAY */
 body.dark .content-creation-section p {
     color: #cccccc !important;
 }
 
+/* Icons - PURPLE */
 body.dark .content-creation-section i {
     color: #6366f1 !important;
 }
 
+/* PDF section text - WHITE */
 body.dark .content-creation-section .pdf-cta-section * {
     color: #ffffff !important;
+}
+
+/* Force override any inline styles */
+body.dark .content-creation-section div[style*="background"] {
+    background: #1a1a2e !important;
+    background-color: #1a1a2e !important;
 }
