@@ -1816,3 +1816,35 @@ body.dark .project-image.placeholder-img {
         font-size: 0.8rem;
     }
 }
+/* TARGETED FIX: Content Creation Section Dark Mode Only */
+
+/* Dark mode background for content creation section */
+body.dark .content-creation-section {
+    background: #000000 !important;
+}
+
+/* Dark mode for content creation cards */
+body.dark .content-creation-section .include-item,
+body.dark .content-creation-section .pricing-card,
+body.dark .content-creation-section .service-card {
+    background: #111111 !important;
+    border-color: #333333 !important;
+}
+
+/* Dark mode text colors */
+body.dark .content-creation-section h2,
+body.dark .content-creation-section h3,
+body.dark .content-creation-section h4 {
+    color: #ffffff !important;
+}
+
+body.dark .content-creation-section p,
+body.dark .content-creation-section li {
+    color: #cccccc !important;
+}
+
+/* Purple icons in dark mode */
+body.dark .content-creation-section .include-icon,
+body.dark .content-creation-section i {
+    color: #6366f1 !important;
+}
