@@ -1841,19 +1841,22 @@ body.dark .content-creation-section .pricing-section,
 body.dark .content-creation-section .pricing-cards,
 body.dark .content-creation-section .pricing-card,
 body.dark .content-creation-section .pdf-cta-section {
-    background: #111111 !important;
-    background-color: #111111 !important;
+    background: #1a1a2e !important;
+    background-color: #1a1a2e !important;
     background-image: none !important;
     border-color: #333333 !important;
 }
 
-/* FORCE WHITE titles with ultra-high specificity */
+/* FORCE PURPLE title - main title only */
 body.dark .content-creation-section h2.service-title,
-body.dark .content-creation-section .service-header h2,
+body.dark .content-creation-section .service-header h2 {
+    color: #6366f1 !important;
+}
+
+/* Other titles stay white */
 body.dark .content-creation-section h3.includes-title,
 body.dark .content-creation-section .include-content h4,
 body.dark .content-creation-section h1,
-body.dark .content-creation-section h2,
 body.dark .content-creation-section h3,
 body.dark .content-creation-section h4 {
     color: #ffffff !important;
@@ -1889,4 +1892,14 @@ body.dark section#content-creation * {
 
 body.dark section#content-creation {
     background-color: #000000 !important;
+}
+/* PDF Download box - PURPLE background */
+body.dark .content-creation-section .pdf-cta-section {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+}
+
+/* PDF text - WHITE on purple */
+body.dark .content-creation-section .pdf-cta-section * {
+    color: #ffffff !important;
 }
