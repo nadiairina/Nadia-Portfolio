@@ -1818,26 +1818,38 @@ body.dark .project-image.placeholder-img {
 }
 /* TARGETED FIX: Content Creation Section Dark Mode Only */
 
-/* Dark mode background for content creation section */
+/* Dark mode background for content creation section - BLACK not blue */
 body.dark .content-creation-section {
     background: #000000 !important;
+    background-color: #000000 !important;
 }
 
-/* Dark mode for content creation cards */
+/* Dark mode for ALL content creation containers and cards */
+body.dark .content-creation-section .content-creation-container,
+body.dark .content-creation-section .includes-section,
+body.dark .content-creation-section .pricing-section,
 body.dark .content-creation-section .include-item,
 body.dark .content-creation-section .pricing-card,
-body.dark .content-creation-section .service-card {
+body.dark .content-creation-section .service-card,
+body.dark .content-creation-section .pdf-cta-section {
     background: #111111 !important;
+    background-color: #111111 !important;
     border-color: #333333 !important;
 }
 
-/* Dark mode text colors */
+/* Dark mode title - WHITE text */
+body.dark .content-creation-section .service-title,
+body.dark .content-creation-section h1,
 body.dark .content-creation-section h2,
 body.dark .content-creation-section h3,
-body.dark .content-creation-section h4 {
+body.dark .content-creation-section h4,
+body.dark .content-creation-section .includes-title,
+body.dark .content-creation-section .pricing-title {
     color: #ffffff !important;
 }
 
+/* Dark mode descriptions and text */
+body.dark .content-creation-section .service-description,
 body.dark .content-creation-section p,
 body.dark .content-creation-section li {
     color: #cccccc !important;
@@ -1847,4 +1859,15 @@ body.dark .content-creation-section li {
 body.dark .content-creation-section .include-icon,
 body.dark .content-creation-section i {
     color: #6366f1 !important;
+}
+
+/* Fix any white backgrounds that might still show */
+body.dark .content-creation-section * {
+    border-color: #333333 !important;
+}
+
+body.dark .content-creation-section *[style*="background: white"],
+body.dark .content-creation-section *[style*="background-color: white"] {
+    background: #111111 !important;
+    background-color: #111111 !important;
 }
