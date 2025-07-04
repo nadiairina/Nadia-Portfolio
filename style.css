@@ -997,9 +997,206 @@ p {
 
 .contact-info h2 {
     font-size: 1.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
+/* =========================== */
+/* CONTENT CREATION SECTION    */
+/* =========================== */
+
+/* Main Section Styling */
+.content-creation-section {
+    padding: 80px 0 30px 0;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Compact styling override */
+.content-creation-section {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Content container */
+.content-creation-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Service Header Styling */
+.service-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Service badge */
+.service-badge {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.service-badge span {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Service title */
+.service-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+/* Service description */
+.service-description {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Service Content Box */
+.service-content {
+    background: white;
+    border-radius: 30px;
+    padding: 40px;
+    border: 1px solid var(--border-color);
+}
+
+/* Includes Section */
+.includes-section {
+    margin-bottom: 50px;
+}
+
+/* Includes title */
+.includes-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #374151;
+    margin-bottom: 25px;
+    text-align: left;
+    letter-spacing: 0.5px;
+    font-family: var(--font-sans);
+}
+
+/* Includes title size override */
+.content-creation-section .includes-title {
+    font-size: 1.4rem !important;
+    margin-bottom: 18px !important;
+}
+
+/* Includes grid */
+.includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+/* Include items */
+.include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 30px;
+    background: var(--bg-muted);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.include-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+/* Include icons */
+.include-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Include content */
+.include-content h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.include-content p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Pricing Section */
+.pricing-section {
+    margin-top: 40px;
+}
+
+.pricing-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+/* Pricing cards */
+.pricing-card {
+    background: var(--bg-card);
+    border-radius: 25px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Contact Methods */
 .contact-methods {
     margin: 2rem 0;
     display: flex;
@@ -1499,6 +1696,104 @@ body.dark .extras-section {
     background-color: #000000;
 }
 
+/* ================================= */
+/* DARK MODE - CONTENT CREATION      */
+/* ================================= */
+
+/* Main section background */
+body.dark .content-creation-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+}
+
+/* Alternative dark mode background */
+body.dark .content-creation-section {
+    background: #1f2937 !important;
+}
+
+/* Container background */
+body.dark .content-creation-container {
+    background: #111111;
+    border-color: #333333;
+}
+
+/* Headers and text */
+body.dark .content-creation-section h2,
+body.dark .content-creation-section p {
+    color: #ffffff !important;
+}
+
+body.dark .content-creation-section .category-description,
+body.dark .content-creation-section .section-title,
+body.dark .content-creation-section .section-description {
+    color: #ffffff !important;
+}
+
+body.dark .content-creation-title {
+    color: #ffffff !important;
+}
+
+/* Includes title */
+body.dark .includes-title,
+body.dark h3.includes-title,
+body.dark .content-creation-section .includes-title {
+    color: #ffffff !important;
+    background: none !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+/* Service cards */
+body.dark .service-card {
+    background: #222222;
+    border-color: #333333;
+}
+
+body.dark .service-card:hover {
+    background: #333333;
+}
+
+body.dark .service-card h4 {
+    color: #ffffff;
+}
+
+body.dark .service-card p {
+    color: #cccccc;
+}
+
+/* Content creation cards */
+body.dark .content-creation-card,
+body.dark .service-card,
+body.dark .includes-card {
+    background: #111111 !important;
+    border-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+/* Include items */
+body.dark .include-item h4,
+body.dark .include-item p {
+    color: #ffffff !important;
+}
+
+body.dark .include-item:hover {
+    background: #3d3d3d;
+}
+
+/* Text content */
+body.dark .content-creation-section p {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+/* Force white text in dark mode */
+body.dark .content-creation-section p,
+body.dark .content-creation-section .category-description,
+body.dark .content-creation-section .section-description {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
 /* Dark cards */
 body.dark .project-card,
 body.dark .skill-category,
@@ -1754,6 +2049,39 @@ body.dark .project-image.placeholder-img {
     .contact-section .container {
         max-width: 500px;
     }
+    
+    /* Content Creation Responsive */
+    .content-creation-container {
+        padding: 0 15px;
+    }
+    
+    .includes-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .include-item {
+        padding: 25px 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .service-title {
+        font-size: 2.5rem;
+    }
+    
+    .service-description {
+        font-size: 1.1rem;
+    }
+    
+    .pricing-cards {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .pricing-card {
+        padding: 30px 25px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1814,5 +2142,29 @@ body.dark .project-image.placeholder-img {
     .actions {
         order: 3;
         font-size: 0.8rem;
+    }
+    
+    /* Content Creation Mobile */
+    .service-content {
+        padding: 25px 20px;
+        border-radius: 20px;
+    }
+    
+    .include-item {
+        padding: 20px 15px;
+    }
+    
+    .include-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .service-title {
+        font-size: 2rem;
+    }
+    
+    .includes-title {
+        font-size: 1.5rem !important;
     }
 }
