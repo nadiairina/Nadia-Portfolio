@@ -1946,3 +1946,226 @@ body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:acti
     color: white !important;
     background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
 }
+/* ===== ICON VISIBILITY FIXES FOR DARK MODE ===== */
+
+/* Fix for Extras Section Icons in Dark Mode */
+body.dark .extras-section .extras-category .service-icon,
+body.dark .extras-section .extras-grid .service-icon,
+body.dark .extras-section .extras-card .service-icon,
+body.dark .extras-section .extra-item .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .extras-section .extras-item .include-icon {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+/* Remove black backgrounds from icon containers in Extras section */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .include-icon-container {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Ensure Extras section icons maintain purple color */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.extras-section .fab,
+body.dark .extras-section i[class*="fa-"] {
+    color: #6366f1 !important;
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* Fix for "O Que Inclui" Section Icons in Dark Mode */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background-color: #6366f1 !important;
+    background: #6366f1 !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* Ensure "O Que Inclui" icons stay white on purple background */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Target specific Font Awesome icons in "O Que Inclui" section */
+body.dark .includes-section .fa,
+body.dark .includes-section .fas,
+body.dark .includes-section .far,
+body.dark .includes-section .fab,
+body.dark .includes-section i[class*="fa-"],
+body.dark .content-creation-section .include-icon .fa,
+body.dark .content-creation-section .include-icon .fas,
+body.dark .content-creation-section .include-icon .far,
+body.dark .content-creation-section .include-icon .fab,
+body.dark .content-creation-section .include-icon i[class*="fa-"] {
+    color: white !important;
+}
+
+/* Remove any unwanted borders or shadows from icon containers */
+body.dark .extras-section .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure proper contrast for all service-related icons in dark mode */
+body.dark .service-card .service-icon,
+body.dark .service-item .service-icon,
+body.dark .package-card .service-icon {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+/* Fix for any remaining icon visibility issues */
+body.dark .extras-section .extras-category .fa-check,
+body.dark .extras-section .extras-category .fa-times,
+body.dark .extras-section .extras-category .fa-star,
+body.dark .extras-section .extras-category .fa-heart,
+body.dark .extras-section .extras-category .fa-thumbs-up,
+body.dark .extras-section .extras-category .fa-camera,
+body.dark .extras-section .extras-category .fa-video,
+body.dark .extras-section .extras-category .fa-edit,
+body.dark .extras-section .extras-category .fa-paint-brush,
+body.dark .extras-section .extras-category .fa-bullhorn,
+body.dark .extras-section .extras-category .fa-chart-line {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure includes section maintains purple circular background with white icons */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .includes-grid .include-icon,
+body.dark .service-includes .include-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+}
+
+/* White icons inside purple circles for includes section */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .includes-grid .include-icon i,
+body.dark .service-includes .include-icon i {
+    color: white !important;
+    font-size: 1.5rem !important;
+}
+
+/* Additional specificity for stubborn icons */
+body.dark .extras-section * .fa,
+body.dark .extras-section * .fas,
+body.dark .extras-section * .far,
+body.dark .extras-section * .fab,
+body.dark .extras-section * i[class*="fa-"] {
+    color: #6366f1 !important;
+    background: transparent !important;
+}
+
+/* Override any inline styles that might be causing issues */
+body.dark .extras-section [style*="background"],
+body.dark .extras-section [style*="color"] {
+    background-color: transparent !important;
+    color: #6366f1 !important;
+}
+
+/* Ensure proper visibility for all icon types */
+body.dark .extras-section .service-icon svg,
+body.dark .extras-section .include-icon svg {
+    fill: #6366f1 !important;
+    color: #6366f1 !important;
+}
+
+body.dark .includes-section .include-icon svg,
+body.dark .content-creation-section .include-icon svg {
+    fill: white !important;
+    color: white !important;
+}
+
+/* Hover effects for icons in dark mode */
+body.dark .extras-section .service-icon:hover,
+body.dark .extras-section .include-icon:hover {
+    background-color: rgba(99, 102, 241, 0.1) !important;
+    color: var(--primary-light) !important;
+}
+
+body.dark .includes-section .include-icon:hover,
+body.dark .content-creation-section .include-icon:hover {
+    background: linear-gradient(135deg, var(--primary-light), #6366f1) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Ensure transitions work smoothly */
+body.dark .extras-section .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon {
+    transition: all 0.3s ease !important;
+}
+
+/* Final catch-all for any remaining icon issues */
+body.dark .extras-section i,
+body.dark .extras-section .icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+body.dark .includes-section i,
+body.dark .content-creation-section .includes-grid i,
+body.dark .service-includes i {
+    color: white !important;
+}
+
+/* Responsive fixes for mobile */
+@media (max-width: 768px) {
+    body.dark .extras-section .service-icon,
+    body.dark .extras-section .include-icon {
+        font-size: 1.2rem !important;
+    }
+    
+    body.dark .includes-section .include-icon,
+    body.dark .content-creation-section .include-icon {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    body.dark .includes-section .include-icon i,
+    body.dark .content-creation-section .include-icon i {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    body.dark .includes-section .include-icon,
+    body.dark .content-creation-section .include-icon {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    body.dark .includes-section .include-icon i,
+    body.dark .content-creation-section .include-icon i {
+        font-size: 1rem !important;
+    }
+}
