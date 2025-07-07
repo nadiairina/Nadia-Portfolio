@@ -1903,3 +1903,217 @@ body.dark .content-creation-section .pdf-cta-section {
 body.dark .content-creation-section .pdf-cta-section * {
     color: #ffffff !important;
 }
+/* ===== DARK MODE CONTENT CREATION SECTION FIXES ===== */
+
+/* Main section background - keep black */
+body.dark .content-creation-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+}
+
+/* Remove the blue gradient background pattern */
+body.dark .content-creation-section::before {
+    display: none !important;
+}
+
+/* ===== TITLE STYLING - PURPLE IN DARK MODE ===== */
+body.dark .content-creation-section .service-title,
+body.dark .content-creation-section h2.service-title {
+    color: #6366f1 !important;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* Other headings remain white */
+body.dark .content-creation-section .includes-title,
+body.dark .content-creation-section .include-content h4,
+body.dark .content-creation-section h3,
+body.dark .content-creation-section h4 {
+    color: #ffffff !important;
+}
+
+/* ===== PACKAGE CARDS - REMOVE BLACK BORDERS, KEEP PURPLE BACKGROUND ===== */
+body.dark .content-creation-section .package-types-section {
+    background: #1a1a2e !important;
+    border: none !important;
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15) !important;
+}
+
+body.dark .content-creation-section .package-type {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.2)) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+    border-radius: 15px !important;
+    color: #ffffff !important;
+}
+
+body.dark .content-creation-section .package-type:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25) !important;
+    border-color: #6366f1 !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(139, 92, 246, 0.3)) !important;
+}
+
+/* Package type text styling */
+body.dark .content-creation-section .package-type h4 {
+    color: #ffffff !important;
+}
+
+body.dark .content-creation-section .package-type p {
+    color: #cccccc !important;
+}
+
+/* Package icons */
+body.dark .content-creation-section .package-type i {
+    color: #6366f1 !important;
+}
+
+/* ===== FINAL CTA SECTION - FULL PURPLE BACKGROUND ===== */
+body.dark .content-creation-section .content-cta-section {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    border-radius: 25px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Add subtle pattern overlay for depth */
+body.dark .content-creation-section .content-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* CTA section text - all white */
+body.dark .content-creation-section .content-cta-section h3,
+body.dark .content-creation-section .content-cta-section p {
+    color: #ffffff !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ===== DOWNLOAD BUTTON - BLACK BACKGROUND ONLY ===== */
+body.dark .content-creation-section .enhanced-download-button {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #333333 !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+body.dark .content-creation-section .enhanced-download-button:hover {
+    background: #1a1a1a !important;
+    border-color: #6366f1 !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
+    color: #ffffff !important;
+}
+
+/* Download button icon */
+body.dark .content-creation-section .enhanced-download-button i {
+    color: #6366f1 !important;
+}
+
+/* ===== OTHER CONTENT ELEMENTS ===== */
+body.dark .content-creation-section .include-item {
+    background: #1a1a2e !important;
+    border: 1px solid #333333 !important;
+    color: #ffffff !important;
+}
+
+body.dark .content-creation-section .include-item:hover {
+    border-color: #6366f1 !important;
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2) !important;
+}
+
+body.dark .content-creation-section .include-content p {
+    color: #cccccc !important;
+}
+
+body.dark .content-creation-section .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: #ffffff !important;
+}
+
+/* Service description and general text */
+body.dark .content-creation-section .service-description,
+body.dark .content-creation-section p {
+    color: #cccccc !important;
+}
+
+/* Service badge styling */
+body.dark .content-creation-section .service-badge span {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    body.dark .content-creation-section .content-cta-section {
+        padding: 30px 20px !important;
+    }
+    
+    body.dark .content-creation-section .enhanced-download-button {
+        padding: 15px 25px !important;
+        font-size: 1rem !important;
+    }
+    
+    body.dark .content-creation-section .package-types-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    body.dark .content-creation-section .content-cta-section {
+        padding: 25px 15px !important;
+        border-radius: 15px !important;
+    }
+    
+    body.dark .content-creation-section .enhanced-download-button {
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+        gap: 10px !important;
+    }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+body.dark .content-creation-section .enhanced-download-button:focus {
+    outline: 2px solid #6366f1 !important;
+    outline-offset: 2px !important;
+}
+
+body.dark .content-creation-section .package-type:focus {
+    outline: 2px solid #6366f1 !important;
+    outline-offset: 2px !important;
+}
+
+/* ===== ANIMATION IMPROVEMENTS ===== */
+body.dark .content-creation-section .content-cta-section {
+    animation: pulseGlow 3s ease-in-out infinite alternate !important;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3) !important;
+    }
+    100% {
+        box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5) !important;
+    }
+}
+
+/* Disable animation on reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    body.dark .content-creation-section .content-cta-section {
+        animation: none !important;
+    }
+}
