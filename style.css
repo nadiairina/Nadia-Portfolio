@@ -2414,3 +2414,27 @@ body.dark .extra-item:hover {
     background-color: #353535;
     border-color: #555555;
 }
+/* Light mode CTA buttons - white background */
+.cta-section .btn {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    color: var(--text-dark);
+}
+
+.cta-section .btn:hover {
+    background-color: #f9fafb;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Dark mode specific CTA buttons only */
+body.dark .cta-section .btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+body.dark .cta-section .btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
