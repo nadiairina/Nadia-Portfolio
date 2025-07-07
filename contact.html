@@ -48,7 +48,12 @@ body {
     background: white;
 }
 
-/* Enhanced Hero Section - IDENTICAL to Services Page */
+/* Dark Mode - Pure Black Background - IDENTICAL to Projects Page */
+body.dark {
+    background-color: #000000 !important;
+}
+
+/* Enhanced Hero Section - IDENTICAL to Projects Page */
 .contact-hero {
     margin-top: 70px;
     padding: 150px 1rem 150px;
@@ -126,25 +131,33 @@ body {
     }
 }
 
-/* Dark Mode Support */
+/* Dark Mode Support - Pure Black Background - IDENTICAL to Projects Page */
 body.dark .contact-hero {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    background: linear-gradient(135deg, #000000 0%, #111111 100%);
     background-image: 
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+}
+
+/* Dark Mode Gradient Text Override - IDENTICAL to Projects Page */
+body.dark .page-title {
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 body.dark .page-description {
-    color: #9ca3af;
+    color: #cccccc;
 }
 
 body.dark .header {
-    background-color: #1f2937;
-    border-bottom-color: #374151;
+    background-color: #000000;
+    border-bottom-color: #333333;
 }
 
 body.dark .header.scrolled {
-    background-color: rgba(31, 41, 55, 0.95);
+    background-color: rgba(0, 0, 0, 0.95);
 }
 
         /* Make form more compact */
@@ -217,58 +230,88 @@ body.dark .header.scrolled {
             transform: translateY(-2px);
         }
         
-        /* Dark mode fixes */
-        body.dark {
-            background-color: #1f2937;
-            color: #f9fafb;
-        }
-        
-        body.dark .header,
-        body.dark .footer {
-            background-color: rgba(31, 41, 55, 0.95);
-            border-color: #374151;
-        }
-        
+        /* Dark mode fixes - PURE BLACK like Projects Page */
         body.dark .contact-form-container {
-            background-color: #1f2937;
-            color: #f9fafb;
+            background-color: #111111;
+            color: #ffffff;
+            border: 1px solid #333333;
+            border-radius: 12px;
         }
         
         body.dark .contact-form-container h2,
         body.dark .contact-form-container h3,
         body.dark .contact-form-container label,
-        body.dark .contact-form-container p,
+        body.dark .contact-form-container p {
+            color: #ffffff;
+        }
+        
         body.dark .contact-form-container a {
-            color: #f9fafb;
+            color: var(--primary-color);
+        }
+        
+        body.dark .contact-form-container a:hover {
+            color: var(--primary-dark);
         }
         
         body.dark .form-group input,
         body.dark .form-group textarea {
-            background-color: #374151;
-            color: #f9fafb;
-            border-color: #4b5563;
+            background-color: #222222;
+            color: #ffffff;
+            border: 1px solid #333333;
+        }
+
+        body.dark .form-group input:focus,
+        body.dark .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
         
+        /* Dark Mode Support for CTA Section - IDENTICAL to Projects Page */
         body.dark .cta-section {
-            background-color: #111827;
-            color: #f9fafb;
+            background-color: #000000 !important;
         }
         
-        body.dark .cta-section h2,
+        body.dark .cta-section h2 {
+            color: #ffffff;
+        }
+        
         body.dark .cta-section p {
-            color: #f9fafb;
+            color: #cccccc;
         }
         
-        body.dark .btn.secondary {
-            border-color: #4b5563;
-            color: #f9fafb;
+        body.dark .cta-section .btn.primary {
+            background-color: var(--primary-color);
+            color: #ffffff;
         }
         
-        body.dark a {
-            color: #f9fafb;
+        body.dark .cta-section .btn.primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        body.dark .cta-section .btn.secondary {
+            border-color: #333333;
+            color: #ffffff;
+        }
+
+        body.dark .cta-section .btn.secondary:hover {
+            background-color: #111111;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Dark Mode Support for Footer - IDENTICAL to Projects Page */
+        body.dark .footer {
+            background-color: #000000;
+            border-top: 1px solid #333333;
         }
         
-        body.dark a:hover {
+        body.dark .footer h4,
+        body.dark .footer p,
+        body.dark .footer a {
+            color: #ffffff;
+        }
+        
+        body.dark .footer a:hover {
             color: var(--primary-color);
         }
 
@@ -289,6 +332,16 @@ body.dark .header.scrolled {
             border-radius: 8px;
             margin-bottom: 20px;
             display: none;
+        }
+
+        /* Contact section background */
+        .contact-section {
+            background-color: var(--bg-muted);
+            padding: 4rem 0;
+        }
+
+        body.dark .contact-section {
+            background-color: #000000;
         }
     </style>
 </head>
@@ -331,52 +384,54 @@ body.dark .header.scrolled {
     </section>
 
     <!-- Contact Form Section -->
-    <section>
-        <div class="contact-form-container">
-            <h2>Envia-me uma Mensagem</h2>
-           
-            <div class="success-message" id="success-message">
-                <strong>Mensagem enviada com sucesso!</strong> Obrigada pelo teu contacto. Responderei o mais breve possível.
-            </div>
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-form-container">
+                <h2>Envia-me uma Mensagem</h2>
+               
+                <div class="success-message" id="success-message">
+                    <strong>Mensagem enviada com sucesso!</strong> Obrigada pelo teu contacto. Responderei o mais breve possível.
+                </div>
 
-            <div class="error-message" id="error-message">
-                <strong>Erro ao enviar mensagem.</strong> Por favor, tenta novamente ou contacta diretamente por email.
-            </div>
+                <div class="error-message" id="error-message">
+                    <strong>Erro ao enviar mensagem.</strong> Por favor, tenta novamente ou contacta diretamente por email.
+                </div>
 
-            <form id="contact-form" class="contact-form" action="https://formspree.io/f/manoyyvr" method="POST">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" id="name" name="name" placeholder="Nome" required>
+                <form id="contact-form" class="contact-form" action="https://formspree.io/f/manoyyvr" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" name="name" placeholder="Nome" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Email" required>
+                        </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <label for="subject">Assunto</label>
+                        <input type="text" id="subject" name="subject" placeholder="Qual o assunto?" required>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="subject">Assunto</label>
-                    <input type="text" id="subject" name="subject" placeholder="Qual o assunto?" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Mensagem</label>
-                    <textarea id="message" name="message" rows="6" placeholder="A Tua Mensagem" required></textarea>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" rows="6" placeholder="A Tua Mensagem" required></textarea>
+                    </div>
 
-                <button type="submit" class="submit-btn">Enviar Mensagem</button>
-            </form>
-            
-            <div class="contact-info" style="margin-top: 30px;">
-                <h3>Informações de Contacto</h3>
-                <p>Email: <a href="mailto:nadiairina934@gmail.com">nadiairina934@gmail.com</a></p>
-                <p>
-                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                </p>
+                    <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                </form>
+                
+                <div class="contact-info" style="margin-top: 30px;">
+                    <h3>Informações de Contacto</h3>
+                    <p>Email: <a href="mailto:nadiairina934@gmail.com">nadiairina934@gmail.com</a></p>
+                    <p>
+                        <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
