@@ -1839,13 +1839,37 @@ body.dark .content-creation-section .includes-grid,
 body.dark .content-creation-section .include-item,
 body.dark .content-creation-section .pricing-section,
 body.dark .content-creation-section .pricing-cards,
-body.dark .content-creation-section .pricing-card,
-body.dark .content-creation-section .pdf-cta-section {
+body.dark .content-creation-section .pricing-card {
     background: #1a1a2e !important;
     background-color: #1a1a2e !important;
     background-image: none !important;
-    border-color: #333333 !important;
+    border: none !important;
 }
+body.dark .content-creation-section .pdf-cta-section {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  background-color: #6366f1 !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+body.dark .content-creation-section .pdf-cta-section a {
+  background-color: #000 !important;
+  color: #fff !important;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+body.dark .content-creation-section .pdf-cta-section a:hover {
+  background-color: #222 !important;
+}
+
 
 /* FORCE PURPLE title - main title only */
 body.dark .content-creation-section h2.service-title,
