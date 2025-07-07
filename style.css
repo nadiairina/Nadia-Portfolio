@@ -2169,3 +2169,109 @@ body.dark .service-includes i {
         font-size: 1rem !important;
     }
 }
+/* ===== DARK MODE ICON FIXES ===== */
+
+/* Fix for ALL Extras Section Icons - Make them visible and purple */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section .service-icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove black backgrounds from "O Que Inclui" section */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+}
+
+/* Purple circles with white icons for "O Que Inclui" */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* White icons inside purple circles */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    font-size: 1.5rem !important;
+}
+/* ===== DARK MODE ICON FIXES ===== */
+
+/* Fix for ALL Extras Section Icons - Make them visible and purple */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section .service-icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove black backgrounds from "O Que Inclui" section */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+}
+
+/* Purple circles with white icons for "O Que Inclui" - maintain original size */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* White icons inside purple circles - maintain original font size */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+}
