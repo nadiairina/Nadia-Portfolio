@@ -1166,9 +1166,9 @@ p {
     box-shadow: var(--shadow-md);
 }
 
-/* CTA Section - Black Background with Styled Button */
+/* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, #000000, #1a1a1a);
+    background-color: var(--primary-color);
     color: white;
     padding: 5rem 0;
     text-align: center;
@@ -1202,17 +1202,12 @@ p {
 }
 
 .cta-section .btn.primary {
-    background-color: #ffffff;
-    color: #000000;
-    border: 2px solid #ffffff;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    background-color: white;
+    color: var(--primary-color);
 }
 
 .cta-section .btn.primary:hover {
-    background-color: #f0f0f0;
-    border-color: #f0f0f0;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    background-color: var(--bg-light);
 }
 
 /* Modern Projects Grid */
@@ -1844,37 +1839,13 @@ body.dark .content-creation-section .includes-grid,
 body.dark .content-creation-section .include-item,
 body.dark .content-creation-section .pricing-section,
 body.dark .content-creation-section .pricing-cards,
-body.dark .content-creation-section .pricing-card {
+body.dark .content-creation-section .pricing-card,
+body.dark .content-creation-section .pdf-cta-section {
     background: #1a1a2e !important;
     background-color: #1a1a2e !important;
     background-image: none !important;
-    border: none !important;
+    border-color: #333333 !important;
 }
-body.dark .content-creation-section .pdf-cta-section {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
-  background-color: #6366f1 !important;
-  color: #fff !important;
-  border: none !important;
-  padding: 40px;
-  border-radius: 20px;
-  text-align: center;
-}
-body.dark .content-creation-section .pdf-cta-section a {
-  background-color: #000 !important;
-  color: #fff !important;
-  padding: 12px 24px;
-  text-decoration: none;
-  border-radius: 10px;
-  display: inline-block;
-  margin-top: 20px;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-body.dark .content-creation-section .pdf-cta-section a:hover {
-  background-color: #222 !important;
-}
-
 
 /* FORCE PURPLE title - main title only */
 body.dark .content-creation-section h2.service-title,
