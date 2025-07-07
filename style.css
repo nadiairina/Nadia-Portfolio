@@ -1903,11 +1903,3 @@ body.dark .content-creation-section .pdf-cta-section {
 body.dark .content-creation-section .pdf-cta-section * {
     color: #ffffff !important;
 }
-body.dark .content-creation-section .service-title,
-body.dark .content-creation-section h2.service-title {
-    color: #6366f1 !important;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-}
