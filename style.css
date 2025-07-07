@@ -1903,55 +1903,82 @@ body.dark .content-creation-section .pdf-cta-section {
 body.dark .content-creation-section .pdf-cta-section * {
     color: #ffffff !important;
 }
-/* Package Cards - Remove Black Borders */
+/* COMPREHENSIVE FIX - Remove ALL borders from package cards */
+div[class*="card"],
+div[class*="package"],
+div[class*="pricing"],
+.card,
 .package-card,
 .pricing-card,
-.service-card {
+.service-card,
+.package,
+.pricing-package,
+.plan-card {
+    border: 0 !important;
+    border-width: 0 !important;
+    border-style: none !important;
+    outline: 0 !important;
+    outline-style: none !important;
+}
+
+/* Target the specific grid container cards */
+.packages-grid > div,
+.pricing-grid > div,
+.services-grid > div {
     border: none !important;
     outline: none !important;
 }
 
-/* If you have cards with specific class names from your screenshots */
-.packages-grid .package-card {
-    border: none !important;
-    outline: none !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-/* CTA Section - Purple Background */
+/* CTA Section - STRONG purple background override */
+section[class*="cta"],
+div[class*="cta"],
+.cta,
 .cta-section,
+.pdf-cta,
 .pdf-cta-section {
     background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
     color: white !important;
-    padding: 3rem 0;
 }
 
+/* CTA text elements */
+.cta-section h1,
 .cta-section h2,
 .cta-section h3,
-.cta-section p {
+.cta-section p,
+div[class*="cta"] h1,
+div[class*="cta"] h2,
+div[class*="cta"] h3,
+div[class*="cta"] p {
     color: white !important;
 }
 
-/* Black Button in CTA */
-.cta-section .btn,
+/* CTA buttons - BLACK */
 .cta-section button,
-.cta-section a.btn {
+.cta-section .btn,
+.cta-section a[class*="btn"],
+div[class*="cta"] button,
+div[class*="cta"] .btn,
+div[class*="cta"] a[class*="btn"] {
     background-color: #000000 !important;
+    background: #000000 !important;
     color: white !important;
     border: 2px solid #000000 !important;
 }
 
-.cta-section .btn:hover {
+/* Button hover */
+.cta-section button:hover,
+.cta-section .btn:hover,
+div[class*="cta"] button:hover,
+div[class*="cta"] .btn:hover {
     background-color: #333333 !important;
     border-color: #333333 !important;
 }
-/* Dark Mode */
-body.dark .package-card,
-body.dark .pricing-card,
-body.dark .service-card {
-    border: none !important;
-    background-color: #1f1f1f;
-}
 
-body.dark .cta-section {
-    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+/* Dark mode support */
+body.dark div[class*="card"],
+body.dark .card,
+body.dark .package-card {
+    border: none !important;
+    outline: none !important;
 }
