@@ -2392,3 +2392,25 @@ body.dark .extra-item:hover {
     box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15), 
                 0 3px 6px rgba(255, 255, 255, 0.08);
 }
+/* Dark mode CSS variables override */
+body.dark {
+    --shadow-sm: 0 1px 2px rgba(255, 255, 255, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(255, 255, 255, 0.15), 0 2px 4px -1px rgba(255, 255, 255, 0.08);
+    --shadow-lg: 0 10px 15px -3px rgba(255, 255, 255, 0.2), 0 4px 6px -2px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark cards */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .service-card,
+body.dark .extra-item {
+    background-color: #2d2d2d;
+    border: 1px solid #444444;
+}
+
+body.dark .service-card:hover,
+body.dark .project-card:hover,
+body.dark .extra-item:hover {
+    background-color: #353535;
+    border-color: #555555;
+}
