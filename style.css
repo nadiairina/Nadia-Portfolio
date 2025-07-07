@@ -1903,3 +1903,23 @@ body.dark .content-creation-section .pdf-cta-section {
 body.dark .content-creation-section .pdf-cta-section * {
     color: #ffffff !important;
 }
+/* PDF Download Button - White in Light Mode */
+.pdf-download-button {
+    background: white !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--border-color) !important;
+    /* your existing button styles stay the same */
+}
+
+/* Dark Mode: PDF Download Button - Purple in Dark Mode */
+body.dark .pdf-download-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+}
+
+body.dark .pdf-download-button:hover {
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
+    color: white !important;
+}
