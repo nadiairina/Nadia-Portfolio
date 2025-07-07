@@ -2394,9 +2394,9 @@ body.dark .extra-item:hover {
 }
 /* Dark mode CSS variables override */
 body.dark {
-    --shadow-sm: 0 1px 2px rgba(255, 255, 255, 0.1);
-    --shadow-md: 0 4px 6px -1px rgba(255, 255, 255, 0.15), 0 2px 4px -1px rgba(255, 255, 255, 0.08);
-    --shadow-lg: 0 10px 15px -3px rgba(255, 255, 255, 0.2), 0 4px 6px -2px rgba(255, 255, 255, 0.1);
+    --shadow-sm: 0 2px 4px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(255, 255, 255, 0.15);
+    --shadow-md: 0 6px 12px rgba(255, 255, 255, 0.25), 0 3px 6px rgba(255, 255, 255, 0.2);
+    --shadow-lg: 0 12px 24px rgba(255, 255, 255, 0.3), 0 6px 12px rgba(255, 255, 255, 0.25);
 }
 
 /* Dark cards */
