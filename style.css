@@ -2275,3 +2275,101 @@ body.dark .include-item .include-icon i {
     color: white !important;
     background: transparent !important;
 }
+/* ===== DARK MODE ICON FIXES - CLEAN SOLUTION ===== */
+
+/* EXTRAS SECTION - Purple icons with transparent backgrounds */
+body.dark .extras-section .service-icon {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.dark .extras-section .service-icon i,
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section i {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card,
+body.dark .extras-section .extra-item {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* LIGHTNING BOLT ICON - Special fix for Funcionalidades section */
+body.dark .extras-section .fa-bolt,
+body.dark .extras-section .fa-lightning-bolt {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* O QUE INCLUI SECTION - White icons on purple circles */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    /* Keep original dimensions - do not override width/height */
+}
+
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i,
+body.dark .includes-section .fa,
+body.dark .content-creation-section .fa,
+body.dark .includes-grid .fa,
+body.dark .include-item .fa {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    /* Keep original font-size - do not override */
+}
+
+/* Remove black backgrounds from includes section containers */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* HOVER EFFECTS - Enhance user experience */
+body.dark .extras-section .service-icon:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+body.dark .includes-section .include-icon:hover,
+body.dark .content-creation-section .include-icon:hover {
+    background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* RESPONSIVE BEHAVIOR - Keep original responsive design */
+@media (max-width: 768px) {
+    /* Let original CSS handle responsive sizing */
+}
