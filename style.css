@@ -1166,9 +1166,9 @@ p {
     box-shadow: var(--shadow-md);
 }
 
-/* CTA Section */
+/* CTA Section - Black Background with Styled Button */
 .cta-section {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, #000000, #1a1a1a);
     color: white;
     padding: 5rem 0;
     text-align: center;
@@ -1202,12 +1202,17 @@ p {
 }
 
 .cta-section .btn.primary {
-    background-color: white;
-    color: var(--primary-color);
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
 .cta-section .btn.primary:hover {
-    background-color: var(--bg-light);
+    background-color: #f0f0f0;
+    border-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
 }
 
 /* Modern Projects Grid */
