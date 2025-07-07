@@ -2208,3 +2208,77 @@ body.dark *[class*="download"]:not(button):not(a):not(.btn) {
     background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
     color: #ffffff !important;
 }
+/* ===== ULTIMATE DARK MODE FIX - BRUTE FORCE APPROACH ===== */
+
+/* FORCE ALL ELEMENTS IN PACKAGE SECTION TO PURPLE BACKGROUND */
+body.dark .content-creation-section *[class*="package"],
+body.dark .content-creation-section *[class*="pricing"],
+body.dark .content-creation-section *[class*="card"] {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.2)) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+    color: #ffffff !important;
+}
+
+/* TARGET ALL POSSIBLE DIV ELEMENTS IN PACKAGE CARDS */
+body.dark .content-creation-section .pricing-cards > div,
+body.dark .content-creation-section .package-cards > div,
+body.dark .content-creation-section .packages-grid > div,
+body.dark .content-creation-section .pricing-grid > div {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.2)) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+}
+
+/* NUCLEAR OPTION - TARGET ALL IMMEDIATE CHILDREN OF GRID CONTAINERS */
+body.dark .content-creation-section .row > [class*="col"] > div {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.2)) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+    border-radius: 15px !important;
+}
+
+/* REMOVE ALL BLACK INNER ELEMENTS */
+body.dark .content-creation-section .row > [class*="col"] > div > div {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* FIX THE CTA SECTION - NUCLEAR APPROACH */
+body.dark .content-creation-section *[class*="pdf"],
+body.dark .content-creation-section *[class*="cta"],
+body.dark .content-creation-section *[class*="download"]:not(button):not(a):not([class*="btn"]) {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    color: #ffffff !important;
+}
+
+/* TARGET THE EXACT PURPLE SECTION FROM SCREENSHOT */
+body.dark .content-creation-section .container > div:last-child,
+body.dark .content-creation-section .container > .row:last-child,
+body.dark .content-creation-section .container > .row:last-child > div {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+}
+
+/* REMOVE BLACK INNER DIV IN CTA SECTION */
+body.dark .content-creation-section *[class*="pdf"] div,
+body.dark .content-creation-section *[class*="cta"] div,
+body.dark .content-creation-section *[class*="download"] div:not([class*="btn"]) {
+    background: transparent !important;
+    color: #ffffff !important;
+}
+
+/* KEEP ONLY BUTTONS BLACK */
+body.dark .content-creation-section button,
+body.dark .content-creation-section .btn,
+body.dark .content-creation-section a[class*="btn"] {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #333333 !important;
+}
+
+/* ABSOLUTE NUCLEAR OPTION - TARGET BY POSITION */
+body.dark .content-creation-section > .container > .row:nth-last-child(1),
+body.dark .content-creation-section > .container > .row:nth-last-child(1) > div,
+body.dark .content-creation-section > .container > .row:nth-last-child(1) > div > div {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+}
