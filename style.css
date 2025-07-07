@@ -1903,3 +1903,55 @@ body.dark .content-creation-section .pdf-cta-section {
 body.dark .content-creation-section .pdf-cta-section * {
     color: #ffffff !important;
 }
+/* Package Cards - Remove Black Borders */
+.package-card,
+.pricing-card,
+.service-card {
+    border: none !important;
+    outline: none !important;
+}
+
+/* If you have cards with specific class names from your screenshots */
+.packages-grid .package-card {
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+/* CTA Section - Purple Background */
+.cta-section,
+.pdf-cta-section {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    padding: 3rem 0;
+}
+
+.cta-section h2,
+.cta-section h3,
+.cta-section p {
+    color: white !important;
+}
+
+/* Black Button in CTA */
+.cta-section .btn,
+.cta-section button,
+.cta-section a.btn {
+    background-color: #000000 !important;
+    color: white !important;
+    border: 2px solid #000000 !important;
+}
+
+.cta-section .btn:hover {
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+}
+/* Dark Mode */
+body.dark .package-card,
+body.dark .pricing-card,
+body.dark .service-card {
+    border: none !important;
+    background-color: #1f1f1f;
+}
+
+body.dark .cta-section {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+}
