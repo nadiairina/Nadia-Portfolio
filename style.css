@@ -1904,14 +1904,14 @@ body.dark .content-creation-section .pdf-cta-section * {
     color: #ffffff !important;
 }
 /* Specific button - White in Light Mode */
-a[href="#download-pdf"].pdf-download-button {
+.pdf-download-section a[href="#download-pdf"].pdf-download-button {
     background: white !important;
     color: var(--text-dark) !important;
     border: 2px solid var(--border-color) !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
 }
 
-a[href="#download-pdf"].pdf-download-button:hover {
+.pdf-download-section a[href="#download-pdf"].pdf-download-button:hover {
     background: #f8f9fa !important;
     color: var(--text-dark) !important;
     border-color: var(--primary-color) !important;
@@ -1919,30 +1919,30 @@ a[href="#download-pdf"].pdf-download-button:hover {
 }
 
 /* Dark Mode: Specific button - Purple in Dark Mode */
-body.dark a[href="#download-pdf"].pdf-download-button {
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
     color: white !important;
     border: 2px solid var(--primary-color) !important;
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
 }
 
-body.dark a[href="#download-pdf"].pdf-download-button:hover {
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:hover {
     background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
     color: white !important;
     border-color: var(--primary-dark) !important;
     box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4) !important;
 }
 
-body.dark a[href="#download-pdf"].pdf-download-button:visited {
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:visited {
     color: white !important;
 }
 
-body.dark a[href="#download-pdf"].pdf-download-button:focus {
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:focus {
     color: white !important;
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5) !important;
 }
 
-body.dark a[href="#download-pdf"].pdf-download-button:active {
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:active {
     color: white !important;
     background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
 }
