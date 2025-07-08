@@ -2736,13 +2736,12 @@ body.dark .header.scrolled {
     color: white !important;
     text-decoration: none !important;
 }
-        /* CRITICAL: Add this to make hamburger menu work on mobile */
+/* MOBILE RESPONSIVE CSS - REPLACE the previous CSS with this */
 @media (max-width: 768px) {
-    .nav-links {
+    .nav {
         display: none;
     }
     
-    .desktop-actions,
     .actions {
         display: none;
     }
@@ -2750,15 +2749,10 @@ body.dark .header.scrolled {
     .mobile-menu-toggle {
         display: flex !important;
     }
-    
-    .hamburger-menu {
-        display: flex !important;
-    }
 }
 
-/* Mobile Hamburger Button Styles */
-.mobile-menu-toggle,
-.hamburger-menu {
+/* Mobile Hamburger Button Styles - KEEP THIS */
+.mobile-menu-toggle {
     display: none;
     flex-direction: column;
     justify-content: space-around;
@@ -2769,6 +2763,10 @@ body.dark .header.scrolled {
     cursor: pointer;
     padding: 0;
     z-index: 60;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
 }
 
 .hamburger-line {
@@ -2779,19 +2777,19 @@ body.dark .header.scrolled {
     transition: all 0.3s ease;
 }
 
-.hamburger-menu.active .hamburger-line:nth-child(1) {
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
     transform: rotate(45deg) translate(7px, 7px);
 }
 
-.hamburger-menu.active .hamburger-line:nth-child(2) {
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
     opacity: 0;
 }
 
-.hamburger-menu.active .hamburger-line:nth-child(3) {
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* Mobile Menu Overlay */
+/* Mobile Menu Overlay - IMPORTANT: Hidden by default */
 .mobile-menu-overlay {
     position: fixed;
     top: 0;
@@ -2824,10 +2822,21 @@ body.dark .header.scrolled {
     display: flex;
     flex-direction: column;
     padding: 2rem;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
 }
 
 .mobile-menu-overlay.active .mobile-menu {
     transform: translateX(0);
+}
+
+.mobile-menu-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
 }
 
 .mobile-nav-link {
@@ -2844,6 +2853,65 @@ body.dark .header.scrolled {
     color: var(--primary-color);
 }
 
+.mobile-actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mobile-resume-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    justify-content: center;
+}
+
+.mobile-social-icons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.mobile-social-icons a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+    border-radius: 50%;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-social-icons a:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.mobile-theme-toggle {
+    width: 100%;
+    padding: 1rem;
+    background: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--text-dark);
+}
+
 /* Dark mode for mobile menu */
 body.dark .mobile-menu {
     background-color: #1f2937;
@@ -2856,6 +2924,20 @@ body.dark .mobile-nav-link {
 
 body.dark .hamburger-line {
     background-color: #ffffff;
+}
+
+body.dark .mobile-menu-close {
+    color: #ffffff;
+}
+
+body.dark .mobile-social-icons a {
+    background: #374151;
+    color: #ffffff;
+}
+
+body.dark .mobile-theme-toggle {
+    border-color: #374151;
+    color: #ffffff;
 }
     </style>
 </head>
