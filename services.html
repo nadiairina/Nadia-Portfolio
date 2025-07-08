@@ -2969,18 +2969,18 @@ body.dark .mobile-theme-toggle {
 
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
-        <!-- Move hamburger button HERE, inside the container -->
-        <button class="mobile-menu-toggle hamburger-menu" aria-label="Toggle menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
-    </div>
-</header>
-<!-- Mobile menu overlay goes AFTER the header -->
+        <!-- Add this hamburger button inside your header container -->
+<button class="mobile-menu-toggle" aria-label="Toggle menu">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+</button>
+
+<!-- Add this mobile menu overlay after your header (OUTSIDE header) -->
 <div class="mobile-menu-overlay">
     <div class="mobile-menu">
-        <button class="mobile-menu-close" style="align-self: flex-end; background: none; border: none; font-size: 1.5rem; cursor: pointer; margin-bottom: 2rem;">✕</button>
+        <button class="mobile-menu-close">✕</button>
+        
         <nav>
             <a href="index.html" class="mobile-nav-link">Início</a>
             <a href="about.html" class="mobile-nav-link">Sobre Mim</a>
@@ -2988,9 +2988,25 @@ body.dark .mobile-theme-toggle {
             <a href="services.html" class="mobile-nav-link">Serviços</a>
             <a href="contact.html" class="mobile-nav-link">Contactos</a>
         </nav>
-        <div style="margin-top: 2rem;">
-            <button class="mobile-theme-toggle" style="width: 100%; padding: 1rem; background: none; border: 1px solid #e5e7eb; border-radius: 8px; cursor: pointer;">
-                <i class="fas fa-moon"></i> Toggle Dark Mode
+        
+        <div class="mobile-actions">
+            <a href="assets/Nadia-Irina-CV.pdf" download class="mobile-resume-btn">
+                <i class="fas fa-download"></i>
+                Currículo
+            </a>
+            
+            <div class="mobile-social-icons">
+                <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            
+            <button class="mobile-theme-toggle">
+                <i class="fas fa-moon"></i>
+                Toggle Dark Mode
             </button>
         </div>
     </div>
