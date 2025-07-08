@@ -224,6 +224,127 @@ body.dark .footer a {
 body.dark .footer a:hover {
     color: var(--primary-color);
 }
+    /* CRITICAL: Add this to make hamburger menu work on mobile */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .desktop-actions,
+    .actions {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex !important;
+    }
+    
+    .hamburger-menu {
+        display: flex !important;
+    }
+}
+
+/* Mobile Hamburger Button Styles */
+.mobile-menu-toggle,
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 60;
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 55;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+    background-color: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.mobile-menu-overlay.active .mobile-menu {
+    transform: translateX(0);
+}
+
+.mobile-nav-link {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.mobile-nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* Dark mode for mobile menu */
+body.dark .mobile-menu {
+    background-color: #1f2937;
+}
+
+body.dark .mobile-nav-link {
+    color: #ffffff;
+    border-bottom-color: #374151;
+}
+
+body.dark .hamburger-line {
+    background-color: #ffffff;
+}
     </style>
 </head>
 <body>
