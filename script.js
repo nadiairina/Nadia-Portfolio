@@ -597,4 +597,64 @@ document.addEventListener('DOMContentLoaded', function() {
         originalToggleDarkMode.call(this);
         setTimeout(updateButtonsForTheme, 100);
     };
+    // ====================================================
+// CORREÇÕES ESPECÍFICAS PARA BOTÕES E INTERAÇÕES
+// ====================================================
+
+// Enhanced button hover effects - apenas para botão de manutenção
+function addMaintenanceButtonEffects() {
+    const maintenanceButtons = document.querySelectorAll('button[onclick*="maintenance"], a[href*="maintenance"]');
+    
+    maintenanceButtons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.background = '#4f46e5';
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 6px 12px rgba(99, 102, 241, 0.3)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.background = '#6366f1';
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 8px rgba(99, 102, 241, 0.2)';
+        });
+    });
+}
+
+// Footer email hover effects
+function addEmailHoverEffects() {
+    const emailLinks = document.querySelectorAll('footer a[href^="mailto"], .footer a[href^="mailto"]');
+    
+    emailLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.color = '#a5b4fc';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            const isDark = document.body.classList.contains('dark');
+            this.style.color = isDark ? '#6b7280' : '#a1a1aa';
+        });
+    });
+}
+
+// Icon hover effects
+function addIconHoverEffects() {
+    const icons = document.querySelectorAll('div[class*="include-item"] .include-icon, .includes-section .include-icon, section:has(h2:contains("Suporte")) .service-icon, div[class*="support-item"] .service-icon');
+    
+    icons.forEach(icon => {
+        icon.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.boxShadow = '0 6px 12px rgba(99, 102, 241, 0.3)';
+        });
+        
+        icon.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 4px 8px rgba(99, 102, 241, 0.2)';
+        });
+    });
+}
+
+// Initialize all effects
+addMaintenanceButtonEffects();
+addEmailHoverEffects();
+addIconHoverEffects();
 });
