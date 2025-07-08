@@ -4985,6 +4985,27 @@ body.dark .plan-list li {
     text-decoration: none !important;
     color: var(--primary-color) !important;
 }
+        .includes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas no desktop */
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .includes-grid {
+    grid-template-columns: 1fr; /* 1 coluna no telemóvel */
+  }
+
+  .include-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .include-icon {
+    margin-bottom: 1rem;
+  }
+}
+
     </style>
 </head>
 <body>
