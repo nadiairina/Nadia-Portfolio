@@ -490,8 +490,32 @@ body.dark .hamburger-line {
                 </div>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
+         <!-- Move hamburger button HERE, inside the container -->
+        <button class="mobile-menu-toggle hamburger-menu" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </div>
+</header>
+    <!-- Mobile menu overlay goes AFTER the header -->
+<div class="mobile-menu-overlay">
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" style="align-self: flex-end; background: none; border: none; font-size: 1.5rem; cursor: pointer; margin-bottom: 2rem;">✕</button>
+        <nav>
+            <a href="index.html" class="mobile-nav-link">Início</a>
+            <a href="about.html" class="mobile-nav-link">Sobre Mim</a>
+            <a href="projects.html" class="mobile-nav-link">Projetos</a>
+            <a href="services.html" class="mobile-nav-link">Serviços</a>
+            <a href="contact.html" class="mobile-nav-link">Contactos</a>
+        </nav>
+        <div style="margin-top: 2rem;">
+            <button class="mobile-theme-toggle" style="width: 100%; padding: 1rem; background: none; border: 1px solid #e5e7eb; border-radius: 8px; cursor: pointer;">
+                <i class="fas fa-moon"></i> Toggle Dark Mode
+            </button>
         </div>
-    </header>
+    </div>
+</div>
     
     <!-- Hero Section -->
     <section class="hero" id="hero">
