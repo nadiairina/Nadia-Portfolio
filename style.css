@@ -2658,3 +2658,144 @@ body.dark .extras-section i[class*="fa-"] {
     background: transparent !important;
     background-color: transparent !important;
 }
+/* ====================================================
+   CORREÇÕES ESPECÍFICAS SÓ PARA OS PROBLEMAS IDENTIFICADOS
+   ====================================================*/
+
+/* 1. CORREÇÃO APENAS PARA ÍCONES DA SECÇÃO "O QUE INCLUI" */
+/* Identifica especificamente os ícones desta secção */
+div[class*="include-item"] .include-icon,
+.includes-section .include-icon {
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Ícones brancos dentro dos círculos roxos */
+div[class*="include-item"] .include-icon i,
+.includes-section .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    font-size: 1.5rem !important;
+}
+
+/* 2. CORREÇÃO APENAS PARA ÍCONES DA SECÇÃO "SUPORTE E GARANTIA" */
+/* Identifica especificamente os ícones desta secção */
+section:has(h2:contains("Suporte")) .service-icon,
+div[class*="support-item"] .service-icon {
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Ícones brancos para suporte */
+section:has(h2:contains("Suporte")) .service-icon i,
+div[class*="support-item"] .service-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    font-size: 1.5rem !important;
+}
+
+/* 3. DARK MODE - MESMA ESTILIZAÇÃO */
+body.dark div[class*="include-item"] .include-icon,
+body.dark .includes-section .include-icon,
+body.dark section:has(h2:contains("Suporte")) .service-icon,
+body.dark div[class*="support-item"] .service-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important;
+}
+
+body.dark div[class*="include-item"] .include-icon i,
+body.dark .includes-section .include-icon i,
+body.dark section:has(h2:contains("Suporte")) .service-icon i,
+body.dark div[class*="support-item"] .service-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* 4. CORREÇÃO APENAS PARA BOTÃO "PEDIR PLANO DE MANUTENÇÃO" */
+/* Identifica especificamente este botão */
+button[onclick*="maintenance"],
+a[href*="maintenance"],
+.btn:contains("Pedir Plano De Manutenção") {
+    background: #6366f1 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important;
+}
+
+button[onclick*="maintenance"]:hover,
+a[href*="maintenance"]:hover,
+.btn:contains("Pedir Plano De Manutenção"):hover {
+    background: #4f46e5 !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* 5. CORREÇÃO APENAS PARA EMAIL NO FOOTER */
+footer a[href^="mailto"],
+.footer a[href^="mailto"] {
+    color: #a1a1aa !important;
+    transition: color 0.3s ease !important;
+    text-decoration: none !important;
+}
+
+footer a[href^="mailto"]:hover,
+.footer a[href^="mailto"]:hover {
+    color: #a5b4fc !important;
+}
+
+/* Dark mode para emails do footer */
+body.dark footer a[href^="mailto"],
+body.dark .footer a[href^="mailto"] {
+    color: #6b7280 !important;
+}
+
+body.dark footer a[href^="mailto"]:hover,
+body.dark .footer a[href^="mailto"]:hover {
+    color: #a5b4fc !important;
+}
+
+/* 6. REMOVER BACKGROUNDS PRETOS DOS ÍCONES */
+.fa, .fas, .far, .fab, .fal, .fad, .fass, .fasr, .fasl, .fasd,
+i[class*="fa-"] {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* 7. HOVER EFFECTS PARA OS ÍCONES */
+div[class*="include-item"] .include-icon:hover,
+.includes-section .include-icon:hover,
+section:has(h2:contains("Suporte")) .service-icon:hover,
+div[class*="support-item"] .service-icon:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.3) !important;
+}
