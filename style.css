@@ -2438,3 +2438,223 @@ body.dark .cta-section .btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.5);
 }
+/* ====================================================
+   CORREÇÕES PARA ÍCONES, BOTÕES E HOVER EFFECTS
+   ====================================================*/
+
+/* 1. CONSISTÊNCIA DE TAMANHOS DOS ÍCONES */
+.content-creation-section .include-icon,
+.extras-section .service-icon,
+.includes-section .include-icon,
+.include-item .include-icon {
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.content-creation-section .include-icon i,
+.extras-section .service-icon i,
+.includes-section .include-icon i,
+.include-item .include-icon i {
+    font-size: 1.5rem !important;
+    transition: all 0.3s ease !important;
+}
+
+/* 2. CÍRCULOS ROXOS COM ÍCONES BRANCOS - LIGHT MODE */
+.content-creation-section .include-icon,
+.includes-section .include-icon,
+.include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important;
+}
+
+.content-creation-section .include-icon i,
+.includes-section .include-icon i,
+.include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* SECÇÃO EXTRAS - ÍCONES ROXOS COM FUNDO TRANSPARENTE */
+.extras-section .service-icon {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #6366f1 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.extras-section .service-icon i,
+.extras-section .fa,
+.extras-section .fas,
+.extras-section .far,
+.extras-section .fab,
+.extras-section i[class*="fa-"] {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* 3. DARK MODE - MESMA ESTILIZAÇÃO */
+body.dark .content-creation-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important;
+}
+
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-section .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+body.dark .extras-section .service-icon {
+    background: transparent !important;
+    color: #6366f1 !important;
+}
+
+body.dark .extras-section .service-icon i,
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"] {
+    color: #6366f1 !important;
+    background: transparent !important;
+}
+
+/* 4. BOTÕES PDF - LIGHT MODE: BRANCO / DARK MODE: ROXO */
+.pdf-download-button,
+a[href*="pdf"].btn,
+.pdf-cta-section .btn,
+.pdf-download-section .btn {
+    background: white !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.pdf-download-button:hover,
+a[href*="pdf"].btn:hover,
+.pdf-cta-section .btn:hover,
+.pdf-download-section .btn:hover {
+    background: #f8f9fa !important;
+    color: var(--text-dark) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* DARK MODE - BOTÕES PDF ROXOS */
+body.dark .pdf-download-button,
+body.dark a[href*="pdf"].btn,
+body.dark .pdf-cta-section .btn,
+body.dark .pdf-download-section .btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3) !important;
+}
+
+body.dark .pdf-download-button:hover,
+body.dark a[href*="pdf"].btn:hover,
+body.dark .pdf-cta-section .btn:hover,
+body.dark .pdf-download-section .btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
+    color: white !important;
+    border-color: var(--primary-dark) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 16px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* 5. BOTÃO PLANO DE MANUTENÇÃO COM HOVER */
+.maintenance-plan-button,
+.btn.maintenance-plan,
+button[data-action="maintenance-plan"],
+.monthly-plan-button,
+.plan-button {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important;
+}
+
+.maintenance-plan-button:hover,
+.btn.maintenance-plan:hover,
+button[data-action="maintenance-plan"]:hover,
+.monthly-plan-button:hover,
+.plan-button:hover {
+    background: var(--primary-dark) !important;
+    color: white !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* 6. EMAIL NO FOOTER COM HOVER ROXO */
+.footer a[href^="mailto"],
+footer a[href^="mailto"] {
+    color: #a1a1aa !important;
+    transition: color 0.3s ease !important;
+    text-decoration: none !important;
+}
+
+.footer a[href^="mailto"]:hover,
+footer a[href^="mailto"]:hover {
+    color: var(--primary-light) !important;
+}
+
+body.dark .footer a[href^="mailto"],
+body.dark footer a[href^="mailto"] {
+    color: #6b7280 !important;
+}
+
+body.dark .footer a[href^="mailto"]:hover,
+body.dark footer a[href^="mailto"]:hover {
+    color: var(--primary-light) !important;
+}
+
+/* 7. REMOVER QUALQUER BACKGROUND PRETO DOS ÍCONES */
+.fa, .fas, .far, .fab, .fal, .fad, .fass, .fasr, .fasl, .fasd,
+i[class*="fa-"] {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* GARANTIR QUE TODOS OS ÍCONES SÃO VISÍVEIS */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"] {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
