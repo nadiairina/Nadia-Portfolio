@@ -482,4 +482,119 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+        // ====================================================
+    // CORREÇÕES PARA BOTÕES E INTERAÇÕES
+    // ====================================================
+    
+    // Enhanced button hover effects for maintenance plan
+    function initializeEnhancedButtonEffects() {
+        const buttons = document.querySelectorAll('.maintenance-plan-button, .btn.maintenance-plan, button[data-action="maintenance-plan"], .monthly-plan-button, .plan-button');
+        
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 8px 16px rgba(99, 102, 241, 0.3)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 8px rgba(99, 102, 241, 0.2)';
+            });
+        });
+    }
+    
+    // PDF download button interactions
+    function initializePDFButtonEffects() {
+        const pdfButtons = document.querySelectorAll('.pdf-download-button, a[href*="pdf"].btn, .pdf-cta-section .btn, .pdf-download-section .btn');
+        
+        pdfButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.6);
+                    transform: scale(0);
+                    animation: ripple 600ms linear;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.remove();
+                    }
+                }, 600);
+            });
+        });
+    }
+    
+    // Icon hover animations
+    function initializeIconHoverEffects() {
+        const icons = document.querySelectorAll('.include-icon, .service-icon');
+        
+        icons.forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.boxShadow = '0 6px 12px rgba(99, 102, 241, 0.3)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 4px 8px rgba(99, 102, 241, 0.2)';
+            });
+        });
+    }
+    
+    // Footer email hover effect
+    function initializeFooterEmailEffect() {
+        const emailLinks = document.querySelectorAll('a[href^="mailto"]');
+        
+        emailLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.color = 'var(--primary-light)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                const isDark = document.body.classList.contains('dark');
+                this.style.color = isDark ? '#6b7280' : '#a1a1aa';
+            });
+        });
+    }
+    
+    // Update button themes when dark mode changes
+    function updateButtonsForTheme() {
+        const isDark = document.body.classList.contains('dark');
+        const pdfButtons = document.querySelectorAll('.pdf-download-button, a[href*="pdf"].btn');
+        
+        pdfButtons.forEach(button => {
+            if (isDark) {
+                button.style.background = 'linear-gradient(135deg, var(--primary-color), var(--primary-dark))';
+                button.style.color = 'white';
+                button.style.borderColor = 'var(--primary-color)';
+            } else {
+                button.style.background = 'white';
+                button.style.color = 'var(--text-dark)';
+                button.style.borderColor = 'var(--border-color)';
+            }
+        });
+    }
+    
+    // Initialize all enhanced effects
+    initializeEnhancedButtonEffects();
+    initializePDFButtonEffects();
+    initializeIconHoverEffects();
+    initializeFooterEmailEffect();
+    
+    // Update button themes when theme changes
+    const originalToggleDarkMode = toggleDarkMode;
+    toggleDarkMode = function() {
+        originalToggleDarkMode.call(this);
+        setTimeout(updateButtonsForTheme, 100);
+    };
 });
