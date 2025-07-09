@@ -1,7 +1,6 @@
 // typewriter-and-darkmode.js (ou o seu script.js)
 
 // --- VARIÁVEIS GLOBAIS ---
-// Elas precisam de ser acessíveis por todas as funções.
 const DARK_MODE_KEY = 'darkMode';
 const THEME_TRANSITION_DURATION = 500; // ms
 
@@ -11,10 +10,21 @@ let header;
 let themeToggle;
 let mobileMenuBtn; // Para o menu hambúrguer
 let mobileNav;     // Para o menu hambúrguer
+let mobileThemeToggle; // Novo: Para o botão de tema dentro do menu móvel
 let typewriterElement; // Para o efeito typewriter
 
 // --- FUNÇÕES GLOBAIS ---
-// Estas funções são definidas aqui para estarem disponíveis logo que o script carrega.
+
+/**
+ * Atualiza o texto e o atributo aria-label de um botão de tema.
+ * Esta é uma função auxiliar para evitar repetição de código.
+ */
+function updateThemeToggleButton(button, isDarkMode) {
+    if (button) {
+        button.textContent = isDarkMode ? '🌞' : '🌙';
+        button.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    }
+}
 
 /**
  * Initialize theme based on user preference or system preference
@@ -40,18 +50,16 @@ function initializeTheme() {
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             if (localStorage.getItem(DARK_MODE_KEY) === null) { 
-                if (e.matches) {
-                    document.body.classList.add('dark');
-                } else {
-                    document.body.classList.remove('dark');
-                }
-                // O texto do botão será atualizado no DOMContentLoaded ou no toggleDarkMode
+                const isSystemDarkMode = e.matches;
+                document.body.classList.toggle('dark', isSystemDarkMode);
+                // Atualiza os botões se eles já existirem, caso contrário, será feito no DOMContentLoaded
+                updateThemeToggleButton(themeToggle, isSystemDarkMode);
+                updateThemeToggleButton(mobileThemeToggle, isSystemDarkMode);
             }
         });
     }
 }
 
-// <<< NOVA MUDANÇA IMPORTANTE >>>
 // Chame initializeTheme() imediatamente após a sua definição.
 initializeTheme();
 
@@ -60,7 +68,6 @@ initializeTheme();
  * and performance optimization
  */
 function handleScroll() {
-    // Agora 'header' é uma variável global e será definida no DOMContentLoaded
     if (!header) return; 
         
     const scrolled = window.scrollY > 10;
@@ -84,22 +91,14 @@ function handleScroll() {
  * Toggle dark mode with enhanced animation and accessibility
  */
 function toggleDarkMode() {
-    // <<< NOVA MUDANÇA IMPORTANTE >>>
-    // Adicionar esta classe na raiz do documento para transições suaves.
     document.documentElement.classList.add('theme-transition'); 
         
     document.body.classList.toggle('dark');
     const isDarkMode = document.body.classList.contains('dark');
         
     // Atualizar os botões de toggle do tema (desktop e mobile)
-    if (themeToggle) {
-        themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
-        themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
-    }
-    if (mobileThemeToggle) { // mobileThemeToggle também é global e será definido
-        mobileThemeToggle.textContent = isDarkMode ? '🌞' : '🌙';
-        mobileThemeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
-    }
+    updateThemeToggleButton(themeToggle, isDarkMode);
+    updateThemeToggleButton(mobileThemeToggle, isDarkMode);
         
     localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
         
@@ -155,13 +154,16 @@ function isElementInViewport(el) {
 
 // Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // <<< NOVA MUDANÇA IMPORTANTE >>>
     // Inicialize as variáveis globais aqui, onde os elementos DOM já existem.
     header = document.getElementById("header");
     themeToggle = document.getElementById("theme-toggle");
-    mobileMenuBtn = document.getElementById('mobile-menu-btn'); // Inicializa o botão do menu móvel
-    mobileNav = document.getElementById('mobile-nav');         // Inicializa a navegação móvel
-    typewriterElement = document.getElementById('typewriter'); // Inicializa o elemento typewriter
+    mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    mobileNav = document.getElementById('mobile-nav');
+    // <<< NOVA MUDANÇA IMPORTANTE >>>
+    // Encontrar o botão de tema dentro do menu móvel, se existir
+    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Assumindo que este é o seletor para o seu botão de tema mobile
+    
+    typewriterElement = document.getElementById('typewriter');
 
     // Outros elementos que são usados apenas localmente dentro de DOMContentLoaded
     const projectFilters = document.querySelectorAll('.filter-btn');
@@ -177,14 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial scroll check (in case page is loaded scrolled down)
     setTimeout(handleScroll, 100);
         
-    // Dark mode toggle functionality with improved animation
+    // Dark mode toggle functionality com o botão principal (desktop)
     if (themeToggle) {
         themeToggle.addEventListener("click", toggleDarkMode);
             
         // Atualiza o texto do botão do tema inicial (desktop)
-        const isDarkModeInitial = document.body.classList.contains('dark');
-        themeToggle.textContent = isDarkModeInitial ? '🌞' : '🌙';
-        themeToggle.setAttribute('aria-label', isDarkModeInitial ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+        updateThemeToggleButton(themeToggle, document.body.classList.contains('dark'));
 
         // Add tooltip to theme toggle
         const tooltip = document.createElement('span');
@@ -204,13 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // <<< NOVA MUDANÇA IMPORTANTE >>>
     // Configuração do Mobile menu toggle
     if (mobileMenuBtn && mobileNav) {
         mobileMenuBtn.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
-            // <<< NOVA MUDANÇA IMPORTANTE >>>
-            // Atualiza o ícone do botão do menu hambúrguer para indicar se está aberto/fechado (opcional, se tiver CSS para isso)
             mobileMenuBtn.classList.toggle('active'); 
         });
             
@@ -218,19 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileNav.addEventListener('click', function(e) {
             if (e.target.tagName === 'A') {
                 mobileNav.classList.remove('active');
-                mobileMenuBtn.classList.remove('active'); // Garante que o botão também volta ao normal
+                mobileMenuBtn.classList.remove('active'); 
             }
         });
 
-        // Atualiza o texto do botão do tema inicial (mobile)
-        const isDarkModeInitial = document.body.classList.contains('dark');
-        // Assumindo que o mobileThemeToggle tem o mesmo ID ou uma classe, como '.mobile-theme-toggle'
-        const currentMobileThemeToggle = mobileNav.querySelector('.mobile-theme-toggle'); 
-        if (currentMobileThemeToggle) { // Se houver um toggle dentro do menu mobile
-            currentMobileThemeToggle.textContent = isDarkModeInitial ? '🌞' : '🌙';
-            currentMobileThemeToggle.setAttribute('aria-label', isDarkModeInitial ? 'Switch to Light Mode' : 'Switch to Dark Mode');
-            // Adicione o event listener aqui se o botão estiver dentro do mobileNav
-            currentMobileThemeToggle.addEventListener('click', toggleDarkMode);
+        // Configuração do botão de tema dentro do menu móvel, se existir
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('click', toggleDarkMode); // <<<< ESSENCIAL >>>>
+            // Atualiza o texto do botão do tema inicial (mobile)
+            updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark'));
         }
     }
 
@@ -420,10 +413,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const phrases = ['Marketeer', 'Front-End Developer'];
         let index = 0;
         let charIndex = 0;
-        // let isDeleting = false; // Removido pois o efeito é apenas de escrita, não apaga
         
         function typeNextCharacter() {
-            if (!typewriterElement) { // Garante que o elemento existe antes de tentar manipulá-lo
+            if (!typewriterElement) {
                 console.error("Typewriter element not available for effect.");
                 return;
             }
@@ -433,18 +425,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (charIndex < currentPhrase.length) {
                 typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
                 charIndex++;
-                setTimeout(typeNextCharacter, 50); // Velocidade de digitação
+                setTimeout(typeNextCharacter, 50);
             } else {
-                // Chegou ao fim da frase, espera um pouco e depois "reseta" para a próxima
                 setTimeout(() => {
                     index++;
                     charIndex = 0;
-                    typewriterElement.textContent = ''; // Limpa o texto para a próxima frase
+                    typewriterElement.textContent = '';
                     typeNextCharacter();
-                }, 2000); // Tempo de espera entre frases
+                }, 2000);
             }
         }
             
-        typeNextCharacter(); // Inicia o efeito
+        typeNextCharacter();
     }
 });
