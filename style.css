@@ -138,34 +138,7 @@ p {
     box-shadow: var(--shadow-sm);
 }
 
-/* No seu style.css - SUBSTITUA TODAS AS REGRAS .resume-btn EXISTENTES POR ESTAS */
 
-/* Seu .resume-btn GERAL (sem os !important) */
-.resume-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    border: none;
-    display: inline-block;
-    text-align: center;
-    /* REMOVA os !important destas linhas: */
-    padding: 12px 30px; /* Sem !important */
-    font-size: 1rem;    /* Sem !important */
-    min-width: 150px;   /* Sem !important */
-}
-
-/* NOVO: Regra Específica para o Botão Currículo na Página de Serviços */
-/* Adicione esta regra APÓS a regra .resume-btn acima. */
-/* Esta regra é mais específica e irá "ganhar" na página de serviços sem precisar de !important */
-body.section-services-hero .resume-btn {
-    padding: 12px 30px; /* Seu padding desejado */
-    font-size: 1rem;    /* Seu font-size desejado */
-    min-width: 150px;   /* Seu min-width desejado */
-    /* Não precisa de !important aqui */
-}
 
 /* Certifique-se de que a versão móvel também tem estas propriedades definidas, se aplicável */
 @media (max-width: 768px) {
@@ -199,16 +172,7 @@ body.dark .mobile-resume-btn:hover {
     color: white !important; /* Garante o texto branco no hover */
 }
 
-/* Se você tem regras específicas para mobile (media queries) para .resume-btn,
-   elas devem vir AQUI (dentro da respectiva media query) */
-/* Exemplo:
-@media (max-width: 768px) {
-    .resume-btn {
-        padding: 0.3rem 0.7rem;
-        font-size: 0.8rem;
-    }
-}
-*/
+
 
 
 
@@ -2525,17 +2489,55 @@ body.dark .cta-section .btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.5);
 }
-/* SOLUÇÃO FORÇADA PARA O PROBLEMA 3 (se o style="" for injetado por JS) */
-/* Garante que o padding e font-size do botão são os corretos na página de serviços */
-body.section-services-hero .resume-btn {
-    padding: 12px 30px !important; /* FORÇA o padding */
-    font-size: 1rem !important;    /* FORÇA o font-size */
-    min-width: 150px !important;   /* FORÇA o min-width */
+
+/* --- INÍCIO DO CÓDIGO DO BOTÃO CURRÍCULO (COPIE E COLE ESTE BLOCO NO FINAL DO SEU style.css) --- */
+
+/* 1. Regra Geral do Botão de Currículo (aplica-se a todas as páginas) */
+.resume-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    /* Tamanho padrão (sem !important aqui) */
+    padding: 12px 30px;
+    font-size: 1rem;
+    min-width: 150px;
 }
-/* FINAL FORCED SOLUTION FOR PROBLEM 3 (if JS is injecting inline styles) */
-/* This rule *must* come after all other .resume-btn rules */
-body.section-services-hero .resume-btn {
-    padding: 12px 30px !important; /* Force padding */
-    font-size: 1rem !important;    /* Force font-size */
-    min-width: 150px !important;   /* Force min-width */
+
+/* 2. Efeito Hover do Botão de Currículo */
+.resume-btn:hover {
+    background-color: var(--primary-dark); /* Roxo mais escuro no hover */
+    transform: translateY(-2px); /* Efeito de levantar */
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
 }
+
+/* 3. Dark Mode para o Botão de Currículo (cores) */
+body.dark .resume-btn,
+body.dark .mobile-resume-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+body.dark .resume-btn:hover,
+body.dark .mobile-resume-btn:hover {
+    background-color: var(--primary-dark) !important;
+    color: white !important;
+}
+
+/* 4. SOLUÇÃO FINAL PARA O PROBLEMA DO BOTÃO CURRÍCULO NA PÁGINA DE SERVIÇOS */
+/* Esta regra FORÇA o tamanho apenas na página de serviços e DEVE ser a ÚLTIMA definida */
+body.section-services-hero .resume-btn {
+    padding: 12px 30px !important; /* FORÇA o padding desejado */
+    font-size: 1rem !important;    /* FORÇA o font-size desejado */
+    min-width: 150px !important;   /* FORÇA o min-width desejado */
+    /* Se as cores ficarem erradas APENAS nesta página, pode adicionar estas linhas: */
+    /* background-color: var(--primary-color) !important; */
+    /* color: white !important; */
+}
+
+/* --- FIM DO CÓDIGO DO BOTÃO CURRÍCULO --- */
