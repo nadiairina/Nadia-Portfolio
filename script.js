@@ -148,7 +148,11 @@ function isElementInViewport(el) {
 // Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Inicialize as variáveis globais aqui, onde os elementos DOM já existem.
-    header = document.getElementById("header"); // Certifique-se de que o seu header tem id="header"
+    // ** CORREÇÃO AQUI: SELECIONANDO O HEADER PELA CLASSE **
+    header = document.querySelector(".header"); // Seleciona o header pela classe 'header'
+    // Se o seu header tiver id="header", mude de volta para: header = document.getElementById("header");
+    // Mas a maioria dos layouts usa classes para o header.
+    
     themeToggle = document.getElementById("theme-toggle"); // Certifique-se de que o seu toggle desktop tem id="theme-toggle"
     
     // Elementos do menu móvel:
@@ -165,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
 
     // Elementos da página de serviços para a funcionalidade de filtro
-    const filterBtnsServices = document.querySelectorAll('.filter-btn'); // Poderia ser diferente se os seletores não forem os mesmos em projetos e serviços
+    const filterBtnsServices = document.querySelectorAll('.filter-btn'); 
     const categoriesServices = document.querySelectorAll('.extras-category');
     const gridServices = document.querySelector('.extras-grid');
 
@@ -275,10 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Smooth Scrolling para Links de Navegação (do seu código enviado) ---
-    // Note: Esta função pode ser redundante se setupSmoothScrolling() já lidar com isso.
-    // Se seus links de navegação principal (não os de serviços) não estão usando IDs para seções,
-    // ou se o offset é diferente, pode ser necessário manter uma versão mais geral ou específica.
-    // Por enquanto, vou incluir a sua versão. Avaliaremos se é redundante mais tarde.
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80; // Ajuste de offset
+                const offsetTop = targetElement.offsetTop - 80; 
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80; // Ajuste de offset
+                const offsetTop = targetElement.offsetTop - 80; 
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -328,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- FORCE COMPACT MONTHLY PLAN VIA JAVASCRIPT (do seu código enviado) ---
-    // Este código deve ser executado no DOMContentLoaded para garantir que os elementos existem.
     setTimeout(function() {
         const container = document.querySelector('.monthly-plan-container');
         const card = document.querySelector('.monthly-plan-card');
@@ -338,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const badge = document.querySelector('.monthly-plan-badge');
         const content = document.querySelector('.monthly-plan-content');
         const includes = document.querySelectorAll('.plan-includes, .plan-excludes');
-        const section = document.querySelector('.monthly-plan-section, #monthly-plan'); // Também adicionei um ID para melhor seletor
+        const section = document.querySelector('.monthly-plan-section, #monthly-plan'); 
 
         if (container) {
             container.style.cssText = 'max-width: 400px !important; margin: 0 auto !important; padding: 0 15px !important;';
@@ -375,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Outras Funções que já estavam no seu JS principal ---
     if (projectFilters.length > 0 && projectItems.length > 0) {
-        setupProjectFilters(); // Esta função lida com os filtros de projeto
+        setupProjectFilters(); 
     }
         
     if (contactForm) {
@@ -383,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupFormValidation();
     }
         
-    setupSmoothScrolling(); // Esta função lida com o smooth scrolling genérico
+    setupSmoothScrolling(); 
         
     setupScrollAnimations();
         
@@ -398,16 +397,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // (Estas são as versões de `setupProjectFilters`, `setupFormValidation`, `validateInput`, `handleContactForm`,
     // `setupSmoothScrolling`, `setupScrollAnimations`, `setupTypewriterEffect` que já estavam no nosso script principal)
 
-    // Note: Eu incluí as versões mais recentes das funções que já tínhamos no script principal.
-    // É importante não duplicar funções com o mesmo nome que já existam, ou que façam a mesma coisa.
-    // Revisarei as funções de smooth scrolling e filtro se houver redundância ou conflito após o teste.
-
     function setupProjectFilters() {
         projectFilters.forEach(button => {
             button.addEventListener('click', () => {
                 projectFilters.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                const filterValue = button.getAttribute('data-category'); // Alterado para 'data-category' para consistência
+                const filterValue = button.getAttribute('data-category'); 
                 projectItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.style.display = 'grid';
