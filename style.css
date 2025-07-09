@@ -2200,6 +2200,18 @@ body.dark .service-includes i {
         font-size: 1rem !important;
     }
 }
+/* No seu ficheiro CSS existente, adicione esta regra */
+
+/* Problema 1: Sticky Navigation não desaparece quando o menu móvel está aberto (no telemóvel) */
+@media (max-width: 768px) { /* Aplica-se apenas a dispositivos móveis */
+    /* Assumindo que a classe 'mobile-menu-open' é adicionada ao body quando o menu mobile está aberto */
+    body.mobile-menu-open .sticky-nav { /* Substitua '.sticky-nav' pelo seletor exato da sua barra de navegação sticky */
+        display: none !important; /* Esconde a navegação sticky */
+        /* OU */
+        /* transform: translateY(-100%) !important; */ /* Move para cima para fora da vista */
+        /* visibility: hidden !important; */ /* Torna invisível */
+    }
+}
 /* ===== DARK MODE ICON FIXES ===== */
 
 /* Fix for ALL Extras Section Icons - Make them visible and purple */
