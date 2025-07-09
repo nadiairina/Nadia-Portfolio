@@ -2556,3 +2556,24 @@ body.section-services-hero .resume-btn {
 }
 
 /* --- FIM DO CÓDIGO DO BOTÃO CURRÍCULO --- */
+/* CORREÇÃO: SECÇÃO CRIAÇÃO DE CONTEÚDO - CAIXAS CORTADAS NO MOBILE */
+@media (max-width: 767px) { /* Para ecrãs de telemóvel (até 767px de largura) */
+    .content-creation-section .includes-grid {
+        grid-template-columns: 1fr !important; /* Força UMA coluna, fazendo as caixas empilharem-se */
+        gap: 20px !important; /* Ajusta o espaçamento entre as caixas empilhadas */
+    }
+
+    /* Opcional: Ajustar o padding das caixas individuais no telemóvel se parecerem muito grandes */
+    .content-creation-section .include-item {
+        padding: 25px !important; /* Torna o padding um pouco menor para ecrãs pequenos */
+    }
+
+    /* Opcional: Ajustar tamanhos de fonte ou outros elementos se necessário */
+    .content-creation-section .service-title {
+        font-size: 2.2rem !important; /* Título principal mais pequeno no mobile */
+    }
+
+    .content-creation-section .includes-title {
+        font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
+    }
+}
