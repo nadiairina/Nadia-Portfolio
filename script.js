@@ -67,6 +67,17 @@ initializeTheme();
  * Handle scroll events for sticky header with improved animation
  */
 function handleScroll() {
+    // --- INÍCIO DA CORREÇÃO 1: Sticky Navigation no Menu Mobile ---
+    if (mobileOverlay && mobileOverlay.classList.contains('active')) {
+        // Se o menu mobile estiver aberto, remove a classe 'scrolled' do header
+        // e sai da função para que o sticky não seja aplicado
+        if (header && header.classList.contains("scrolled")) {
+            header.classList.remove("scrolled");
+        }
+        return; // Sai da função para não aplicar o sticky effect
+    }
+    // --- FIM DA CORREÇÃO 1 ---
+
     if (!header) return; 
     const scrolled = window.scrollY > 10;
     if (scrolled && !header.classList.contains("scrolled")) {
@@ -148,19 +159,16 @@ function isElementInViewport(el) {
 // Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Inicialize as variáveis globais aqui, onde os elementos DOM já existem.
-    // ** CORREÇÃO AQUI: SELECIONANDO O HEADER PELA CLASSE **
     header = document.querySelector(".header"); // Seleciona o header pela classe 'header'
-    // Se o seu header tiver id="header", mude de volta para: header = document.getElementById("header");
-    // Mas a maioria dos layouts usa classes para o header.
     
-    themeToggle = document.getElementById("theme-toggle"); // Certifique-se de que o seu toggle desktop tem id="theme-toggle"
+    themeToggle = document.getElementById("theme-toggle"); 
     
     // Elementos do menu móvel:
     mobileMenuBtn = document.querySelector('.mobile-menu-toggle');
-    mobileOverlay = document.querySelector('.mobile-menu-overlay'); // O seu código usa '.mobile-menu-overlay'
+    mobileOverlay = document.querySelector('.mobile-menu-overlay'); 
     mobileCloseBtn = document.querySelector('.mobile-menu-close');
     mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Botão de tema DENTRO do menu móvel
+    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); 
     
     typewriterElement = document.getElementById('typewriter');
 
