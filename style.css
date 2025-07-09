@@ -2525,3 +2525,10 @@ body.dark .cta-section .btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.5);
 }
+/* SOLUÇÃO FORÇADA PARA O PROBLEMA 3 (se o style="" for injetado por JS) */
+/* Garante que o padding e font-size do botão são os corretos na página de serviços */
+body.section-services-hero .resume-btn {
+    padding: 12px 30px !important; /* FORÇA o padding */
+    font-size: 1rem !important;    /* FORÇA o font-size */
+    min-width: 150px !important;   /* FORÇA o min-width */
+}
