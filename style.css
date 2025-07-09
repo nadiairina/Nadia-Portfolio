@@ -140,8 +140,8 @@ p {
 
 /* No seu style.css - SUBSTITUA TODAS AS REGRAS .resume-btn EXISTENTES POR ESTAS */
 
+/* Seu .resume-btn GERAL (sem os !important) */
 .resume-btn {
-    /* Mantenha as suas propriedades existentes */
     background-color: var(--primary-color);
     color: white;
     border-radius: 8px;
@@ -151,12 +151,20 @@ p {
     border: none;
     display: inline-block;
     text-align: center;
+    /* REMOVA os !important destas linhas: */
+    padding: 12px 30px; /* Sem !important */
+    font-size: 1rem;    /* Sem !important */
+    min-width: 150px;   /* Sem !important */
+}
 
-    /* Adicione/modifique estas linhas com !important SE AS OUTRAS PÁGINAS ESTIVEREM BEM */
-    /* E APENAS SE FOR A ÚNICA FORMA DE AS PÁGINAS DE SERVIÇOS SEREM IGUAIS */
-    padding: 12px 30px !important; /* Aplica o padding desejado e força-o */
-    font-size: 1rem !important; /* Defina um font-size explícito para consistência, se necessário */
-    min-width: 150px !important; /* Adicione um min-width se o problema for a largura variável */
+/* NOVO: Regra Específica para o Botão Currículo na Página de Serviços */
+/* Adicione esta regra APÓS a regra .resume-btn acima. */
+/* Esta regra é mais específica e irá "ganhar" na página de serviços sem precisar de !important */
+body.section-services-hero .resume-btn {
+    padding: 12px 30px; /* Seu padding desejado */
+    font-size: 1rem;    /* Seu font-size desejado */
+    min-width: 150px;   /* Seu min-width desejado */
+    /* Não precisa de !important aqui */
 }
 
 /* Certifique-se de que a versão móvel também tem estas propriedades definidas, se aplicável */
