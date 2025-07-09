@@ -138,20 +138,54 @@ p {
     box-shadow: var(--shadow-sm);
 }
 
+/* No seu style.css - SUBSTITUA TODAS AS REGRAS .resume-btn EXISTENTES POR ESTAS */
+
 .resume-btn {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 0.5rem 1.25rem;
+    background-color: #6366F1; /* Roxo específico, substitui var(--primary-color) */
+    color: white; /* Texto branco */
+    border: 1px solid #6366F1; /* Borda roxa, para que não mude */
+    padding: 12px 25px; /* Tamanho ajustado (era 0.5rem 1.25rem, 12px 25px é mais fixo) */
     border-radius: 8px;
+    text-decoration: none;
     font-weight: 600;
-    transition: all var(--transition-normal);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Transições combinadas */
+    display: inline-flex; /* Para alinhar ícone e texto, se houver um ícone */
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espaço entre ícone e texto, se houver um ícone */
 }
 
 .resume-btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    background-color: #5558d1; /* Um roxo ligeiramente mais escuro no hover */
+    border-color: #5558d1; /* Ajusta a borda no hover também */
+    transform: translateY(-2px); /* Efeito de levantar */
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
 }
+
+/* Garante que o botão mantém a cor roxa no Dark Mode */
+body.dark .resume-btn {
+    background-color: #6366F1; /* Roxo específico no dark mode */
+    color: white; /* Mantém o texto branco no dark mode */
+    border-color: #6366F1; /* Mantém a borda roxa no dark mode */
+}
+
+body.dark .resume-btn:hover {
+    background-color: #5558d1; /* Roxo mais escuro no hover do dark mode */
+    border-color: #5558d1; /* Borda também mais escura no hover do dark mode */
+}
+
+/* Se você tem regras específicas para mobile (media queries) para .resume-btn,
+   elas devem vir AQUI (dentro da respectiva media query) */
+/* Exemplo:
+@media (max-width: 768px) {
+    .resume-btn {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.8rem;
+    }
+}
+*/
+
+
 
 /* Header */
 .header {
@@ -1705,10 +1739,7 @@ body.dark .project-image.placeholder-img {
         gap: 0.75rem;
     }
     
-    .resume-btn {
-        padding: 0.3rem 0.7rem;
-        font-size: 0.8rem;
-    }
+    
     
     .social-icons a {
         font-size: 0.95rem;
