@@ -141,18 +141,31 @@ p {
 /* No seu style.css - SUBSTITUA TODAS AS REGRAS .resume-btn EXISTENTES POR ESTAS */
 
 .resume-btn {
-    background-color: #6366F1; /* Roxo específico, substitui var(--primary-color) */
-    color: white; /* Texto branco */
-    border: 1px solid #6366F1; /* Borda roxa, para que não mude */
-    padding: 12px 25px; /* Tamanho ajustado (era 0.5rem 1.25rem, 12px 25px é mais fixo) */
+    /* Mantenha as suas propriedades existentes */
+    background-color: var(--primary-color);
+    color: white;
     border-radius: 8px;
-    text-decoration: none;
     font-weight: 600;
-    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Transições combinadas */
-    display: inline-flex; /* Para alinhar ícone e texto, se houver um ícone */
-    align-items: center;
-    justify-content: center;
-    gap: 8px; /* Espaço entre ícone e texto, se houver um ícone */
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    text-align: center;
+
+    /* Adicione/modifique estas linhas com !important SE AS OUTRAS PÁGINAS ESTIVEREM BEM */
+    /* E APENAS SE FOR A ÚNICA FORMA DE AS PÁGINAS DE SERVIÇOS SEREM IGUAIS */
+    padding: 12px 30px !important; /* Aplica o padding desejado e força-o */
+    font-size: 1rem !important; /* Defina um font-size explícito para consistência, se necessário */
+    min-width: 150px !important; /* Adicione um min-width se o problema for a largura variável */
+}
+
+/* Certifique-se de que a versão móvel também tem estas propriedades definidas, se aplicável */
+@media (max-width: 768px) {
+    .mobile-resume-btn {
+        padding: 12px 30px !important; /* Força o padding para mobile */
+        font-size: 1rem !important; /* Força o font-size para mobile */
+        min-width: unset !important; /* Remove min-width para mobile se for um problema */
+    }
 }
 
 .resume-btn:hover {
@@ -162,16 +175,20 @@ p {
     box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
 }
 
-/* Garante que o botão mantém a cor roxa no Dark Mode */
-body.dark .resume-btn {
-    background-color: #6366F1; /* Roxo específico no dark mode */
-    color: white; /* Mantém o texto branco no dark mode */
-    border-color: #6366F1; /* Mantém a borda roxa no dark mode */
+/* No seu ficheiro CSS existente, adicione ou modifique estas regras */
+
+/* Problema 2: Botão Currículo não está roxo em Dark Mode (no telemóvel) */
+body.dark .resume-btn,
+body.dark .mobile-resume-btn {
+    background-color: var(--primary-color) !important; /* Força o roxo */
+    color: white !important; /* Garante o texto branco */
 }
 
-body.dark .resume-btn:hover {
-    background-color: #5558d1; /* Roxo mais escuro no hover do dark mode */
-    border-color: #5558d1; /* Borda também mais escura no hover do dark mode */
+/* Garante que o hover também é roxo no dark mode */
+body.dark .resume-btn:hover,
+body.dark .mobile-resume-btn:hover {
+    background-color: var(--primary-dark) !important; /* Roxo mais escuro no hover */
+    color: white !important; /* Garante o texto branco no hover */
 }
 
 /* Se você tem regras específicas para mobile (media queries) para .resume-btn,
