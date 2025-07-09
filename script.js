@@ -8,16 +8,15 @@ const THEME_TRANSITION_DURATION = 500; // ms
 // Elas serão inicializadas dentro do DOMContentLoaded.
 let header;
 let themeToggle;
-let mobileMenuBtn; // Para o menu hambúrguer
-let mobileNav;     // Para o menu hambúrguer
-let mobileThemeToggle; // Novo: Para o botão de tema dentro do menu móvel
-let typewriterElement; // Para o efeito typewriter
+let mobileMenuBtn;
+let mobileNav;
+let mobileThemeToggle; 
+let typewriterElement; 
 
 // --- FUNÇÕES GLOBAIS ---
 
 /**
  * Atualiza o texto e o atributo aria-label de um botão de tema.
- * Esta é uma função auxiliar para evitar repetição de código.
  */
 function updateThemeToggleButton(button, isDarkMode) {
     if (button) {
@@ -28,31 +27,32 @@ function updateThemeToggleButton(button, isDarkMode) {
 
 /**
  * Initialize theme based on user preference or system preference
- * with improved transition between states
  */
 function initializeTheme() {
     const savedTheme = localStorage.getItem(DARK_MODE_KEY);
-        
-    if (savedTheme === 'true') {
+    let shouldBeDarkMode = false;
+
+    if (savedTheme !== null) { // Se há uma preferência salva (explicitamente true ou false)
+        shouldBeDarkMode = (savedTheme === 'true');
+    } else { // Se não há preferência salva, verifica a preferência do sistema
+        shouldBeDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // Salva a preferência do sistema para consistência na próxima visita
+        localStorage.setItem(DARK_MODE_KEY, shouldBeDarkMode.toString());
+    }
+
+    if (shouldBeDarkMode) {
         document.body.classList.add('dark');
-    } else if (savedTheme === 'false') {
-        document.body.classList.remove('dark');
     } else {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark');
-            localStorage.setItem(DARK_MODE_KEY, 'true');
-        } else {
-            document.body.classList.remove('dark');
-            localStorage.setItem(DARK_MODE_KEY, 'false');
-        }
+        document.body.classList.remove('dark');
     }
         
+    // Listener para mudanças na preferência do sistema, apenas se não houver preferência do usuário
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            // Só muda automaticamente se o usuário não tiver definido uma preferência manual
             if (localStorage.getItem(DARK_MODE_KEY) === null) { 
                 const isSystemDarkMode = e.matches;
                 document.body.classList.toggle('dark', isSystemDarkMode);
-                // Atualiza os botões se eles já existirem, caso contrário, será feito no DOMContentLoaded
                 updateThemeToggleButton(themeToggle, isSystemDarkMode);
                 updateThemeToggleButton(mobileThemeToggle, isSystemDarkMode);
             }
@@ -65,20 +65,16 @@ initializeTheme();
 
 /**
  * Handle scroll events for sticky header with improved animation
- * and performance optimization
  */
 function handleScroll() {
     if (!header) return; 
-        
     const scrolled = window.scrollY > 10;
-        
     if (scrolled && !header.classList.contains("scrolled")) {
         header.classList.add("scrolled");
         void header.offsetWidth;
     } else if (!scrolled && header.classList.contains("scrolled")) {
         header.classList.remove("scrolled");
     }
-        
     const animatedElements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
     animatedElements.forEach(element => {
         if (isElementInViewport(element)) {
@@ -91,6 +87,7 @@ function handleScroll() {
  * Toggle dark mode with enhanced animation and accessibility
  */
 function toggleDarkMode() {
+    // Adiciona esta classe para permitir transição suave em todas as propriedades que a CSS defina.
     document.documentElement.classList.add('theme-transition'); 
         
     document.body.classList.toggle('dark');
@@ -100,6 +97,8 @@ function toggleDarkMode() {
     updateThemeToggleButton(themeToggle, isDarkMode);
     updateThemeToggleButton(mobileThemeToggle, isDarkMode);
         
+    // <<< VERIFICAÇÃO CHAVE AQUI >>>
+    // Garante que o valor é salvo no localStorage a cada clique
     localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
         
     if (themeToggle) {
@@ -114,6 +113,7 @@ function toggleDarkMode() {
         if (themeToggle) {
             themeToggle.classList.remove('theme-toggle-animation');
         }
+        // Remove a classe de transição após a animação para não afetar outras transições
         document.documentElement.classList.remove('theme-transition'); 
         if (flashElement.parentNode) {
             flashElement.parentNode.removeChild(flashElement);
@@ -136,8 +136,6 @@ function debounce(func, wait) {
 
 /**
  * Check if element is in viewport
- * @param {HTMLElement} el - Element to check
- * @returns {boolean} - True if element is in viewport
  */
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
@@ -159,13 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
     themeToggle = document.getElementById("theme-toggle");
     mobileMenuBtn = document.getElementById('mobile-menu-btn');
     mobileNav = document.getElementById('mobile-nav');
-    // <<< NOVA MUDANÇA IMPORTANTE >>>
-    // Encontrar o botão de tema dentro do menu móvel, se existir
-    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Assumindo que este é o seletor para o seu botão de tema mobile
+    
+    // <<< IMPORTANTE: Verifique o seletor do seu botão de tema mobile no HTML >>>
+    // Se o seu botão de tema mobile tem um ID diferente, use esse ID, por exemplo:
+    // mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    // Ou se for uma classe específica:
+    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Usando .mobile-theme-toggle como classe genérica
     
     typewriterElement = document.getElementById('typewriter');
 
-    // Outros elementos que são usados apenas localmente dentro de DOMContentLoaded
     const projectFilters = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
     const contactForm = document.getElementById('contact-form');
@@ -175,15 +175,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sticky header shadow on scroll with debounce for performance
     const debouncedHandleScroll = debounce(handleScroll, 10);
     window.addEventListener("scroll", debouncedHandleScroll);
-        
-    // Initial scroll check (in case page is loaded scrolled down)
     setTimeout(handleScroll, 100);
         
     // Dark mode toggle functionality com o botão principal (desktop)
     if (themeToggle) {
         themeToggle.addEventListener("click", toggleDarkMode);
-            
-        // Atualiza o texto do botão do tema inicial (desktop)
+        // Atualiza o texto/ícone do botão do tema inicial (desktop)
         updateThemeToggleButton(themeToggle, document.body.classList.contains('dark'));
 
         // Add tooltip to theme toggle
@@ -191,13 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
         tooltip.className = 'tooltip';
         tooltip.textContent = 'Toggle Dark Mode';
         themeToggle.appendChild(tooltip);
-            
-        // Show tooltip on hover
         themeToggle.addEventListener('mouseenter', () => {
             tooltip.style.opacity = '1';
             tooltip.style.transform = 'translateY(0)';
         });
-            
         themeToggle.addEventListener('mouseleave', () => {
             tooltip.style.opacity = '0';
             tooltip.style.transform = 'translateY(10px)';
@@ -221,8 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Configuração do botão de tema dentro do menu móvel, se existir
         if (mobileThemeToggle) {
-            mobileThemeToggle.addEventListener('click', toggleDarkMode); // <<<< ESSENCIAL >>>>
-            // Atualiza o texto do botão do tema inicial (mobile)
+            mobileThemeToggle.addEventListener('click', toggleDarkMode); 
+            // Atualiza o texto/ícone do botão do tema inicial (mobile)
             updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark'));
         }
     }
@@ -407,7 +401,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     /**
      * Setup typewriter effect for the hero section
-     * Modified to be faster and write-only - won't erase text
      */
     function setupTypewriterEffect() {
         const phrases = ['Marketeer', 'Front-End Developer'];
@@ -435,7 +428,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 2000);
             }
         }
-            
         typeNextCharacter();
     }
 });
