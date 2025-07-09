@@ -2532,3 +2532,10 @@ body.section-services-hero .resume-btn {
     font-size: 1rem !important;    /* FORÇA o font-size */
     min-width: 150px !important;   /* FORÇA o min-width */
 }
+/* FINAL FORCED SOLUTION FOR PROBLEM 3 (if JS is injecting inline styles) */
+/* This rule *must* come after all other .resume-btn rules */
+body.section-services-hero .resume-btn {
+    padding: 12px 30px !important; /* Force padding */
+    font-size: 1rem !important;    /* Force font-size */
+    min-width: 150px !important;   /* Force min-width */
+}
