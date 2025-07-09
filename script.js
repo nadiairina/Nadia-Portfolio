@@ -1,17 +1,20 @@
-// typewriter-and-darkmode.js (ou o seu script.js)
+// script.js (ou typewriter-and-darkmode.js) - Este é o ÚNICO ficheiro JS que você deve ter ativo.
 
 // --- VARIÁVEIS GLOBAIS ---
-const DARK_MODE_KEY = 'darkMode';
+const DARK_MODE_KEY = 'darkMode'; // Chave consistente para o localStorage
 const THEME_TRANSITION_DURATION = 500; // ms
 
 // Declare as referências aos elementos DOM que serão usadas por várias funções.
 // Elas serão inicializadas dentro do DOMContentLoaded.
 let header;
-let themeToggle;
-let mobileMenuBtn;
-let mobileNav;
-let mobileThemeToggle; 
-let typewriterElement; 
+let themeToggle;        // Botão de toggle do tema (geralmente no desktop nav)
+let mobileMenuBtn;      // Botão de abrir o menu hambúrguer
+let mobileNav;          // O elemento do menu móvel (a nav lateral)
+let mobileCloseBtn;     // Botão de fechar o menu móvel
+let mobileNavLinks;     // Links dentro do menu móvel
+let mobileThemeToggle;  // Botão de toggle do tema (dentro do menu móvel)
+let mobileOverlay;      // A camada de sobreposição do menu móvel
+let typewriterElement;  // Para o efeito typewriter
 
 // --- FUNÇÕES GLOBAIS ---
 
@@ -29,14 +32,13 @@ function updateThemeToggleButton(button, isDarkMode) {
  * Initialize theme based on user preference or system preference
  */
 function initializeTheme() {
-    const savedTheme = localStorage.getItem(DARK_MODE_KEY);
+    const savedTheme = localStorage.getItem(DARK_MODE_KEY); // Usa a chave consistente
     let shouldBeDarkMode = false;
 
-    if (savedTheme !== null) { // Se há uma preferência salva (explicitamente true ou false)
+    if (savedTheme !== null) { 
         shouldBeDarkMode = (savedTheme === 'true');
-    } else { // Se não há preferência salva, verifica a preferência do sistema
+    } else { 
         shouldBeDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        // Salva a preferência do sistema para consistência na próxima visita
         localStorage.setItem(DARK_MODE_KEY, shouldBeDarkMode.toString());
     }
 
@@ -46,10 +48,8 @@ function initializeTheme() {
         document.body.classList.remove('dark');
     }
         
-    // Listener para mudanças na preferência do sistema, apenas se não houver preferência do usuário
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            // Só muda automaticamente se o usuário não tiver definido uma preferência manual
             if (localStorage.getItem(DARK_MODE_KEY) === null) { 
                 const isSystemDarkMode = e.matches;
                 document.body.classList.toggle('dark', isSystemDarkMode);
@@ -87,19 +87,15 @@ function handleScroll() {
  * Toggle dark mode with enhanced animation and accessibility
  */
 function toggleDarkMode() {
-    // Adiciona esta classe para permitir transição suave em todas as propriedades que a CSS defina.
     document.documentElement.classList.add('theme-transition'); 
         
     document.body.classList.toggle('dark');
     const isDarkMode = document.body.classList.contains('dark');
         
-    // Atualizar os botões de toggle do tema (desktop e mobile)
     updateThemeToggleButton(themeToggle, isDarkMode);
-    updateThemeToggleButton(mobileThemeToggle, isDarkMode);
+    updateThemeToggleButton(mobileThemeToggle, isDarkMode); // Garante que o mobile toggle também é atualizado
         
-    // <<< VERIFICAÇÃO CHAVE AQUI >>>
-    // Garante que o valor é salvo no localStorage a cada clique
-    localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
+    localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString()); // Usa a chave consistente
         
     if (themeToggle) {
         themeToggle.classList.add('theme-toggle-animation');
@@ -113,7 +109,6 @@ function toggleDarkMode() {
         if (themeToggle) {
             themeToggle.classList.remove('theme-toggle-animation');
         }
-        // Remove a classe de transição após a animação para não afetar outras transições
         document.documentElement.classList.remove('theme-transition'); 
         if (flashElement.parentNode) {
             flashElement.parentNode.removeChild(flashElement);
@@ -155,15 +150,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicialize as variáveis globais aqui, onde os elementos DOM já existem.
     header = document.getElementById("header");
     themeToggle = document.getElementById("theme-toggle");
-    mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    mobileNav = document.getElementById('mobile-nav');
     
-    // <<< IMPORTANTE: Verifique o seletor do seu botão de tema mobile no HTML >>>
-    // Se o seu botão de tema mobile tem um ID diferente, use esse ID, por exemplo:
-    // mobileThemeToggle = document.getElementById('mobile-theme-toggle');
-    // Ou se for uma classe específica:
-    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Usando .mobile-theme-toggle como classe genérica
-    
+    // Elementos do menu móvel:
+    mobileMenuBtn = document.querySelector('.mobile-menu-toggle');
+    mobileNav = document.querySelector('.mobile-nav-overlay'); // Se o seu menu móvel for a sobreposição
+    mobileCloseBtn = document.querySelector('.mobile-menu-close');
+    mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Botão de tema DENTRO do menu móvel
+    mobileOverlay = document.querySelector('.mobile-menu-overlay'); // O overlay em si
+
     typewriterElement = document.getElementById('typewriter');
 
     const projectFilters = document.querySelectorAll('.filter-btn');
@@ -172,18 +167,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log("Typewriter element found:", typewriterElement);
         
-    // Sticky header shadow on scroll with debounce for performance
     const debouncedHandleScroll = debounce(handleScroll, 10);
     window.addEventListener("scroll", debouncedHandleScroll);
     setTimeout(handleScroll, 100);
         
-    // Dark mode toggle functionality com o botão principal (desktop)
+    // Configuração do botão de toggle do tema principal (desktop)
     if (themeToggle) {
         themeToggle.addEventListener("click", toggleDarkMode);
-        // Atualiza o texto/ícone do botão do tema inicial (desktop)
         updateThemeToggleButton(themeToggle, document.body.classList.contains('dark'));
 
-        // Add tooltip to theme toggle
         const tooltip = document.createElement('span');
         tooltip.className = 'tooltip';
         tooltip.textContent = 'Toggle Dark Mode';
@@ -198,47 +190,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Configuração do Mobile menu toggle
-    if (mobileMenuBtn && mobileNav) {
+    // Configuração do menu móvel (transferido do seu script embutido)
+    if (mobileMenuBtn && mobileOverlay) {
         mobileMenuBtn.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-            mobileMenuBtn.classList.toggle('active'); 
+            mobileMenuBtn.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
         });
-            
-        // Close menu when clicking on a link
-        mobileNav.addEventListener('click', function(e) {
-            if (e.target.tagName === 'A') {
-                mobileNav.classList.remove('active');
-                mobileMenuBtn.classList.remove('active'); 
-            }
-        });
-
-        // Configuração do botão de tema dentro do menu móvel, se existir
-        if (mobileThemeToggle) {
-            mobileThemeToggle.addEventListener('click', toggleDarkMode); 
-            // Atualiza o texto/ícone do botão do tema inicial (mobile)
-            updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark'));
+    }
+    
+    function closeMobileMenu() {
+        if (mobileMenuBtn && mobileOverlay) {
+            mobileMenuBtn.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         }
     }
+    
+    if (mobileCloseBtn) { // Usando mobileCloseBtn para o botão de fechar (se existir)
+        mobileCloseBtn.addEventListener('click', closeMobileMenu);
+    }
+    
+    if (mobileNavLinks) { // Para os links de navegação dentro do menu móvel
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+    }
+    
+    if (mobileOverlay) { // Fechar menu ao clicar na área escura do overlay
+        mobileOverlay.addEventListener('click', function(e) {
+            if (e.target === mobileOverlay) { // Assegura que só fecha se o clique for no overlay, não nos elementos filhos
+                closeMobileMenu();
+            }
+        });
+    }
+    
+    // Fechar menu na tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
 
-    // Project filtering (on projects page)
+    // Configuração do botão de toggle do tema no menu móvel
+    if (mobileThemeToggle) {
+        mobileThemeToggle.addEventListener('click', toggleDarkMode); // Liga à nossa função global toggleDarkMode
+        updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark')); // Atualiza o ícone inicial
+    }
+
+    // --- Outras Funções que já estavam no seu JS principal ---
     if (projectFilters.length > 0 && projectItems.length > 0) {
         setupProjectFilters();
     }
         
-    // Contact form handling with improved validation
     if (contactForm) {
         contactForm.addEventListener('submit', handleContactForm);
         setupFormValidation();
     }
         
-    // Smooth scrolling for anchor links
     setupSmoothScrolling();
         
-    // Add animation classes when elements come into view
     setupScrollAnimations();
         
-    // Setup typewriter effect for the hero section - run immediately
     if (typewriterElement) {
         console.log("Setting up typewriter effect");
         setupTypewriterEffect();
@@ -246,11 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Typewriter element not found!");
     }
 
-    // --- Funções Auxiliares (mantidas dentro de DOMContentLoaded se não forem usadas globalmente) ---
+    // --- Funções Auxiliares (mantidas dentro de DOMContentLoaded) ---
 
-    /**
-     * Setup project filtering functionality
-     */
     function setupProjectFilters() {
         projectFilters.forEach(button => {
             button.addEventListener('click', () => {
@@ -272,9 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
         
-    /**
-     * Setup form validation with real-time feedback
-     */
     function setupFormValidation() {
         if (!contactForm) return;
         const formInputs = contactForm.querySelectorAll('input, textarea');
@@ -293,9 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
         
-    /**
-     * Validate form input and show feedback
-     */
     function validateInput(input, feedback) {
         const value = input.value.trim();
         const name = input.name;
@@ -322,9 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
         
-    /**
-     * Handle contact form submission with enhanced validation
-     */
     function handleContactForm(e) {
         e.preventDefault();
         const name = document.getElementById('name').value.trim();
@@ -364,9 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     }
         
-    /**
-     * Setup smooth scrolling for anchor links
-     */
     function setupSmoothScrolling() {
         const anchorLinks = document.querySelectorAll('a[href^="#"]');
         anchorLinks.forEach(link => {
@@ -388,9 +386,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
         
-    /**
-     * Setup scroll animations
-     */
     function setupScrollAnimations() {
         const elementsToAnimate = document.querySelectorAll('.project-card, .skill-category, .section-heading');
         elementsToAnimate.forEach(element => {
@@ -399,9 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll();
     }
     
-    /**
-     * Setup typewriter effect for the hero section
-     */
     function setupTypewriterEffect() {
         const phrases = ['Marketeer', 'Front-End Developer'];
         let index = 0;
