@@ -1,236 +1,100 @@
 // typewriter-and-darkmode.js (ou o seu script.js)
 
-// 1. CHAME A FUNÇÃO initializeTheme AQUI MESMO, NO INÍCIO DO FICHEIRO!
-// Isso faz com que o tema seja aplicado o mais cedo possível, mal o navegador carrega este script.
-initializeTheme(); 
+// <<< MUDANÇA AQUI >>>
+// 1. Defina a chave DARK_MODE_KEY globalmente para que seja acessível em qualquer lugar.
+// Isso evita que a variável DARK_MODE_KEY seja declarada dentro do DOMContentLoaded e depois movida.
+const DARK_MODE_KEY = 'darkMode';
 
-// 2. A DEFINIÇÃO COMPLETA DA FUNÇÃO initializeTheme DEVE ESTAR AQUI TAMBÉM
-// (E foi removida de dentro do document.addEventListener('DOMContentLoaded'))
+// <<< MUDANÇA AQUI >>>
+// 2. Mova a função initializeTheme() e sua chamada para fora do DOMContentLoaded.
+// Ela precisa ser executada o mais cedo possível para evitar o "flicker".
+/**
+ * Initialize theme based on user preference or system preference
+ * with improved transition between states
+ */
 function initializeTheme() {
-    // Definimos a chave para o localStorage UMA VEZ AQUI
-    const DARK_MODE_KEY = 'theme'; // <-- MUDANÇA AQUI: Usa 'theme' para consistência
-
-    // Tenta obter a preferência guardada no localStorage
-    const savedTheme = localStorage.getItem(DARK_MODE_KEY); 
-    
-    // Verifica a preferência do sistema operativo
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Aplica o tema
-    if (savedTheme === 'true' || (savedTheme === null && prefersDark)) {
+    // Check if user has a saved preference
+    const savedTheme = localStorage.getItem(DARK_MODE_KEY); // Usa a chave global
+        
+    // Prepare body for smooth transition. Adiciona a transição apenas APÓS o tema inicial ser aplicado.
+    // Isso evita que a transição aconteça no carregamento inicial, que é o que causa o "flicker".
+    // A transição será adicionada quando o usuário CLICAR no toggle.
+    // document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease'; // <<< REMOVIDO DAQUI >>>
+        
+    if (savedTheme === 'true') {
         document.body.classList.add('dark');
-        // Se o botão de tema já existir (porque este script é defer ou no final do body),
-        // atualize-o. Se não, ele será atualizado quando o DOM estiver pronto.
-        const themeToggleElement = document.getElementById("theme-toggle");
-        if (themeToggleElement) {
-            themeToggleElement.textContent = '🌞';
-            themeToggleElement.setAttribute('aria-label', 'Switch to Light Mode');
-        }
-        // Se a preferência for dark por sistema e não houver preferência anterior, guarda-a
-        if (savedTheme === null) { 
-            localStorage.setItem(DARK_MODE_KEY, 'true');
-        }
+        // themeToggle ainda não está disponível aqui (será no DOMContentLoaded)
+        // Por isso, esta lógica de atualização do texto do botão vai para o DOMContentLoaded
+    } else if (savedTheme === 'false') {
+        document.body.classList.remove('dark');
+        // themeToggle ainda não está disponível aqui
     } else {
-        document.body.classList.remove('dark'); // Garante que é light mode
-        const themeToggleElement = document.getElementById("theme-toggle");
-        if (themeToggleElement) {
-            themeToggleElement.textContent = '🌙';
-            themeToggleElement.setAttribute('aria-label', 'Switch to Dark Mode');
-        }
-        // Se a preferência for light por sistema e não houver preferência anterior, guarda-a
-        if (savedTheme === null) { 
-            localStorage.setItem(DARK_MODE_KEY, 'false');
+        // If no saved preference, check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+            localStorage.setItem(DARK_MODE_KEY, 'true'); // Guarda a preferência do sistema
+        } else {
+            // Se o sistema for light, garante que a classe 'dark' não está presente
+            document.body.classList.remove('dark');
+            localStorage.setItem(DARK_MODE_KEY, 'false'); // Guarda a preferência do sistema
         }
     }
-
-    // Ouve as mudanças no tema do sistema, mas só se o utilizador não tiver uma preferência guardada
+        
+    // Listen for system theme changes (mantenha, mas ajuste para usar DARK_MODE_KEY)
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (localStorage.getItem(DARK_MODE_KEY) === null) { // LÊ COM a chave definida acima
+            // Só auto-switch se o usuário NÃO tiver definido uma preferência manual
+            if (localStorage.getItem(DARK_MODE_KEY) === null) { 
                 if (e.matches) {
                     document.body.classList.add('dark');
-                    const themeToggleElement = document.getElementById("theme-toggle");
-                    if (themeToggleElement) {
-                        themeToggleElement.textContent = '🌞';
-                        themeToggleElement.setAttribute('aria-label', 'Switch to Light Mode');
-                    }
                 } else {
                     document.body.classList.remove('dark');
-                    const themeToggleElement = document.getElementById("theme-toggle");
-                    if (themeToggleElement) {
-                        themeToggleElement.textContent = '🌙';
-                        themeToggleElement.setAttribute('aria-label', 'Switch to Dark Mode');
-                    }
                 }
+                // O texto do botão será atualizado no DOMContentLoaded ou no toggleDarkMode
             }
         });
     }
 }
+// <<< MUDANÇA AQUI >>>
+// 3. Chame initializeTheme() imediatamente após a sua definição.
+initializeTheme();
 
-// O RESTO DO SEU CÓDIGO JS, DENTRO DO document.addEventListener('DOMContentLoaded', ...)
-document.addEventListener('DOMContentLoaded', () => {
-    // Não precisa mais da declaração de DARK_MODE_KEY aqui, pois já está globalmente na initializeTheme
-    // const DARK_MODE_KEY = 'darkMode'; // <-- REMOVA OU COMENTE ESTA LINHA
-    const THEME_TRANSITION_DURATION = 500; // ms
-    
-    // Elements (se estes elementos são usados apenas após o DOMContentLoaded, mantêm-se aqui)
-    const header = document.getElementById("header");
-    const themeToggle = document.getElementById("theme-toggle"); // Este deve ser o seu botão principal
-    const projectFilters = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
-    const contactForm = document.getElementById('contact-form');
-    const typewriterElement = document.getElementById('typewriter');
+// <<< MUDANÇA AQUI >>>
+// 4. Defina a constante THEME_TRANSITION_DURATION globalmente, se for usada em toggleDarkMode.
+const THEME_TRANSITION_DURATION = 500; // ms
 
-    console.log("Typewriter element found:", typewriterElement);
-    
-    // A chamada a initializeTheme() foi MOVIDA para o topo do ficheiro, então remova-a daqui:
-    // initializeTheme(); // <-- REMOVA OU COMENTE ESTA LINHA
-    
-    // Debounce function (mantenha como está)
-    function debounce(func, wait) {
-        let timeout;
-        return function() {
-            const context = this;
-            const args = arguments;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), wait);
-        };
-    }
-    
-    // Sticky header shadow (mantenha como está)
-    const debouncedHandleScroll = debounce(handleScroll, 10);
-    window.addEventListener("scroll", debouncedHandleScroll);
-    setTimeout(handleScroll, 100);
-    
-    // Dark mode toggle functionality (mantenha como está, mas usará a função global toggleDarkMode)
-    if (themeToggle) {
-        themeToggle.addEventListener("click", toggleDarkMode); // Usa a função global
-        
-        // Add tooltip to theme toggle (mantenha como está)
-        const tooltip = document.createElement('span');
-        tooltip.className = 'tooltip';
-        tooltip.textContent = 'Toggle Dark Mode';
-        themeToggle.appendChild(tooltip);
-        
-        // Show tooltip on hover (mantenha como está)
-        themeToggle.addEventListener('mouseenter', () => {
-            tooltip.style.opacity = '1';
-            tooltip.style.transform = 'translateY(0)';
-        });
-        
-        themeToggle.addEventListener('mouseleave', () => {
-            tooltip.style.opacity = '0';
-            tooltip.style.transform = 'translateY(10px)';
-        });
-    }
-    
-    // NOVO CÓDIGO: Mobile menu toggle (que estava no script inline do HTML)
-    const hamburgerMenu = document.querySelector('.mobile-menu-toggle');
-    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
-    const mobileClose = document.querySelector('.mobile-menu-close');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    const mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Assumindo uma classe para o toggle no menu mobile
-    
-    // Toggle mobile menu
-    if (hamburgerMenu && mobileOverlay) {
-        hamburgerMenu.addEventListener('click', function() {
-            hamburgerMenu.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
-        });
-    }
-    
-    // Close mobile menu
-    function closeMobileMenu() {
-        if (hamburgerMenu && mobileOverlay) {
-            hamburgerMenu.classList.remove('active');
-            mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    }
-    
-    if (mobileClose) {
-        mobileClose.addEventListener('click', closeMobileMenu);
-    }
-    
-    // Close menu when clicking nav links
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-    
-    // Close menu when clicking overlay
-    if (mobileOverlay) {
-        mobileOverlay.addEventListener('click', function(e) {
-            if (e.target === mobileOverlay) {
-                closeMobileMenu();
-            }
-        });
-    }
-    
-    // Mobile theme toggle - deve chamar a MESMA função toggleDarkMode
-    if (mobileThemeToggle) { 
-        mobileThemeToggle.addEventListener('click', toggleDarkMode); // <-- MUDANÇA AQUI: Usa a função global toggleDarkMode
-    }
-    
-    // Close menu on escape key (mantenha como está)
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
-
-    // Project filtering (mantenha como está)
-    if (projectFilters.length > 0 && projectItems.length > 0) {
-        setupProjectFilters();
-    }
-    
-    // Contact form handling (mantenha como está)
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactForm);
-        setupFormValidation();
-    }
-    
-    // Smooth scrolling for anchor links (mantenha como está)
-    setupSmoothScrolling();
-    
-    // Add animation classes (mantenha como está)
-    setupScrollAnimations();
-    
-    // Typewriter effect (mantenha como está)
-    if (typewriterElement) {
-        console.log("Setting up typewriter effect");
-        setupTypewriterEffect();
-    } else {
-        console.error("Typewriter element not found!");
-    }
-}); // Fim do DOMContentLoaded
-
-
-// AS SEGUINTES FUNÇÕES TAMBÉM DEVERÃO ESTAR FORA DO DOMContentLoaded
-// (se ainda não estiverem, mova-as para fora para que sejam acessíveis globalmente)
+// --- FUNÇÕES GLOBAIS ---
+// Mova funções que precisam ser acessíveis por outras funções fora do DOMContentLoaded para aqui
+// (como handleScroll e toggleDarkMode)
 
 /**
  * Handle scroll events for sticky header with improved animation
  * and performance optimization
  */
 function handleScroll() {
-    if (!header) return; // 'header' precisa de ser passado como argumento ou ser global se não estiver no DOMContentLoaded
-
-    // AVISO: A variável 'header' está declarada dentro do DOMContentLoaded.
-    // Para que esta função use 'header', ou ela precisa de estar dentro do DOMContentLoaded,
-    // ou 'header' precisa de ser uma variável global, ou ser passada como argumento.
-    // Sugestão: Defina 'const header = document.getElementById("header");' FORA DO DOMContentLoaded
-    // junto com themeToggle, para que sejam globais e acessíveis a estas funções.
+    // <<< ATENÇÃO >>> A variável 'header' ainda está declarada dentro do DOMContentLoaded.
+    // Se esta função for chamada fora do DOMContentLoaded (o que acontece com `window.addEventListener("scroll")`),
+    // 'header' não estará definida aqui.
+    // Para resolver isso, você precisará declarar `const header = document.getElementById("header");`
+    // FORA do DOMContentLoaded, talvez junto com DARK_MODE_KEY e THEME_TRANSITION_DURATION.
+    // Por enquanto, vamos assumir que você vai lidar com isso ou que o seu debounce/setTimeout
+    // ainda está a chamar handleScroll dentro de um contexto que vê 'header'.
     
+    // Para simplificar, vou assumir que 'header' será global. Se não for, teremos de mover a sua declaração.
+    const header = document.getElementById("header"); // Buscar aqui ou tornar global
+    if (!header) return;
+        
+    // Add shadow and transform effect to header when scrolled
     const scrolled = window.scrollY > 10;
-    
+        
     if (scrolled && !header.classList.contains("scrolled")) {
         header.classList.add("scrolled");
-        void header.offsetWidth; 
+        void header.offsetWidth;
     } else if (!scrolled && header.classList.contains("scrolled")) {
         header.classList.remove("scrolled");
     }
-    
+        
+    // Check for elements that should animate on scroll
     const animatedElements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
     animatedElements.forEach(element => {
         if (isElementInViewport(element)) {
@@ -244,87 +108,207 @@ function handleScroll() {
  */
 function toggleDarkMode() {
     // Add transition class to trigger smooth animation for all elements
-    document.documentElement.classList.add('theme-transition'); // Se esta classe não for usada, pode remover
-    
+    // Esta transição é adicionada aqui para animar a MUDANÇA de tema, não o carregamento inicial.
+    document.documentElement.classList.add('theme-transition'); 
+        
     // Toggle dark mode class
     document.body.classList.toggle('dark');
     const isDarkMode = document.body.classList.contains('dark');
-    
+        
     // Update button icon and aria-label for accessibility
-    const themeToggleElement = document.getElementById("theme-toggle"); // Pega no botão principal
-    if (themeToggleElement) {
-        themeToggleElement.textContent = isDarkMode ? '🌞' : '🌙';
-        themeToggleElement.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    const themeToggle = document.getElementById("theme-toggle"); // Busca o botão aqui
+    if (themeToggle) {
+        themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+        themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     }
-
-    // Se tiver um mobileThemeToggle separado, atualize-o também
-    const mobileThemeToggleElement = document.querySelector('.mobile-theme-toggle');
-    if (mobileThemeToggleElement && mobileThemeToggleElement !== themeToggleElement) {
-        mobileThemeToggleElement.textContent = isDarkMode ? '🌞' : '🌙';
-        mobileThemeToggleElement.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    
+    // <<< MUDANÇA AQUI >>> Se tiver um mobileThemeToggle separado, atualize-o também
+    const mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Assumindo uma classe para o toggle no menu mobile
+    if (mobileThemeToggle && mobileThemeToggle !== themeToggle) { // Evita atualizar duas vezes o mesmo botão
+        mobileThemeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+        mobileThemeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     }
-
+        
     // Save preference to localStorage
-    localStorage.setItem('theme', isDarkMode.toString()); // <-- MUDANÇA AQUI: Usa 'theme'
-    
+    localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString()); // Usa a chave global DARK_MODE_KEY
+        
     // Add animation to theme toggle
-    if (themeToggleElement) {
-        themeToggleElement.classList.add('theme-toggle-animation');
+    if (themeToggle) { // Certifica-se que o botão existe
+        themeToggle.classList.add('theme-toggle-animation');
     }
-    
-    // Flash effect on body background (mantenha como está)
+        
+    // Flash effect on body background
     const flashElement = document.createElement('div');
     flashElement.className = 'theme-flash';
     document.body.appendChild(flashElement);
-    
-    // Clean up animations after transition completes (mantenha como está)
+        
+    // Clean up animations after transition completes
     setTimeout(() => {
-        if (themeToggleElement) {
-            themeToggleElement.classList.remove('theme-toggle-animation');
+        if (themeToggle) { // Certifica-se que o botão existe
+            themeToggle.classList.remove('theme-toggle-animation');
         }
-        document.documentElement.classList.remove('theme-transition'); 
+        document.documentElement.classList.remove('theme-transition'); // Remove a transição
         if (flashElement.parentNode) {
             flashElement.parentNode.removeChild(flashElement);
         }
     }, THEME_TRANSITION_DURATION);
 }
 
-/**
- * Setup project filtering functionality
- */
-function setupProjectFilters() { /* ... mantém como está ... */ }
-
-/**
- * Setup form validation with real-time feedback
- */
-function setupFormValidation() { /* ... mantém como está ... */ }
-
-/**
- * Validate form input and show feedback
- */
-function validateInput(input, feedback) { /* ... mantém como está ... */ }
-
-/**
- * Handle contact form submission with enhanced validation
- */
-function handleContactForm(e) { /* ... mantém como está ... */ }
-
-/**
- * Setup smooth scrolling for anchor links
- */
-function setupSmoothScrolling() { /* ... mantém como está ... */ }
-
-/**
- * Setup typewriter effect for the hero section
- */
-function setupTypewriterEffect() { /* ... mantém como está ... */ }
+// Resto das funções que estavam fora do DOMContentLoaded ou que você mova para fora.
+// (debounce, isElementInViewport, setupTypewriterEffect, etc.)
+// Mantenha estas como estão.
 
 /**
  * Check if element is in viewport
+ * @param {HTMLElement} el - Element to check
+ * @returns {boolean} - True if element is in viewport
  */
-function isElementInViewport(el) { /* ... mantém como está ... */ }
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+        rect.bottom >= 0 &&
+        rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+        rect.right >= 0
+    );
+}
 
-/**
- * Setup scroll animations
- */
-function setupScrollAnimations() { /* ... mantém como está ... */ }
+// --- FIM DAS FUNÇÕES GLOBAIS ---
+
+
+// Wait for DOM content to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // <<< MUDANÇA AQUI >>>
+    // 5. Remova as declarações de DARK_MODE_KEY e initializeTheme() daqui, pois já estão globais.
+    // const DARK_MODE_KEY = 'darkMode'; // REMOVA ESTA LINHA
+    // const THEME_TRANSITION_DURATION = 500; // ms // REMOVA ESTA LINHA (ou deixe se for usada apenas aqui para outras animações, mas não para o dark mode)
+        
+    // Elements (Mantenha estas declarações aqui, elas são usadas por funções dentro do DOMContentLoaded)
+    const header = document.getElementById("header");
+    const themeToggle = document.getElementById("theme-toggle");
+    const projectFilters = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    const contactForm = document.getElementById('contact-form');
+    const typewriterElement = document.getElementById('typewriter');
+
+    console.log("Typewriter element found:", typewriterElement);
+        
+    // Initialize theme based on user preference
+    // initializeTheme(); // <<< REMOVA ESTA LINHA, pois já foi chamada globalmente >>>
+        
+    // Debounce function for performance optimization
+    // Mantenha a função debounce aqui, ou mova para global se for usada noutros contextos.
+    function debounce(func, wait) {
+        let timeout;
+        return function() {
+            const context = this;
+            const args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    }
+        
+    // Sticky header shadow on scroll with debounce for performance
+    const debouncedHandleScroll = debounce(handleScroll, 10);
+    window.addEventListener("scroll", debouncedHandleScroll);
+        
+    // Initial scroll check (in case page is loaded scrolled down)
+    setTimeout(handleScroll, 100);
+        
+    // Dark mode toggle functionality with improved animation
+    if (themeToggle) {
+        themeToggle.addEventListener("click", toggleDarkMode);
+            
+        // Add tooltip to theme toggle
+        const tooltip = document.createElement('span');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = 'Toggle Dark Mode';
+        themeToggle.appendChild(tooltip);
+            
+        // Show tooltip on hover
+        themeToggle.addEventListener('mouseenter', () => {
+            tooltip.style.opacity = '1';
+            tooltip.style.transform = 'translateY(0)';
+        });
+            
+        themeToggle.addEventListener('mouseleave', () => {
+            tooltip.style.opacity = '0';
+            tooltip.style.transform = 'translateY(10px)';
+        });
+    }
+
+    // <<< MUDANÇA AQUI >>>
+    // 6. Adicione aqui a lógica para atualizar o texto/ícone do themeToggle após o DOM estar pronto
+    // Isso garante que o ícone do botão reflita o tema inicial definido por initializeTheme()
+    // assim que o elemento 'themeToggle' estiver disponível no DOM.
+    if (themeToggle) {
+        const isDarkMode = document.body.classList.contains('dark');
+        themeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+        themeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    }
+    // E faça o mesmo para o mobileThemeToggle, se tiver um botão separado no menu mobile.
+    const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
+    if (mobileThemeToggle) {
+        const isDarkMode = document.body.classList.contains('dark');
+        mobileThemeToggle.textContent = isDarkMode ? '🌞' : '🌙';
+        mobileThemeToggle.setAttribute('aria-label', isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+        mobileThemeToggle.addEventListener('click', toggleDarkMode); // Garanta que o mobile toggle chama a mesma função
+    }
+        
+    // Project filtering (on projects page)
+    if (projectFilters.length > 0 && projectItems.length > 0) {
+        setupProjectFilters();
+    }
+        
+    // Contact form handling with improved validation
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactForm);
+        setupFormValidation();
+    }
+        
+    // Smooth scrolling for anchor links
+    setupSmoothScrolling();
+        
+    // Add animation classes when elements come into view
+    setupScrollAnimations();
+        
+    // Setup typewriter effect for the hero section - run immediately
+    if (typewriterElement) {
+        console.log("Setting up typewriter effect");
+        setupTypewriterEffect();
+    } else {
+        console.error("Typewriter element not found!");
+    }
+        
+    // <<< MUDANÇA AQUI >>> A função initializeTheme() e toggleDarkMode() foram movidas para fora do DOMContentLoaded.
+    // As funções que estavam aqui (initializeTheme, handleScroll, toggleDarkMode, setupProjectFilters, etc.)
+    // Devem ser removidas daqui ou estar no escopo global (como fiz acima para handleScroll e toggleDarkMode).
+
+    // Mobile menu toggle (este bloco inteiro estava separado, vamos integrá-lo)
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+        
+    if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
+            
+        // Close menu when clicking on a link
+        mobileNav.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                mobileNav.classList.remove('active');
+            }
+        });
+    }
+
+    // Se tiver um botão de fechar para o menu mobile ou lógica mais complexa,
+    // adicione aqui ou como função global se precisar ser chamada de fora.
+    // Exemplo:
+    // const mobileCloseBtn = document.getElementById('mobile-close-btn');
+    // if (mobileCloseBtn) {
+    //     mobileCloseBtn.addEventListener('click', () => mobileNav.classList.remove('active'));
+    // }
+});
+// <<< MUDANÇA AQUI >>> O bloco de código para Mobile menu toggle que estava separado
+// foi movido para dentro do DOMContentLoaded principal, para consolidar tudo.
+// document.addEventListener('DOMContentLoaded', function() { ... }); // REMOVA ESTE BLOCO EXTRA
