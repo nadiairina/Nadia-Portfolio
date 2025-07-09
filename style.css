@@ -2217,17 +2217,36 @@ body.dark .service-includes i {
         font-size: 1rem !important;
     }
 }
-/* No seu ficheiro CSS existente, adicione esta regra */
+/* No seu ficheiro CSS existente, adicione/modifique estas regras */
 
-/* Problema 1: Sticky Navigation não desaparece quando o menu móvel está aberto (no telemóvel) */
-@media (max-width: 768px) { /* Aplica-se apenas a dispositivos móveis */
-    /* Assumindo que a classe 'mobile-menu-open' é adicionada ao body quando o menu mobile está aberto */
-    body.mobile-menu-open .sticky-nav { /* Substitua '.sticky-nav' pelo seletor exato da sua barra de navegação sticky */
-        display: none !important; /* Esconde a navegação sticky */
-        /* OU */
-        /* transform: translateY(-100%) !important; */ /* Move para cima para fora da vista */
-        /* visibility: hidden !important; */ /* Torna invisível */
-    }
+/* Problema 1: Sticky Navigation continua a aparecer à frente do menu (no telemóvel) */
+@media (max-width: 768px) {
+    /* Assegurar que o menu mobile está sempre acima do header */
+    .mobile-menu-overlay {
+        position: fixed; /* Essencial para o z-index funcionar bem com elementos que cobrem a tela */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Ocupar a altura total da viewport */
+        background-color: var(--bg-dark); /* Ou a cor de fundo que deseja para o menu */
+        z-index: 99; /* DEVE ser maior que o z-index do .header (que é 50) */
+        overflow-y: auto; /* Para permitir scroll se o conteúdo do menu for maior que a tela */
+        display: flex; /* Se já estiver a usar flexbox para o conteúdo interno do menu */
+        flex-direction: column; /* Se já estiver a usar flexbox */
+        /* Outras transições ou estilos do seu menu móvel */
+    }
+
+    /* Ocultar a sticky navigation APENAS SE O SEU JS PUDEr ADICIONAR UMA CLASSE */
+    /* Se o seu JavaScript ADICIONA uma classe ao .mobile-menu-overlay (ex: .is-open)
+       quando ele está visível, podemos usá-la.
+       Ex: .mobile-menu-overlay.is-open + .header { display: none; }
+       Mas se não adiciona, a solução de z-index é a melhor. */
+
+    /* Pelo seu código HTML na imagem, o header tem z-index 50. */
+    /* O menu mobile precisa de um z-index maior para cobrir */
+    .header {
+        z-index: 50; /* Manter o seu z-index atual */
+    }
 }
 /* ===== DARK MODE ICON FIXES ===== */
 
