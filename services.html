@@ -5,26 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pacotes de Web Design - Nadia Irina">
     <title>Serviços | Nadia Irina</title>
-    <script>
-// Função para aplicar o tema correto o mais cedo possível
-(function() {
-// Tenta obter a preferência guardada no localStorage
-const storedTheme = localStorage.getItem('theme'); // Verifica a chave 'theme'
-
-// Verifica a preferência do sistema operativo (se não houver preferência guardada)
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-// Se houver um tema guardado E for 'dark', OU
-// Se não houver tema guardado E o sistema operativo prefere dark
-if (storedTheme === 'dark' || (storedTheme === null && prefersDark)) {
-// ALTERAÇÃO AQUI: adiciona a classe 'dark' ao body, não ao html
-document.body.classList.add('dark');
-} else {
-// E remove também do body
-document.body.classList.remove('dark');
-}
-})();
-</script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="typewriter-and-darkmode.css">
