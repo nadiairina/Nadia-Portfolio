@@ -2471,22 +2471,23 @@ body.dark .cta-section .btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.5);
 }
-/* --- CSS PARA ESCONDER STICKY HEADER E CORRIGIR BOTÃO CURRICULO --- */
+/* --- CORREÇÃO FINAL PARA HEADER STICKY E BOTÃO CURRÍCULO --- */
 
 /* Esconde o header sticky quando o menu mobile está aberto */
-body.mobile-menu-open .header.scrolled {
-    position: absolute !important; /* Ou fixed, se o seu header sticky original for fixed */
-    top: -100px !important; /* Mover para cima fora da vista. Ajuste se o seu header for maior. */
+body.mobile-menu-open .header {
+    position: absolute !important;
+    top: -200px !important; /* Ajuste para MAIOR que a altura do seu header */
     opacity: 0 !important;
-    pointer-events: none !important; /* Impede cliques */
-    transition: top 0.3s ease-out, opacity 0.3s ease-out !important; /* Suaviza a transição */
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: top 0.4s ease-in-out, opacity 0.4s ease-in-out, visibility 0.4s ease-in-out !important;
 }
 
-/* Regras do Botão Currículo (com !important para forçar a cor roxa) */
+/* Regras do Botão Currículo (cor e tamanho consistentes) */
 .resume-btn {
-    background-color: #6366F1 !important; /* Roxo específico */
-    color: white !important; /* Texto branco */
-    border: 1px solid #6366F1 !important; /* Borda roxa */
+    background-color: #6366F1 !important; /* Roxo */
+    color: white !important;
+    border: 1px solid #6366F1 !important;
     padding: 12px 25px !important;
     border-radius: 8px !important;
     text-decoration: none !important;
@@ -2496,25 +2497,27 @@ body.mobile-menu-open .header.scrolled {
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
+    font-size: 1rem !important; /* Essencial para o tamanho */
+    min-width: 150px !important; /* Garante largura mínima */
 }
 
 .resume-btn:hover {
-    background-color: #5558d1 !important; /* Roxo mais escuro no hover */
-    border-color: #5558d1 !important; /* Borda mais escura no hover */
-    transform: translateY(-2px) !important; /* Efeito de levantar */
-    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important; /* Sombra suave */
+    background-color: #5558d1 !important; /* Roxo escuro hover */
+    border-color: #5558d1 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2) !important;
 }
 
-/* Regras do Botão Currículo em Dark Mode (garante o roxo mesmo no dark mode) */
+/* Dark Mode para o botão */
 body.dark .resume-btn {
-    background-color: #6366F1 !important; /* Roxo específico no dark mode */
+    background-color: #6366F1 !important;
     color: white !important;
     border-color: #6366F1 !important;
 }
 
 body.dark .resume-btn:hover {
-    background-color: #5558d1 !important; /* Roxo mais escuro no hover do dark mode */
+    background-color: #5558d1 !important;
     border-color: #5558d1 !important;
 }
 
-/* --- FIM DO CSS DE CORREÇÃO --- */
+/* --- FIM DA CORREÇÃO FINAL --- */
