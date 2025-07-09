@@ -760,66 +760,6 @@ body.dark .mobile-theme-toggle {
     </footer>
 
     <script src="script.js"></script>
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburgerMenu = document.querySelector('.mobile-menu-toggle');
-    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
-    const mobileClose = document.querySelector('.mobile-menu-close');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    const mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
     
-    // Toggle mobile menu
-    if (hamburgerMenu && mobileOverlay) {
-        hamburgerMenu.addEventListener('click', function() {
-            hamburgerMenu.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
-        });
-    }
-    
-    // Close mobile menu
-    function closeMobileMenu() {
-        if (hamburgerMenu && mobileOverlay) {
-            hamburgerMenu.classList.remove('active');
-            mobileOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    }
-    
-    if (mobileClose) {
-        mobileClose.addEventListener('click', closeMobileMenu);
-    }
-    
-    // Close menu when clicking nav links
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
-    });
-    
-    // Close menu when clicking overlay
-    if (mobileOverlay) {
-        mobileOverlay.addEventListener('click', function(e) {
-            if (e.target === mobileOverlay) {
-                closeMobileMenu();
-            }
-        });
-    }
-    
-    // Mobile theme toggle
-    if (mobileThemeToggle) {
-        mobileThemeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark');
-            const isDark = document.body.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-    }
-    
-    // Close menu on escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('active')) {
-            closeMobileMenu();
-        }
-    });
-});
-</script>
 </body>
 </html>
