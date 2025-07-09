@@ -2469,3 +2469,25 @@ body.dark .cta-section .btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.5);
 }
+/* No seu style.css, adicione estas regras no final do ficheiro
+   ou numa secção para overrides/correções específicas */
+
+/* Garante que o header sticky não aparece quando o menu móvel está aberto */
+.mobile-menu-overlay.active + .header.scrolled,
+.mobile-menu-overlay.active ~ .header.scrolled {
+    position: relative !important; /* Volta à posição normal ou inicial */
+    transform: translateY(-100%) !important; /* Esconde completamente o header */
+    opacity: 0 !important; /* Garante que fica invisível */
+    pointer-events: none !important; /* Impede cliques */
+    /* Ajuste o 'transition-duration' se o seu header sticky tiver uma transição específica */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out !important; 
+}
+
+/* Se o seu header está fora do fluxo normal do documento, pode precisar de uma variação: */
+body.mobile-menu-open .header.scrolled { /* Se adicionar uma classe ao body quando o menu abre */
+    position: relative !important;
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
+}
