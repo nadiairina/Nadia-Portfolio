@@ -148,22 +148,30 @@ function isElementInViewport(el) {
 // Wait for DOM content to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Inicialize as variáveis globais aqui, onde os elementos DOM já existem.
-    header = document.getElementById("header");
-    themeToggle = document.getElementById("theme-toggle");
+    header = document.getElementById("header"); // Certifique-se de que o seu header tem id="header"
+    themeToggle = document.getElementById("theme-toggle"); // Certifique-se de que o seu toggle desktop tem id="theme-toggle"
     
     // Elementos do menu móvel:
     mobileMenuBtn = document.querySelector('.mobile-menu-toggle');
-    mobileNav = document.querySelector('.mobile-nav-overlay'); // Se o seu menu móvel for a sobreposição
+    mobileOverlay = document.querySelector('.mobile-menu-overlay'); // O seu código usa '.mobile-menu-overlay'
     mobileCloseBtn = document.querySelector('.mobile-menu-close');
     mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); // Botão de tema DENTRO do menu móvel
-    mobileOverlay = document.querySelector('.mobile-menu-overlay'); // O overlay em si
-
+    
     typewriterElement = document.getElementById('typewriter');
 
     const projectFilters = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
     const contactForm = document.getElementById('contact-form');
+
+    // Elementos da página de serviços para a funcionalidade de filtro
+    const filterBtnsServices = document.querySelectorAll('.filter-btn'); // Poderia ser diferente se os seletores não forem os mesmos em projetos e serviços
+    const categoriesServices = document.querySelectorAll('.extras-category');
+    const gridServices = document.querySelector('.extras-grid');
+
+    // Elementos da página de serviços para navegação sticky e smooth scrolling
+    const servicesNavLinks = document.querySelector('.services-nav-links');
+    const packagesSection = document.getElementById('packages');
 
     console.log("Typewriter element found:", typewriterElement);
         
@@ -190,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Configuração do menu móvel (transferido do seu script embutido)
+    // Configuração do menu móvel (agora integrada aqui)
     if (mobileMenuBtn && mobileOverlay) {
         mobileMenuBtn.addEventListener('click', function() {
             mobileMenuBtn.classList.toggle('active');
@@ -207,19 +215,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    if (mobileCloseBtn) { // Usando mobileCloseBtn para o botão de fechar (se existir)
+    if (mobileCloseBtn) { 
         mobileCloseBtn.addEventListener('click', closeMobileMenu);
     }
     
-    if (mobileNavLinks) { // Para os links de navegação dentro do menu móvel
+    if (mobileNavLinks) { 
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', closeMobileMenu);
         });
     }
     
-    if (mobileOverlay) { // Fechar menu ao clicar na área escura do overlay
+    if (mobileOverlay) { 
         mobileOverlay.addEventListener('click', function(e) {
-            if (e.target === mobileOverlay) { // Assegura que só fecha se o clique for no overlay, não nos elementos filhos
+            if (e.target === mobileOverlay) { 
                 closeMobileMenu();
             }
         });
@@ -234,13 +242,140 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configuração do botão de toggle do tema no menu móvel
     if (mobileThemeToggle) {
-        mobileThemeToggle.addEventListener('click', toggleDarkMode); // Liga à nossa função global toggleDarkMode
-        updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark')); // Atualiza o ícone inicial
+        mobileThemeToggle.addEventListener('click', toggleDarkMode); 
+        updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark')); 
     }
+
+    // --- Funcionalidade de Filtro de Serviços (do seu código enviado) ---
+    if (filterBtnsServices.length > 0 && categoriesServices.length > 0 && gridServices) {
+        filterBtnsServices.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtnsServices.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-category');
+
+                if (filterValue === 'all') {
+                    gridServices.classList.remove('filtered');
+                    categoriesServices.forEach(category => {
+                        category.classList.remove('filter-hidden');
+                    });
+                } else {
+                    gridServices.classList.add('filtered');
+                    categoriesServices.forEach(category => {
+                        if (category.getAttribute('data-category') === filterValue) {
+                            category.classList.remove('filter-hidden');
+                        } else {
+                            category.classList.add('filter-hidden');
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    // --- Smooth Scrolling para Links de Navegação (do seu código enviado) ---
+    // Note: Esta função pode ser redundante se setupSmoothScrolling() já lidar com isso.
+    // Se seus links de navegação principal (não os de serviços) não estão usando IDs para seções,
+    // ou se o offset é diferente, pode ser necessário manter uma versão mais geral ou específica.
+    // Por enquanto, vou incluir a sua versão. Avaliaremos se é redundante mais tarde.
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').slice(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 80; // Ajuste de offset
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // --- Show/Hide Navigation based on scroll position (do seu código enviado) ---
+    // Note: Este é específico para a navegação de serviços.
+    window.addEventListener('scroll', function() {
+        if (servicesNavLinks && packagesSection) {
+            const packagesPosition = packagesSection.offsetTop - 50; 
+            const scrollPosition = window.scrollY;
+            
+            if (scrollPosition >= packagesPosition) {
+                servicesNavLinks.classList.add('visible');
+            } else {
+                servicesNavLinks.classList.remove('visible');
+            }
+        }
+    });
+
+    // --- Smooth scrolling for services navigation links (do seu código enviado) ---
+    document.querySelectorAll('.services-nav-links a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').slice(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 80; // Ajuste de offset
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // --- FORCE COMPACT MONTHLY PLAN VIA JAVASCRIPT (do seu código enviado) ---
+    // Este código deve ser executado no DOMContentLoaded para garantir que os elementos existem.
+    setTimeout(function() {
+        const container = document.querySelector('.monthly-plan-container');
+        const card = document.querySelector('.monthly-plan-card');
+        const title = document.querySelector('.monthly-plan-title');
+        const subtitle = document.querySelector('.monthly-plan-subtitle');
+        const price = document.querySelector('.monthly-plan-price');
+        const badge = document.querySelector('.monthly-plan-badge');
+        const content = document.querySelector('.monthly-plan-content');
+        const includes = document.querySelectorAll('.plan-includes, .plan-excludes');
+        const section = document.querySelector('.monthly-plan-section, #monthly-plan'); // Também adicionei um ID para melhor seletor
+
+        if (container) {
+            container.style.cssText = 'max-width: 400px !important; margin: 0 auto !important; padding: 0 15px !important;';
+        }
+        if (card) {
+            card.style.cssText = 'background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1)) !important; border: 1px solid var(--primary-color) !important; border-radius: 15px !important; padding: 20px !important; text-align: center !important; box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1) !important; position: relative !important; overflow: visible !important; max-width: 100% !important; width: 100% !important;';
+        }
+        if (title) {
+            title.style.cssText = 'font-size: 1.6rem !important; font-weight: 800 !important; color: var(--text-dark) !important; margin-bottom: 15px !important; line-height: 1.2 !important;';
+        }
+        if (subtitle) {
+            subtitle.style.cssText = 'font-size: 0.95rem !important; color: var(--text-muted) !important; margin-bottom: 20px !important; line-height: 1.4 !important; margin-left: auto !important; margin-right: auto !important; max-width: 320px !important;';
+        }
+        if (price) {
+            price.style.cssText = 'font-size: 2.2rem !important; font-weight: 900 !important; color: var(--primary-color) !important; margin-bottom: 20px !important;';
+        }
+        if (badge) {
+            badge.style.cssText = 'display: inline-block !important; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important; color: white !important; padding: 5px 12px !important; border-radius: 15px !important; font-size: 0.7rem !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; margin-bottom: 12px !important;';
+        }
+        if (content) {
+            content.style.cssText = 'display: flex !important; flex-direction: column !important; gap: 12px !important; margin-bottom: 20px !important; text-align: left !important;';
+        }
+        includes.forEach(function(element) {
+            if (element) {
+                element.style.cssText = 'background: white !important; border-radius: 10px !important; padding: 12px !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; border: 1px solid var(--border-color) !important;';
+                element.classList.add('content-creation-card');
+            }
+        });
+        if (section) {
+            section.style.cssText = 'padding: 30px 0 !important;';
+        }
+    }, 100);
+
 
     // --- Outras Funções que já estavam no seu JS principal ---
     if (projectFilters.length > 0 && projectItems.length > 0) {
-        setupProjectFilters();
+        setupProjectFilters(); // Esta função lida com os filtros de projeto
     }
         
     if (contactForm) {
@@ -248,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupFormValidation();
     }
         
-    setupSmoothScrolling();
+    setupSmoothScrolling(); // Esta função lida com o smooth scrolling genérico
         
     setupScrollAnimations();
         
@@ -260,13 +395,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Funções Auxiliares (mantidas dentro de DOMContentLoaded) ---
+    // (Estas são as versões de `setupProjectFilters`, `setupFormValidation`, `validateInput`, `handleContactForm`,
+    // `setupSmoothScrolling`, `setupScrollAnimations`, `setupTypewriterEffect` que já estavam no nosso script principal)
+
+    // Note: Eu incluí as versões mais recentes das funções que já tínhamos no script principal.
+    // É importante não duplicar funções com o mesmo nome que já existam, ou que façam a mesma coisa.
+    // Revisarei as funções de smooth scrolling e filtro se houver redundância ou conflito após o teste.
 
     function setupProjectFilters() {
         projectFilters.forEach(button => {
             button.addEventListener('click', () => {
                 projectFilters.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                const filterValue = button.getAttribute('data-filter');
+                const filterValue = button.getAttribute('data-category'); // Alterado para 'data-category' para consistência
                 projectItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.style.display = 'grid';
