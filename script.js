@@ -35,9 +35,9 @@ function initializeTheme() {
     const savedTheme = localStorage.getItem(DARK_MODE_KEY); // Usa a chave consistente
     let shouldBeDarkMode = false;
 
-    if (savedTheme !== null) {
+    if (savedTheme !== null) { 
         shouldBeDarkMode = (savedTheme === 'true');
-    } else {
+    } else { 
         shouldBeDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         localStorage.setItem(DARK_MODE_KEY, shouldBeDarkMode.toString());
     }
@@ -47,10 +47,10 @@ function initializeTheme() {
     } else {
         document.body.classList.remove('dark');
     }
-
+        
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (localStorage.getItem(DARK_MODE_KEY) === null) {
+            if (localStorage.getItem(DARK_MODE_KEY) === null) { 
                 const isSystemDarkMode = e.matches;
                 document.body.classList.toggle('dark', isSystemDarkMode);
                 updateThemeToggleButton(themeToggle, isSystemDarkMode);
@@ -67,13 +67,18 @@ initializeTheme();
  * Handle scroll events for sticky header with improved animation
  */
 function handleScroll() {
-    // <<<<<<<<< ALTERADO AQUI: REMOVIDA A SEÇÃO QUE CAUSAVA CONFLITO >>>>>>>>>
-    // A lógica para esconder o header quando o menu mobile está aberto
-    // agora é tratada inteiramente pelo CSS (classe 'mobile-menu-open' no body)
-    // para melhor desempenho e consistência.
-    // Nenhuma alteração JS é necessária aqui para essa parte.
+    // --- INÍCIO DA CORREÇÃO 1: Sticky Navigation no Menu Mobile ---
+    if (mobileOverlay && mobileOverlay.classList.contains('active')) {
+        // Se o menu mobile estiver aberto, remove a classe 'scrolled' do header
+        // e sai da função para que o sticky não seja aplicado
+        if (header && header.classList.contains("scrolled")) {
+            header.classList.remove("scrolled");
+        }
+        return; // Sai da função para não aplicar o sticky effect
+    }
+    // --- FIM DA CORREÇÃO 1 ---
 
-    if (!header) return;
+    if (!header) return; 
     const scrolled = window.scrollY > 10;
     if (scrolled && !header.classList.contains("scrolled")) {
         header.classList.add("scrolled");
@@ -93,29 +98,29 @@ function handleScroll() {
  * Toggle dark mode with enhanced animation and accessibility
  */
 function toggleDarkMode() {
-    document.documentElement.classList.add('theme-transition');
-
+    document.documentElement.classList.add('theme-transition'); 
+        
     document.body.classList.toggle('dark');
     const isDarkMode = document.body.classList.contains('dark');
-
+        
     updateThemeToggleButton(themeToggle, isDarkMode);
     updateThemeToggleButton(mobileThemeToggle, isDarkMode); // Garante que o mobile toggle também é atualizado
-
+        
     localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString()); // Usa a chave consistente
-
+        
     if (themeToggle) {
         themeToggle.classList.add('theme-toggle-animation');
     }
-
+        
     const flashElement = document.createElement('div');
     flashElement.className = 'theme-flash';
     document.body.appendChild(flashElement);
-
+        
     setTimeout(() => {
         if (themeToggle) {
             themeToggle.classList.remove('theme-toggle-animation');
         }
-        document.documentElement.classList.remove('theme-transition');
+        document.documentElement.classList.remove('theme-transition'); 
         if (flashElement.parentNode) {
             flashElement.parentNode.removeChild(flashElement);
         }
@@ -155,16 +160,16 @@ function isElementInViewport(el) {
 document.addEventListener('DOMContentLoaded', () => {
     // Inicialize as variáveis globais aqui, onde os elementos DOM já existem.
     header = document.querySelector(".header"); // Seleciona o header pela classe 'header'
-
-    themeToggle = document.getElementById("theme-toggle");
-
+    
+    themeToggle = document.getElementById("theme-toggle"); 
+    
     // Elementos do menu móvel:
     mobileMenuBtn = document.querySelector('.mobile-menu-toggle');
-    mobileOverlay = document.querySelector('.mobile-menu-overlay');
+    mobileOverlay = document.querySelector('.mobile-menu-overlay'); 
     mobileCloseBtn = document.querySelector('.mobile-menu-close');
     mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
-
+    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); 
+    
     typewriterElement = document.getElementById('typewriter');
 
     const projectFilters = document.querySelectorAll('.filter-btn');
@@ -172,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
 
     // Elementos da página de serviços para a funcionalidade de filtro
-    const filterBtnsServices = document.querySelectorAll('.filter-btn');
+    const filterBtnsServices = document.querySelectorAll('.filter-btn'); 
     const categoriesServices = document.querySelectorAll('.extras-category');
     const gridServices = document.querySelector('.extras-grid');
 
@@ -181,11 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const packagesSection = document.getElementById('packages');
 
     console.log("Typewriter element found:", typewriterElement);
-
+        
     const debouncedHandleScroll = debounce(handleScroll, 10);
     window.addEventListener("scroll", debouncedHandleScroll);
     setTimeout(handleScroll, 100);
-
+        
     // Configuração do botão de toggle do tema principal (desktop)
     if (themeToggle) {
         themeToggle.addEventListener("click", toggleDarkMode);
@@ -211,39 +216,35 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuBtn.classList.toggle('active');
             mobileOverlay.classList.toggle('active');
             document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
-            // <<<<<<<<< ADICIONADO AQUI: Controla a classe 'mobile-menu-open' no body >>>>>>>>>
-            document.body.classList.toggle('mobile-menu-open', mobileOverlay.classList.contains('active'));
         });
     }
-
+    
     function closeMobileMenu() {
         if (mobileMenuBtn && mobileOverlay) {
             mobileMenuBtn.classList.remove('active');
             mobileOverlay.classList.remove('active');
             document.body.style.overflow = '';
-            // <<<<<<<<< ADICIONADO AQUI: Remove a classe 'mobile-menu-open' do body >>>>>>>>>
-            document.body.classList.remove('mobile-menu-open');
         }
     }
-
-    if (mobileCloseBtn) {
+    
+    if (mobileCloseBtn) { 
         mobileCloseBtn.addEventListener('click', closeMobileMenu);
     }
-
-    if (mobileNavLinks) {
+    
+    if (mobileNavLinks) { 
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', closeMobileMenu);
         });
     }
-
-    if (mobileOverlay) {
+    
+    if (mobileOverlay) { 
         mobileOverlay.addEventListener('click', function(e) {
-            if (e.target === mobileOverlay) {
+            if (e.target === mobileOverlay) { 
                 closeMobileMenu();
             }
         });
     }
-
+    
     // Fechar menu na tecla Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('active')) {
@@ -253,8 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configuração do botão de toggle do tema no menu móvel
     if (mobileThemeToggle) {
-        mobileThemeToggle.addEventListener('click', toggleDarkMode);
-        updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark'));
+        mobileThemeToggle.addEventListener('click', toggleDarkMode); 
+        updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark')); 
     }
 
     // --- Funcionalidade de Filtro de Serviços (do seu código enviado) ---
@@ -291,9 +292,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = this.getAttribute('href').slice(1);
             const targetElement = document.getElementById(targetId);
-
+            
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80;
+                const offsetTop = targetElement.offsetTop - 80; 
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -306,9 +307,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Note: Este é específico para a navegação de serviços.
     window.addEventListener('scroll', function() {
         if (servicesNavLinks && packagesSection) {
-            const packagesPosition = packagesSection.offsetTop - 50;
+            const packagesPosition = packagesSection.offsetTop - 50; 
             const scrollPosition = window.scrollY;
-
+            
             if (scrollPosition >= packagesPosition) {
                 servicesNavLinks.classList.add('visible');
             } else {
@@ -323,9 +324,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = this.getAttribute('href').slice(1);
             const targetElement = document.getElementById(targetId);
-
+            
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80;
+                const offsetTop = targetElement.offsetTop - 80; 
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -344,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const badge = document.querySelector('.monthly-plan-badge');
         const content = document.querySelector('.monthly-plan-content');
         const includes = document.querySelectorAll('.plan-includes, .plan-excludes');
-        const section = document.querySelector('.monthly-plan-section, #monthly-plan');
+        const section = document.querySelector('.monthly-plan-section, #monthly-plan'); 
 
         if (container) {
             container.style.cssText = 'max-width: 400px !important; margin: 0 auto !important; padding: 0 15px !important;';
@@ -381,18 +382,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Outras Funções que já estavam no seu JS principal ---
     if (projectFilters.length > 0 && projectItems.length > 0) {
-        setupProjectFilters();
+        setupProjectFilters(); 
     }
-
+        
     if (contactForm) {
         contactForm.addEventListener('submit', handleContactForm);
         setupFormValidation();
     }
-
-    setupSmoothScrolling();
-
+        
+    setupSmoothScrolling(); 
+        
     setupScrollAnimations();
-
+        
     if (typewriterElement) {
         console.log("Setting up typewriter effect");
         setupTypewriterEffect();
@@ -409,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', () => {
                 projectFilters.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                const filterValue = button.getAttribute('data-category');
+                const filterValue = button.getAttribute('data-category'); 
                 projectItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.style.display = 'grid';
@@ -424,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
+        
     function setupFormValidation() {
         if (!contactForm) return;
         const formInputs = contactForm.querySelectorAll('input, textarea');
@@ -442,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
+        
     function validateInput(input, feedback) {
         const value = input.value.trim();
         const name = input.name;
@@ -468,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.textContent = '';
         return true;
     }
-
+        
     function handleContactForm(e) {
         e.preventDefault();
         const name = document.getElementById('name').value.trim();
@@ -507,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
             contactForm.reset();
         }, 300);
     }
-
+        
     function setupSmoothScrolling() {
         const anchorLinks = document.querySelectorAll('a[href^="#"]');
         anchorLinks.forEach(link => {
@@ -528,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
+        
     function setupScrollAnimations() {
         const elementsToAnimate = document.querySelectorAll('.project-card, .skill-category, .section-heading');
         elementsToAnimate.forEach(element => {
@@ -536,12 +537,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         handleScroll();
     }
-
+    
     function setupTypewriterEffect() {
         const phrases = ['Marketeer', 'Front-End Developer'];
         let index = 0;
         let charIndex = 0;
-
+        
         function typeNextCharacter() {
             if (!typewriterElement) {
                 console.error("Typewriter element not available for effect.");
@@ -549,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const currentPhrase = phrases[index % phrases.length];
-
+                
             if (charIndex < currentPhrase.length) {
                 typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
                 charIndex++;
