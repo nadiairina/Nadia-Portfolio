@@ -2578,3 +2578,48 @@ body.section-services-hero .resume-btn {
         font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
     }
 }
+/* SAFARI-SPECIFIC FIXES - Only applies to Safari browser */
+@supports (-webkit-appearance: none) {
+  /* Fix 1: Navigation spacing - titles too close */
+  .nav {
+    gap: 2.5rem !important; /* Increased from default gap */
+  }
+  
+  /* Fix 2: Actions spacing - Currículo button, social icons, dark mode toggle too close */
+  .actions {
+    gap: 2rem !important; /* Increased spacing between elements */
+  }
+  
+  /* Fix 3: Social icons spacing */
+  .social-icons {
+    gap: 1.5rem !important; /* More space between social icons */
+  }
+  
+  /* Fix 4: Header padding for better spacing */
+  .header {
+    padding: 1.25rem 0 !important; /* Increased header padding */
+  }
+  
+  /* Fix 5: About section - picture too close to paragraphs */
+  .about-content {
+    gap: 4rem !important; /* More space between image and text */
+  }
+  
+  /* Fix 6: Typewriter animation fix for Safari */
+  .typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: blink-caret 1s step-end infinite;
+  }
+  
+  /* Ensure typewriter cursor animation works in Safari */
+  @keyframes blink-caret {
+    from, to { 
+      border-right-color: transparent; 
+    }
+    50% { 
+      border-right-color: var(--primary-color); 
+    }
+  }
+}
