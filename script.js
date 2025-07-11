@@ -102,11 +102,26 @@ function toggleDarkMode() {
         
     document.body.classList.toggle('dark');
     const isDarkMode = document.body.classList.contains('dark');
+    
+    // Safari-specific fix for theme toggle
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (isSafari) {
+        // Force reflow for Safari
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Trigger reflow
+        document.body.style.display = '';
+        
+        // Additional Safari fix - force repaint
+        document.documentElement.style.transform = 'translateZ(0)';
+        setTimeout(() => {
+            document.documentElement.style.transform = '';
+        }, 0);
+    }
         
     updateThemeToggleButton(themeToggle, isDarkMode);
-    updateThemeToggleButton(mobileThemeToggle, isDarkMode); // Garante que o mobile toggle também é atualizado
+    updateThemeToggleButton(mobileThemeToggle, isDarkMode);
         
-    localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString()); // Usa a chave consistente
+    localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
         
     if (themeToggle) {
         themeToggle.classList.add('theme-toggle-animation');
