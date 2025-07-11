@@ -2578,7 +2578,7 @@ body.section-services-hero .resume-btn {
         font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
     }
 }
-/* Safari-only fixes - Add this to the end of your style.css */
+/* Safari-only fixes */
 @supports (-webkit-appearance: none) {
   /* Navigation spacing fixes for Safari */
   .nav {
@@ -2603,7 +2603,8 @@ body.section-services-hero .resume-btn {
   }
   
   /* Typewriter animation fix for Safari */
-  .typewriter-text {
+  .typewriter-text,
+  #typewriter {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -2620,6 +2621,20 @@ body.section-services-hero .resume-btn {
     }
   }
   
+  /* Button spacing improvements for Safari */
+  .resume-btn,
+  .mobile-resume-btn,
+  .btn {
+    padding: 0.8rem 1.8rem !important;
+    margin: 0.2rem !important;
+  }
+  
+  /* Theme toggle button Safari fix */
+  .theme-toggle {
+    padding: 0.6rem !important;
+    margin: 0.2rem !important;
+  }
+  
   /* Mobile Safari fixes */
   @media (max-width: 768px) {
     .nav {
@@ -2632,6 +2647,19 @@ body.section-services-hero .resume-btn {
     
     .social-icons {
       gap: 1rem !important;
+    }
+    
+    .header {
+      padding: 1rem 0 !important;
+    }
+    
+    .about-content {
+      gap: 2.5rem !important;
+    }
+    
+    .mobile-resume-btn {
+      padding: 0.7rem 1.5rem !important;
+      margin: 0.25rem !important;
     }
   }
 }
