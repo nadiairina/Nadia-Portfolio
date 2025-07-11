@@ -35,9 +35,9 @@ function initializeTheme() {
     const savedTheme = localStorage.getItem(DARK_MODE_KEY); // Usa a chave consistente
     let shouldBeDarkMode = false;
 
-    if (savedTheme !== null) {
+    if (savedTheme !== null) { 
         shouldBeDarkMode = (savedTheme === 'true');
-    } else {
+    } else { 
         shouldBeDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         localStorage.setItem(DARK_MODE_KEY, shouldBeDarkMode.toString());
     }
@@ -47,18 +47,10 @@ function initializeTheme() {
     } else {
         document.body.classList.remove('dark');
     }
-
-    // IMPORTANT: Add transition class *after* initial theme is set,
-    // to prevent FOUC (Flash of Unstyled Content) with transition on page load.
-    // A small delay ensures the initial render is complete before enabling transitions.
-    setTimeout(() => {
-        document.documentElement.classList.add('theme-transition');
-    }, 50);
-
+        
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            // Only react to system preference if user hasn't explicitly set a theme
-            if (localStorage.getItem(DARK_MODE_KEY) === null) {
+            if (localStorage.getItem(DARK_MODE_KEY) === null) { 
                 const isSystemDarkMode = e.matches;
                 document.body.classList.toggle('dark', isSystemDarkMode);
                 updateThemeToggleButton(themeToggle, isSystemDarkMode);
@@ -86,7 +78,7 @@ function handleScroll() {
     }
     // --- FIM DA CORREÇÃO 1 ---
 
-    if (!header) return;
+    if (!header) return; 
     const scrolled = window.scrollY > 10;
     if (scrolled && !header.classList.contains("scrolled")) {
         header.classList.add("scrolled");
@@ -106,38 +98,48 @@ function handleScroll() {
  * Toggle dark mode with enhanced animation and accessibility
  */
 function toggleDarkMode() {
-    // Temporarily remove transition to ensure immediate class application and redraw,
-    // then re-add for the visual flash effect.
-    document.documentElement.classList.remove('theme-transition');
-
+    document.documentElement.classList.add('theme-transition'); 
+        
     document.body.classList.toggle('dark');
     const isDarkMode = document.body.classList.contains('dark');
-
-    // Force reflow/repaint after class change
-    // This is a common and generally safe cross-browser trick
-    document.body.offsetHeight; // Forces repaint
-
-    // Re-add the transition class after forcing the repaint,
-    // so the subsequent 'flash' animation works.
-    document.documentElement.classList.add('theme-transition');
-
+    
+    // Safari-specific fix for theme toggle
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (isSafari) {
+        // Force reflow for Safari
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Trigger reflow
+        document.body.style.display = '';
+        
+        // Additional Safari fix - force repaint
+        document.documentElement.style.transform = 'translateZ(0)';
+        setTimeout(() => {
+            document.documentElement.style.transform = '';
+        }, 0);
+    }
+        
     updateThemeToggleButton(themeToggle, isDarkMode);
     updateThemeToggleButton(mobileThemeToggle, isDarkMode);
-
+        
     localStorage.setItem(DARK_MODE_KEY, isDarkMode.toString());
-
-    // Flash effect for visual feedback
+        
+    if (themeToggle) {
+        themeToggle.classList.add('theme-toggle-animation');
+    }
+        
     const flashElement = document.createElement('div');
     flashElement.className = 'theme-flash';
     document.body.appendChild(flashElement);
-
+        
     setTimeout(() => {
+        if (themeToggle) {
+            themeToggle.classList.remove('theme-toggle-animation');
+        }
+        document.documentElement.classList.remove('theme-transition'); 
         if (flashElement.parentNode) {
             flashElement.parentNode.removeChild(flashElement);
         }
-        // No need to remove theme-transition here, it will remain for other transitions
-        // unless you specifically want to remove it after every toggle animation
-    }, THEME_TRANSITION_DURATION); // Make sure THEME_TRANSITION_DURATION matches CSS transition duration
+    }, THEME_TRANSITION_DURATION);
 }
 
 /**
@@ -173,16 +175,16 @@ function isElementInViewport(el) {
 document.addEventListener('DOMContentLoaded', () => {
     // Inicialize as variáveis globais aqui, onde os elementos DOM já existem.
     header = document.querySelector(".header"); // Seleciona o header pela classe 'header'
-
-    themeToggle = document.getElementById("theme-toggle");
-
+    
+    themeToggle = document.getElementById("theme-toggle"); 
+    
     // Elementos do menu móvel:
     mobileMenuBtn = document.querySelector('.mobile-menu-toggle');
-    mobileOverlay = document.querySelector('.mobile-menu-overlay');
+    mobileOverlay = document.querySelector('.mobile-menu-overlay'); 
     mobileCloseBtn = document.querySelector('.mobile-menu-close');
     mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    mobileThemeToggle = document.querySelector('.mobile-theme-toggle');
-
+    mobileThemeToggle = document.querySelector('.mobile-theme-toggle'); 
+    
     typewriterElement = document.getElementById('typewriter');
 
     const projectFilters = document.querySelectorAll('.filter-btn');
@@ -190,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
 
     // Elementos da página de serviços para a funcionalidade de filtro
-    const filterBtnsServices = document.querySelectorAll('.filter-btn');
+    const filterBtnsServices = document.querySelectorAll('.filter-btn'); 
     const categoriesServices = document.querySelectorAll('.extras-category');
     const gridServices = document.querySelector('.extras-grid');
 
@@ -199,11 +201,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const packagesSection = document.getElementById('packages');
 
     console.log("Typewriter element found:", typewriterElement);
-
+        
     const debouncedHandleScroll = debounce(handleScroll, 10);
     window.addEventListener("scroll", debouncedHandleScroll);
     setTimeout(handleScroll, 100);
-
+        
     // Configuração do botão de toggle do tema principal (desktop)
     if (themeToggle) {
         themeToggle.addEventListener("click", toggleDarkMode);
@@ -215,11 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.appendChild(tooltip);
         themeToggle.addEventListener('mouseenter', () => {
             tooltip.style.opacity = '1';
-            tooltip.style.transform = 'translateX(-50%) translateY(0)'; // Keep X for centering
+            tooltip.style.transform = 'translateY(0)';
         });
         themeToggle.addEventListener('mouseleave', () => {
             tooltip.style.opacity = '0';
-            tooltip.style.transform = 'translateX(-50%) translateY(10px)'; // Keep X for centering
+            tooltip.style.transform = 'translateY(10px)';
         });
     }
 
@@ -228,40 +230,36 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuBtn.addEventListener('click', function() {
             mobileMenuBtn.classList.toggle('active');
             mobileOverlay.classList.toggle('active');
-            // Add/remove 'no-scroll' class to body
-            document.body.classList.toggle('no-scroll', mobileOverlay.classList.contains('active'));
             document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
         });
     }
-
+    
     function closeMobileMenu() {
         if (mobileMenuBtn && mobileOverlay) {
             mobileMenuBtn.classList.remove('active');
             mobileOverlay.classList.remove('active');
-            // Remove 'no-scroll' class from body
-            document.body.classList.remove('no-scroll');
             document.body.style.overflow = '';
         }
     }
-
-    if (mobileCloseBtn) {
+    
+    if (mobileCloseBtn) { 
         mobileCloseBtn.addEventListener('click', closeMobileMenu);
     }
-
-    if (mobileNavLinks) {
+    
+    if (mobileNavLinks) { 
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', closeMobileMenu);
         });
     }
-
-    if (mobileOverlay) {
+    
+    if (mobileOverlay) { 
         mobileOverlay.addEventListener('click', function(e) {
-            if (e.target === mobileOverlay) {
+            if (e.target === mobileOverlay) { 
                 closeMobileMenu();
             }
         });
     }
-
+    
     // Fechar menu na tecla Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('active')) {
@@ -271,8 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configuração do botão de toggle do tema no menu móvel
     if (mobileThemeToggle) {
-        mobileThemeToggle.addEventListener('click', toggleDarkMode);
-        updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark'));
+        mobileThemeToggle.addEventListener('click', toggleDarkMode); 
+        updateThemeToggleButton(mobileThemeToggle, document.body.classList.contains('dark')); 
     }
 
     // --- Funcionalidade de Filtro de Serviços (do seu código enviado) ---
@@ -302,15 +300,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
     // --- Smooth Scrolling para Links de Navegação (do seu código enviado) ---
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').slice(1);
             const targetElement = document.getElementById(targetId);
-
+            
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80;
+                const offsetTop = targetElement.offsetTop - 80; 
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -323,9 +322,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Note: Este é específico para a navegação de serviços.
     window.addEventListener('scroll', function() {
         if (servicesNavLinks && packagesSection) {
-            const packagesPosition = packagesSection.offsetTop - 50;
+            const packagesPosition = packagesSection.offsetTop - 50; 
             const scrollPosition = window.scrollY;
-
+            
             if (scrollPosition >= packagesPosition) {
                 servicesNavLinks.classList.add('visible');
             } else {
@@ -340,9 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = this.getAttribute('href').slice(1);
             const targetElement = document.getElementById(targetId);
-
+            
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80;
+                const offsetTop = targetElement.offsetTop - 80; 
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -352,8 +351,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- FORCE COMPACT MONTHLY PLAN VIA JAVASCRIPT (do seu código enviado) ---
-    // Consider moving this CSS to your actual stylesheet for better separation of concerns
-    // unless it's strictly a dynamic override.
     setTimeout(function() {
         const container = document.querySelector('.monthly-plan-container');
         const card = document.querySelector('.monthly-plan-card');
@@ -363,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const badge = document.querySelector('.monthly-plan-badge');
         const content = document.querySelector('.monthly-plan-content');
         const includes = document.querySelectorAll('.plan-includes, .plan-excludes');
-        const section = document.querySelector('.monthly-plan-section, #monthly-plan');
+        const section = document.querySelector('.monthly-plan-section, #monthly-plan'); 
 
         if (container) {
             container.style.cssText = 'max-width: 400px !important; margin: 0 auto !important; padding: 0 15px !important;';
@@ -378,137 +375,64 @@ document.addEventListener('DOMContentLoaded', () => {
             subtitle.style.cssText = 'font-size: 0.95rem !important; color: var(--text-muted) !important; margin-bottom: 20px !important; line-height: 1.4 !important; margin-left: auto !important; margin-right: auto !important; max-width: 320px !important;';
         }
         if (price) {
-            price.style.cssText = 'font-size: 2.8rem !important; font-weight: 900 !important; color: var(--primary-color) !important; margin-bottom: 20px !important;';
+            price.style.cssText = 'font-size: 2.2rem !important; font-weight: 900 !important; color: var(--primary-color) !important; margin-bottom: 20px !important;';
         }
         if (badge) {
-            badge.style.cssText = 'position: absolute !important; top: -15px !important; left: 50% !important; transform: translateX(-50%) !important; background-color: var(--primary-color) !important; color: white !important; padding: 5px 15px !important; border-radius: 20px !important; font-size: 0.8rem !important; font-weight: 600 !important; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3) !important;';
+            badge.style.cssText = 'display: inline-block !important; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important; color: white !important; padding: 5px 12px !important; border-radius: 15px !important; font-size: 0.7rem !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; margin-bottom: 12px !important;';
         }
         if (content) {
-            content.style.cssText = 'padding: 0 15px !important;';
+            content.style.cssText = 'display: flex !important; flex-direction: column !important; gap: 12px !important; margin-bottom: 20px !important; text-align: left !important;';
         }
-        includes.forEach(el => {
-            el.style.cssText = 'list-style: none !important; padding: 0 !important; margin-bottom: 20px !important;';
-            el.querySelectorAll('li').forEach(li => {
-                li.style.cssText = 'font-size: 0.9rem !important; color: var(--text-dark) !important; margin-bottom: 10px !important; display: flex !important; align-items: center !important; justify-content: flex-start !important; gap: 8px !important;';
-            });
-            el.querySelectorAll('.icon').forEach(icon => {
-                icon.style.cssText = 'color: var(--primary-color) !important; font-size: 1.2em !important; flex-shrink: 0 !important;';
-            });
+        includes.forEach(function(element) {
+            if (element) {
+                element.style.cssText = 'background: white !important; border-radius: 10px !important; padding: 12px !important; box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important; border: 1px solid var(--border-color) !important;';
+                element.classList.add('content-creation-card');
+            }
         });
         if (section) {
-            section.style.cssText = 'padding: 5rem 0 !important; background-color: var(--bg-muted) !important;';
+            section.style.cssText = 'padding: 30px 0 !important;';
         }
+    }, 100);
 
-        // Dark mode adjustments for monthly plan
-        document.body.addEventListener('transitionend', function(event) {
-            // Check if the transition is on a property that indicates a theme change
-            if (event.propertyName === 'background-color' || event.propertyName === 'color') {
-                const isDarkMode = document.body.classList.contains('dark');
-                if (card) {
-                    card.style.backgroundColor = isDarkMode ? 'rgba(99, 102, 241, 0.15)' : ''; // Remove inline style for light mode to let CSS take over, or set to light mode default if it's dynamic
-                    card.style.borderColor = isDarkMode ? 'var(--primary-dark)' : 'var(--primary-color)';
-                    card.style.boxShadow = isDarkMode ? '0 5px 15px rgba(99, 102, 241, 0.2)' : '0 5px 15px rgba(99, 102, 241, 0.1)';
-                }
-                if (title) {
-                    title.style.color = isDarkMode ? 'var(--text-light)' : 'var(--text-dark)';
-                }
-                if (subtitle) {
-                    subtitle.style.color = isDarkMode ? 'var(--text-muted)' : 'var(--text-muted)';
-                }
-                includes.forEach(el => {
-                    el.querySelectorAll('li').forEach(li => {
-                        li.style.color = isDarkMode ? 'var(--text-light)' : 'var(--text-dark)';
-                    });
-                });
-                if (section) {
-                    section.style.backgroundColor = isDarkMode ? 'var(--bg-dark)' : 'var(--bg-muted)';
-                }
-            }
-        });
-    }, 0); // Execute immediately on DOMContentLoaded
 
-    // Typewriter Effect (Improved and integrated)
-    function setupTypewriterEffect(elementId) {
-        const element = document.getElementById(elementId);
-        if (!element) {
-            console.warn(`Typewriter element with ID '${elementId}' not found.`);
-            return;
-        }
-
-        // Ensure the phrases are correctly parsed from a data attribute
-        // Example HTML: <span id="typewriter" data-phrases='["Marketeer", "Front-End Developer"]'></span>
-        const phrasesAttr = element.getAttribute('data-phrases');
-        let phrases = [];
-        try {
-            phrases = JSON.parse(phrasesAttr);
-        } catch (e) {
-            console.error("Error parsing typewriter phrases:", e);
-            phrases = ["Developer"]; // Fallback
-        }
-
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 100; // milliseconds per character
-        const deletingSpeed = 60; // milliseconds per character
-        const pauseBeforeDelete = 1500; // milliseconds
-        const pauseBeforeType = 500; // milliseconds
-
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) {
-                element.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                element.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let currentTypingSpeed = isDeleting ? deletingSpeed : typingSpeed;
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                currentTypingSpeed = pauseBeforeDelete;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                currentTypingSpeed = pauseBeforeType;
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-            }
-
-            setTimeout(type, currentTypingSpeed);
-        }
-
-        // Start the typewriter effect
-        type();
-    }
-
-    // Call the typewriter setup function if the element exists
-    if (typewriterElement) {
-        // Ensure the typewriter element has the data-phrases attribute
-        // Example: <span class="highlight typewriter-effect" id="typewriter" data-phrases='["Marketeer", "Front-End Developer"]'></span>
-        if (!typewriterElement.hasAttribute('data-phrases')) {
-            typewriterElement.setAttribute('data-phrases', '["Marketeer", "Front-End Developer"]');
-        }
-        setupTypewriterEffect('typewriter');
-    }
-
-    // --- Project Filtering (Desktop) ---
-    // Make sure these selectors match your HTML structure
+    // --- Outras Funções que já estavam no seu JS principal ---
     if (projectFilters.length > 0 && projectItems.length > 0) {
+        setupProjectFilters(); 
+    }
+        
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactForm);
+        setupFormValidation();
+    }
+        
+    setupSmoothScrolling(); 
+        
+    setupScrollAnimations();
+        
+    if (typewriterElement) {
+        console.log("Setting up typewriter effect");
+        setupTypewriterEffect();
+    } else {
+        console.error("Typewriter element not found!");
+    }
+
+    // --- Funções Auxiliares (mantidas dentro de DOMContentLoaded) ---
+    // (Estas são as versões de `setupProjectFilters`, `setupFormValidation`, `validateInput`, `handleContactForm`,
+    // `setupSmoothScrolling`, `setupScrollAnimations`, `setupTypewriterEffect` que já estavam no nosso script principal)
+
+    function setupProjectFilters() {
         projectFilters.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove 'active' from all filter buttons
                 projectFilters.forEach(btn => btn.classList.remove('active'));
-                // Add 'active' to the clicked button
                 button.classList.add('active');
-
-                const filterValue = button.dataset.filter; // Get data-filter value
-
+                const filterValue = button.getAttribute('data-category'); 
                 projectItems.forEach(item => {
-                    const itemCategory = item.dataset.category; // Get data-category from project item
-
-                    if (filterValue === 'all' || itemCategory === filterValue) {
-                        item.style.display = 'block'; // Or 'flex', 'grid', depending on your layout
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'grid';
+                        item.classList.add('fade-in');
+                        setTimeout(() => {
+                            item.classList.remove('fade-in');
+                        }, 500);
                     } else {
                         item.style.display = 'none';
                     }
@@ -516,34 +440,163 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    // Handle Contact Form Submission (Example placeholder)
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // In a real application, you would send this data to a backend or a service like Formspree
-            // For now, we'll just log it and reset the form.
-            console.log("Form Submitted:", {
-                name: document.getElementById('name')?.value,
-                email: document.getElementById('email')?.value,
-                subject: document.getElementById('subject')?.value,
-                message: document.getElementById('message')?.value
+        
+    function setupFormValidation() {
+        if (!contactForm) return;
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        formInputs.forEach(input => {
+            const feedbackElement = document.createElement('div');
+            feedbackElement.className = 'form-feedback';
+            input.parentNode.appendChild(feedbackElement);
+            input.addEventListener('blur', () => validateInput(input, feedbackElement));
+            input.addEventListener('input', () => {
+                if (input.classList.contains('invalid')) {
+                    input.classList.remove('invalid');
+                    feedbackElement.textContent = '';
+                    feedbackElement.classList.remove('error');
+                }
             });
-
-            // Display a simple success message (replace alert)
-            const successMessageDiv = document.createElement('div');
-            successMessageDiv.className = 'form-success-message';
-            successMessageDiv.textContent = 'Thank you for your message! I will get back to you soon.';
-            contactForm.parentNode.insertBefore(successMessageDiv, contactForm.nextSibling);
-
-            // Hide form and show message
-            contactForm.style.display = 'none';
-            setTimeout(() => {
-                successMessageDiv.style.opacity = '1';
-                successMessageDiv.style.transform = 'translateY(0)';
-            }, 50); // Small delay for animation
-
-            this.reset(); // Clear the form
         });
     }
+        
+    function validateInput(input, feedback) {
+        const value = input.value.trim();
+        const name = input.name;
+        if (!input.required && !value) {
+            feedback.textContent = '';
+            return true;
+        }
+        if (input.required && !value) {
+            input.classList.add('invalid');
+            feedback.textContent = 'This field is required';
+            feedback.classList.add('error');
+            return false;
+        }
+        if (name === 'email' && value) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(value)) {
+                input.classList.add('invalid');
+                feedback.textContent = 'Please enter a valid email address';
+                feedback.classList.add('error');
+                return false;
+            }
+        }
+        feedback.textContent = '';
+        return true;
+    }
+        
+    function handleContactForm(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject') ? document.getElementById('subject').value.trim() : '';
+        const message = document.getElementById('message').value.trim();
+        let isValid = true;
+        const formInputs = contactForm.querySelectorAll('input, textarea');
+        formInputs.forEach(input => {
+            const feedbackElement = input.parentNode.querySelector('.form-feedback');
+            if (!validateInput(input, feedbackElement)) {
+                isValid = false;
+            }
+        });
+        if (!isValid) {
+            const invalidField = contactForm.querySelector('.invalid');
+            if (invalidField) invalidField.focus();
+            return;
+        }
+        const successMessage = document.createElement('div');
+        successMessage.className = 'form-success';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <p>Thank you for your message, ${name}!</p>
+            <p>I'll get back to you soon.</p>
+        `;
+        contactForm.style.opacity = '0';
+        setTimeout(() => {
+            const formContainer = contactForm.parentNode;
+            formContainer.innerHTML = '';
+            formContainer.appendChild(successMessage);
+            setTimeout(() => {
+                successMessage.style.opacity = '1';
+                successMessage.style.transform = 'translateY(0)';
+            }, 50);
+            contactForm.reset();
+        }, 300);
+    }
+        
+    function setupSmoothScrolling() {
+        const anchorLinks = document.querySelectorAll('a[href^="#"]');
+        anchorLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerOffset = header ? header.offsetHeight : 0;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - headerOffset - 20;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+        
+    function setupScrollAnimations() {
+        const elementsToAnimate = document.querySelectorAll('.project-card, .skill-category, .section-heading');
+        elementsToAnimate.forEach(element => {
+            element.classList.add('animate-on-scroll');
+        });
+        handleScroll();
+    }
+    
+    function setupTypewriterEffect() {
+    const phrases = ['Marketeer', 'Front-End Developer'];
+    let index = 0;
+    let charIndex = 0;
+    
+    // Safari detection
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    
+    function typeNextCharacter() {
+        if (!typewriterElement) {
+            console.error("Typewriter element not available for effect.");
+            return;
+        }
+
+        const currentPhrase = phrases[index % phrases.length];
+            
+        if (charIndex < currentPhrase.length) {
+            typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
+            charIndex++;
+            
+            // Safari-specific timing adjustment
+            const typingSpeed = isSafari ? 75 : 50; // Slower for Safari
+            setTimeout(typeNextCharacter, typingSpeed);
+        } else {
+            setTimeout(() => {
+                index++;
+                charIndex = 0;
+                typewriterElement.textContent = '';
+                
+                // Safari-specific fix: force reflow before continuing
+                if (isSafari) {
+                    typewriterElement.style.display = 'none';
+                    typewriterElement.offsetHeight; // Trigger reflow
+                    typewriterElement.style.display = '';
+                }
+                
+                typeNextCharacter();
+            }, isSafari ? 2500 : 2000); // Longer pause for Safari
+        }
+    }
+    
+    // Initial delay for Safari compatibility
+    setTimeout(() => {
+        typeNextCharacter();
+    }, isSafari ? 300 : 100);
+}
 });
