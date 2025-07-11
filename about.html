@@ -7,547 +7,9 @@
     <title>Sobre Mim | Nadia Irina</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="typewriter-and-darkmode.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-    --primary-color: #6366f1;
-    --primary-dark: #4f46e5;
-    --text-dark: #1f2937;
-    --text-muted: #6b7280;
-    --text-light: #f9fafb;
-    --bg-card: #ffffff;
-    --bg-muted: #f9fafb;
-    --border-color: #e5e7eb;
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Header/Navigation Bar Styling - Sticky Navigation */
-.header {
-    background-color: white;
-    padding: 15px 0;
-    border-bottom: 1px solid #e5e7eb;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-body {
-    background: white;
-}
-
-/* Dark Mode - Pure Black Background */
-body.dark {
-    background-color: #000000 !important;
-}
-
-/* Enhanced Hero Section - IDENTICAL to Services Page */
-.about-hero {
-    margin-top: 70px;
-    padding: 150px 1rem 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
-}
-
-.about-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-    opacity: 0.4;
-    pointer-events: none;
-}
-
-.about-hero .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1200px;
-    position: relative;
-    z-index: 2;
-}
-
-.page-title {
-    font-size: 3.2rem;
-    font-weight: 900;
-    margin: 1rem 0 2rem 0;
-    line-height: 1.1;
-    color: var(--text-dark);
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    z-index: 2;
-}
-
-/* About content styling */
-.about-content {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 3rem;
-    width: 100%;
-    max-width: 1000px;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-}
-
-.about-image {
-    flex-shrink: 0;
-}
-
-.about-image .profile-img {
-    width: 290px;
-    height: 290px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #6366f1;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.about-text {
-    flex: 1;
-    min-width: 300px;
-    text-align: left;
-}
-
-.about-text h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    color: var(--text-dark);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-}
-
-.about-text h3 {
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    color: var(--primary-color);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1.2rem;
-    color: var(--text-muted);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-}
-
-.personal-details {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 2rem;
-    gap: 1rem;
-}
-
-.detail {
-    flex: 1;
-    min-width: 180px;
-    text-align: center;
-    padding: 1rem;
-    background-color: rgba(99, 102, 241, 0.05);
-    border-radius: 12px;
-    border: 1px solid rgba(99, 102, 241, 0.1);
-    transition: all 0.3s ease;
-}
-
-.detail:hover {
-    background-color: rgba(99, 102, 241, 0.1);
-    transform: translateY(-2px);
-}
-
-.detail span:first-child {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--primary-color);
-}
-
-.detail span:last-child {
-    display: block;
-    color: var(--text-dark);
-    font-size: 0.9rem;
-    word-break: break-word;
-    line-height: 1.4;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .about-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 2rem;
-    }
-    
-    .about-text {
-        text-align: center;
-    }
-    
-    .about-image .profile-img {
-        width: 220px;
-        height: 220px;
-    }
-    
-    .page-title {
-        font-size: 2.5rem;
-    }
-    
-    .about-text h2 {
-        font-size: 2rem;
-    }
-}
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Dark Mode Support - Pure Black Background */
-body.dark .about-hero {
-    background: linear-gradient(135deg, #000000 0%, #111111 100%);
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
-}
-
-body.dark .header {
-    background-color: #000000;
-    border-bottom-color: #333333;
-}
-
-body.dark .header.scrolled {
-    background-color: rgba(0, 0, 0, 0.95);
-}
-
-/* Dark Mode Gradient Text Override */
-body.dark .page-title {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .about-text h2,
-body.dark .detail span:last-child {
-    color: #ffffff;
-}
-
-body.dark .about-text h3 {
-    color: var(--primary-color);
-}
-
-body.dark .about-text p {
-    color: #cccccc;
-}
-
-body.dark .detail {
-    background-color: #111111;
-    border-color: #333333;
-}
-
-body.dark .detail:hover {
-    background-color: #222222;
-}
-
-body.dark .detail span:first-child {
-    color: var(--primary-color);
-}
-
-/* Dark Mode Support for Education Section */
-body.dark .education {
-    background-color: #000000;
-}
-
-body.dark .education .section-title {
-    color: #ffffff;
-}
-
-body.dark .education-item {
-    background-color: #111111;
-    border: 1px solid #333333;
-}
-
-body.dark .education-item:hover {
-    background-color: #222222;
-}
-
-body.dark .education-details h3,
-body.dark .education-details h4 {
-    color: #ffffff;
-}
-
-body.dark .education-details p {
-    color: #cccccc;
-}
-
-body.dark .education-icon {
-    background-color: var(--primary-color);
-    color: #ffffff;
-}
-
-/* Dark Mode Support for Footer */
-body.dark .footer {
-    background-color: #000000;
-    border-top: 1px solid #333333;
-}
-
-body.dark .footer h4,
-body.dark .footer p,
-body.dark .footer a {
-    color: #ffffff;
-}
-
-body.dark .footer a:hover {
-    color: var(--primary-color);
-}
-/* MOBILE RESPONSIVE CSS - REPLACE the previous CSS with this */
-@media (max-width: 768px) {
-    .nav {
-        display: none;
-    }
-    
-    .actions {
-        display: none;
-    }
-    
-    .mobile-menu-toggle {
-        display: flex !important;
-    }
-}
-
-/* Mobile Hamburger Button Styles - KEEP THIS */
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 60;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
-
-.hamburger-line {
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-dark);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* Mobile Menu Overlay - IMPORTANT: Hidden by default */
-.mobile-menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 55;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.mobile-menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 320px;
-    max-width: 85vw;
-    height: 100vh;
-    background-color: white;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-}
-
-.mobile-menu-overlay.active .mobile-menu {
-    transform: translateX(0);
-}
-
-.mobile-menu-close {
-    align-self: flex-end;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-bottom: 2rem;
-    color: var(--text-dark);
-}
-
-.mobile-nav-link {
-    display: block;
-    padding: 1rem 0;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--text-dark);
-    text-decoration: none;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.mobile-nav-link:hover {
-    color: var(--primary-color);
-}
-
-.mobile-actions {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.mobile-resume-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 500;
-    justify-content: center;
-}
-
-.mobile-social-icons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    padding: 1rem 0;
-}
-
-.mobile-social-icons a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f3f4f6;
-    border-radius: 50%;
-    color: var(--text-dark);
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.mobile-social-icons a:hover {
-    background: var(--primary-color);
-    color: white;
-}
-
-.mobile-theme-toggle {
-    width: 100%;
-    padding: 1rem;
-    background: none;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: var(--text-dark);
-}
-
-/* Dark mode for mobile menu */
-body.dark .mobile-menu {
-    background-color: #1f2937;
-}
-
-body.dark .mobile-nav-link {
-    color: #ffffff;
-    border-bottom-color: #374151;
-}
-
-body.dark .hamburger-line {
-    background-color: #ffffff;
-}
-
-body.dark .mobile-menu-close {
-    color: #ffffff;
-}
-
-body.dark .mobile-social-icons a {
-    background: #374151;
-    color: #ffffff;
-}
-
-body.dark .mobile-theme-toggle {
-    border-color: #374151;
-    color: #ffffff;
-}
-    </style>
+    <!-- O bloco <style> inline e o link para typewriter-and-darkmode.css foram removidos, pois o style.css consolidado já os contém. -->
 </head>
 <body>
     <!-- Header/Navbar -->
@@ -575,77 +37,79 @@ body.dark .mobile-theme-toggle {
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
             <!-- Add this hamburger button inside your header container -->
-<button class="mobile-menu-toggle" aria-label="Toggle menu">
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-</button>
-  </div>
-</header>          
-
-<!-- Add this mobile menu overlay after your header (OUTSIDE header) -->
-<div class="mobile-menu-overlay">
-    <div class="mobile-menu">
-        <button class="mobile-menu-close">✕</button>
-        
-        <nav>
-            <a href="index.html" class="mobile-nav-link">Início</a>
-            <a href="about.html" class="mobile-nav-link">Sobre Mim</a>
-            <a href="projects.html" class="mobile-nav-link">Projetos</a>
-            <a href="services.html" class="mobile-nav-link">Serviços</a>
-            <a href="contact.html" class="mobile-nav-link">Contactos</a>
-        </nav>
-        
-        <div class="mobile-actions">
-            <a href="assets/Nadia-Irina-CV.pdf" download class="mobile-resume-btn">
-                <i class="fas fa-download"></i>
-                Currículo
-            </a>
-            
-            <div class="mobile-social-icons">
-                <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </div>
-            
-            <button class="mobile-theme-toggle">
-                <i class="fas fa-moon"></i>
-                Toggle Dark Mode
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
         </div>
+    </header>
+
+    <!-- Add this mobile menu overlay after your header (OUTSIDE header) -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <button class="mobile-menu-close">✕</button>
+
+            <nav>
+                <a href="index.html" class="mobile-nav-link">Início</a>
+                <a href="about.html" class="mobile-nav-link">Sobre Mim</a>
+                <a href="projects.html" class="mobile-nav-link">Projetos</a>
+                <a href="services.html" class="mobile-nav-link">Serviços</a>
+                <a href="contact.html" class="mobile-nav-link">Contactos</a>
+            </nav>
+
+            <div class="mobile-actions">
+                <a href="assets/Nadia-Irina-CV.pdf" download class="mobile-resume-btn">
+                    <i class="fas fa-download"></i>
+                    Currículo
+                </a>
+
+                <div class="mobile-social-icons">
+                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+
+                <button class="mobile-theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    Toggle Dark Mode
+                </button>
+            </div>
+        </div>
     </div>
-</div>
-    
-    <!-- About Hero Section -->
+
+    <!-- About Hero Section (mantém o nome da classe que já tinha) -->
     <section class="about-hero">
         <div class="container">
             <h1 class="page-title">Sobre Mim</h1>
-            
-            <!-- Content container -->
+
+            <!-- Content container - A estrutura interna já estava correta com about-content, about-image e about-text -->
             <div class="about-content">
                 <!-- Left side - Image -->
                 <div class="about-image">
                     <div class="profile-img">
-                        <img src="assets/images/projects/profile.jpg" 
+                        <img src="assets/images/projects/profile.jpg"
                              alt="Nadia Irina - Front-End Developer e Marketeer">
                     </div>
                 </div>
-                
+
                 <!-- Right side - Content -->
                 <div class="about-text">
                     <h2>Nadia Irina</h2>
                     <h3>Marketeer & Front-end Developer</h3>
-                    
+
+                    <!-- A classe text-block foi adicionada ao CSS geral para parágrafos,
+                         mas a sua estrutura aqui já está bem organizada para o CSS. -->
                     <p>
                         Com a minha paixão por Desenvolvimento Front-End, dedico-me a criar experiências web que são não só responsivas e fáceis de usar, mas também estratégicas. A minha base em Marketing permite-me abordar cada projeto com um olhar único, unindo o rigor técnico ao foco na verdadeira interação com o utilizador.
                     </p>
                     <p>
-                       A minha jornada começou em Marketing, onde aprendi a importância de compreender as necessidades e comportamentos do utilizador. Este conhecimento tem sido inestimável na minha transição para o Desenvolvimento Front-End, permitindo-me criar interfaces que não só são visualmente apelativas, mas que também servem eficazmente as necessidades dos utilizadores.
+                        A minha jornada começou em Marketing, onde aprendi a importância de compreender as necessidades e comportamentos do utilizador. Este conhecimento tem sido inestimável na minha transição para o Desenvolvimento Front-End, permitindo-me criar interfaces que não só são visualmente apelativas, mas que também servem eficazmente as necessidades dos utilizadores.
                     </p>
-                    
+
                     <div class="personal-details">
                         <div class="detail">
                             <span>Localização:</span>
@@ -729,7 +193,7 @@ body.dark .mobile-theme-toggle {
         </div>
     </section>
 
-   <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -760,6 +224,6 @@ body.dark .mobile-theme-toggle {
     </footer>
 
     <script src="script.js"></script>
-    
+
 </body>
 </html>
