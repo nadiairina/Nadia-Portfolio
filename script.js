@@ -98,6 +98,13 @@ function handleScroll() {
  * Toggle dark mode with enhanced animation and accessibility
  */
 function toggleDarkMode() {
+    // SAFARI FIX: Force reflow before theme change
+    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Trigger reflow
+        document.body.style.display = '';
+    }
+    
     document.documentElement.classList.add('theme-transition'); 
         
     document.body.classList.toggle('dark');
@@ -538,32 +545,53 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll();
     }
     
-    function setupTypewriterEffect() {
-        const phrases = ['Marketeer', 'Front-End Developer'];
-        let index = 0;
-        let charIndex = 0;
-        
-        function typeNextCharacter() {
-            if (!typewriterElement) {
-                console.error("Typewriter element not available for effect.");
-                return;
-            }
-
-            const currentPhrase = phrases[index % phrases.length];
-                
-            if (charIndex < currentPhrase.length) {
-                typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
-                charIndex++;
-                setTimeout(typeNextCharacter, 50);
-            } else {
-                setTimeout(() => {
-                    index++;
-                    charIndex = 0;
-                    typewriterElement.textContent = '';
-                    typeNextCharacter();
-                }, 2000);
-            }
+   function setupTypewriterEffect() {
+    const phrases = ['Sou', 'Marketeer']; // Your actual phrases from the site
+    let index = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    // Safari detection
+    const isSafari = navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome');
+    
+    function typeNextCharacter() {
+        if (!typewriterElement) {
+            console.error("Typewriter element not available for effect.");
+            return;
         }
-        typeNextCharacter();
+
+        const currentPhrase = phrases[index % phrases.length];
+        
+        if (isDeleting) {
+            // Deleting characters
+            typewriterElement.textContent = currentPhrase.slice(0, charIndex - 1);
+            charIndex--;
+        } else {
+            // Adding characters
+            typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
+            charIndex++;
+        }
+        
+        // Safari-specific timing adjustments
+        let typeSpeed = isDeleting ? 50 : 100;
+        if (isSafari) {
+            typeSpeed = isDeleting ? 75 : 150; // Slower for Safari
+        }
+        
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            // Finished typing, start deleting after pause
+            typeSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            // Finished deleting, move to next phrase
+            isDeleting = false;
+            index = (index + 1) % phrases.length;
+            typeSpeed = 500; // Pause before starting next word
+        }
+        
+        setTimeout(typeNextCharacter, typeSpeed);
     }
+    
+    typeNextCharacter();
+}
 });
