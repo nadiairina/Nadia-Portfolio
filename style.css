@@ -2578,9 +2578,11 @@ body.section-services-hero .resume-btn {
         font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
     }
 }
-/* Safari-only fixes */
+/* SIMPLE SAFARI FIX - Add this to the very end of your typewriter-and-darkmode.css file */
+
+/* Safari-only fixes using CSS feature detection */
 @supports (-webkit-appearance: none) {
-  /* Navigation spacing fixes for Safari */
+  /* Fix navigation spacing in Safari */
   .nav {
     gap: 2.5rem !important;
   }
@@ -2593,6 +2595,7 @@ body.section-services-hero .resume-btn {
     gap: 1.5rem !important;
   }
   
+  /* Fix header spacing in Safari */
   .header {
     padding: 1.25rem 0 !important;
   }
@@ -2601,13 +2604,7 @@ body.section-services-hero .resume-btn {
     padding: 1rem 0 !important;
   }
   
-  /* About section spacing */
-  .about-content {
-    gap: 4rem !important;
-  }
-  
-  /* Typewriter animation fix for Safari - CORRECTED SELECTOR */
-  .typewriter-effect,
+  /* Fix typewriter animation for Safari */
   #typewriter {
     display: inline-block !important;
     overflow: hidden !important;
@@ -2627,27 +2624,16 @@ body.section-services-hero .resume-btn {
     }
   }
   
-  /* Button spacing improvements for Safari */
+  /* Fix button spacing in Safari */
   .resume-btn,
-  .mobile-resume-btn,
-  .btn {
+  .mobile-resume-btn {
     padding: 0.8rem 1.8rem !important;
     margin: 0.2rem !important;
   }
   
-  /* Theme toggle button Safari fix */
   .theme-toggle {
     padding: 0.6rem !important;
     margin: 0.2rem !important;
-  }
-  
-  /* Safari Project Card Spacing */
-  .project-card {
-    margin-bottom: 2.5rem !important;
-  }
-  
-  .projects {
-    gap: 2.5rem !important;
   }
   
   /* Mobile Safari fixes */
@@ -2672,29 +2658,11 @@ body.section-services-hero .resume-btn {
       padding: 0.75rem 0 !important;
     }
     
-    .about-content {
-      gap: 2.5rem !important;
-    }
-    
     .mobile-resume-btn {
       padding: 0.7rem 1.5rem !important;
       margin: 0.25rem !important;
     }
-    
-    .theme-toggle {
-      padding: 0.4rem !important;
-      margin: 0.15rem !important;
-    }
-  }
-  
-  /* Safari Mobile Menu Fixes */
-  @media (max-width: 576px) {
-    .actions {
-      gap: 1rem !important;
-    }
-    
-    .social-icons {
-      gap: 0.8rem !important;
-    }
   }
 }
+
+/* END OF SAFARI FIX */
