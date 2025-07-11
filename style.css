@@ -2578,3 +2578,41 @@ body.section-services-hero .resume-btn {
         font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
     }
 }
+/* SAFARI-SPECIFIC FIXES - Add this at the bottom of your CSS */
+@supports (-webkit-appearance: none) {
+  .nav {
+    gap: 2.5rem !important;
+  }
+  
+  .actions {
+    gap: 2rem !important;
+  }
+  
+  .social-icons {
+    gap: 1.5rem !important;
+  }
+  
+  .header {
+    padding: 1.25rem 0 !important;
+  }
+  
+  .about-content {
+    gap: 4rem !important;
+  }
+  
+  .typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: blink-caret 1s step-end infinite;
+  }
+  
+  @keyframes blink-caret {
+    from, to { 
+      border-right-color: transparent; 
+    }
+    50% { 
+      border-right-color: var(--primary-color); 
+    }
+  }
+}
