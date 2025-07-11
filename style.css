@@ -2597,27 +2597,33 @@ body.section-services-hero .resume-btn {
     padding: 1.25rem 0 !important;
   }
   
+  .header.scrolled {
+    padding: 1rem 0 !important;
+  }
+  
   /* About section spacing */
   .about-content {
     gap: 4rem !important;
   }
   
-  /* Typewriter animation fix for Safari */
-  .typewriter-text,
+  /* Typewriter animation fix for Safari - CORRECTED SELECTOR */
+  .typewriter-effect,
   #typewriter {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--primary-color);
-    animation: blink-caret 1s step-end infinite;
+    display: inline-block !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    border-right: 2px solid var(--primary-color) !important;
+    animation: blink-caret 1s step-end infinite !important;
+    min-height: 1.5em !important;
+    min-width: 1ch !important;
   }
   
   @keyframes blink-caret {
     from, to { 
-      border-right-color: transparent; 
+      border-right-color: transparent !important;
     }
     50% { 
-      border-right-color: var(--primary-color); 
+      border-right-color: var(--primary-color) !important;
     }
   }
   
@@ -2633,6 +2639,15 @@ body.section-services-hero .resume-btn {
   .theme-toggle {
     padding: 0.6rem !important;
     margin: 0.2rem !important;
+  }
+  
+  /* Safari Project Card Spacing */
+  .project-card {
+    margin-bottom: 2.5rem !important;
+  }
+  
+  .projects {
+    gap: 2.5rem !important;
   }
   
   /* Mobile Safari fixes */
@@ -2653,6 +2668,10 @@ body.section-services-hero .resume-btn {
       padding: 1rem 0 !important;
     }
     
+    .header.scrolled {
+      padding: 0.75rem 0 !important;
+    }
+    
     .about-content {
       gap: 2.5rem !important;
     }
@@ -2660,6 +2679,22 @@ body.section-services-hero .resume-btn {
     .mobile-resume-btn {
       padding: 0.7rem 1.5rem !important;
       margin: 0.25rem !important;
+    }
+    
+    .theme-toggle {
+      padding: 0.4rem !important;
+      margin: 0.15rem !important;
+    }
+  }
+  
+  /* Safari Mobile Menu Fixes */
+  @media (max-width: 576px) {
+    .actions {
+      gap: 1rem !important;
+    }
+    
+    .social-icons {
+      gap: 0.8rem !important;
     }
   }
 }
