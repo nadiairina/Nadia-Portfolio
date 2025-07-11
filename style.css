@@ -2578,3 +2578,60 @@ body.section-services-hero .resume-btn {
         font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
     }
 }
+/* Safari-only fixes - Add this to the end of your style.css */
+@supports (-webkit-appearance: none) {
+  /* Navigation spacing fixes for Safari */
+  .nav {
+    gap: 2.5rem !important;
+  }
+  
+  .actions {
+    gap: 2rem !important;
+  }
+  
+  .social-icons {
+    gap: 1.5rem !important;
+  }
+  
+  .header {
+    padding: 1.25rem 0 !important;
+  }
+  
+  /* About section spacing */
+  .about-content {
+    gap: 4rem !important;
+  }
+  
+  /* Typewriter animation fix for Safari */
+  .typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--primary-color);
+    animation: blink-caret 1s step-end infinite;
+  }
+  
+  @keyframes blink-caret {
+    from, to { 
+      border-right-color: transparent; 
+    }
+    50% { 
+      border-right-color: var(--primary-color); 
+    }
+  }
+  
+  /* Mobile Safari fixes */
+  @media (max-width: 768px) {
+    .nav {
+      gap: 1.5rem !important;
+    }
+    
+    .actions {
+      gap: 1.5rem !important;
+    }
+    
+    .social-icons {
+      gap: 1rem !important;
+    }
+  }
+}
