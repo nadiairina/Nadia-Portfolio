@@ -8,544 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="typewriter-and-darkmode.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-    --primary-color: #6366f1;
-    --primary-dark: #4f46e5;
-    --text-dark: #1f2937;
-    --text-muted: #6b7280;
-    --text-light: #f9fafb;
-    --bg-card: #ffffff;
-    --bg-muted: #f9fafb;
-    --border-color: #e5e7eb;
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Header/Navigation Bar Styling - Sticky Navigation */
-.header {
-    background-color: white;
-    padding: 15px 0;
-    border-bottom: 1px solid #e5e7eb;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-body {
-    background: white;
-}
-
-/* Dark Mode - Pure Black Background */
-body.dark {
-    background-color: #000000 !important;
-}
-
-/* Dark Mode Support for Header */
-body.dark .header {
-    background-color: #000000;
-    border-bottom-color: #333333;
-}
-
-body.dark .header.scrolled {
-    background-color: rgba(0, 0, 0, 0.95);
-}
-
-/* Hero Section Styling - IDENTICAL to other pages */
-.hero {
-    margin-top: 70px;
-    padding: 150px 1rem 150px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-    opacity: 0.4;
-    pointer-events: none;
-}
-
-.hero .container {
-    position: relative;
-    z-index: 2;
-}
-
-/* Dark Mode Support for Hero */
-body.dark .hero {
-    background: linear-gradient(135deg, #000000 0%, #111111 100%);
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
-}
-
-/* Hero Text Styling with Gradient Effect */
-.greeting {
-    font-size: 1.8rem;
-    font-weight: 900;
-    margin: 1rem 0;
-    line-height: 1.1;
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    z-index: 2;
-}
-
-/* Dark Mode Gradient Text Override */
-body.dark .greeting {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .hero .title {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .hero .job-title {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .highlight,
-body.dark .typewriter-effect,
-body.dark #typewriter {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .hero .subtitle {
-    color: #cccccc;
-}
-
-.hero .title {
-    font-size: 3.2rem;
-    font-weight: 900;
-    margin: 1rem 0;
-    line-height: 1.1;
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    z-index: 2;
-}
-
-.hero .job-title {
-    font-size: 3.2rem;
-    font-weight: 900;
-    margin: 1rem 0;
-    line-height: 1.1;
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    z-index: 2;
-}
-
-.hero .subtitle {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--text-muted);
-    transition: all 0.3s ease;
-    line-height: 1.6;
-    font-weight: 500;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-    position: relative;
-    z-index: 2;
-}
-
-.highlight,
-.typewriter-effect,
-#typewriter {
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 900;
-}
-
-/* Add fade animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Add this to your styles or in a style tag in the head */
-.project-card .project-image {
-    height: 180px; /* Reduced height */
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-.project-card .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.3s ease;
-}
-
-/* Work section background override */
-.work {
-    background-color: white !important;
-}
-
-/* Dark Mode Support for Work Section */
-body.dark .work {
-    background-color: #000000 !important;
-}
-
-body.dark .work h2 {
-    color: #ffffff;
-}
-
-body.dark .work .project-card {
-    background-color: #111111;
-    border: 1px solid #333333;
-    color: #ffffff;
-}
-
-body.dark .work .project-card h3 {
-    color: #ffffff;
-}
-
-body.dark .work .project-card p {
-    color: #cccccc;
-}
-
-body.dark .work .tech-tag {
-    background-color: #333333;
-    color: #ffffff;
-}
-
-body.dark .work .project-link {
-    color: var(--primary-color);
-}
-
-body.dark .work .view-all-btn {
-    background-color: var(--primary-color);
-    color: #ffffff;
-}
-
-/* Dark Mode Support for Skills Section */
-body.dark .skills {
-    background-color: #000000;
-}
-
-body.dark .skills h2,
-body.dark .skills h3 {
-    color: #ffffff;
-}
-
-body.dark .skill-category {
-    background-color: #111111;
-    border: 1px solid #333333;
-}
-
-body.dark .skill-tag {
-    background-color: #333333;
-    color: #ffffff;
-}
-
-/* Dark Mode Support for Footer */
-body.dark .footer {
-    background-color: #000000;
-    border-top: 1px solid #333333;
-}
-
-body.dark .footer h4,
-body.dark .footer p,
-body.dark .footer a {
-    color: #ffffff;
-}
-
-body.dark .footer a:hover {
-    color: var(--primary-color);
-}
-
-/* Some of my latest work section specific styles */
-.work .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.work .project-card {
-    background-color: var(--bg-card);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.work .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.work .project-card:hover .project-image img {
-    transform: scale(1.05);
-}
-/* MOBILE RESPONSIVE CSS - REPLACE the previous CSS with this */
-@media (max-width: 768px) {
-    .nav {
-        display: none;
-    }
-    
-    .actions {
-        display: none;
-    }
-    
-    .mobile-menu-toggle {
-        display: flex !important;
-    }
-}
-
-/* Mobile Hamburger Button Styles - KEEP THIS */
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 60;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
-
-.hamburger-line {
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-dark);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* Mobile Menu Overlay - IMPORTANT: Hidden by default */
-.mobile-menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 55;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.mobile-menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 320px;
-    max-width: 85vw;
-    height: 100vh;
-    background-color: white;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-}
-
-.mobile-menu-overlay.active .mobile-menu {
-    transform: translateX(0);
-}
-
-.mobile-menu-close {
-    align-self: flex-end;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-bottom: 2rem;
-    color: var(--text-dark);
-}
-
-.mobile-nav-link {
-    display: block;
-    padding: 1rem 0;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--text-dark);
-    text-decoration: none;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.mobile-nav-link:hover {
-    color: var(--primary-color);
-}
-
-.mobile-actions {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.mobile-resume-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 500;
-    justify-content: center;
-}
-
-.mobile-social-icons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    padding: 1rem 0;
-}
-
-.mobile-social-icons a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f3f4f6;
-    border-radius: 50%;
-    color: var(--text-dark);
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.mobile-social-icons a:hover {
-    background: var(--primary-color);
-    color: white;
-}
-
-.mobile-theme-toggle {
-    width: 100%;
-    padding: 1rem;
-    background: none;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: var(--text-dark);
-}
-
-/* Dark mode for mobile menu */
-body.dark .mobile-menu {
-    background-color: #1f2937;
-}
-
-body.dark .mobile-nav-link {
-    color: #ffffff;
-    border-bottom-color: #374151;
-}
-
-body.dark .hamburger-line {
-    background-color: #ffffff;
-}
-
-body.dark .mobile-menu-close {
-    color: #ffffff;
-}
-
-body.dark .mobile-social-icons a {
-    background: #374151;
-    color: #ffffff;
-}
-
-body.dark .mobile-theme-toggle {
-    border-color: #374151;
-    color: #ffffff;
-}
-</style>
 </head>
 <body>
     <!-- Header/Navbar -->
@@ -572,58 +36,58 @@ body.dark .mobile-theme-toggle {
                 </div>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
-         <!-- Add this hamburger button inside your header container -->
-<button class="mobile-menu-toggle" aria-label="Toggle menu">
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-</button>
-</div>
-</header>
-<!-- Add this mobile menu overlay after your header (OUTSIDE header) -->
-<div class="mobile-menu-overlay">
-    <div class="mobile-menu">
-        <button class="mobile-menu-close">✕</button>
-        
-        <nav>
-            <a href="index.html" class="mobile-nav-link">Início</a>
-            <a href="about.html" class="mobile-nav-link">Sobre Mim</a>
-            <a href="projects.html" class="mobile-nav-link">Projetos</a>
-            <a href="services.html" class="mobile-nav-link">Serviços</a>
-            <a href="contact.html" class="mobile-nav-link">Contactos</a>
-        </nav>
-        
-        <div class="mobile-actions">
-            <a href="assets/Nadia-Irina-CV.pdf" download class="mobile-resume-btn">
-                <i class="fas fa-download"></i>
-                Currículo
-            </a>
-            
-            <div class="mobile-social-icons">
-                <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </div>
-            
-            <button class="mobile-theme-toggle">
-                <i class="fas fa-moon"></i>
-                Toggle Dark Mode
+            <!-- Add this hamburger button inside your header container -->
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
         </div>
+    </header>
+    <!-- Add this mobile menu overlay after your header (OUTSIDE header) -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-menu">
+            <button class="mobile-menu-close">✕</button>
+
+            <nav>
+                <a href="index.html" class="mobile-nav-link">Início</a>
+                <a href="about.html" class="mobile-nav-link">Sobre Mim</a>
+                <a href="projects.html" class="mobile-nav-link">Projetos</a>
+                <a href="services.html" class="mobile-nav-link">Serviços</a>
+                <a href="contact.html" class="mobile-nav-link">Contactos</a>
+            </nav>
+
+            <div class="mobile-actions">
+                <a href="assets/Nadia-Irina-CV.pdf" download class="mobile-resume-btn">
+                    <i class="fas fa-download"></i>
+                    Currículo
+                </a>
+
+                <div class="mobile-social-icons">
+                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+
+                <button class="mobile-theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    Toggle Dark Mode
+                </button>
+            </div>
+        </div>
     </div>
-</div>
-    
+
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="container">
             <p class="greeting">Olá, Sou a Nadia</p>
             <h1 class="title">Sou</h1>
-            <h1 class="job-title"><span class="highlight typewriter-effect" id="typewriter"></span></h1>
+            <h1 class="job-title"><span class="highlight typewriter-effect" id="typewriter" data-phrases='["Marketeer", "Front-End Developer"]'></span></h1>
             <p class="subtitle">
-               Crio websites <span class="highlight">acessíveis</span> que transformam as tuas ideias em realidade.
+                Crio websites <span class="highlight">acessíveis</span> que transformam as tuas ideias em realidade.
             </p>
             <div class="hero-cta">
                 <a href="projects.html" class="btn primary">Vê o Meu Trabalho</a>
@@ -631,7 +95,7 @@ body.dark .mobile-theme-toggle {
             </div>
         </div>
     </section>
-    
+
     <!-- Featured Work Section -->
     <section class="work" id="work">
         <div class="container">
@@ -651,8 +115,8 @@ body.dark .mobile-theme-toggle {
                     </div>
                     <a href="https://nadiairina.github.io/Heat-Map/" target="_blank" class="project-link">Vê Projeto <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
-               <div class="project-card">
+
+                <div class="project-card">
                     <div class="project-image">
                         <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Website">
                     </div>
@@ -667,7 +131,7 @@ body.dark .mobile-theme-toggle {
                     <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link">Vê Projeto <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                 <div class="project-card">
+                <div class="project-card">
                     <div class="project-image">
                         <img src="assets/images/projects/Choropleth-Map.png" alt="Visualização de Dados de Mapa Coroplético">
                     </div>
@@ -681,15 +145,15 @@ body.dark .mobile-theme-toggle {
                     </div>
                     <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link">Vê Projeto <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
+
             </div>
             <div class="view-all-container">
                 <a href="projects.html" class="view-all-btn">Vê Todos os Meus Projetos</a>
             </div>
         </div>
     </section>
-    
-   <!-- Skills Section -->
+
+    <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="container">
             <h2>Habilidades</h2>
@@ -706,7 +170,7 @@ body.dark .mobile-theme-toggle {
                         <span class="skill-tag">Design Responsivo</span>
                         <span class="skill-tag">Redux</span>
                         <span class="skill-tag">SVG</span>
-                         <span class="skill-tag">Acessibilidade (a11y)</span>
+                        <span class="skill-tag">Acessibilidade (a11y)</span>
                     </div>
                 </div>
                 <div class="skill-category">
@@ -757,6 +221,6 @@ body.dark .mobile-theme-toggle {
     </footer>
 
     <script src="script.js"></script>
-   
+
 </body>
 </html>
