@@ -13,7 +13,7 @@
     --text-light: #f3f4f6;
     --text-muted: #6b7280;
     --bg-light: #ffffff;
-    --bg-dark: #000000; /* Changed to pure black for body.dark */
+    --bg-dark: #1f2937;
     --bg-muted: #f9fafb;
     --bg-card: #ffffff;
     --border-color: #e5e7eb;
@@ -138,43 +138,43 @@ p {
     box-shadow: var(--shadow-sm);
 }
 
-/* Resume Button specific styles (General) */
-.resume-btn {
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    border: none;
-    display: inline-block;
-    text-align: center;
-    padding: 0.75rem 1.5rem; /* Standard size */
-    font-size: 1rem; /* Standard font size */
-    min-width: 120px; /* Consistent minimum width */
-    white-space: nowrap; /* Prevent text wrapping */
+
+
+/* Certifique-se de que a versão móvel também tem estas propriedades definidas, se aplicável */
+@media (max-width: 768px) {
+    .mobile-resume-btn {
+        padding: 12px 30px !important; /* Força o padding para mobile */
+        font-size: 1rem !important; /* Força o font-size para mobile */
+        min-width: unset !important; /* Remove min-width para mobile se for um problema */
+    }
 }
 
-/* Resume Button Hover Effect */
 .resume-btn:hover {
-    background-color: var(--primary-dark); /* Darker purple on hover */
-    transform: translateY(-2px); /* Lift effect */
-    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Soft shadow */
+    background-color: #5558d1; /* Um roxo ligeiramente mais escuro no hover */
+    border-color: #5558d1; /* Ajusta a borda no hover também */
+    transform: translateY(-2px); /* Efeito de levantar */
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
 }
 
-/* Dark Mode: Currículo button (desktop and mobile) */
+/* No seu ficheiro CSS existente, adicione ou modifique estas regras */
+
+/* Problema 2: Botão Currículo não está roxo em Dark Mode (no telemóvel) */
 body.dark .resume-btn,
 body.dark .mobile-resume-btn {
-    background-color: var(--primary-color) !important; /* Force purple */
-    color: white !important; /* Ensure white text */
+    background-color: var(--primary-color) !important; /* Força o roxo */
+    color: white !important; /* Garante o texto branco */
 }
 
-/* Dark Mode: Currículo button hover (desktop and mobile) */
+/* Garante que o hover também é roxo no dark mode */
 body.dark .resume-btn:hover,
 body.dark .mobile-resume-btn:hover {
-    background-color: var(--primary-dark) !important; /* Darker purple on hover */
-    color: white !important; /* Ensure white text on hover */
+    background-color: var(--primary-dark) !important; /* Roxo mais escuro no hover */
+    color: white !important; /* Garante o texto branco no hover */
 }
+
+
+
+
 
 /* Header */
 .header {
@@ -194,7 +194,6 @@ body.dark .mobile-resume-btn:hover {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem; /* Added for better spacing between main header elements */
 }
 
 .header.scrolled {
@@ -284,12 +283,9 @@ body.dark .mobile-resume-btn:hover {
 }
 
 .social-icons a {
-    font-size: 1.35rem; /* Slightly larger for better tap target */
+    font-size: 1.25rem;
     color: var(--text-muted);
     transition: all var(--transition-normal);
-    display: inline-flex; /* Use flex to center icon if needed */
-    align-items: center;
-    justify-content: center;
 }
 
 .social-icons a:hover {
@@ -301,22 +297,22 @@ body.dark .mobile-resume-btn:hover {
 .theme-toggle {
     background: none;
     border: none;
-    font-size: 1.6rem; /* Slightly larger for better tap target and visibility */
+    font-size: 1.5rem;
     cursor: pointer;
     transition: transform var(--transition-fast);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.6rem; /* Slightly more padding for better hit area */
+    padding: 0.5rem;
     border-radius: 50%;
     position: relative;
     overflow: visible;
-    background-color: rgba(0, 0, 0, 0.05); /* Lighter background in light mode */
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .theme-toggle:hover {
     transform: rotate(15deg) scale(1.1);
-    background-color: rgba(0, 0, 0, 0.1); /* Darker on hover in light mode */
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Theme toggle animation */
@@ -434,22 +430,6 @@ body.dark .mobile-resume-btn:hover {
     line-height: 1.2;
 }
 
-.job-title { /* Added for typewriter effect */
-    font-size: 3.2rem;
-    font-weight: 900;
-    margin: 1rem 0;
-    line-height: 1.1;
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    z-index: 2;
-}
-
 .subtitle {
     font-size: 1.5rem;
     margin-bottom: 2.5rem;
@@ -521,18 +501,6 @@ body.dark .mobile-resume-btn:hover {
     overflow: hidden;
 }
 
-.project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image img {
-    transform: scale(1.05);
-}
-
 .placeholder-img {
     display: flex;
     align-items: center;
@@ -541,14 +509,94 @@ body.dark .mobile-resume-btn:hover {
     color: var(--primary-color);
 }
 
+.project-icon {
+    font-size: 4rem;
+    opacity: 0.8;
+}
+
+.project-card h3 {
+    padding: 1.25rem 1.25rem 0.5rem;
+    font-size: 1.25rem;
+    color: var(--text-dark);
+}
+
+.project-card p {
+    padding: 0 1.25rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    flex-grow: 1;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    background-color: #e0e7ff;
+    color: var(--primary-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.project-link {
+    display: block;
+    padding: 1rem 1.25rem;
+    text-align: right;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: all var(--transition-normal);
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+.project-link i {
+    transition: transform var(--transition-normal);
+    margin-left: 0.25rem;
+}
+
+.project-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.project-link:hover i {
+    transform: translateX(4px);
+}
+
+.view-all-container {
+    margin-top: 3rem;
+}
+
+.view-all-btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all var(--transition-normal);
+}
+
+.view-all-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
 /* Skills Section */
 .skills {
-    background-color: var(--bg-light); /* Default light background */
     padding: 5rem 0;
-    text-align: center;
 }
 
 .skills h2 {
+    text-align: center;
     font-size: 2.25rem;
     font-weight: 700;
     margin-bottom: 3rem;
@@ -571,7 +619,6 @@ body.dark .mobile-resume-btn:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
 }
 
 .skill-category {
@@ -579,8 +626,7 @@ body.dark .mobile-resume-btn:hover {
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: var(--shadow-md);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    text-align: left;
+    transition: all var(--transition-normal);
     border: 1px solid var(--border-color);
 }
 
@@ -591,76 +637,695 @@ body.dark .mobile-resume-btn:hover {
 
 .skill-category h3 {
     font-size: 1.25rem;
-    font-weight: 600;
     margin-bottom: 1rem;
-    color: var(--text-dark);
+    color: var(--primary-color);
 }
 
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.75rem;
 }
 
 .skill-tag {
-    display: inline-block;
-    background-color: var(--bg-muted);
-    color: var(--text-muted);
-    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+    background-color: #e0e7ff;
+    color: var(--primary-dark);
+    padding: 0.5rem 0.75rem;
     border-radius: 6px;
-    font-size: 0.85rem;
     font-weight: 500;
     transition: all var(--transition-normal);
-    border: 1px solid var(--border-color);
 }
 
 .skill-tag:hover {
     background-color: var(--primary-color);
     color: white;
+    transform: translateY(-2px);
+}
+
+/* About Page Styles */
+.about-hero {
+    padding: 6rem 0 3rem;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.page-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.about-image {
+    display: flex;
+    justify-content: center;
+}
+
+.image-placeholder {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #e0e7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    color: var(--primary-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.about-text {
+    text-align: left;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.about-text h3 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.personal-details {
+    margin-top: 2rem;
+    background-color: var(--bg-muted);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.detail-value {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Experience Section */
+.experience {
+    padding: 5rem 0;
+    background-color: var(--bg-muted);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background-color: var(--primary-light);
+}
+
+.timeline-item {
+    margin-bottom: 3rem;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: 4px solid var(--bg-muted);
+}
+
+.timeline-content {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.timeline-date {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-content h4 {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Education Section */
+.education {
+    padding: 5rem 0;
+}
+
+.education-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.education-item {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.education-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    background-color: #e0e7ff;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.education-details h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.education-details h4 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.education-date {
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+/* Projects Page Styles */
+.projects-hero {
+    padding: 6rem 0 3rem;
+    text-align: center;
+}
+
+.page-description {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-size: 1.125rem;
+    color: var(--text-muted);
+}
+
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.25rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
     border-color: var(--primary-color);
+}
+
+.projects-grid {
+    padding: 3rem 0 5rem;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.project-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.project-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.project-item .project-image {
+    height: 100%;
+    min-height: 300px;
+}
+
+.project-details {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-details h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Contact Page Styles */
+.contact-hero {
+    padding: 6rem 0 3rem;
+    text-align: center;
+    background-color: var(--bg-muted);
+}
+
+.contact-section {
+    padding: 5rem 0;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.contact-info {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.contact-info h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.contact-methods {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-method {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.contact-icon {
+    background-color: #e0e7ff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.contact-detail h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.contact-detail p,
+.contact-detail a {
+    color: var(--text-muted);
+    transition: color var(--transition-normal);
+}
+
+.contact-detail a:hover {
+    color: var(--primary-color);
+}
+
+.availability-status {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f0fff4;
+    border-radius: 8px;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status-indicator.available {
+    background-color: #48bb78;
+}
+
+.contact-form-container {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.contact-form-container h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    transition: border-color var(--transition-normal);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Form validation styles */
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.05);
+}
+
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.form-feedback {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    min-height: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-feedback.error {
+    color: #e53e3e;
+}
+
+/* Form success message */
+.form-success {
+    text-align: center;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.form-success i {
+    font-size: 3rem;
+    color: #48bb78;
+    margin-bottom: 1rem;
+}
+
+.form-success p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* CTA Section */
+.cta-section {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cta-section .btn.secondary {
+    color: white;
+    border-color: white;
+}
+
+.cta-section .btn.secondary:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.cta-section .btn.primary {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.cta-section .btn.primary:hover {
+    background-color: var(--bg-light);
+}
+
+/* Modern Projects Grid */
+.modern-projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.modern-project-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.modern-project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.modern-project-card .project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.modern-project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.modern-project-card .project-info {
+    padding: 1.5rem;
+}
+
+.modern-project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.modern-project-card .project-category {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.project-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 /* Footer */
 .footer {
-    background-color: var(--bg-muted);
-    padding: 3rem 0;
-    border-top: 1px solid var(--border-color);
-    margin-top: auto; /* Pushes footer to the bottom */
-}
-
-.footer .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2rem;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding: 4rem 0 2rem;
+    margin-top: auto;
 }
 
 .footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
 }
 
 .footer-logo {
-    flex: 1 1 250px;
-    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .footer-logo .logo {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+    color: white;
 }
 
 .footer-logo p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
+    color: #a1a1aa;
+    font-size: 0.95rem;
 }
 
 .footer-links {
-    display: flex;
-    flex: 2 1 400px;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
 
@@ -673,162 +1338,164 @@ body.dark .mobile-resume-btn:hover {
 
 .footer-nav h4,
 .footer-social h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.125rem;
+    color: white;
     margin-bottom: 0.5rem;
-    color: var(--text-dark);
 }
 
 .footer-nav a,
 .footer-social a {
-    font-size: 0.95rem;
-    color: var(--text-muted);
+    color: #a1a1aa;
     transition: color var(--transition-normal);
 }
 
 .footer-nav a:hover,
 .footer-social a:hover {
-    color: var(--primary-color);
+    color: var(--primary-light);
 }
 
 .copyright {
-    width: 100%;
     text-align: center;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+    color: #a1a1aa;
+    font-size: 0.875rem;
 }
 
-/* Dark Mode - Pure Black Background */
+/* Typewriter effect styles */
+.typewriter-effect {
+    font-weight: 600;
+    color: #6366f1;
+    position: relative;
+    display: inline-block;
+    border-right: 2px solid #6366f1;
+    padding-right: 5px;
+    animation: blink-caret 0.75s step-end infinite;
+    min-height: 1.5em;
+    min-width: 1ch;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #6366f1 }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-7px);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.fade-in-left {
+    animation: fadeInFromLeft 1s ease-out;
+}
+
+.fade-in-right {
+    animation: fadeInFromRight 1s ease-out;
+}
+
+.scale-up {
+    animation: scaleUp 0.7s ease-out;
+}
+
+.bounce {
+    animation: bounce 2s ease infinite;
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for items in a collection */
+.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+.animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+
+/* ===== DARK MODE - CLEAN AND SIMPLIFIED ===== */
+
 body.dark {
-    background-color: #000000 !important;
-    color: var(--text-light); /* Ensure general text is light */
-    --text-dark: #f3f4f6; /* Override text-dark for dark mode */
-    --text-muted: #9ca3af; /* Override text-muted for dark mode */
-    --bg-light: #000000; /* Ensure light background is black in dark mode */
-    --bg-dark: #1f2937; /* Keep original dark background for specific elements */
-    --bg-muted: #111111; /* Darker muted background for sections */
-    --bg-card: #1f1f1f; /* Darker card background */
-    --border-color: #333333; /* Darker borders */
-    --shadow-sm: 0 2px 4px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(255, 255, 255, 0.15);
-    --shadow-md: 0 6px 12px rgba(255, 255, 255, 0.25), 0 3px 6px rgba(255, 255, 255, 0.2);
-    --shadow-lg: 0 12px 24px rgba(255, 255, 255, 0.3), 0 6px 12px rgba(255, 255, 255, 0.25);
+    background-color: #1a1a1a;
+    color: #ffffff;
 }
 
-/* Dark Mode Support for Header */
+/* Dark header */
 body.dark .header {
-    background-color: #000000;
+    background-color: rgba(26, 26, 26, 0.95);
     border-bottom-color: #333333;
 }
 
-body.dark .header.scrolled {
-    background-color: rgba(0, 0, 0, 0.95);
-    box-shadow: var(--shadow-md);
+/* Dark theme toggle */
+body.dark .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Dark Mode Support for Hero */
-body.dark .hero {
-    background: linear-gradient(135deg, #000000 0%, #111111 100%);
-    background-image:
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
-}
-
-/* Dark Mode Gradient Text Override */
-body.dark .greeting,
-body.dark .hero .title,
-body.dark .hero .job-title,
-body.dark .highlight,
-body.dark .typewriter-effect,
-body.dark #typewriter {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .hero .subtitle {
-    color: #cccccc;
-}
-
-/* Dark Mode Support for Work Section */
-body.dark .work {
-    background-color: #000000 !important;
-}
-
-body.dark .work h2 {
-    color: #ffffff;
-}
-
-body.dark .work .project-card {
-    background-color: #1f1f1f; /* Consistent dark card background */
-    border: 1px solid #333333;
-    color: #ffffff;
-}
-
-body.dark .work .project-card h3 {
-    color: #ffffff;
-}
-
-body.dark .work .project-card p {
-    color: #cccccc;
-}
-
-body.dark .work .tech-tag {
-    background-color: #312e81; /* Darker purple for tags */
-    color: #d1d5db;
-}
-
-body.dark .work .project-link {
-    color: var(--primary-light); /* Lighter primary for links */
-}
-
-body.dark .work .view-all-btn {
-    background-color: var(--primary-color);
-    color: #ffffff;
-}
-
-/* Dark Mode Support for Skills Section */
-body.dark .skills {
-    background-color: #000000;
-}
-
-body.dark .skills h2,
-body.dark .skills h3 {
-    color: #ffffff;
-}
-
-body.dark .skill-category {
-    background-color: #1f1f1f; /* Consistent dark card background */
-    border: 1px solid #333333;
-}
-
-body.dark .skill-tag {
-    background-color: #312e81; /* Darker purple for tags */
-    color: #d1d5db;
-}
-
-body.dark .skill-tag:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* Dark Mode Support for Footer */
-body.dark .footer {
-    background-color: #000000;
-    border-top: 1px solid #333333;
-}
-
-body.dark .footer h4,
-body.dark .footer p,
-body.dark .footer a {
-    color: #ffffff;
-}
-
-body.dark .footer a:hover {
-    color: var(--primary-light);
+body.dark .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Dark theme flash */
@@ -868,30 +1535,9 @@ body.dark .service-card,
 body.dark .package-card,
 body.dark .pricing-card,
 body.dark .include-item {
-    background-color: #1f1f1f; /* Adjusted to a slightly lighter dark gray */
+    background-color: #1f1f1f;
     border-color: #333333;
 }
-
-/* Dark mode service cards - cleaner gray appearance */
-body.dark .project-card,
-body.dark .skill-category,
-body.dark .service-card,
-body.dark .extra-item {
-    background-color: #2d2d2d; /* Slightly different shade for these specific cards */
-    border: 1px solid #444444;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1),
-                0 2px 4px rgba(255, 255, 255, 0.05);
-}
-
-body.dark .service-card:hover,
-body.dark .project-card:hover,
-body.dark .extra-item:hover {
-    background-color: #353535;
-    border-color: #555555;
-    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15),
-                0 3px 6px rgba(255, 255, 255, 0.08);
-}
-
 
 /* Dark navigation */
 body.dark .nav a {
@@ -948,7 +1594,7 @@ body.dark .contact-detail a {
 /* Dark tech and skill tags */
 body.dark .tech-tag,
 body.dark .skill-tag {
-    background-color: #312e81; /* Darker purple for tags */
+    background-color: #312e81;
     color: #d1d5db;
 }
 
@@ -1030,6 +1676,166 @@ body.dark .project-image.placeholder-img {
     background-color: #312e81;
 }
 
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+    
+    .title {
+        font-size: 3rem;
+    }
+    
+    .about-content,
+    .project-item {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0.25rem 0;
+    }
+    
+    .header.scrolled {
+        padding: 0.125rem 0;
+    }
+    
+    .header .container {
+        min-height: 45px;
+        padding: 0 0.75rem;
+    }
+    
+    .logo {
+        font-size: 1.1rem;
+    }
+    
+    .nav {
+        gap: 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .nav a {
+        padding: 0.25rem 0.15rem;
+    }
+    
+    .actions {
+        gap: 0.75rem;
+    }
+    
+    
+    
+    .social-icons a {
+        font-size: 0.95rem;
+        padding: 0.2rem;
+    }
+    
+    .theme-toggle {
+        font-size: 1.1rem;
+        padding: 0.2rem;
+    }
+    
+    .hero {
+        padding: 4rem 1rem 2rem;
+    }
+    
+    .title {
+        font-size: 2.25rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .project-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .greeting:before,
+    .greeting:after {
+        display: none;
+    }
+    
+    .project-links {
+        flex-direction: column;
+    }
+    
+    .contact-section .container {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .social-icons {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .project-filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        width: 200px;
+    }
+    
+    .page-title {
+        font-size: 2.25rem;
+    }
+    
+    .contact-method {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .container {
+        flex-direction: column;
+        gap: 0.25rem;
+        min-height: 60px;
+        padding: 0.25rem 0.75rem;
+    }
+    
+    .nav {
+        order: 2;
+    }
+    
+    .actions {
+        order: 3;
+        font-size: 0.8rem;
+    }
+}
 /* SUPER TARGETED FIX: Content Creation Section Dark Mode Only */
 
 /* Force BLACK background - override all gradients */
@@ -1095,7 +1901,7 @@ body.dark .content-creation-section i {
 body.dark .content-creation-section div[style*="background"],
 body.dark .content-creation-section section[style*="background"] {
     background: #1a1a2e !important;
-    background-color: #1a1a2e !important;
+background-color: #1a1a2e !important;
 }
 
 /* Ultra-specific override for any stubborn elements */
@@ -1107,7 +1913,6 @@ body.dark section#content-creation * {
 body.dark section#content-creation {
     background-color: #000000 !important;
 }
-
 /* PDF Download box - PURPLE background */
 body.dark .content-creation-section .pdf-cta-section {
     background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
@@ -1118,20 +1923,19 @@ body.dark .content-creation-section .pdf-cta-section {
 body.dark .content-creation-section .pdf-cta-section * {
     color: #ffffff !important;
 }
-
 /* Specific button - White in Light Mode */
 .pdf-download-section a[href="#download-pdf"].pdf-download-button {
-    background-color: white;
-    color: var(--text-dark);
-    border: 2px solid var(--border-color);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: white !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--border-color) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
 }
 
 .pdf-download-section a[href="#download-pdf"].pdf-download-button:hover {
-    background-color: #f9fafb;
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: translateY(-3px);
+    background: #f8f9fa !important;
+    color: var(--text-dark) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-3px) !important;
 }
 
 /* Dark Mode: Specific button - Purple in Dark Mode */
@@ -1162,8 +1966,382 @@ body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:acti
     color: white !important;
     background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
 }
-
 /* ===== ICON VISIBILITY FIXES FOR DARK MODE ===== */
+
+/* Fix for Extras Section Icons in Dark Mode */
+body.dark .extras-section .extras-category .service-icon,
+body.dark .extras-section .extras-grid .service-icon,
+body.dark .extras-section .extras-card .service-icon,
+body.dark .extras-section .extra-item .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .extras-section .extras-item .include-icon {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+/* Remove black backgrounds from icon containers in Extras section */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .include-icon-container {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Ensure Extras section icons maintain purple color */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.extras-section .fab,
+body.dark .extras-section i[class*="fa-"] {
+    color: #6366f1 !important;
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* Fix for "O Que Inclui" Section Icons in Dark Mode */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background-color: #6366f1 !important;
+    background: #6366f1 !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* Ensure "O Que Inclui" icons stay white on purple background */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Target specific Font Awesome icons in "O Que Inclui" section */
+body.dark .includes-section .fa,
+body.dark .includes-section .fas,
+body.dark .includes-section .far,
+body.dark .includes-section .fab,
+body.dark .includes-section i[class*="fa-"],
+body.dark .content-creation-section .include-icon .fa,
+body.dark .content-creation-section .include-icon .fas,
+body.dark .content-creation-section .include-icon .far,
+body.dark .content-creation-section .include-icon .fab,
+body.dark .content-creation-section .include-icon i[class*="fa-"] {
+    color: white !important;
+}
+
+/* Remove any unwanted borders or shadows from icon containers */
+body.dark .extras-section .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure proper contrast for all service-related icons in dark mode */
+body.dark .service-card .service-icon,
+body.dark .service-item .service-icon,
+body.dark .package-card .service-icon {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+/* Fix for any remaining icon visibility issues */
+body.dark .extras-section .extras-category .fa-check,
+body.dark .extras-section .extras-category .fa-times,
+body.dark .extras-section .extras-category .fa-star,
+body.dark .extras-section .extras-category .fa-heart,
+body.dark .extras-section .extras-category .fa-thumbs-up,
+body.dark .extras-section .extras-category .fa-camera,
+body.dark .extras-section .extras-category .fa-video,
+body.dark .extras-section .extras-category .fa-edit,
+body.dark .extras-section .extras-category .fa-paint-brush,
+body.dark .extras-section .extras-category .fa-bullhorn,
+body.dark .extras-section .extras-category .fa-chart-line {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure includes section maintains purple circular background with white icons */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .includes-grid .include-icon,
+body.dark .service-includes .include-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+}
+
+/* White icons inside purple circles for includes section */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .includes-grid .include-icon i,
+body.dark .service-includes .include-icon i {
+    color: white !important;
+    font-size: 1.5rem !important;
+}
+
+/* Additional specificity for stubborn icons */
+body.dark .extras-section * .fa,
+body.dark .extras-section * .fas,
+body.dark .extras-section * .far,
+body.dark .extras-section * .fab,
+body.dark .extras-section * i[class*="fa-"] {
+    color: #6366f1 !important;
+    background: transparent !important;
+}
+
+/* Override any inline styles that might be causing issues */
+body.dark .extras-section [style*="background"],
+body.dark .extras-section [style*="color"] {
+    background-color: transparent !important;
+    color: #6366f1 !important;
+}
+
+/* Ensure proper visibility for all icon types */
+body.dark .extras-section .service-icon svg,
+body.dark .extras-section .include-icon svg {
+    fill: #6366f1 !important;
+    color: #6366f1 !important;
+}
+
+body.dark .includes-section .include-icon svg,
+body.dark .content-creation-section .include-icon svg {
+    fill: white !important;
+    color: white !important;
+}
+
+/* Hover effects for icons in dark mode */
+body.dark .extras-section .service-icon:hover,
+body.dark .extras-section .include-icon:hover {
+    background-color: rgba(99, 102, 241, 0.1) !important;
+    color: var(--primary-light) !important;
+}
+
+body.dark .includes-section .include-icon:hover,
+body.dark .content-creation-section .include-icon:hover {
+    background: linear-gradient(135deg, var(--primary-light), #6366f1) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Ensure transitions work smoothly */
+body.dark .extras-section .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon {
+    transition: all 0.3s ease !important;
+}
+
+/* Final catch-all for any remaining icon issues */
+body.dark .extras-section i,
+body.dark .extras-section .icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+body.dark .includes-section i,
+body.dark .content-creation-section .includes-grid i,
+body.dark .service-includes i {
+    color: white !important;
+}
+
+/* Responsive fixes for mobile */
+@media (max-width: 768px) {
+    body.dark .extras-section .service-icon,
+    body.dark .extras-section .include-icon {
+        font-size: 1.2rem !important;
+    }
+    
+    body.dark .includes-section .include-icon,
+    body.dark .content-creation-section .include-icon {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    body.dark .includes-section .include-icon i,
+    body.dark .content-creation-section .include-icon i {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    body.dark .includes-section .include-icon,
+    body.dark .content-creation-section .include-icon {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    body.dark .includes-section .include-icon i,
+    body.dark .content-creation-section .include-icon i {
+        font-size: 1rem !important;
+    }
+}
+/* No seu ficheiro CSS existente, adicione/modifique estas regras */
+
+/* --- INÍCIO DO BLOCO MEDIA QUERY (SUBSTITUA O SEU EXISTENTE NO style.css) --- */
+@media (max-width: 768px) {
+    /* Assegurar que o menu mobile está SEMPRE acima do header no telemóvel */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Ocupar a altura total da viewport */
+        background-color: var(--bg-dark); /* Ou a cor de fundo que deseja para o menu */
+        z-index: 1001 !important; /* <--- AQUI! DEVE ser MAIOR que o z-index do .header (que é 1000 no HTML) */
+        overflow-y: auto; /* Para permitir scroll se o conteúdo do menu for maior que a tela */
+        display: flex; /* Se já estiver a usar flexbox para o conteúdo interno do menu */
+        flex-direction: column; /* Se já estiver a usar flexbox */
+        /* Outras transições ou estilos do seu menu móvel */
+    }
+
+    /* Opcional: Força o z-index do header a ser menor no mobile */
+    /* Para o caso de ter o z-index: 1000 do header no HTML, esta regra garante que no mobile ele seja 999. */
+    .header {
+        z-index: 999 !important; /* <--- AQUI! Torna o header menor que o menu overlay no mobile */
+    }
+
+    /* OCULTAR A NAVEGAÇÃO STICKY QUANDO O MENU MOBILE ESTÁ ABERTO */
+    /* Usamos a classe 'no-scroll' que o JavaScript adiciona ao <body> */
+    body.no-scroll header {
+        opacity: 0 !important; /* Força a opacidade a zero */
+        visibility: hidden !important; /* Força a visibilidade a hidden */
+        pointer-events: none !important; /* Impede cliques no header enquanto oculto */
+        /* Transições para a opacidade e visibilidade devem estar na regra .header geral (fora desta media query) */
+    }
+
+    /* Garante que o header reaparece quando o menu mobile não está aberto */
+    body:not(.no-scroll) header {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    /* Se tiver outras regras dentro deste @media, coloque-as aqui abaixo */
+    /* ... suas outras regras ... */
+
+}
+/* --- FIM DO BLOCO MEDIA QUERY --- */
+/* ===== DARK MODE ICON FIXES ===== */
+
+/* Fix for ALL Extras Section Icons - Make them visible and purple */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section .service-icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove black backgrounds from "O Que Inclui" section */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+}
+
+/* Purple circles with white icons for "O Que Inclui" */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* White icons inside purple circles */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    font-size: 1.5rem !important;
+}
+/* ===== DARK MODE ICON FIXES ===== */
+
+/* Fix for ALL Extras Section Icons - Make them visible and purple */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section .service-icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove black backgrounds from "O Que Inclui" section */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+}
+
+/* Purple circles with white icons for "O Que Inclui" - maintain original size */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* White icons inside purple circles - maintain original font size */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+}
+/* ===== DARK MODE ICON FIXES - CLEAN SOLUTION ===== */
 
 /* EXTRAS SECTION - Purple icons with transparent backgrounds */
 body.dark .extras-section .service-icon {
@@ -1217,12 +2395,7 @@ body.dark .include-item .include-icon {
     background-color: #6366f1 !important;
     color: white !important;
     border-radius: 50% !important;
-    /* Keep original dimensions - do not override width/height unless necessary */
-    width: 60px; /* Explicitly setting a size for consistency */
-    height: 60px; /* Explicitly setting a size for consistency */
-    display: flex; /* Ensure content is centered */
-    align-items: center;
-    justify-content: center;
+    /* Keep original dimensions - do not override width/height */
 }
 
 body.dark .includes-section .include-icon i,
@@ -1237,7 +2410,6 @@ body.dark .include-item .fa {
     background: transparent !important;
     background-color: transparent !important;
     /* Keep original font-size - do not override */
-    font-size: 1.5rem; /* Explicitly setting a size for consistency */
 }
 
 /* Remove black backgrounds from includes section containers */
@@ -1263,6 +2435,51 @@ body.dark .content-creation-section .include-icon:hover {
     transition: all 0.3s ease;
 }
 
+/* RESPONSIVE BEHAVIOR - Keep original responsive design */
+@media (max-width: 768px) {
+    /* Let original CSS handle responsive sizing */
+}
+/* Dark mode service cards - cleaner gray appearance */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .service-card,
+body.dark .extra-item {
+    background-color: #2d2d2d;
+    border: 1px solid #444444;
+     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1), 
+                0 2px 4px rgba(255, 255, 255, 0.05);
+}
+
+body.dark .service-card:hover,
+body.dark .project-card:hover,
+body.dark .extra-item:hover {
+    background-color: #353535;
+    border-color: #555555;
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15), 
+                0 3px 6px rgba(255, 255, 255, 0.08);
+}
+/* Dark mode CSS variables override */
+body.dark {
+    --shadow-sm: 0 2px 4px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(255, 255, 255, 0.15);
+    --shadow-md: 0 6px 12px rgba(255, 255, 255, 0.25), 0 3px 6px rgba(255, 255, 255, 0.2);
+    --shadow-lg: 0 12px 24px rgba(255, 255, 255, 0.3), 0 6px 12px rgba(255, 255, 255, 0.25);
+}
+
+/* Dark cards */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .service-card,
+body.dark .extra-item {
+    background-color: #2d2d2d;
+    border: 1px solid #444444;
+}
+
+body.dark .service-card:hover,
+body.dark .project-card:hover,
+body.dark .extra-item:hover {
+    background-color: #353535;
+    border-color: #555555;
+}
 /* Light mode CTA buttons - white background */
 .cta-section .btn {
     background-color: white;
@@ -1288,413 +2505,164 @@ body.dark .cta-section .btn:hover {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* CORREÇÃO FINAL: SECÇÃO CRIAÇÃO DE CONTEÚDO - CAIXAS CORTADAS NO MOBILE */
-@media (max-width: 767px) { /* For mobile screens (up to 767px width) */
-    /* This selector is now as specific as the desktop one to ensure override */
-    .content-creation-section .service-content .includes-section .includes-grid {
-        grid-template-columns: 1fr !important; /* Force ONE column, stacking boxes */
-        gap: 20px !important; /* Adjust spacing between stacked boxes */
-    }
+/* --- INÍCIO DO CÓDIGO DO BOTÃO CURRÍCULO (COPIE E COLE ESTE BLOCO NO FINAL DO SEU style.css) --- */
 
-    /* Optional: Adjust padding of individual boxes on mobile if they look too large */
-    .content-creation-section .include-item {
-        padding: 15px !important; /* Make padding slightly smaller for small screens */
-    }
-
-    /* Optional: Adjust font sizes or other elements if needed */
-    .content-creation-section .service-title {
-        font-size: 2.2rem !important; /* Smaller main title on mobile */
-    }
-
-    .content-creation-section .includes-title {
-        font-size: 1.6rem !important; /* Smaller "O Que Inclui" title on mobile */
-    }
-}
-
-/* About Section Image and Text Spacing */
-/* Assuming your about content is structured like:
-<div class="about-content">
-    <img class="about-image" src="..." alt="...">
-    <div class="text-block">
-        <p>...</p>
-        <p>...</p>
-    </div>
-</div>
-*/
-.about-content {
-    display: flex;
-    flex-wrap: wrap; /* Allows content to wrap on smaller screens */
-    align-items: flex-start; /* Align items to the top */
-    gap: 2.5rem; /* Adds space between flex items (image and text block) */
-    margin-top: 2rem; /* Add some top margin to the section content */
-}
-
-.about-content .about-image { /* Target the image inside this container */
-    flex-shrink: 0; /* Prevent image from shrinking if space is tight */
-    max-width: 300px; /* Or a suitable max-width */
-    height: auto;
+/* 1. Regra Geral do Botão de Currículo (aplica-se a todas as páginas) */
+.resume-btn {
+    background-color: var(--primary-color);
+    color: white;
     border-radius: 8px;
-    object-fit: cover; /* Ensure image covers its area */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    /* Tamanho padrão (sem !important aqui) */
+    padding: 12px 30px;
+    font-size: 1rem;
+    min-width: 150px;
 }
 
-.about-content .text-block { /* Assuming a div wrapping your paragraphs */
-    flex-grow: 1; /* Allow text block to take remaining space */
-    min-width: 300px; /* Ensure text block has a minimum width before wrapping */
+/* 2. Efeito Hover do Botão de Currículo */
+.resume-btn:hover {
+    background-color: var(--primary-dark); /* Roxo mais escuro no hover */
+    transform: translateY(-2px); /* Efeito de levantar */
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
 }
 
-/* For paragraphs in general on the about page, ensure they have consistent bottom margin */
-.about-section p { /* Assuming an 'about-section' class for your about section */
-    margin-bottom: 1rem; /* Standard paragraph spacing */
+/* 3. Dark Mode para o Botão de Currículo (cores) */
+body.dark .resume-btn,
+body.dark .mobile-resume-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .container {
-        padding: 0 2rem;
-    }
-
-    .title {
-        font-size: 3rem;
-    }
-
-    .about-content,
-    .project-item {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+body.dark .resume-btn:hover,
+body.dark .mobile-resume-btn:hover {
+    background-color: var(--primary-dark) !important;
+    color: white !important;
 }
 
-@media (max-width: 768px) {
-    .header {
-        padding: 0.25rem 0;
-    }
-
-    .header.scrolled {
-        padding: 0.125rem 0;
-    }
-
-    .header .container {
-        min-height: 45px;
-        padding: 0 0.75rem;
-    }
-
-    .logo {
-        font-size: 1.1rem;
-    }
-
-    .nav {
-        gap: 0.75rem;
-        font-size: 0.85rem;
-    }
-
-    .nav a {
-        padding: 0.25rem 0.15rem;
-    }
-
-    .actions {
-        gap: 0.75rem;
-    }
-
-    .social-icons a {
-        font-size: 0.95rem;
-        padding: 0.2rem;
-    }
-
-    .theme-toggle {
-        font-size: 1.1rem;
-        padding: 0.2rem;
-    }
-
-    .hero {
-        padding: 4rem 1rem 2rem;
-    }
-
-    .title {
-        font-size: 2.25rem;
-    }
-
-    .subtitle {
-        font-size: 1.1rem;
-    }
-
-    .project-card {
-        max-width: 400px;
-        margin: 0 auto;
-    }
-
-    .hero-cta {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .greeting:before,
-    .greeting:after {
-        display: none;
-    }
-
-    .project-links {
-        flex-direction: column;
-    }
-
-    .contact-section .container {
-        max-width: 500px;
-    }
-
-    /* Assegurar que o menu mobile está SEMPRE acima do header no telemóvel */
-    .mobile-menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh; /* Ocupar a altura total da viewport */
-        background-color: var(--bg-dark); /* Or the background color you want for the menu */
-        z-index: 1001 !important; /* <--- HERE! MUST be GREATER than the z-index of .header (which is 1000 in HTML) */
-        overflow-y: auto; /* To allow scrolling if menu content is larger than screen */
-        display: flex; /* If already using flexbox for internal menu content */
-        flex-direction: column; /* If already using flexbox */
-        /* Other transitions or styles of your mobile menu */
-    }
-
-    /* Optional: Force header z-index to be lower on mobile */
-    /* In case header has z-index: 1000 in HTML, this rule ensures it's 999 on mobile. */
-    .header {
-        z-index: 999 !important; /* <--- HERE! Makes the header lower than the menu overlay on mobile */
-    }
-
-    /* HIDE STICKY NAVIGATION WHEN MOBILE MENU IS OPEN */
-    /* We use the 'no-scroll' class that JavaScript adds to the <body> */
-    body.no-scroll header {
-        opacity: 0 !important; /* Force opacity to zero */
-        visibility: hidden !important; /* Force visibility to hidden */
-        pointer-events: none !important; /* Prevent clicks on header while hidden */
-        /* Transitions for opacity and visibility should be in the general .header rule (outside this media query) */
-    }
-
-    /* Ensure header reappears when mobile menu is not open */
-    body:not(.no-scroll) header {
-        opacity: 1 !important;
-        visibility: visible !important;
-        pointer-events: auto !important;
-    }
-
-    /* Mobile Specific Overrides for the Header */
-    .header .container {
-        flex-direction: row; /* Keep as row for mobile header */
-        justify-content: space-between;
-        align-items: center;
-    }
-    .nav {
-        display: none; /* Hide desktop nav */
-    }
-    .actions {
-        display: flex; /* Ensure actions are shown */
-        gap: 1rem; /* Reduce gap for mobile if needed */
-    }
-    .mobile-menu-toggle { /* Assuming this is your hamburger icon */
-        display: flex !important; /* Show hamburger */
-    }
-    .mobile-resume-btn {
-        padding: 0.6rem 1.2rem !important; /* Adjusted for mobile */
-        font-size: 0.9rem !important;
-        min-width: unset !important;
-    }
-    .mobile-theme-toggle {
-        font-size: 1.4rem !important;
-        padding: 0.5rem !important;
-    }
-    .social-icons {
-        display: none; /* Hide desktop social icons on mobile header if they are inside .actions */
-    }
-}
-
-@media (max-width: 576px) {
-    .nav {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: center;
-    }
-
-    .actions {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .social-icons {
-        order: 3;
-        width: 100%;
-        justify-content: center;
-    }
-
-    .project-filters {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .filter-btn {
-        width: 200px;
-    }
-
-    .page-title {
-        font-size: 2.25rem;
-    }
-
-    .contact-method {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .footer-links {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .header .container {
-        flex-direction: column;
-        gap: 0.25rem;
-        min-height: 60px;
-        padding: 0.25rem 0.75rem;
-    }
-
-    .nav {
-        order: 2;
-    }
-
-    .actions {
-        order: 3;
-        font-size: 0.8rem;
-    }
-
-    /* Mobile Safari fixes for includes section icon sizing */
-    body.dark .extras-section .service-icon,
-    body.dark .extras-section .include-icon {
-        font-size: 1.2rem !important;
-    }
-
-    body.dark .includes-section .include-icon,
-    body.dark .content-creation-section .include-icon {
-        width: 50px !important;
-        height: 50px !important;
-    }
-
-    body.dark .includes-section .include-icon i,
-    body.dark .content-creation-section .include-icon i {
-        font-size: 1.2rem !important;
-    }
-}
-
-/* Extra small screens for includes icons */
-@media (max-width: 480px) {
-    body.dark .includes-section .include-icon,
-    body.dark .content-creation-section .include-icon {
-        width: 45px !important;
-        height: 45px !important;
-    }
-
-    body.dark .includes-section .include-icon i,
-    body.dark .content-creation-section .include-icon i {
-        font-size: 1rem !important;
-    }
-}
-
-/* SIMPLE SAFARI FIX - Using CSS feature detection */
-@supports (-webkit-appearance: none) {
-    /* Fix navigation spacing in Safari */
-    .nav {
-        gap: 2.5rem !important;
-    }
-
-    .actions {
-        gap: 2rem !important;
-    }
-
-    .social-icons {
-        gap: 1.5rem !important;
-    }
-
-    /* Fix header spacing in Safari */
-    .header {
-        padding: 1.25rem 0 !important;
-    }
-
-    .header.scrolled {
-        padding: 1rem 0 !important;
-    }
-
-    /* Fix typewriter animation for Safari */
-    #typewriter {
-        display: inline-block !important;
-        overflow: hidden !important;
-        white-space: nowrap !important;
-        border-right: 2px solid var(--primary-color) !important;
-        animation: blink-caret 1s step-end infinite !important;
-        min-height: 1.5em !important; /* Ensure height for caret */
-        min-width: 1ch !important; /* Ensure minimum width for caret */
-    }
-
-    @keyframes blink-caret {
-        from, to {
-            border-right-color: transparent !important;
-        }
-        50% {
-            border-right-color: var(--primary-color) !important;
-        }
-    }
-
-    /* Fix button spacing in Safari */
-    .resume-btn,
-    .mobile-resume-btn {
-        padding: 0.8rem 1.8rem !important;
-        margin: 0.2rem !important;
-    }
-
-    .theme-toggle {
-        padding: 0.6rem !important;
-        margin: 0.2rem !important;
-    }
-
-    /* Mobile Safari fixes */
-    @media (max-width: 768px) {
-        .nav {
-            gap: 1.5rem !important;
-        }
-
-        .actions {
-            gap: 1.5rem !important;
-        }
-
-        .social-icons {
-            gap: 1rem !important;
-        }
-
-        .header {
-            padding: 1rem 0 !important;
-        }
-
-        .header.scrolled {
-            padding: 0.75rem 0 !important;
-        }
-
-        .mobile-resume-btn {
-            padding: 0.7rem 1.5rem !important;
-            margin: 0.25rem !important;
-        }
-    }
-}
-
-/* FINAL FIX FOR CURRICULO BUTTON ON SERVICES PAGE */
-/* This rule FORCES the size only on the services page and MUST be the LAST one defined */
+/* 4. SOLUÇÃO FINAL PARA O PROBLEMA DO BOTÃO CURRÍCULO NA PÁGINA DE SERVIÇOS */
+/* Esta regra FORÇA o tamanho apenas na página de serviços e DEVE ser a ÚLTIMA definida */
 body.section-services-hero .resume-btn {
-    padding: 12px 30px !important; /* FORCE desired padding */
-    font-size: 1rem !important;    /* FORCE desired font-size */
-    min-width: 150px !important;   /* FORCE desired min-width */
-    /* If colors are wrong ONLY on this page, you can add these lines: */
+    padding: 12px 30px !important; /* FORÇA o padding desejado */
+    font-size: 1rem !important;    /* FORÇA o font-size desejado */
+    min-width: 150px !important;   /* FORÇA o min-width desejado */
+    /* Se as cores ficarem erradas APENAS nesta página, pode adicionar estas linhas: */
     /* background-color: var(--primary-color) !important; */
     /* color: white !important; */
 }
+
+/* --- FIM DO CÓDIGO DO BOTÃO CURRÍCULO --- */
+/* CORREÇÃO FINAL: SECÇÃO CRIAÇÃO DE CONTEÚDO - CAIXAS CORTADAS NO MOBILE */
+@media (max-width: 767px) { /* Para ecrãs de telemóvel (até 767px de largura) */
+    /* Este seletor é agora tão específico quanto o do desktop para garantir a anulação */
+    .content-creation-section .service-content .includes-section .includes-grid {
+        grid-template-columns: 1fr !important; /* Força UMA coluna, fazendo as caixas empilharem-se */
+        gap: 20px !important; /* Ajusta o espaçamento entre as caixas empilhadas */
+    }
+
+    /* Opcional: Ajustar o padding das caixas individuais no telemóvel se parecerem muito grandes */
+    .content-creation-section .include-item {
+        padding: 15px !important; /* Torna o padding um pouco menor para ecrãs pequenos */
+    }
+
+    /* Opcional: Ajustar tamanhos de fonte ou outros elementos se necessário */
+    .content-creation-section .service-title {
+        font-size: 2.2rem !important; /* Título principal mais pequeno no mobile */
+    }
+
+    .content-creation-section .includes-title {
+        font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
+    }
+}
+/* SIMPLE SAFARI FIX - Add this to the very end of your typewriter-and-darkmode.css file */
+
+/* Safari-only fixes using CSS feature detection */
+@supports (-webkit-appearance: none) {
+  /* Fix navigation spacing in Safari */
+  .nav {
+    gap: 2.5rem !important;
+  }
+  
+  .actions {
+    gap: 2rem !important;
+  }
+  
+  .social-icons {
+    gap: 1.5rem !important;
+  }
+  
+  /* Fix header spacing in Safari */
+  .header {
+    padding: 1.25rem 0 !important;
+  }
+  
+  .header.scrolled {
+    padding: 1rem 0 !important;
+  }
+  
+  /* Fix typewriter animation for Safari */
+  #typewriter {
+    display: inline-block !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    border-right: 2px solid var(--primary-color) !important;
+    animation: blink-caret 1s step-end infinite !important;
+    min-height: 1.5em !important;
+    min-width: 1ch !important;
+  }
+  
+  @keyframes blink-caret {
+    from, to { 
+      border-right-color: transparent !important;
+    }
+    50% { 
+      border-right-color: var(--primary-color) !important;
+    }
+  }
+  
+  /* Fix button spacing in Safari */
+  .resume-btn,
+  .mobile-resume-btn {
+    padding: 0.8rem 1.8rem !important;
+    margin: 0.2rem !important;
+  }
+  
+  .theme-toggle {
+    padding: 0.6rem !important;
+    margin: 0.2rem !important;
+  }
+  
+  /* Mobile Safari fixes */
+  @media (max-width: 768px) {
+    .nav {
+      gap: 1.5rem !important;
+    }
+    
+    .actions {
+      gap: 1.5rem !important;
+    }
+    
+    .social-icons {
+      gap: 1rem !important;
+    }
+    
+    .header {
+      padding: 1rem 0 !important;
+    }
+    
+    .header.scrolled {
+      padding: 0.75rem 0 !important;
+    }
+    
+    .mobile-resume-btn {
+      padding: 0.7rem 1.5rem !important;
+      margin: 0.25rem !important;
+    }
+  }
+}
+
+/* END OF SAFARI FIX */
