@@ -554,31 +554,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function setupTypewriterEffect() {
-        const phrases = ['Marketeer', 'Front-End Developer'];
-        let index = 0;
-        let charIndex = 0;
-        
-        function typeNextCharacter() {
-            if (!typewriterElement) {
-                console.error("Typewriter element not available for effect.");
-                return;
-            }
-
-            const currentPhrase = phrases[index % phrases.length];
-                
-            if (charIndex < currentPhrase.length) {
-                typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
-                charIndex++;
-                setTimeout(typeNextCharacter, 50);
-            } else {
-                setTimeout(() => {
-                    index++;
-                    charIndex = 0;
-                    typewriterElement.textContent = '';
-                    typeNextCharacter();
-                }, 2000);
-            }
+    const phrases = ['Marketeer', 'Front-End Developer'];
+    let index = 0;
+    let charIndex = 0;
+    
+    // Safari detection
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    
+    function typeNextCharacter() {
+        if (!typewriterElement) {
+            console.error("Typewriter element not available for effect.");
+            return;
         }
-        typeNextCharacter();
+
+        const currentPhrase = phrases[index % phrases.length];
+            
+        if (charIndex < currentPhrase.length) {
+            typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
+            charIndex++;
+            
+            // Safari-specific timing adjustment
+            const typingSpeed = isSafari ? 75 : 50; // Slower for Safari
+            setTimeout(typeNextCharacter, typingSpeed);
+        } else {
+            setTimeout(() => {
+                index++;
+                charIndex = 0;
+                typewriterElement.textContent = '';
+                
+                // Safari-specific fix: force reflow before continuing
+                if (isSafari) {
+                    typewriterElement.style.display = 'none';
+                    typewriterElement.offsetHeight; // Trigger reflow
+                    typewriterElement.style.display = '';
+                }
+                
+                typeNextCharacter();
+            }, isSafari ? 2500 : 2000); // Longer pause for Safari
+        }
     }
+    
+    // Initial delay for Safari compatibility
+    setTimeout(() => {
+        typeNextCharacter();
+    }, isSafari ? 300 : 100);
+}
 });
