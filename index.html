@@ -46,8 +46,21 @@
 }
 
 body {
-    background: white;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+body.dark {
+    --bg-color: #000;
+    --text-color: #fff;
+}
+
+body:not(.dark) {
+    --bg-color: #fff;
+    --text-color: #1f2937;
+}
+
 
 /* Dark Mode - Pure Black Background */
 body.dark {
