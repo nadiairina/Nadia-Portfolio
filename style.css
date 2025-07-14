@@ -275,16 +275,6 @@ body.dark .mobile-resume-btn:hover {
     gap: 1.5rem;
 }
 
-/* Safari fallback para espaçamento entre os elementos dentro de .actions */
-.actions > *:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.social-icons a:not(:last-child) {
-  margin-right: 0.5rem;
-}
-
-
 /* Social icons */
 .social-icons {
     display: flex;
