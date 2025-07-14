@@ -553,41 +553,47 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScroll();
     }
     
-   function setupTypewriterEffect() {
+    function setupTypewriterEffect() {
     const phrases = ['Marketeer', 'Front-End Developer'];
     let index = 0;
     let charIndex = 0;
-    let isDeleting = false;
-
-    const type = () => {
-        if (!typewriterElement) return;
-
-        const currentPhrase = phrases[index % phrases.length];
-        const displayedText = currentPhrase.slice(0, charIndex);
-        typewriterElement.innerHTML = displayedText;
-
-        const speed = isDeleting ? 50 : 100;
-
-        if (!isDeleting && charIndex < currentPhrase.length) {
-            charIndex++;
-        } else if (isDeleting && charIndex > 0) {
-            charIndex--;
-        } else {
-            isDeleting = !isDeleting;
-            if (!isDeleting) index++;
-            setTimeout(type, 1200);
+    
+    // Safari detection
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    
+    function typeNextCharacter() {
+        if (!typewriterElement) {
+            console.error("Typewriter element not available for effect.");
             return;
         }
 
-        // Safari fix – força reflow
-        void typewriterElement.offsetWidth;
-
-        setTimeout(type, speed);
-    };
-
-    type();
-}
-
+        const currentPhrase = phrases[index % phrases.length];
+            
+        if (charIndex < currentPhrase.length) {
+            typewriterElement.textContent = currentPhrase.slice(0, charIndex + 1);
+            charIndex++;
+            
+            // Safari-specific timing adjustment
+            const typingSpeed = isSafari ? 75 : 50; // Slower for Safari
+            setTimeout(typeNextCharacter, typingSpeed);
+        } else {
+            setTimeout(() => {
+                index++;
+                charIndex = 0;
+                typewriterElement.textContent = '';
+                
+                // Safari-specific fix: force reflow before continuing
+                if (isSafari) {
+                    typewriterElement.style.display = 'none';
+                    typewriterElement.offsetHeight; // Trigger reflow
+                    typewriterElement.style.display = '';
+                }
+                
+                typeNextCharacter();
+            }, isSafari ? 2500 : 2000); // Longer pause for Safari
+        }
+    }
+    
     // Initial delay for Safari compatibility
     setTimeout(() => {
         typeNextCharacter();
