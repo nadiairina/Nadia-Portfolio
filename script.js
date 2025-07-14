@@ -600,37 +600,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }, isSafari ? 300 : 100);
 }
 });
-function setupTypewriterEffect() {
-    const phrases = ['Marketeer', 'Front-End Developer'];
-    let index = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    function type() {
-        if (!typewriterElement) return;
-
-        const currentPhrase = phrases[index % phrases.length];
-        const currentText = currentPhrase.slice(0, charIndex);
-
-        typewriterElement.innerHTML = currentText;
-
-        const typingSpeed = isSafari ? 100 : 70;
-        const pauseTime = isSafari ? 1500 : 1200;
-
-        if (!isDeleting && charIndex < currentPhrase.length) {
-            charIndex++;
-            setTimeout(type, typingSpeed);
-        } else if (isDeleting && charIndex > 0) {
-            charIndex--;
-            setTimeout(type, typingSpeed / 2);
-        } else {
-            isDeleting = !isDeleting;
-            if (!isDeleting) index++;
-            setTimeout(type, pauseTime);
-        }
-    }
-
-    type();
-}
