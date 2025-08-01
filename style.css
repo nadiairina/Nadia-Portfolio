@@ -1,219 +1,1389 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nadia Irina - Front-End Developer e Marketeer Portfolio">
-    <title>Nadia Irina | Portfolio</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="typewriter-and-darkmode.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
     --primary-color: #6366f1;
     --primary-dark: #4f46e5;
+    --primary-light: #a5b4fc;
     --text-dark: #1f2937;
+    --text-light: #f3f4f6;
     --text-muted: #6b7280;
-    --text-light: #f9fafb;
-    --bg-card: #ffffff;
+    --bg-light: #ffffff;
+    --bg-dark: #1f2937;
     --bg-muted: #f9fafb;
+    --bg-card: #ffffff;
     --border-color: #e5e7eb;
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Header/Navigation Bar Styling - Sticky Navigation */
-.header {
-    background-color: white;
-    padding: 15px 0;
-    border-bottom: 1px solid #e5e7eb;
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 body {
-    background: white;
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+    background: var(--bg-light);
+    line-height: 1.6;
+    transition: background var(--transition-normal), color var(--transition-normal);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Dark Mode - Pure Black Background */
-body.dark {
-    background-color: #000000 !important;
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-normal);
 }
 
-/* Dark Mode Support for Header */
-body.dark .header {
-    background-color: #000000;
-    border-bottom-color: #333333;
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
 }
 
-body.dark .header.scrolled {
-    background-color: rgba(0, 0, 0, 0.95);
+section {
+    padding: 4rem 0;
 }
 
-/* Hero Section Styling - IDENTICAL to other pages */
-.hero {
-    margin-top: 70px;
-    padding: 150px 1rem 150px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    color: var(--primary-color);
+    font-weight: 600;
     position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
+    display: inline-block;
+    transition: color var(--transition-normal);
 }
 
-.hero::before {
+.highlight:after {
     content: '';
     position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-normal);
+}
+
+.highlight:hover:after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: none;
+    outline: none;
+}
+
+.btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+}
+
+.btn.secondary:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+
+
+/* Certifique-se de que a versão móvel também tem estas propriedades definidas, se aplicável */
+@media (max-width: 768px) {
+    .mobile-resume-btn {
+        padding: 12px 30px !important; /* Força o padding para mobile */
+        font-size: 1rem !important; /* Força o font-size para mobile */
+        min-width: unset !important; /* Remove min-width para mobile se for um problema */
+    }
+}
+
+.resume-btn:hover {
+    background-color: #5558d1; /* Um roxo ligeiramente mais escuro no hover */
+    border-color: #5558d1; /* Ajusta a borda no hover também */
+    transform: translateY(-2px); /* Efeito de levantar */
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
+}
+
+/* No seu ficheiro CSS existente, adicione ou modifique estas regras */
+
+/* Problema 2: Botão Currículo não está roxo em Dark Mode (no telemóvel) */
+body.dark .resume-btn,
+body.dark .mobile-resume-btn {
+    background-color: var(--primary-color) !important; /* Força o roxo */
+    color: white !important; /* Garante o texto branco */
+}
+
+/* Garante que o hover também é roxo no dark mode */
+body.dark .resume-btn:hover,
+body.dark .mobile-resume-btn:hover {
+    background-color: var(--primary-dark) !important; /* Roxo mais escuro no hover */
+    color: white !important; /* Garante o texto branco no hover */
+}
+
+
+
+
+
+/* Header */
+.header {
+    position: relative;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+    padding: 1rem 0;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.header.scrolled {
+    box-shadow: var(--shadow-md);
+    padding: 0.75rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.logo img {
+    height: 200px;
+    width: auto;
+    position: absolute; /* Adicione esta linha */
+    top: 50%; /* Centraliza verticalmente */
+    left: 20px; /* Ajuste a distância da esquerda */
+    transform: translateY(-50%); /* Ajuste fino para a centralização */
+}
+
+/* Remover o efeito de sublinhado do texto antigo */
+.logo:after {
+    content: none;
+}
+
+.logo:hover:after {
+    transform: none;
+}
+
+/* Remover o estilo do ponto */
+.dot {
+    display: none;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav a {
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav a:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-normal);
+}
+
+.nav a:hover:after,
+.nav a.active:after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.nav a:hover,
+.nav a.active {
+    color: var(--primary-color);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Social icons */
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.social-icons a {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    transition: all var(--transition-normal);
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Theme toggle */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    position: relative;
+    overflow: visible;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg) scale(1.1);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Theme toggle animation */
+.theme-toggle-animation {
+    animation: pulseRotate 0.5s ease;
+}
+
+@keyframes pulseRotate {
+    0% { transform: scale(1) rotate(0); }
+    50% { transform: scale(1.2) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+/* Theme transition */
+.theme-transition * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme flash effect */
+.theme-flash {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-    opacity: 0.4;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 9999;
     pointer-events: none;
+    animation: flash 0.5s ease forwards;
+}
+
+@keyframes flash {
+    0% { opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+
+/* Tooltip for theme toggle */
+.tooltip {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--text-dark);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.tooltip:before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent var(--text-dark) transparent;
+}
+
+/* Hero Section */
+.hero {
+    padding: 6rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1s ease-in;
 }
 
 .hero .container {
-    position: relative;
-    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
 }
 
-/* Dark Mode Support for Hero */
-body.dark .hero {
-    background: linear-gradient(135deg, #000000 0%, #111111 100%);
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
-}
-
-/* Hero Text Styling with Gradient Effect */
 .greeting {
-    font-size: 1.8rem;
-    font-weight: 900;
-    margin: 1rem 0;
-    line-height: 1.1;
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    z-index: 2;
-}
-
-/* Dark Mode Gradient Text Override */
-body.dark .greeting {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .hero .title {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .hero .job-title {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .highlight,
-body.dark .typewriter-effect,
-body.dark #typewriter {
-    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.dark .hero .subtitle {
-    color: #cccccc;
-}
-
-.hero .title {
-    font-size: 3.2rem;
-    font-weight: 900;
-    margin: 1rem 0;
-    line-height: 1.1;
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    z-index: 2;
-}
-
-.hero .job-title {
-    font-size: 3.2rem;
-    font-weight: 900;
-    margin: 1rem 0;
-    line-height: 1.1;
-    transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: fadeInUp 0.8s ease-out;
-    position: relative;
-    z-index: 2;
-}
-
-.hero .subtitle {
-    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--text-muted);
-    transition: all 0.3s ease;
-    line-height: 1.6;
-    font-weight: 500;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
     position: relative;
-    z-index: 2;
+    display: inline-block;
 }
 
-.highlight,
-.typewriter-effect,
-#typewriter {
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.greeting:before,
+.greeting:after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: var(--primary-light);
+    top: 50%;
+    width: 3rem;
+}
+
+.greeting:before {
+    left: -4rem;
+}
+
+.greeting:after {
+    right: -4rem;
+}
+
+.title {
+    font-size: 3.5rem;
     font-weight: 900;
+    margin: 1rem 0;
+    line-height: 1.2;
 }
 
-/* Add fade animation */
-@keyframes fadeInUp {
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    color: var(--text-muted);
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Work Section */
+.work {
+    background-color: var(--bg-muted);
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.work h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.work h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin: 0 auto;
+}
+
+.project-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid var(--border-color);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.project-image {
+    height: 200px;
+    background-color: #f0f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.placeholder-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #edf2f7;
+    color: var(--primary-color);
+}
+
+.project-icon {
+    font-size: 4rem;
+    opacity: 0.8;
+}
+
+.project-card h3 {
+    padding: 1.25rem 1.25rem 0.5rem;
+    font-size: 1.25rem;
+    color: var(--text-dark);
+}
+
+.project-card p {
+    padding: 0 1.25rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    flex-grow: 1;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    background-color: #e0e7ff;
+    color: var(--primary-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.project-link {
+    display: block;
+    padding: 1rem 1.25rem;
+    text-align: right;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: all var(--transition-normal);
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+.project-link i {
+    transition: transform var(--transition-normal);
+    margin-left: 0.25rem;
+}
+
+.project-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.project-link:hover i {
+    transform: translateX(4px);
+}
+
+.view-all-container {
+    margin-top: 3rem;
+}
+
+.view-all-btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all var(--transition-normal);
+}
+
+.view-all-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Skills Section */
+.skills {
+    padding: 5rem 0;
+}
+
+.skills h2 {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.skills h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.skill-category {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.skill-category h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-tag {
+    font-size: 0.875rem;
+    background-color: #e0e7ff;
+    color: var(--primary-dark);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+}
+
+.skill-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* About Page Styles */
+.about-hero {
+    padding: 6rem 0 3rem;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.page-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.about-image {
+    display: flex;
+    justify-content: center;
+}
+
+.image-placeholder {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #e0e7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    color: var(--primary-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.about-text {
+    text-align: left;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.about-text h3 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.personal-details {
+    margin-top: 2rem;
+    background-color: var(--bg-muted);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.detail-value {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Experience Section */
+.experience {
+    padding: 5rem 0;
+    background-color: var(--bg-muted);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background-color: var(--primary-light);
+}
+
+.timeline-item {
+    margin-bottom: 3rem;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: 4px solid var(--bg-muted);
+}
+
+.timeline-content {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.timeline-date {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-content h4 {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* Education Section */
+.education {
+    padding: 5rem 0;
+}
+
+.education-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.education-item {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.education-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    background-color: #e0e7ff;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.education-details h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.education-details h4 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.education-date {
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+/* Projects Page Styles */
+.projects-hero {
+    padding: 6rem 0 3rem;
+    text-align: center;
+}
+
+.page-description {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-size: 1.125rem;
+    color: var(--text-muted);
+}
+
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.25rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.projects-grid {
+    padding: 3rem 0 5rem;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.project-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.project-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.project-item .project-image {
+    height: 100%;
+    min-height: 300px;
+}
+
+.project-details {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-details h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Contact Page Styles */
+.contact-hero {
+    padding: 6rem 0 3rem;
+    text-align: center;
+    background-color: var(--bg-muted);
+}
+
+.contact-section {
+    padding: 5rem 0;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.contact-info {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.contact-info h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.contact-methods {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-method {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.contact-icon {
+    background-color: #e0e7ff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.contact-detail h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.contact-detail p,
+.contact-detail a {
+    color: var(--text-muted);
+    transition: color var(--transition-normal);
+}
+
+.contact-detail a:hover {
+    color: var(--primary-color);
+}
+
+.availability-status {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f0fff4;
+    border-radius: 8px;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status-indicator.available {
+    background-color: #48bb78;
+}
+
+.contact-form-container {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.contact-form-container h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    transition: border-color var(--transition-normal);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Form validation styles */
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.05);
+}
+
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.form-feedback {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    min-height: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-feedback.error {
+    color: #e53e3e;
+}
+
+/* Form success message */
+.form-success {
+    text-align: center;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.form-success i {
+    font-size: 3rem;
+    color: #48bb78;
+    margin-bottom: 1rem;
+}
+
+.form-success p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* CTA Section */
+.cta-section {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cta-section .btn.secondary {
+    color: white;
+    border-color: white;
+}
+
+.cta-section .btn.secondary:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.cta-section .btn.primary {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.cta-section .btn.primary:hover {
+    background-color: var(--bg-light);
+}
+
+/* Modern Projects Grid */
+.modern-projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.modern-project-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.modern-project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.modern-project-card .project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.modern-project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.modern-project-card .project-info {
+    padding: 1.5rem;
+}
+
+.modern-project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.modern-project-card .project-category {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.project-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding: 4rem 0 2rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-logo .logo {
+    font-size: 1.75rem;
+    color: white;
+}
+
+.footer-logo p {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.footer-nav,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-nav h4,
+.footer-social h4 {
+    font-size: 1.125rem;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.footer-nav a,
+.footer-social a {
+    color: #a1a1aa;
+    transition: color var(--transition-normal);
+}
+
+.footer-nav a:hover,
+.footer-social a:hover {
+    color: var(--primary-light);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+    color: #a1a1aa;
+    font-size: 0.875rem;
+}
+
+/* Typewriter effect styles */
+.typewriter-effect {
+    font-weight: 600;
+    color: #6366f1;
+    position: relative;
+    display: inline-block;
+    border-right: 2px solid #6366f1;
+    padding-right: 5px;
+    animation: blink-caret 0.75s step-end infinite;
+    min-height: 1.5em;
+    min-width: 1ch;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #6366f1 }
+}
+
+/* Animations */
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -221,558 +1391,1189 @@ body.dark .hero .subtitle {
     }
 }
 
-/* Add this to your styles or in a style tag in the head */
-.project-card .project-image {
-    height: 180px; /* Reduced height */
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+@keyframes fadeInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-.project-card .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.3s ease;
+@keyframes fadeInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-/* Work section background override */
-.work {
-    background-color: white !important;
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* Dark Mode Support for Work Section */
-body.dark .work {
-    background-color: #000000 !important;
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-7px);
+    }
 }
 
-body.dark .work h2 {
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.fade-in-left {
+    animation: fadeInFromLeft 1s ease-out;
+}
+
+.fade-in-right {
+    animation: fadeInFromRight 1s ease-out;
+}
+
+.scale-up {
+    animation: scaleUp 0.7s ease-out;
+}
+
+.bounce {
+    animation: bounce 2s ease infinite;
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for items in a collection */
+.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+.animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+
+/* ===== DARK MODE - CLEAN AND SIMPLIFIED ===== */
+
+body.dark {
+    background-color: #1a1a1a;
     color: #ffffff;
 }
 
-body.dark .work .project-card {
-    background-color: #111111;
-    border: 1px solid #333333;
-    color: #ffffff;
+/* Dark header */
+body.dark .header {
+    background-color: rgba(26, 26, 26, 0.95);
+    border-bottom-color: #333333;
 }
 
-body.dark .work .project-card h3 {
-    color: #ffffff;
+/* Dark theme toggle */
+body.dark .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-body.dark .work .project-card p {
-    color: #cccccc;
+body.dark .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-body.dark .work .tech-tag {
-    background-color: #333333;
-    color: #ffffff;
+/* Dark theme flash */
+body.dark .theme-flash {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
-body.dark .work .project-link {
-    color: var(--primary-color);
+/* Dark tooltips */
+body.dark .tooltip {
+    background-color: var(--text-light);
+    color: var(--text-dark);
 }
 
-body.dark .work .view-all-btn {
-    background-color: var(--primary-color);
-    color: #ffffff;
+body.dark .tooltip:before {
+    border-color: transparent transparent var(--text-light) transparent;
 }
 
-/* Dark Mode Support for Skills Section */
-body.dark .skills {
+/* Dark sections */
+body.dark .work,
+body.dark .skills,
+body.dark .experience,
+body.dark .content-creation-section,
+body.dark .extras-section {
     background-color: #000000;
 }
 
-body.dark .skills h2,
-body.dark .skills h3 {
+/* Dark cards */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .contact-info,
+body.dark .contact-form-container,
+body.dark .timeline-content,
+body.dark .education-item,
+body.dark .project-item,
+body.dark .modern-project-card,
+body.dark .service-card,
+body.dark .package-card,
+body.dark .pricing-card,
+body.dark .include-item {
+    background-color: #1f1f1f;
+    border-color: #333333;
+}
+
+/* Dark navigation */
+body.dark .nav a {
     color: #ffffff;
 }
 
-body.dark .skill-category {
-    background-color: #111111;
-    border: 1px solid #333333;
+body.dark .nav a:hover,
+body.dark .nav a.active {
+    color: var(--primary-light);
 }
 
+/* Dark social icons */
+body.dark .social-icons a {
+    color: #9ca3af;
+}
+
+body.dark .social-icons a:hover {
+    color: var(--primary-light);
+}
+
+/* Dark text content */
+body.dark .subtitle,
+body.dark .page-description {
+    color: #d1d5db;
+}
+
+/* Dark buttons */
+body.dark .btn.secondary {
+    color: #ffffff;
+    border-color: #4b5563;
+}
+
+body.dark .btn.secondary:hover {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+/* Dark project content */
+body.dark .project-card h3,
+body.dark .timeline-content h3,
+body.dark .education-details h3,
+body.dark .project-details h2 {
+    color: #ffffff;
+}
+
+body.dark .project-card p,
+body.dark .timeline-content p,
+body.dark .education-details p,
+body.dark .contact-detail p,
+body.dark .contact-detail a {
+    color: #d1d5db;
+}
+
+/* Dark tech and skill tags */
+body.dark .tech-tag,
 body.dark .skill-tag {
-    background-color: #333333;
-    color: #ffffff;
+    background-color: #312e81;
+    color: #d1d5db;
 }
 
-/* Dark Mode Support for Footer */
-body.dark .footer {
-    background-color: #000000;
-    border-top: 1px solid #333333;
+body.dark .skill-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
-body.dark .footer h4,
-body.dark .footer p,
-body.dark .footer a {
-    color: #ffffff;
+/* Dark timeline */
+body.dark .timeline:before {
+    background-color: #4b5563;
 }
 
-body.dark .footer a:hover {
-    color: var(--primary-color);
+body.dark .timeline-content h4,
+body.dark .education-details h4 {
+    color: #9ca3af;
 }
 
-/* Some of my latest work section specific styles */
-.work .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+/* Dark contact and education icons */
+body.dark .contact-icon,
+body.dark .education-icon {
+    background-color: #312e81;
 }
 
-.work .project-card {
-    background-color: var(--bg-card);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-md);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+/* Dark form elements */
+body.dark .form-group input,
+body.dark .form-group textarea {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
 }
 
-.work .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+body.dark .form-group input:focus,
+body.dark .form-group textarea:focus {
+    border-color: var(--primary-light);
 }
 
-.work .project-card:hover .project-image img {
-    transform: scale(1.05);
+body.dark .form-group input::placeholder,
+body.dark .form-group textarea::placeholder {
+    color: #9ca3af;
 }
-/* MOBILE RESPONSIVE CSS - REPLACE the previous CSS with this */
+
+/* Dark filter buttons */
+body.dark .filter-btn {
+    color: #e5e7eb;
+    border-color: #4b5563;
+}
+
+body.dark .filter-btn:hover,
+body.dark .filter-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Dark placeholder images */
+body.dark .placeholder-img {
+    background-color: #374151;
+}
+
+/* Dark personal details */
+body.dark .personal-details {
+    background-color: #111827;
+}
+
+body.dark .detail-label {
+    color: #9ca3af;
+}
+
+body.dark .detail-value {
+    color: #e5e7eb;
+}
+
+/* Dark image placeholder */
+body.dark .image-placeholder {
+    background-color: #312e81;
+}
+
+body.dark .project-image.placeholder-img {
+    background-color: #312e81;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+    
+    .title {
+        font-size: 3rem;
+    }
+    
+    .about-content,
+    .project-item {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .header {
+        padding: 0.25rem 0;
+    }
+    
+    .header.scrolled {
+        padding: 0.125rem 0;
+    }
+    
+    .header .container {
+        min-height: 45px;
+        padding: 0 0.75rem;
+    }
+    
+    .logo {
+        font-size: 1.1rem;
+    }
+    
     .nav {
-        display: none;
+        gap: 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .nav a {
+        padding: 0.25rem 0.15rem;
     }
     
     .actions {
+        gap: 0.75rem;
+    }
+    
+    
+    
+    .social-icons a {
+        font-size: 0.95rem;
+        padding: 0.2rem;
+    }
+    
+    .theme-toggle {
+        font-size: 1.1rem;
+        padding: 0.2rem;
+    }
+    
+    .hero {
+        padding: 4rem 1rem 2rem;
+    }
+    
+    .title {
+        font-size: 2.25rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .project-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .greeting:before,
+    .greeting:after {
         display: none;
     }
     
-    .mobile-menu-toggle {
-        display: flex !important;
+    .project-links {
+        flex-direction: column;
+    }
+    
+    .contact-section .container {
+        max-width: 500px;
     }
 }
 
-/* Mobile Hamburger Button Styles - KEEP THIS */
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 60;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+@media (max-width: 576px) {
+    .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .social-icons {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .project-filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        width: 200px;
+    }
+    
+    .page-title {
+        font-size: 2.25rem;
+    }
+    
+    .contact-method {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
 }
 
-.hamburger-line {
-    width: 100%;
-    height: 3px;
-    background-color: var(--text-dark);
-    border-radius: 2px;
+@media (max-width: 480px) {
+    .header .container {
+        flex-direction: column;
+        gap: 0.25rem;
+        min-height: 60px;
+        padding: 0.25rem 0.75rem;
+    }
+    
+    .nav {
+        order: 2;
+    }
+    
+    .actions {
+        order: 3;
+        font-size: 0.8rem;
+    }
+}
+/* SUPER TARGETED FIX: Content Creation Section Dark Mode Only */
+
+/* Force BLACK background - override all gradients */
+body.dark .content-creation-section,
+body.dark section.content-creation-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+}
+
+/* Remove the blue gradient background pattern */
+body.dark .content-creation-section::before {
+    display: none !important;
+}
+
+/* Target the exact container and all child elements */
+body.dark .content-creation-section .content-creation-container,
+body.dark .content-creation-section .service-content,
+body.dark .content-creation-section .includes-section,
+body.dark .content-creation-section .includes-grid,
+body.dark .content-creation-section .include-item,
+body.dark .content-creation-section .pricing-section,
+body.dark .content-creation-section .pricing-cards,
+body.dark .content-creation-section .pricing-card,
+body.dark .content-creation-section .pdf-cta-section {
+    background: #1a1a2e !important;
+    background-color: #1a1a2e !important;
+    background-image: none !important;
+    border-color: #333333 !important;
+}
+
+/* FORCE PURPLE title - main title only */
+body.dark .content-creation-section h2.service-title,
+body.dark .content-creation-section .service-header h2 {
+    color: #6366f1 !important;
+}
+
+/* Other titles stay white */
+body.dark .content-creation-section h3.includes-title,
+body.dark .content-creation-section .include-content h4,
+body.dark .content-creation-section h1,
+body.dark .content-creation-section h3,
+body.dark .content-creation-section h4 {
+    color: #ffffff !important;
+}
+
+/* FORCE light gray text */
+body.dark .content-creation-section p.service-description,
+body.dark .content-creation-section .include-content p,
+body.dark .content-creation-section p,
+body.dark .content-creation-section li {
+    color: #cccccc !important;
+}
+
+/* FORCE purple icons */
+body.dark .content-creation-section .include-icon i,
+body.dark .content-creation-section i.fas,
+body.dark .content-creation-section i {
+    color: #6366f1 !important;
+}
+
+/* Target any remaining inline styles that override */
+body.dark .content-creation-section div[style*="background"],
+body.dark .content-creation-section section[style*="background"] {
+    background: #1a1a2e !important;
+background-color: #1a1a2e !important;
+}
+
+/* Ultra-specific override for any stubborn elements */
+body.dark section#content-creation,
+body.dark section#content-creation * {
+    background-color: inherit !important;
+}
+
+body.dark section#content-creation {
+    background-color: #000000 !important;
+}
+/* PDF Download box - PURPLE background */
+body.dark .content-creation-section .pdf-cta-section {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+}
+
+/* PDF text - WHITE on purple */
+body.dark .content-creation-section .pdf-cta-section * {
+    color: #ffffff !important;
+}
+/* Specific button - White in Light Mode */
+.pdf-download-section a[href="#download-pdf"].pdf-download-button {
+    background: white !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--border-color) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.pdf-download-section a[href="#download-pdf"].pdf-download-button:hover {
+    background: #f8f9fa !important;
+    color: var(--text-dark) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Dark Mode: Specific button - Purple in Dark Mode */
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+}
+
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:hover {
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
+    color: white !important;
+    border-color: var(--primary-dark) !important;
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4) !important;
+}
+
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:visited {
+    color: white !important;
+}
+
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:focus {
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5) !important;
+}
+
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:active {
+    color: white !important;
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
+}
+/* ===== ICON VISIBILITY FIXES FOR DARK MODE ===== */
+
+/* Fix for Extras Section Icons in Dark Mode */
+body.dark .extras-section .extras-category .service-icon,
+body.dark .extras-section .extras-grid .service-icon,
+body.dark .extras-section .extras-card .service-icon,
+body.dark .extras-section .extra-item .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .extras-section .extras-item .include-icon {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+/* Remove black backgrounds from icon containers in Extras section */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .include-icon-container {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Ensure Extras section icons maintain purple color */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.extras-section .fab,
+body.dark .extras-section i[class*="fa-"] {
+    color: #6366f1 !important;
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* Fix for "O Que Inclui" Section Icons in Dark Mode */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background-color: #6366f1 !important;
+    background: #6366f1 !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* Ensure "O Que Inclui" icons stay white on purple background */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Target specific Font Awesome icons in "O Que Inclui" section */
+body.dark .includes-section .fa,
+body.dark .includes-section .fas,
+body.dark .includes-section .far,
+body.dark .includes-section .fab,
+body.dark .includes-section i[class*="fa-"],
+body.dark .content-creation-section .include-icon .fa,
+body.dark .content-creation-section .include-icon .fas,
+body.dark .content-creation-section .include-icon .far,
+body.dark .content-creation-section .include-icon .fab,
+body.dark .content-creation-section .include-icon i[class*="fa-"] {
+    color: white !important;
+}
+
+/* Remove any unwanted borders or shadows from icon containers */
+body.dark .extras-section .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure proper contrast for all service-related icons in dark mode */
+body.dark .service-card .service-icon,
+body.dark .service-item .service-icon,
+body.dark .package-card .service-icon {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+/* Fix for any remaining icon visibility issues */
+body.dark .extras-section .extras-category .fa-check,
+body.dark .extras-section .extras-category .fa-times,
+body.dark .extras-section .extras-category .fa-star,
+body.dark .extras-section .extras-category .fa-heart,
+body.dark .extras-section .extras-category .fa-thumbs-up,
+body.dark .extras-section .extras-category .fa-camera,
+body.dark .extras-section .extras-category .fa-video,
+body.dark .extras-section .extras-category .fa-edit,
+body.dark .extras-section .extras-category .fa-paint-brush,
+body.dark .extras-section .extras-category .fa-bullhorn,
+body.dark .extras-section .extras-category .fa-chart-line {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure includes section maintains purple circular background with white icons */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .includes-grid .include-icon,
+body.dark .service-includes .include-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+}
+
+/* White icons inside purple circles for includes section */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .includes-grid .include-icon i,
+body.dark .service-includes .include-icon i {
+    color: white !important;
+    font-size: 1.5rem !important;
+}
+
+/* Additional specificity for stubborn icons */
+body.dark .extras-section * .fa,
+body.dark .extras-section * .fas,
+body.dark .extras-section * .far,
+body.dark .extras-section * .fab,
+body.dark .extras-section * i[class*="fa-"] {
+    color: #6366f1 !important;
+    background: transparent !important;
+}
+
+/* Override any inline styles that might be causing issues */
+body.dark .extras-section [style*="background"],
+body.dark .extras-section [style*="color"] {
+    background-color: transparent !important;
+    color: #6366f1 !important;
+}
+
+/* Ensure proper visibility for all icon types */
+body.dark .extras-section .service-icon svg,
+body.dark .extras-section .include-icon svg {
+    fill: #6366f1 !important;
+    color: #6366f1 !important;
+}
+
+body.dark .includes-section .include-icon svg,
+body.dark .content-creation-section .include-icon svg {
+    fill: white !important;
+    color: white !important;
+}
+
+/* Hover effects for icons in dark mode */
+body.dark .extras-section .service-icon:hover,
+body.dark .extras-section .include-icon:hover {
+    background-color: rgba(99, 102, 241, 0.1) !important;
+    color: var(--primary-light) !important;
+}
+
+body.dark .includes-section .include-icon:hover,
+body.dark .content-creation-section .include-icon:hover {
+    background: linear-gradient(135deg, var(--primary-light), #6366f1) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Ensure transitions work smoothly */
+body.dark .extras-section .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon {
+    transition: all 0.3s ease !important;
+}
+
+/* Final catch-all for any remaining icon issues */
+body.dark .extras-section i,
+body.dark .extras-section .icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+body.dark .includes-section i,
+body.dark .content-creation-section .includes-grid i,
+body.dark .service-includes i {
+    color: white !important;
+}
+
+/* Responsive fixes for mobile */
+@media (max-width: 768px) {
+    body.dark .extras-section .service-icon,
+    body.dark .extras-section .include-icon {
+        font-size: 1.2rem !important;
+    }
+    
+    body.dark .includes-section .include-icon,
+    body.dark .content-creation-section .include-icon {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    body.dark .includes-section .include-icon i,
+    body.dark .content-creation-section .include-icon i {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    body.dark .includes-section .include-icon,
+    body.dark .content-creation-section .include-icon {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    body.dark .includes-section .include-icon i,
+    body.dark .content-creation-section .include-icon i {
+        font-size: 1rem !important;
+    }
+}
+/* No seu ficheiro CSS existente, adicione/modifique estas regras */
+
+/* --- INÍCIO DO BLOCO MEDIA QUERY (SUBSTITUA O SEU EXISTENTE NO style.css) --- */
+@media (max-width: 768px) {
+    /* Assegurar que o menu mobile está SEMPRE acima do header no telemóvel */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Ocupar a altura total da viewport */
+        background-color: var(--bg-dark); /* Ou a cor de fundo que deseja para o menu */
+        z-index: 1001 !important; /* <--- AQUI! DEVE ser MAIOR que o z-index do .header (que é 1000 no HTML) */
+        overflow-y: auto; /* Para permitir scroll se o conteúdo do menu for maior que a tela */
+        display: flex; /* Se já estiver a usar flexbox para o conteúdo interno do menu */
+        flex-direction: column; /* Se já estiver a usar flexbox */
+        /* Outras transições ou estilos do seu menu móvel */
+    }
+
+    /* Opcional: Força o z-index do header a ser menor no mobile */
+    /* Para o caso de ter o z-index: 1000 do header no HTML, esta regra garante que no mobile ele seja 999. */
+    .header {
+        z-index: 999 !important; /* <--- AQUI! Torna o header menor que o menu overlay no mobile */
+    }
+
+    /* OCULTAR A NAVEGAÇÃO STICKY QUANDO O MENU MOBILE ESTÁ ABERTO */
+    /* Usamos a classe 'no-scroll' que o JavaScript adiciona ao <body> */
+    body.no-scroll header {
+        opacity: 0 !important; /* Força a opacidade a zero */
+        visibility: hidden !important; /* Força a visibilidade a hidden */
+        pointer-events: none !important; /* Impede cliques no header enquanto oculto */
+        /* Transições para a opacidade e visibilidade devem estar na regra .header geral (fora desta media query) */
+    }
+
+    /* Garante que o header reaparece quando o menu mobile não está aberto */
+    body:not(.no-scroll) header {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    /* Se tiver outras regras dentro deste @media, coloque-as aqui abaixo */
+    /* ... suas outras regras ... */
+
+}
+/* --- FIM DO BLOCO MEDIA QUERY --- */
+/* ===== DARK MODE ICON FIXES ===== */
+
+/* Fix for ALL Extras Section Icons - Make them visible and purple */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section .service-icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove black backgrounds from "O Que Inclui" section */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+}
+
+/* Purple circles with white icons for "O Que Inclui" */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* White icons inside purple circles */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    font-size: 1.5rem !important;
+}
+/* ===== DARK MODE ICON FIXES ===== */
+
+/* Fix for ALL Extras Section Icons - Make them visible and purple */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section .service-icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove black backgrounds from "O Que Inclui" section */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+}
+
+/* Purple circles with white icons for "O Que Inclui" - maintain original size */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* White icons inside purple circles - maintain original font size */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+}
+/* ===== DARK MODE ICON FIXES - CLEAN SOLUTION ===== */
+
+/* EXTRAS SECTION - Purple icons with transparent backgrounds */
+body.dark .extras-section .service-icon {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.dark .extras-section .service-icon i,
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section i {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card,
+body.dark .extras-section .extra-item {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* LIGHTNING BOLT ICON - Special fix for Funcionalidades section */
+body.dark .extras-section .fa-bolt,
+body.dark .extras-section .fa-lightning-bolt {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* O QUE INCLUI SECTION - White icons on purple circles */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    /* Keep original dimensions - do not override width/height */
+}
+
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i,
+body.dark .includes-section .fa,
+body.dark .content-creation-section .fa,
+body.dark .includes-grid .fa,
+body.dark .include-item .fa {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    /* Keep original font-size - do not override */
+}
+
+/* Remove black backgrounds from includes section containers */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* HOVER EFFECTS - Enhance user experience */
+body.dark .extras-section .service-icon:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
+    transform: scale(1.05);
     transition: all 0.3s ease;
 }
 
-.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* Mobile Menu Overlay - IMPORTANT: Hidden by default */
-.mobile-menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 55;
-    opacity: 0;
-    visibility: hidden;
+body.dark .includes-section .include-icon:hover,
+body.dark .content-creation-section .include-icon:hover {
+    background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+    transform: scale(1.05);
     transition: all 0.3s ease;
 }
 
-.mobile-menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
+/* RESPONSIVE BEHAVIOR - Keep original responsive design */
+@media (max-width: 768px) {
+    /* Let original CSS handle responsive sizing */
+}
+/* Dark mode service cards - cleaner gray appearance */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .service-card,
+body.dark .extra-item {
+    background-color: #2d2d2d;
+    border: 1px solid #444444;
+     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1), 
+                0 2px 4px rgba(255, 255, 255, 0.05);
 }
 
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 320px;
-    max-width: 85vw;
-    height: 100vh;
+body.dark .service-card:hover,
+body.dark .project-card:hover,
+body.dark .extra-item:hover {
+    background-color: #353535;
+    border-color: #555555;
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15), 
+                0 3px 6px rgba(255, 255, 255, 0.08);
+}
+/* Dark mode CSS variables override */
+body.dark {
+    --shadow-sm: 0 2px 4px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(255, 255, 255, 0.15);
+    --shadow-md: 0 6px 12px rgba(255, 255, 255, 0.25), 0 3px 6px rgba(255, 255, 255, 0.2);
+    --shadow-lg: 0 12px 24px rgba(255, 255, 255, 0.3), 0 6px 12px rgba(255, 255, 255, 0.25);
+}
+
+/* Dark cards */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .service-card,
+body.dark .extra-item {
+    background-color: #2d2d2d;
+    border: 1px solid #444444;
+}
+
+body.dark .service-card:hover,
+body.dark .project-card:hover,
+body.dark .extra-item:hover {
+    background-color: #353535;
+    border-color: #555555;
+}
+/* Light mode CTA buttons - white background */
+.cta-section .btn {
     background-color: white;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-}
-
-.mobile-menu-overlay.active .mobile-menu {
-    transform: translateX(0);
-}
-
-.mobile-menu-close {
-    align-self: flex-end;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-bottom: 2rem;
+    border: 1px solid #e5e7eb;
     color: var(--text-dark);
 }
 
-.mobile-nav-link {
-    display: block;
-    padding: 1rem 0;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: var(--text-dark);
-    text-decoration: none;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.mobile-nav-link:hover {
+.cta-section .btn:hover {
+    background-color: #f9fafb;
+    border-color: var(--primary-color);
     color: var(--primary-color);
 }
 
-.mobile-actions {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+/* Dark mode specific CTA buttons only */
+body.dark .cta-section .btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
 }
 
-.mobile-resume-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: var(--primary-color);
+body.dark .cta-section .btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* --- INÍCIO DO CÓDIGO DO BOTÃO CURRÍCULO (COPIE E COLE ESTE BLOCO NO FINAL DO SEU style.css) --- */
+
+/* 1. Regra Geral do Botão de Currículo (aplica-se a todas as páginas) */
+.resume-btn {
+    background-color: var(--primary-color);
     color: white;
-    text-decoration: none;
     border-radius: 8px;
-    font-weight: 500;
-    justify-content: center;
-}
-
-.mobile-social-icons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    padding: 1rem 0;
-}
-
-.mobile-social-icons a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f3f4f6;
-    border-radius: 50%;
-    color: var(--text-dark);
-    text-decoration: none;
+    font-weight: 600;
     transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    /* Tamanho padrão (sem !important aqui) */
+    padding: 12px 30px;
+    font-size: 1rem;
+    min-width: 150px;
 }
 
-.mobile-social-icons a:hover {
-    background: var(--primary-color);
-    color: white;
+/* 2. Efeito Hover do Botão de Currículo */
+.resume-btn:hover {
+    background-color: var(--primary-dark); /* Roxo mais escuro no hover */
+    transform: translateY(-2px); /* Efeito de levantar */
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
 }
 
-.mobile-theme-toggle {
-    width: 100%;
-    padding: 1rem;
-    background: none;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: var(--text-dark);
+/* 3. Dark Mode para o Botão de Currículo (cores) */
+body.dark .resume-btn,
+body.dark .mobile-resume-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
 }
 
-/* Dark mode for mobile menu */
-body.dark .mobile-menu {
-    background-color: #1f2937;
+body.dark .resume-btn:hover,
+body.dark .mobile-resume-btn:hover {
+    background-color: var(--primary-dark) !important;
+    color: white !important;
 }
 
-body.dark .mobile-nav-link {
-    color: #ffffff;
-    border-bottom-color: #374151;
+/* 4. SOLUÇÃO FINAL PARA O PROBLEMA DO BOTÃO CURRÍCULO NA PÁGINA DE SERVIÇOS */
+/* Esta regra FORÇA o tamanho apenas na página de serviços e DEVE ser a ÚLTIMA definida */
+body.section-services-hero .resume-btn {
+    padding: 12px 30px !important; /* FORÇA o padding desejado */
+    font-size: 1rem !important;    /* FORÇA o font-size desejado */
+    min-width: 150px !important;   /* FORÇA o min-width desejado */
+    /* Se as cores ficarem erradas APENAS nesta página, pode adicionar estas linhas: */
+    /* background-color: var(--primary-color) !important; */
+    /* color: white !important; */
 }
 
-body.dark .hamburger-line {
-    background-color: #ffffff;
+/* --- FIM DO CÓDIGO DO BOTÃO CURRÍCULO --- */
+/* CORREÇÃO FINAL: SECÇÃO CRIAÇÃO DE CONTEÚDO - CAIXAS CORTADAS NO MOBILE */
+@media (max-width: 767px) { /* Para ecrãs de telemóvel (até 767px de largura) */
+    /* Este seletor é agora tão específico quanto o do desktop para garantir a anulação */
+    .content-creation-section .service-content .includes-section .includes-grid {
+        grid-template-columns: 1fr !important; /* Força UMA coluna, fazendo as caixas empilharem-se */
+        gap: 20px !important; /* Ajusta o espaçamento entre as caixas empilhadas */
+    }
+
+    /* Opcional: Ajustar o padding das caixas individuais no telemóvel se parecerem muito grandes */
+    .content-creation-section .include-item {
+        padding: 15px !important; /* Torna o padding um pouco menor para ecrãs pequenos */
+    }
+
+    /* Opcional: Ajustar tamanhos de fonte ou outros elementos se necessário */
+    .content-creation-section .service-title {
+        font-size: 2.2rem !important; /* Título principal mais pequeno no mobile */
+    }
+
+    .content-creation-section .includes-title {
+        font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
+    }
 }
-
-body.dark .mobile-menu-close {
-    color: #ffffff;
-}
-
-body.dark .mobile-social-icons a {
-    background: #374151;
-    color: #ffffff;
-}
-
-body.dark .mobile-theme-toggle {
-    border-color: #374151;
-    color: #ffffff;
-}
-</style>
-</head>
-<body>
-    <!-- Header/Navbar -->
-    <header class="header" id="header">
-        <div class="container">
-            <a href="#" class="logo">
-    <img src="assets/images/projects/logotipo.png" alt="Logotipo Nadia Irina">
-</a>
-            <nav class="nav">
-                <a href="index.html" class="active" aria-label="Home">Início</a>
-                <a href="about.html" aria-label="Sobre Mim">Sobre Mim</a>
-                <a href="projects.html" aria-label="Projects">Projetos</a>
-                <a href="services.html" aria-label="Serviços">Serviços</a>
-                <a href="contact.html" aria-label="Contact">Contactos</a>
-            </nav>
-
-            <div class="actions">
-                <a class="resume-btn" href="assets/Nadia-Irina-CV.pdf" download aria-label="Download Resume">Currículo</a>
-                <div class="social-icons">
-                    <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-            </div>
-         <!-- Add this hamburger button inside your header container -->
-<button class="mobile-menu-toggle" aria-label="Toggle menu">
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-</button>
-</div>
-</header>
-<!-- Add this mobile menu overlay after your header (OUTSIDE header) -->
-<div class="mobile-menu-overlay">
-    <div class="mobile-menu">
-        <button class="mobile-menu-close">✕</button>
-        
-        <nav>
-            <a href="index.html" class="mobile-nav-link">Início</a>
-            <a href="about.html" class="mobile-nav-link">Sobre Mim</a>
-            <a href="projects.html" class="mobile-nav-link">Projetos</a>
-            <a href="services.html" class="mobile-nav-link">Serviços</a>
-            <a href="contact.html" class="mobile-nav-link">Contactos</a>
-        </nav>
-        
-        <div class="mobile-actions">
-            <a href="assets/Nadia-Irina-CV.pdf" download class="mobile-resume-btn">
-                <i class="fas fa-download"></i>
-                Currículo
-            </a>
-            
-            <div class="mobile-social-icons">
-                <a href="https://github.com/nadiairina" target="_blank" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </div>
-            
-            <button class="mobile-theme-toggle">
-                <i class="fas fa-moon"></i>
-                Toggle Dark Mode
-            </button>
-        </div>
-    </div>
-</div>
-    
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="container">
-            <p class="greeting">Olá, Sou a Nadia</p>
-            <h1 class="title">Sou</h1>
-            <h1 class="job-title"><span class="highlight typewriter-effect" id="typewriter"></span></h1>
-            <p class="subtitle">
-               Crio websites <span class="highlight">acessíveis</span> que transformam as tuas ideias em realidade.
-            </p>
-            <div class="hero-cta">
-                <a href="projects.html" class="btn primary">Vê o Meu Trabalho</a>
-                <a href="contact.html" class="btn secondary">Entra em Contacto</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Featured Work Section -->
-    <section class="work" id="work">
-        <div class="container">
-            <h2>Alguns dos meus trabalhos mais recentes</h2>
-            <div class="projects">
-                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Website">
-                    </div>
-                    <h3>Adil Móveis Website</h3>
-                    <p>Desenvolvimento de uma interface de utilizador intuitiva que permite a filtragem inteligente de produtos usando JavaScript puro. Otimização das imagens e criação de galerias dinâmicas com CSS e JavaScript para uma visualização polida e responsiva.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">Design Responsivo</span>
-                        
-                    </div>
-                    <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link">Vê Projeto <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                
-               <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/salao.png" alt="Website para Salão de Beleza">
-                    </div>
-                    <h3>Website para Salão de Beleza</h3>
-                    <p>Criação de um design elegante e responsivo focado na marca do salão. Utilização de JavaScript para construir uma exposição dinâmica e interativa dos serviços, destacando tratamentos através de uma galeria de imagens com foco na experiência do utilizador.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">Design Responsivo</span>
-                    </div>
-                    <a href="https://nadiairina.github.io/StudioBloom/" target="_blank" class="project-link">Vê Projeto <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                  <div class="project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/bruno_pt.png" alt="Website para Personal Trainer">
-                    </div>
-                    <h3>Website para Personal Trainer</h3>
-                    <p>Desenvolvimento de um website com uma estética vibrante que reflete a marca do Personal Trainer. Implementação de um blog dinâmico e uma área dedicada a testemunhos de clientes usando JavaScript para uma gestão de conteúdo simples e eficaz, melhorando a credibilidade e a experiência do utilizador.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">Design Responsivo</span>
-                    </div>
-                    <a href="https://nadiairina.github.io/bruno.parrinha.pt/index.html" target="_blank" class="project-link">Vê Projeto <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                
-            </div>
-            <div class="view-all-container">
-                <a href="projects.html" class="view-all-btn">Vê Todos os Meus Projetos</a>
-            </div>
-        </div>
-    </section>
-    
-   <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <h2>Habilidades</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Front-End Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">D3.js</span>
-                        <span class="skill-tag">Git & GitHub</span>
-                        <span class="skill-tag">Redux</span>
-                        <span class="skill-tag">SVG</span>
-                         <span class="skill-tag">Acessibilidade (a11y)</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Marketing Digital</h3>
-                    <div class="skill-tags">
-                        
-                        
-                        <span class="skill-tag">Estratégia de Redes Sociais</span>
-                        <span class="skill-tag">Comportamento do Consumidor</span>
-                        <span class="skill-tag">Branding</span>
-                        <span class="skill-tag">Estratégia de Marketing</span>
-                    
-                        
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Web Design</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Experiência de Utilizador (UX)</span>
-                        <span class="skill-tag">Design Responsivo</span>
-                        <span class="skill-tag">Design de Interface (UI)</span>
-                        <span class="skill-tag">Paleta & Teoria de Cores</span>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="index.html" class="logo">Nadia<span class="dot">Irina</span></a>
-                    <p>Web Designer, Front-End Developer & Marketeer</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-nav">
-                        <h4>Navegação</h4>
-                        <a href="index.html">Início</a>
-                        <a href="about.html">Sobre Mim</a>
-                        <a href="projects.html">Projetos</a>
-                        <a href="contact.html">Contactos</a>
-                    </div>
-                    <div class="footer-social">
-                        <h4>Conectar</h4>
-                        <a href="https://github.com/nadiairina" target="_blank">GitHub</a>
-                        <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank">LinkedIn</a>
-                        <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank">Instagram</a>
-                        <a href="mailto:contact@nadiairina.com">Email: nadiairina934@gmail.com</a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Nadia Irina. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-   
-</body>
-</html>
