@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="typewriter-and-darkmode.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
     --primary-color: #6366f1;
@@ -2922,6 +2922,27 @@ body.dark .mobile-theme-toggle {
 }
 .header {
     border-bottom: none !important;
+}
+        /* FIX ESPECÍFICO PARA HEADER DA PÁGINA DE SERVIÇOS */
+.header {
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.header.scrolled {
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+
+/* Garantir que o logo não causa overflow */
+.logo {
+    overflow: hidden !important;
+}
+
+.logo img {
+    max-height: 100% !important;
+    overflow: hidden !important;
 }
     </style>
 </head>
