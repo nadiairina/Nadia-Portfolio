@@ -208,7 +208,7 @@ body.dark .mobile-resume-btn:hover {
 }
 
 .logo img {
-    height: 150px; /* Ajuste a altura conforme necessário */
+    height: 170px; /* Ajuste a altura conforme necessário */
     width: auto;
     transition: transform var(--transition-normal);
 }
