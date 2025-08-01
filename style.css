@@ -184,9 +184,10 @@ body.dark .mobile-resume-btn:hover {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none;
     transition: all var(--transition-normal);
-    padding: 1rem 0;
+    padding: 0.75rem 0;
+    height: auto;
 }
 
 .header .container {
@@ -197,8 +198,8 @@ body.dark .mobile-resume-btn:hover {
 }
 
 .header.scrolled {
-    box-shadow: var(--shadow-md);
-    padding: 0.75rem 0;
+    box-shadow: none;
+    padding: 0.5rem 0;
 }
 
 .logo {
