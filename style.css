@@ -214,6 +214,7 @@ body.dark .mobile-resume-btn:hover {
     top: 50%; /* Centraliza verticalmente */
     left: 20px; /* Ajuste a distância da esquerda */
     transform: translateY(-50%); /* Ajuste fino para a centralização */
+    background-color: transparent;
 }
 
 /* Remover o efeito de sublinhado do texto antigo */
@@ -2541,7 +2542,10 @@ body.dark .mobile-resume-btn {
 body.dark .resume-btn:hover,
 body.dark .mobile-resume-btn:hover {
     background-color: var(--primary-dark) !important;
-    color: white !important;
+   
+   body.dark-mode .logo {
+    background-color: transparent; /* Adicione esta linha */
+} color: white !important;
 }
 
 /* 4. SOLUÇÃO FINAL PARA O PROBLEMA DO BOTÃO CURRÍCULO NA PÁGINA DE SERVIÇOS */
