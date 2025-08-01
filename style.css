@@ -208,7 +208,7 @@ body.dark .mobile-resume-btn:hover {
 }
 
 .logo img {
-    height: 200px;
+    height: 190px;
     width: auto;
     position: absolute; /* Adicione esta linha */
     top: 50%; /* Centraliza verticalmente */
@@ -235,6 +235,7 @@ body.dark .mobile-resume-btn:hover {
     display: flex;
     gap: 2rem;
     align-items: center;
+    margin-left: 200px; /* Adicione ou ajuste esta linha */
 }
 
 .nav a {
