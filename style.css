@@ -178,16 +178,22 @@ body.dark .mobile-resume-btn:hover {
 
 /* Header */
 .header {
-    position: relative;
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+    position: fixed;
     top: 0;
-    z-index: 50;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header.scrolled {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: none;
-    transition: all var(--transition-normal);
-    padding: 0.75rem 0;
-    height: auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
 .header .container {
@@ -197,10 +203,7 @@ body.dark .mobile-resume-btn:hover {
     flex-wrap: wrap;
 }
 
-.header.scrolled {
-    box-shadow: none;
-    padding: 0.5rem 0;
-}
+
 
 .logo {
     display: flex;
@@ -209,7 +212,7 @@ body.dark .mobile-resume-btn:hover {
 }
 
 .logo img {
-    height: 50px;
+    height: 190px;
     width: auto;
     position: absolute; /* Adicione esta linha */
     top: 50%; /* Centraliza verticalmente */
