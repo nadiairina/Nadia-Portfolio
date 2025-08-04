@@ -2612,8 +2612,10 @@ body.dark header#header.scrolled {
     box-shadow: 0 4px 20px rgba(0,0,0,0.7) !important;
 }
 @media (max-width: 768px) {
+    .header {
+        justify-content: center;
+    }
     .header .logo {
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0;
     }
 }
