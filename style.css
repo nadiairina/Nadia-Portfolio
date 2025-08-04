@@ -2630,7 +2630,7 @@ body.dark header#header.scrolled {
     }
 }
 @media (max-width: 768px) {
-    .header .social-icons {
+    .header .actions .social-icons {
         display: flex !important;
         justify-content: center;
         gap: 1.5rem;
