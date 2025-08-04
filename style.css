@@ -2585,3 +2585,7 @@ body.section-services-hero .resume-btn {
         font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
     }
 }
+/* Correção para garantir que a sombra do header aparece na página de serviços */
+.header {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
