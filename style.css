@@ -2612,10 +2612,20 @@ body.dark header#header.scrolled {
     box-shadow: 0 4px 20px rgba(0,0,0,0.7) !important;
 }
 @media (max-width: 768px) {
-    .header {
+    .header .container {
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
     }
-    .header .logo {
-        margin: 0;
+    .logo {
+        position: static;
+        margin: 0 auto;
+        padding-top: 15px; /* Adiciona um pequeno espaço no topo */
+        padding-bottom: 15px; /* Adiciona um pequeno espaço no fundo */
+    }
+    .logo img {
+        position: static; /* Remove a posição absoluta para permitir a centralização normal */
+        transform: none; /* Remove a transformação de centralização vertical */
+        left: auto;
     }
 }
