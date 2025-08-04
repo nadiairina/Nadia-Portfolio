@@ -2630,16 +2630,24 @@ body.dark header#header.scrolled {
     }
 }
 @media (max-width: 768px) {
-    .mobile-menu-overlay.active .header .actions {
-        display: flex !important;
+    /* Mostra a secção de ações no menu de hambúrguer quando está ativo */
+    .mobile-menu-overlay .actions {
+        display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 1rem;
     }
     
-    .mobile-menu-overlay.active .header .actions .social-icons {
-        display: flex !important;
+    /* Garante que os ícones sociais são visíveis e alinhados */
+    .mobile-menu-overlay .actions .social-icons {
+        display: flex;
         justify-content: center;
         gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    /* Alinha o botão de currículo */
+    .mobile-menu-overlay .actions .resume-btn {
+        margin-bottom: 1rem;
     }
 }
