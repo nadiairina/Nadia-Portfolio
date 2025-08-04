@@ -2589,25 +2589,25 @@ body.section-services-hero .resume-btn {
 .header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
 }
-/* Correção definitiva para garantir sombra na barra de navegação,
-   tanto em modo claro como em modo escuro, com ou sem scroll. */
+/* Correção definitiva para forçar a sombra na barra de navegação,
+   em modo claro, escuro, com e sem scroll, e em todas as páginas. */
 
-/* Sombra padrão para modo claro */
+/* Sombra padrão para o modo claro */
 header#header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
 }
 
-/* Sombra para modo claro com scroll */
+/* Sombra para o modo claro com scroll */
 header#header.scrolled {
     box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
 }
 
-/* Sombra padrão para modo escuro */
+/* Sombra padrão para o modo escuro */
 body.dark header#header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
 }
 
-/* Sombra para modo escuro com scroll */
+/* Sombra para o modo escuro com scroll */
 body.dark header#header.scrolled {
     box-shadow: 0 4px 20px rgba(0,0,0,0.7) !important;
 }
