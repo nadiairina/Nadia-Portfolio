@@ -2596,3 +2596,10 @@ header#header {
 header#header.scrolled {
     box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
 }
+.dark #header {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+}
+
+.dark #header.scrolled {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+}
