@@ -2612,8 +2612,8 @@ body.dark header#header.scrolled {
     box-shadow: 0 4px 20px rgba(0,0,0,0.7) !important;
 }
 @media (max-width: 768px) {
-    .logo {
-        display: block;
-        margin: 0 auto;
+    .header .logo {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
