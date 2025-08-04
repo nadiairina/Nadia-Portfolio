@@ -2630,10 +2630,18 @@ body.dark header#header.scrolled {
     }
 }
 @media (max-width: 768px) {
-    .header .actions .social-icons {
-        display: flex !important;
+    /* Mostra a secção de ações no menu de hambúrguer */
+    .header-nav .actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    
+    /* Garante que os ícones sociais são visíveis e alinhados */
+    .header-nav .actions .social-icons {
+        display: flex;
         justify-content: center;
         gap: 1.5rem;
-        margin-top: 1rem;
     }
 }
