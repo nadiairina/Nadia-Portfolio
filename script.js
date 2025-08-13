@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function setupTypewriterEffect() {
-    const phrases = ['Marketeer +', 'Front-End Developer =', 'Web Designer!']; // Adicionado 'Web Designer'
+    const phrases = ['Marketeer +', 'Front-End Developer =', 'Web Designer !']; // Adicionado 'Web Designer'
     let index = 0;
     let charIndex = 0;
     
