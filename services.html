@@ -2890,7 +2890,17 @@ body.dark .mobile-theme-toggle {
     border-bottom: none !important;
     box-shadow: none !important;
 }
+/* CORREÇÃO ESSENCIAL: Dark Mode para o Price Container */
+body.dark .price-container {
+    background: #111111 !important; /* Fundo escuro */
+    border-color: #333333 !important; /* Borda escura */
+}
 
+/* Opcional: Adicionar !important ao plan-section para maior robustez */
+body.dark .plan-section {
+    background: linear-gradient(135deg, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.6)) !important; 
+    border-color: #333333 !important;
+}
     </style>
 </head>
 <body>
