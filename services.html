@@ -2890,16 +2890,13 @@ body.dark .mobile-theme-toggle {
     border-bottom: none !important;
     box-shadow: none !important;
 }
-/* CORREÇÃO ESSENCIAL: Dark Mode para o Price Container */
-body.dark .price-container {
-    background: #111111 !important; /* Fundo escuro */
-    border-color: #333333 !important; /* Borda escura */
-}
-
-/* Opcional: Adicionar !important ao plan-section para maior robustez */
-body.dark .plan-section {
-    background: linear-gradient(135deg, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.6)) !important; 
-    border-color: #333333 !important;
+/* CORREÇÃO ROBUSTA para o Fundo Claro do Preço em Dark Mode */
+body.dark .monthly-plan-card .price-container {
+    /* Usamos a cor de fundo do próprio cartão (#1f2937) para que o bloco desapareça. */
+    background: #1f2937 !important; 
+    
+    /* Alteramos a borda para uma cor escura, consistente com o dark mode */
+    border-color: #333 !important; 
 }
     </style>
 </head>
