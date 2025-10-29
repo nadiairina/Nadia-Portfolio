@@ -2890,13 +2890,22 @@ body.dark .mobile-theme-toggle {
     border-bottom: none !important;
     box-shadow: none !important;
 }
-/* CORREÇÃO ROBUSTA para o Fundo Claro do Preço em Dark Mode */
-body.dark .monthly-plan-card .price-container {
-    /* Usamos a cor de fundo do próprio cartão (#1f2937) para que o bloco desapareça. */
-    background: #1f2937 !important; 
+/* CORREÇÃO PARA A SEÇÃO "Opções E-commerce" */
+body.dark {
+    /* Fundo dos cartões: De branco para um tom escuro */
+    --bg-card: #1f2937 !important;
+
+    /* Fundo dos itens alternados ou seções: De claro (#f9fafb) para um tom ainda mais escuro */
+    --bg-muted: #111827 !important;
+
+    /* Cor da borda: De cinza claro para cinza escuro */
+    --border-color: #374151 !important;
+
+    /* Cor do texto principal: De escuro para claro */
+    --text-dark: #f9fafb !important;
     
-    /* Alteramos a borda para uma cor escura, consistente com o dark mode */
-    border-color: #333 !important; 
+    /* Cor do texto secundário: De cinza escuro para cinza mais claro */
+    --text-muted: #a0a0a0 !important;
 }
     </style>
 </head>
