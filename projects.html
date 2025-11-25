@@ -236,6 +236,10 @@ body.dark .footer a:hover {
     .mobile-menu-toggle {
         display: flex !important;
     }
+    /* Mobile: Desativar Social Media Overlay */
+    .social-media-overlay {
+        display: none !important;
+    }
 }
 
 /* Mobile Hamburger Button Styles - KEEP THIS */
@@ -426,32 +430,82 @@ body.dark .mobile-theme-toggle {
     border-color: #374151;
     color: #ffffff;
 }
-/* --- NOVO CSS para Coerência do Cartão de Visita (Branding NI) --- */
 
-/* Estiliza o novo card para dar ênfase (opcional) */
+/* --- NOVO CSS para Coerência do Cartão de Visita (Branding NI) --- */
 .modern-project-card.branding-case-study,
-.branding-case-study .project-image-container img {
+.branding-case-study .project-media img {
     border-radius: 8px; /* Arredondar todas as bordas do card e da imagem */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.branding-case-study .project-image-container img {
-    /* Garante que a imagem se adapta e tem o raio de borda correto */
+.branding-case-study .project-media img {
     width: 100%;
     height: auto;
-    transition: filter 0.3s ease; /* Para transição suave no Dark Mode */
+    transition: filter 0.3s ease;
 }
 
-/* Regras específicas para o Dark Mode (ajustar imagem clara em fundo escuro) */
 body.dark .modern-project-card.branding-case-study {
-    /* Adiciona uma borda sutil para se destacar, usando uma variável de cor se existir. Se não, um cinza escuro. */
     border: 1px solid #333333; 
 }
 
-body.dark .branding-case-study .project-image-container img {
-    /* Pequena redução de brilho para evitar que a imagem branca/clara do cartão ofusque */
+body.dark .branding-case-study .project-media img {
     filter: brightness(0.9);
     box-shadow: 0 0 0 1px #333333;
+}
+
+/* --- NOVO CSS para Visualização de Redes Sociais --- */
+.project-media {
+    position: relative;
+    overflow: hidden;
+    height: 250px; /* Define a altura para que o efeito seja visível */
+}
+
+.project-media .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.social-media-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%; /* O visual de redes sociais ocupa 40% do espaço */
+    height: 100%;
+    background-color: var(--primary-color);
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    opacity: 0.95;
+    /* Para não interferir na imagem */
+    border-left: 3px solid white; 
+}
+
+.modern-project-card:hover .social-media-overlay {
+    transform: translateX(0); /* Desliza para dentro no hover */
+}
+
+.social-media-overlay h4 {
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.social-media-overlay .fab {
+    margin: 0.5rem 0;
+}
+
+body.dark .social-media-overlay {
+    background-color: var(--primary-dark);
+    border-left: 3px solid #000000;
 }
 /* FIM DO NOVO CSS */
     </style>
@@ -522,7 +576,7 @@ body.dark .branding-case-study .project-image-container img {
                 <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/nadia-irina-138366144/" target="_blank" aria-label="Instagram">
+                <a href="https://www.instagram.com/nadiairina_webdesigner/" target="_blank" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                 <a href="https://www.facebook.com/profile.php?id=61579316193902&locale=pt_PT" target="_blank" aria-label="Facebook">
@@ -552,119 +606,153 @@ body.dark .branding-case-study .project-image-container img {
         <div class="modern-projects-container">
             <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Wesbite" 
+                    <div class="project-media">
+                        <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Wesbite" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
+                        
+                        <div class="social-media-overlay">
+                            <h4>Otimização Instagram/Facebook</h4>
+                            <i class="fab fa-instagram fa-2x"></i>
+                            <i class="fab fa-facebook fa-2x"></i>
+                            <p style="font-size: 0.75rem; margin-top: 10px;">Design de 6 posts de lançamento e gestão inicial da presença.</p>
+                        </div>
                     </div>
                     <div class="project-info">
                         <h3>Website para Loja de Móveis</h3>
                         <p class="project-category">Desenvolvimento Web & Marketing</p>
-                        <p class="project-description">Desenvolvimento de um showroom digital polido para a Adil Móveis. O projeto integra uma interface de navegação fluida, filtragem inteligente de produtos e galerias de imagens dinâmicas, proporcionando uma experiência de utilizador intuitiva e responsiva. **A otimização e gestão estratégica das redes sociais foram integradas para uma presença online coesa e orientada para a conversão**.</p>
+                        <p class="project-description">Desenvolvimento de um showroom digital polido para a Adil Móveis. O projeto integra navegação fluida e galerias dinâmicas. **A otimização e gestão estratégica das redes sociais foram integradas para uma presença online coesa e orientada para a conversão**.</p>
                     </div>
                 </div>
             </a>
 
             <a href="https://cantinhodooutono.myshopify.com/" target="_blank" class="project-link-wrapper">
-    <div class="modern-project-card">
-        <div class="project-image">
-            <img src="assets/images/projects/cantinho-do-outono.png" alt="Cantinho do Outono Website E-commerce" 
-                onerror="this.src='https://via.placeholder.com/400x300?text=Cantinho+do+Outono'">
-        </div>
-        <div class="project-info">
-            <h3>E-commerce Temático Cantinho do Outono</h3>
-            <p class="project-category">Web Design & Soluções E-commerce</p>
-            <p class="project-description">Desenvolvimento de uma loja online com foco em branding sazonal e experiência de utilizador (UX). O projeto integra uma interface de navegação intuitiva, otimizada para dispositivos móveis, e uma paleta de cores acolhedora. A estrutura foi criada com foco na conversão e na gestão simplificada de produtos, **incluindo a otimização inicial da loja no Instagram Shopping para expandir o alcance e as vendas.**</p>
-        </div>
-    </div>
-</a>
+                <div class="modern-project-card">
+                    <div class="project-media">
+                        <img src="assets/images/projects/cantinho-do-outono.png" alt="Cantinho do Outono Website E-commerce" class="main-image"
+                            onerror="this.src='https://via.placeholder.com/400x300?text=Cantinho+do+Outono'">
+
+                        <div class="social-media-overlay">
+                            <h4>Instagram Shopping & Pinterest</h4>
+                            <i class="fab fa-instagram fa-2x"></i>
+                            <i class="fab fa-pinterest fa-2x"></i>
+                            <p style="font-size: 0.75rem; margin-top: 10px;">Otimização da loja no Instagram Shopping e criação de painéis no Pinterest.</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>E-commerce Temático Cantinho do Outono</h3>
+                        <p class="project-category">Web Design & Soluções E-commerce</p>
+                        <p class="project-description">Desenvolvimento de uma loja online com foco em branding sazonal e experiência de utilizador (UX). A estrutura foi criada com foco na conversão, **incluindo a otimização inicial da loja no Instagram Shopping para expandir o alcance e as vendas.**</p>
+                    </div>
+                </div>
+            </a>
 
             <a href="https://nadiairina.github.io/StudioBloom/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/salao.png" alt="Website para Salão de beleza" 
+                    <div class="project-media">
+                        <img src="assets/images/projects/salao.png" alt="Website para Salão de beleza" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=studio+bloom'">
+                        
+                        <div class="social-media-overlay">
+                            <h4>Branding e Conteúdo Instagram</h4>
+                            <i class="fab fa-instagram fa-2x"></i>
+                            <p style="font-size: 0.75rem; margin-top: 10px;">Criação de 3 destaques de stories e template de post para transformações.</p>
+                        </div>
                     </div>
                     <div class="project-info">
                         <h3>Website para Salão de beleza</h3>
                         <p class="project-category">Desenvolvimento Web & Marketing</p>
-                        <p class="project-description">Website elegante e moderno para a Studio Bloom, com foco na experiência do utilizador. O design responsivo e a estrutura dinâmica do site permitem uma exposição detalhada dos serviços e transformações, com uma galeria otimizada para realçar a qualidade do trabalho. **Inclui também a otimização e gestão integrada do Instagram.**</p>
+                        <p class="project-description">Website elegante e moderno para a Studio Bloom, com foco na experiência do utilizador. O design responsivo permite uma exposição detalhada dos serviços. **Inclui também a otimização e gestão integrada do Instagram para uma marca consistente.**</p>
                     </div>
                 </div>
             </a>
 
             <a href="https://nadiairina.github.io/bruno.parrinha.pt/index.html" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/bruno_pt.png" alt="Website para Personal Trainer" 
+                    <div class="project-media">
+                        <img src="assets/images/projects/bruno_pt.png" alt="Website para Personal Trainer" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=bruno+parrinha'">
+                        
+                        <div class="social-media-overlay">
+                            <h4>Integração de Conteúdo e Reels</h4>
+                            <i class="fab fa-instagram fa-2x"></i>
+                            <i class="fas fa-blog fa-2x"></i>
+                            <p style="font-size: 0.75rem; margin-top: 10px;">Ligação direta dos serviços a canais de redes sociais e otimização da bio do Instagram.</p>
+                        </div>
                     </div>
                     <div class="project-info">
                         <h3>Website para Personal Trainer</h3>
                         <p class="project-category">Desenvolvimento Web & Marketing</p>
-                        <p class="project-description">Criação de um website profissional e responsivo para Bruno Parrinha Personal Trainer. O projeto foi otimizado para uma interação fluida com os clientes, com uma exposição clara dos programas de treino e testemunhos. **Inclui um blog dinâmico para partilha de conteúdo e a integração do Instagram para reforçar a marca online.**</p>
+                        <p class="project-description">Criação de um website profissional e responsivo para Bruno Parrinha Personal Trainer. O projeto foi otimizado para uma interação fluida com os clientes e uma exposição clara dos programas de treino. **Inclui um blog dinâmico e a integração de redes sociais para reforçar a marca online.**</p>
                     </div>
                 </div>
             </a>
 
             <a href="https://cantinhodooutono.myshopify.com/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/heritage.png" alt="Website Roupa Vintage" 
+                    <div class="project-media">
+                        <img src="assets/images/projects/heritage.png" alt="Website Roupa Vintage" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=studio+heritage'">
+                        
+                        <div class="social-media-overlay">
+                            <h4>Branding Visual e Moodboards</h4>
+                            <i class="fab fa-instagram fa-2x"></i>
+                            <i class="fas fa-camera fa-2x"></i>
+                            <p style="font-size: 0.75rem; margin-top: 10px;">Definição de estilo visual e integração de mood boards estéticos do Instagram.</p>
+                        </div>
                     </div>
                     <div class="project-info">
                         <h3>Website Roupa Vintage</h3>
                         <p class="project-category">Desenvolvimento Web & Branding</p>
-                        <p class="project-description">Design e desenvolvimento de uma experiência e-commerce de luxo e totalmente responsiva para o Studio L'Héritage, uma marca de vestuário vintage. O projeto foi otimizado para uma navegação imersiva e visualmente rica. **Inclui um Sistema de Coleções narrativo para reforçar a curadoria e a integração de mood boards estéticos do Instagram para elevar o branding visual.**</p>
+                        <p class="project-description">Design e desenvolvimento de uma experiência e-commerce de luxo e totalmente responsiva. O projeto foi otimizado para uma navegação imersiva e visualmente rica. **Inclui a integração de redes sociais e a definição de um estilo visual coeso para o Instagram.**</p>
                     </div>
                 </div>
             </a>
 
             <a href="https://nadiairina.github.io/musicbooth/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/music.png" alt="Website DJ" 
+                    <div class="project-media">
+                        <img src="assets/images/projects/music.png" alt="Website DJ" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=music+booth'">
                     </div>
                     <div class="project-info">
                         <h3>Website DJ</h3>
                         <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Criação de website com design responsivo para a marca Music Booth. Focando-se na Experiência do Utilizador (UX), a identidade visual foi construída com um Design Dark Mode/Néon meticulosamente codificado com variáveis CSS. O resultado é uma plataforma que atinge a performance máxima, alinhando a estética de palco com a funcionalidade de um website profissional e moderno.</p>
+                        <p class="project-description">Criação de website com design responsivo para a marca Music Booth. O design Dark Mode/Néon foi meticulosamente codificado com variáveis CSS, garantindo uma plataforma profissional e moderna que alinha a estética de palco com a funcionalidade.</p>
                     </div>
                 </div>
             </a>
 
             <a href="https://nadiairina.github.io/sarasjournals/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/sarasjournal.png" alt="Designer Website" 
+                    <div class="project-media">
+                        <img src="assets/images/projects/sarasjournal.png" alt="Designer Website" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=saras+journals'">
                     </div>
                     <div class="project-info">
                         <h3>Website para Designer</h3>
                         <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Criação de um portefólio interativo e responsivo, projetado para destacar cadernos e diários de leitura. O site utiliza um design clean e animações suaves para guiar o utilizador através de uma galeria de produtos, com um modal de visualização detalhada para cada item. O formulário de contacto funcional permite uma comunicação direta, garantindo uma experiência de utilizador fluida e profissional.</p>
+                        <p class="project-description">Criação de um portefólio interativo e responsivo, projetado para destacar cadernos e diários de leitura. O site utiliza um design clean e animações suaves para guiar o utilizador através de uma galeria de produtos. O formulário de contacto funcional garante uma experiência de utilizador fluida e profissional.</p>
                     </div>
                 </div>
             </a>
 
             <a href="https://nadiairina.github.io/Lar-Sabor/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/personalchef.png" alt="Personal Chef Website" 
+                    <div class="project-media">
+                        <img src="assets/images/projects/personalchef.png" alt="Personal Chef Website" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=lar+sabor'">
                     </div>
                     <div class="project-info">
                         <h3>Website para Chef Privado</h3>
                         <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Desenvolvimento de um website responsivo e elegante para uma Personal Chef, concebido para refletir a sua arte culinária. O design, complementado por animações de scroll suaves, cria uma navegação imersiva. Uma galeria de criações culinárias foi integrada, com legendas descritivas para cada prato, permitindo aos potenciais clientes explorar o menu de forma visualmente apelativa e deliciosa.</p>
+                        <p class="project-description">Desenvolvimento de um website responsivo e elegante para uma Personal Chef. O design, complementado por animações de scroll suaves, cria uma navegação imersiva. Uma galeria de criações culinárias foi integrada, permitindo aos potenciais clientes explorar o menu de forma visualmente apelativa e deliciosa.</p>
                     </div>
                 </div>
             </a>
 
             <a href="#identidade-visual-detalhes" class="project-link-wrapper">
                 <div class="modern-project-card branding-case-study">
-                    <div class="project-image">
+                    <div class="project-media">
                         <img src="caminho/para/a/sua/imagem_cartao_e_logo.jpg" alt="Design do Cartão de Visita e Identidade Visual Nadia Irina" 
                              onerror="this.src='https://via.placeholder.com/400x300?text=Branding+Pessoal'">
                     </div>
@@ -677,8 +765,8 @@ body.dark .branding-case-study .project-image-container img {
             </a>
             <a href="https://nadiairina.github.io/Heat-Map/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Heat-Map.png" alt="Visualização de Dados de Mapa de Calor" 
+                    <div class="project-media">
+                        <img src="assets/images/projects/Heat-Map.png" alt="Visualização de Dados de Mapa de Calor" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Heat+Map'">
                     </div>
                     <div class="project-info">
@@ -691,8 +779,8 @@ body.dark .branding-case-study .project-image-container img {
             
             <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Choropleth-Map.png" alt="Visualização de Mapa Coroplético"
+                    <div class="project-media">
+                        <img src="assets/images/projects/Choropleth-Map.png" alt="Visualização de Mapa Coroplético" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Choropleth+Map'">
                     </div>
                     <div class="project-info">
@@ -705,8 +793,8 @@ body.dark .branding-case-study .project-image-container img {
             
             <a href="https://nadiairina.github.io/Treemap-Diagram/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Treemap-Diagram.png" alt="Diagrama de Treemap"
+                    <div class="project-media">
+                        <img src="assets/images/projects/Treemap-Diagram.png" alt="Diagrama de Treemap" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Treemap+Diagram'">
                     </div>
                     <div class="project-info">
@@ -719,8 +807,8 @@ body.dark .branding-case-study .project-image-container img {
             
             <a href="https://nadiairina.github.io/Drum-Machine/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Drum-Machine.png" alt="Máquina de Ritmos"
+                    <div class="project-media">
+                        <img src="assets/images/projects/Drum-Machine.png" alt="Máquina de Ritmos" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Drum+Machine'">
                     </div>
                     <div class="project-info">
@@ -733,8 +821,8 @@ body.dark .branding-case-study .project-image-container img {
             
             <a href="https://nadiairina.github.io/Statistics-Calculator/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Statistics-Calculator.png" alt="Calculadora de Estatística"
+                    <div class="project-media">
+                        <img src="assets/images/projects/Statistics-Calculator.png" alt="Calculadora de Estatística" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Statistics+Calculator'">
                     </div>
                     <div class="project-info">
@@ -747,8 +835,8 @@ body.dark .branding-case-study .project-image-container img {
             
             <a href="https://nadiairina.github.io/product-landing-page/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/product-landing-page.png" alt="Landing Page de Produto"
+                    <div class="project-media">
+                        <img src="assets/images/projects/product-landing-page.png" alt="Landing Page de Produto" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Product+Landing+Page'">
                     </div>
                     <div class="project-info">
@@ -761,8 +849,8 @@ body.dark .branding-case-study .project-image-container img {
 
             <a href="https://nadiairina.github.io/Tribute-Page/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Tribute-Page.png" alt="Página de Homenagem"
+                    <div class="project-media">
+                        <img src="assets/images/projects/Tribute-Page.png" alt="Página de Homenagem" class="main-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Tribute+Page'">
                     </div>
                     <div class="project-info">
