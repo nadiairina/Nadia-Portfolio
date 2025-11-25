@@ -427,6 +427,98 @@ body.dark .mobile-theme-toggle {
     border-color: #374151;
     color: #ffffff;
 }
+/* --- NOVO CSS para o Carrossel de Imagens no Hover (Apenas para os 5 primeiros projetos) --- */
+.project-media {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.project-media .main-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+    z-index: 2; 
+}
+
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.project-image-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+}
+
+/* Efeito Hover */
+.modern-project-card:hover .main-image {
+    opacity: 0;
+}
+.modern-project-card:hover .image-slider {
+    z-index: 3;
+}
+
+@keyframes fade-in-out {
+    0%, 100% { opacity: 0; } 
+    12.5%, 37.5% { opacity: 1; }
+    37.6% { opacity: 0; }
+}
+
+/* Aplicação da animação (8s ciclo total para 4 slides) */
+.modern-project-card:hover .project-image-slide:nth-child(1) {
+    animation: fade-in-out 8s infinite 0s;
+}
+.modern-project-card:hover .project-image-slide:nth-child(2) {
+    animation: fade-in-out 8s infinite 2s;
+}
+.modern-project-card:hover .project-image-slide:nth-child(3) {
+    animation: fade-in-out 8s infinite 4s;
+}
+.modern-project-card:hover .project-image-slide:nth-child(4) {
+    animation: fade-in-out 8s infinite 6s;
+}
+
+/* Fix do Tamanho do Texto */
+.project-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-category {
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.project-description {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+/* Manter o estilo original para os outros cards */
+.project-image {
+    height: 250px;
+    overflow: hidden;
+}
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+body.dark .project-media .main-image {
+    filter: brightness(0.9);
+}
     </style>
 </head>
 <body>
@@ -525,31 +617,37 @@ body.dark .mobile-theme-toggle {
     </section>
 
     <!-- Projects Grid Section -->
-<section class="projects-grid">
-    <div class="container">
-        <div class="modern-projects-container">
-            <!-- BEST WORK FIRST -->
-
-            <!-- Project 0: Adil Moveis Website -->
-            <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Wesbite" 
-                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Website para Loja de Móveis</h3>
-                        <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Desenvolvimento de um showroom digital polido para a Adil Móveis. O projeto integra uma interface de navegação fluida, filtragem inteligente de produtos e galerias de imagens dinâmicas, proporcionando uma experiência de utilizador intuitiva e responsiva em todos os dispositivos. A gestão de redes sociais foi integrada para uma presença online coesa.</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://cantinhodooutono.myshopify.com/" target="_blank" class="project-link-wrapper">
+<a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link-wrapper">
     <div class="modern-project-card">
-        <div class="project-image">
-            <img src="assets/images/projects/cantinho-do-outono.png" alt="Cantinho do Outono Website E-commerce" 
+        <div class="project-media">
+            <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Wesbite" class="main-image"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
+            <div class="image-slider">
+                <img src="assets/images/projects/adil-moveis-social-1.jpg" alt="Post Instagram Adil Móveis" class="project-image-slide">
+                <img src="assets/images/projects/adil-moveis-social-2.jpg" alt="Capa Facebook Adil Móveis" class="project-image-slide">
+                <img src="assets/images/projects/adil-moveis-social-3.jpg" alt="Anúncio Adil Móveis" class="project-image-slide">
+                <img src="assets/images/projects/adil-moveis.png" alt="Website Adil Móveis" class="project-image-slide">
+            </div>
+        </div>
+        <div class="project-info">
+            <h3>Website para Loja de Móveis</h3>
+            <p class="project-category">Desenvolvimento Web & Marketing</p>
+            <p class="project-description">Desenvolvimento de um showroom digital polido para a Adil Móveis. O projeto integra uma interface de navegação fluida, filtragem inteligente de produtos e galerias de imagens dinâmicas, proporcionando uma experiência de utilizador intuitiva e responsiva em todos os dispositivos. A gestão de redes sociais foi integrada para uma presença online coesa.</p>
+        </div>
+    </div>
+</a>
+
+<a href="https://cantinhodooutono.myshopify.com/" target="_blank" class="project-link-wrapper">
+    <div class="modern-project-card">
+        <div class="project-media">
+            <img src="assets/images/projects/cantinho-do-outono.png" alt="Cantinho do Outono Website E-commerce" class="main-image"
                 onerror="this.src='https://via.placeholder.com/400x300?text=Cantinho+do+Outono'">
+            <div class="image-slider">
+                <img src="assets/images/projects/outono-social-1.jpg" alt="Exemplo Instagram Shopping" class="project-image-slide">
+                <img src="assets/images/projects/outono-social-2.jpg" alt="Exemplo Pinterest Board" class="project-image-slide">
+                <img src="assets/images/projects/outono-social-3.jpg" alt="Post Instagram Sazonal" class="project-image-slide">
+                <img src="assets/images/projects/cantinho-do-outono.png" alt="Website Cantinho do Outono" class="project-image-slide">
+            </div>
         </div>
         <div class="project-info">
             <h3>E-commerce Temático Cantinho do Outono</h3>
@@ -559,62 +657,78 @@ body.dark .mobile-theme-toggle {
     </div>
 </a>
 
+<a href="https://nadiairina.github.io/StudioBloom/" target="_blank" class="project-link-wrapper">
+    <div class="modern-project-card">
+        <div class="project-media">
+            <img src="assets/images/projects/salao.png" alt="Website para Salão de beleza" class="main-image"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=studio+bloom'">
+            <div class="image-slider">
+                <img src="assets/images/projects/salao-social-1.jpg" alt="Template Post Salão de Beleza" class="project-image-slide">
+                <img src="assets/images/projects/salao-social-2.jpg" alt="Destaque Stories Salão de Beleza" class="project-image-slide">
+                <img src="assets/images/projects/salao-social-3.jpg" alt="Template Stories Salão de Beleza" class="project-image-slide">
+                <img src="assets/images/projects/salao.png" alt="Website Salão de Beleza" class="project-image-slide">
+            </div>
+        </div>
+        <div class="project-info">
+            <h3>Website para Salão de beleza</h3>
+            <p class="project-category">Desenvolvimento Web & Marketing</p>
+            <p class="project-description">Website elegante e moderno para a Studio Bloom, com foco na experiência do utilizador. O design responsivo e a estrutura dinâmica do site permitem uma exposição detalhada dos serviços e transformações, com uma galeria otimizada para realçar a qualidade do trabalho. Inclui também a otimização e gestão integrada do Instagram.</p>
+        </div>
+    </div>
+</a>
 
-            <a href="https://nadiairina.github.io/StudioBloom/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/salao.png" alt="Adil Móveis Wesbite" 
-                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Website para Salão de beleza</h3>
-                        <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Website elegante e moderno para a Studio Bloom, com foco na experiência do utilizador. O design responsivo e a estrutura dinâmica do site permitem uma exposição detalhada dos serviços e transformações, com uma galeria otimizada para realçar a qualidade do trabalho. Inclui também a otimização e gestão integrada do Instagram.</p>
-                    </div>
-                </div>
-            </a>
+<a href="https://nadiairina.github.io/bruno.parrinha.pt/index.html" target="_blank" class="project-link-wrapper">
+    <div class="modern-project-card">
+        <div class="project-media">
+            <img src="assets/images/projects/bruno_pt.png" alt="Website para Personal Trainer" class="main-image"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=bruno+parrinha'">
+            <div class="image-slider">
+                <img src="assets/images/projects/pt-social-1.jpg" alt="Reel Personal Trainer Exemplo" class="project-image-slide">
+                <img src="assets/images/projects/pt-social-2.jpg" alt="Screenshot Blog Post" class="project-image-slide">
+                <img src="assets/images/projects/pt-social-3.jpg" alt="Post Dicas Treino" class="project-image-slide">
+                <img src="assets/images/projects/bruno_pt.png" alt="Website Personal Trainer" class="project-image-slide">
+            </div>
+        </div>
+        <div class="project-info">
+            <h3>Website para Personal Trainer</h3>
+            <p class="project-category">Desenvolvimento Web & Marketing</p>
+            <p class="project-description">Criação de um website profissional e responsivo para Bruno Parrinha Personal Trainer. O projeto foi otimizado para uma interação fluida com os clientes, com uma exposição clara dos programas de treino e testemunhos. Inclui um blog dinâmico para partilha de conteúdo e a integração do Instagram para reforçar a marca online.</p>
+        </div>
+    </div>
+</a>
 
-            <a href="https://nadiairina.github.io/bruno.parrinha.pt/index.html" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/bruno_pt.png" alt="Website para Personal Trainer" 
-                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Website para Personal Trainer</h3>
-                        <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Criação de um website profissional e responsivo para Bruno Parrinha Personal Trainer. O projeto foi otimizado para uma interação fluida com os clientes, com uma exposição clara dos programas de treino e testemunhos. Inclui um blog dinâmico para partilha de conteúdo e a integração do Instagram para reforçar a marca online.</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://cantinhodooutono.myshopify.com/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/heritage.png" alt="Website Roupa Vintage" 
-                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Website Roupa Vintage</h3>
-                        <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Design e desenvolvimento de uma experiência e-commerce de luxo e totalmente responsiva para o Studio L'Héritage, uma marca de vestuário vintage de alta-costura. O projeto foi meticulosamente otimizado para uma navegação imersiva e visualmente rica, com uma exposição elegante das peças de coleção e das suas narrativas. Inclui um Sistema de Coleções narrativo para reforçar a curadoria e a integração de mood boards estéticos do Instagram para elevar o branding visual.</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://nadiairina.github.io/musicbooth/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/music.png" alt="Website DJ" 
-                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Website DJ</h3>
-                        <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Criação de website com design responsivo para a marca Music Booth, um conjunto de Dj’s e produtores especializados em música eletrónica. Focando-se na Experiência do Utilizador (UX), a identidade visual foi construída com um Design Dark Mode/Néon meticulosamente codificado com variáveis CSS. O resultado é uma plataforma que atinge a performance máxima, alinhando a estética de palco com a funcionalidade de um website profissional e moderno.</p>
-                    </div>
-                </div>
-            </a>
+<a href="https://cantinhodooutono.myshopify.com/" target="_blank" class="project-link-wrapper">
+    <div class="modern-project-card">
+        <div class="project-media">
+            <img src="assets/images/projects/heritage.png" alt="Website Roupa Vintage" class="main-image"
+                 onerror="this.src='https://via.placeholder.com/400x300?text=studio+heritage'">
+            <div class="image-slider">
+                <img src="assets/images/projects/heritage-social-1.jpg" alt="Moodboard Estilo Visual" class="project-image-slide">
+                <img src="assets/images/projects/heritage-social-2.jpg" alt="Post Instagram Vintage" class="project-image-slide">
+                <img src="assets/images/projects/heritage-social-3.jpg" alt="Grid Instagram Studio Vintage" class="project-image-slide">
+                <img src="assets/images/projects/heritage.png" alt="Website Roupa Vintage" class="project-image-slide">
+            </div>
+        </div>
+        <div class="project-info">
+            <h3>Website Roupa Vintage</h3>
+            <p class="project-category">Desenvolvimento Web & Branding</p>
+            <p class="project-description">Design e desenvolvimento de uma experiência e-commerce de luxo e totalmente responsiva para o Studio L'Héritage, uma marca de vestuário vintage de alta-costura. O projeto foi meticulosamente otimizado para uma navegação imersiva e visualmente rica, com uma exposição elegante das peças de coleção e das suas narrativas. Inclui um Sistema de Coleções narrativo para reforçar a curadoria e a integração de mood boards estéticos do Instagram para elevar o branding visual.</p>
+        </div>
+    </div>
+</a>
+<a href="#identidade-visual-detalhes" class="project-link-wrapper">
+    <div class="modern-project-card">
+        <div class="project-image">
+            <img src="caminho/para/a/sua/imagem_cartao_e_logo.jpg" alt="Design do Cartão de Visita e Identidade Visual Nadia Irina" 
+                 onerror="this.src='https://via.placeholder.com/400x300?text=Branding+Pessoal'">
+        </div>
+        <div class="project-info">
+            <h3>Identidade Visual NI</h3>
+            <p class="project-category">Branding & Design Gráfico</p>
+            <p class="project-description">Criação da minha própria identidade visual profissional, incluindo o **Cartão de Visita** (frente e verso), Logótipo, Paleta de Cores e Guia de Estilos.</p>
+        </div>
+    </div>
+</a>
 
             <a href="https://nadiairina.github.io/sarasjournals/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
@@ -704,35 +818,9 @@ body.dark .mobile-theme-toggle {
                 </div>
             </a>
             
-            <!-- Project 5: JavaScript Calculator -->
-            <a href="https://nadiairina.github.io/JavaScript-Calculator/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/JavaScript-Calculator.png" alt="Calculadora JavaScript"
-                             onerror="this.src='https://via.placeholder.com/400x300?text=JS+Calculator'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Calculadora JavaScript</h3>
-                        <p class="project-category">Aplicação Web</p>
-                        <p class="project-description">Calculadora totalmente funcional com operações aritméticas, suporte de teclado e exibição de fórmulas. Desenvolvida com JavaScript puro, HTML5 e CSS3.</p>
-                    </div>
-                </div>
-            </a>
             
-            <!-- Project 6: Todo App -->
-            <a href="https://nadiairina.github.io/Todo-App/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Todo-App.png" alt="Aplicação de Tarefas"
-                             onerror="this.src='https://via.placeholder.com/400x300?text=Todo+App'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Aplicação de Tarefas</h3>
-                        <p class="project-category">Aplicação Web</p>
-                        <p class="project-description">Aplicação de gestão de tarefas com funcionalidades de adicionar, editar, eliminar e completar. Utiliza armazenamento local para persistência, construída com JavaScript e CSS3.</p>
-                    </div>
-                </div>
-            </a>
+            
+            
 
             <!-- Project 7: Statistics Calculator -->
             <a href="https://nadiairina.github.io/Statistics-Calculator/" target="_blank" class="project-link-wrapper">
@@ -749,35 +837,9 @@ body.dark .mobile-theme-toggle {
                 </div>
             </a>
             
-            <!-- Project 8: Palindrome Checker -->
-            <a href="https://nadiairina.github.io/Palindrome-Checker/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Palindrome-Checker.png" alt="Verificador de Palíndromosr"
-                             onerror="this.src='https://via.placeholder.com/400x300?text=Palindrome+Checker'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Verificador de Palíndromos</h3>
-                        <p class="project-category">Aplicação JavaScript</p>
-                        <p class="project-description">Ferramenta que verifica se um texto se lê da mesma forma de trás para a frente, ignorando pontuação e espaços. Desenvolvida com algoritmos JavaScript e manipulação do DOM.</p>
-                    </div>
-                </div>
-            </a>
             
-            <!-- Project 9: Technical Documentation -->
-            <a href="https://nadiairina.github.io/Technical-Documentation-Page/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-image">
-                        <img src="assets/images/projects/Technical-Documentation-Page.png" alt="Página de Documentação Técnica"
-                             onerror="this.src='https://via.placeholder.com/400x300?text=Technical+Documentation'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Página de Documentação Técnica</h3>
-                        <p class="project-category">Documentação</p>
-                        <p class="project-description">Documentação técnica responsiva com barra lateral recolhível, fragmentos de código e um layout de leitura claro. Criada com HTML5, CSS3 e melhorias subtis em JavaScript.</p>
-                    </div>
-                </div>
-            </a>
+            
+            
 
             <!-- Project 10: Product Landing Page -->
             <a href="https://nadiairina.github.io/product-landing-page/" target="_blank" class="project-link-wrapper">
@@ -861,4 +923,3 @@ body.dark .mobile-theme-toggle {
    
 </body>
 </html>
-
