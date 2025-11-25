@@ -427,67 +427,60 @@ body.dark .mobile-theme-toggle {
     color: #ffffff;
 }
 
-/* --- NOVO CSS para o Carrossel de Imagens no Hover --- */
+/* --- NOVO CSS para o Carrossel de Imagens no Hover (Apenas para os 5 primeiros projetos) --- */
 .project-media {
     position: relative;
     overflow: hidden;
     height: 250px; /* Altura padrão para os projetos */
 }
 
-.image-slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    white-space: nowrap; /* Impede a quebra de linha das imagens */
-    font-size: 0;
-    transition: transform 0.4s ease-out;
-}
-
-.main-image {
+/* Imagem principal (visível por defeito) */
+.project-media .main-image {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 1;
     transition: opacity 0.4s ease-out;
-    z-index: 2; /* Garante que a imagem principal esteja por cima */
+    z-index: 2; 
 }
 
+/* Container do slider de imagens */
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Abaixo da main-image por defeito */
+}
+
+/* Slides do carrossel */
 .project-image-slide {
-    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0; /* Oculta as imagens secundárias por defeito */
-    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
 }
 
-/* Efeito Hover: Oculta a imagem principal e revela o slider */
+/* Efeito Hover: Oculta a imagem principal */
 .modern-project-card:hover .main-image {
     opacity: 0;
-    z-index: 1;
 }
 
-/* Animação que alterna o opacity das imagens no slider */
+/* Efeito Hover: Inicia a animação de fade-in/out para os slides */
 .modern-project-card:hover .image-slider {
-    /* Ativa a animação de carrossel no hover (Ajustar steps(X, end) e 8s conforme o número de imagens) */
-    /* Para 4 imagens, use steps(4, end) e 8s (2s por slide). Se tiver 3, use steps(3, end) e 6s. */
-    animation: slide-show 8s infinite steps(4, end); 
-    z-index: 3;
+    z-index: 3; /* Traz o slider para cima da main-image oculta */
 }
 
-@keyframes slide-show {
-    /* Estas percentagens correspondem a 4 slides: 0-25% (slide 1), 25-50% (slide 2), etc. */
-    0% { transform: translateX(0%); opacity: 1; }
-    25% { transform: translateX(-100%); opacity: 1; }
-    50% { transform: translateX(-200%); opacity: 1; }
-    75% { transform: translateX(-300%); opacity: 1; }
-    100% { transform: translateX(0%); opacity: 1; }
+@keyframes fade-in-out {
+    0%, 100% { opacity: 0; } 
+    12.5%, 37.5% { opacity: 1; } /* Visível por 25% (2s) do ciclo de 8s */
+    37.6% { opacity: 0; }
 }
 
-/* Animação de Fade-in/out para cada imagem (opcional, para suavizar a transição) */
+/* Aplicação da animação (8s ciclo total, 2s por slide, para 4 slides) */
 .modern-project-card:hover .project-image-slide:nth-child(1) {
     animation: fade-in-out 8s infinite 0s;
 }
@@ -501,33 +494,22 @@ body.dark .mobile-theme-toggle {
     animation: fade-in-out 8s infinite 6s;
 }
 
-@keyframes fade-in-out {
-    0%, 100% { opacity: 0; }
-    /* Opacidade total durante 2 segundos (1/4 do ciclo de 8s) */
-    12.5%, 37.5% { opacity: 1; } 
+/* Manter o estilo do project-image original (altura fixa) para os outros cards */
+.project-image {
+    height: 250px; /* Consistência de altura */
+    overflow: hidden;
 }
-
-/* --- CSS para Coerência do Cartão de Visita (Branding NI) --- */
-.modern-project-card.branding-case-study,
-.branding-case-study .project-media img {
-    border-radius: 8px; /* Arredondar todas as bordas do card e da imagem */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.branding-case-study .project-media img {
+.project-image img {
     width: 100%;
-    height: auto;
-    transition: filter 0.3s ease;
+    height: 100%;
+    object-fit: cover;
 }
 
-body.dark .modern-project-card.branding-case-study {
-    border: 1px solid #333333; 
-}
-
-body.dark .branding-case-study .project-media img {
+/* Dark Mode fix for image */
+body.dark .project-media .main-image {
     filter: brightness(0.9);
-    box-shadow: 0 0 0 1px #333333;
 }
+
     </style>
 </head>
 <body>
@@ -728,53 +710,11 @@ body.dark .branding-case-study .project-media img {
                     </div>
                 </div>
             </a>
-
-            <a href="https://nadiairina.github.io/musicbooth/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/music.png" alt="Website DJ" class="main-image"
-                             onerror="this.src='https://via.placeholder.com/400x300?text=music+booth'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Website DJ</h3>
-                        <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Criação de website com design responsivo para a marca Music Booth. O design Dark Mode/Néon foi meticulosamente codificado com variáveis CSS, garantindo uma plataforma profissional e moderna que alinha a estética de palco com a funcionalidade.</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://nadiairina.github.io/sarasjournals/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/sarasjournal.png" alt="Designer Website" class="main-image"
-                             onerror="this.src='https://via.placeholder.com/400x300?text=saras+journals'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Website para Designer</h3>
-                        <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Criação de um portefólio interativo e responsivo, projetado para destacar cadernos e diários de leitura. O site utiliza um design clean e animações suaves para guiar o utilizador através de uma galeria de produtos. O formulário de contacto funcional garante uma experiência de utilizador fluida e profissional.</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://nadiairina.github.io/Lar-Sabor/" target="_blank" class="project-link-wrapper">
-                <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/personalchef.png" alt="Personal Chef Website" class="main-image"
-                             onerror="this.src='https://via.placeholder.com/400x300?text=lar+sabor'">
-                    </div>
-                    <div class="project-info">
-                        <h3>Website para Chef Privado</h3>
-                        <p class="project-category">Desenvolvimento Web</p>
-                        <p class="project-description">Desenvolvimento de um website responsivo e elegante para uma Personal Chef. O design, complementado por animações de scroll suaves, cria uma navegação imersiva. Uma galeria de criações culinárias foi integrada, permitindo aos potenciais clientes explorar o menu de forma visualmente apelativa e deliciosa.</p>
-                    </div>
-                </div>
-            </a>
-
+            
             <a href="#identidade-visual-detalhes" class="project-link-wrapper">
-                <div class="modern-project-card branding-case-study">
-                    <div class="project-media">
-                        <img src="caminho/para/a/sua/imagem_cartao_e_logo.jpg" alt="Design do Cartão de Visita e Identidade Visual Nadia Irina" class="main-image"
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="caminho/para/a/sua/imagem_cartao_e_logo.jpg" alt="Design do Cartão de Visita e Identidade Visual Nadia Irina" 
                              onerror="this.src='https://via.placeholder.com/400x300?text=Branding+Pessoal'">
                     </div>
                     <div class="project-info">
@@ -784,10 +724,52 @@ body.dark .branding-case-study .project-media img {
                     </div>
                 </div>
             </a>
+            <a href="https://nadiairina.github.io/musicbooth/" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/music.png" alt="Website DJ" 
+                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Website DJ</h3>
+                        <p class="project-category">Desenvolvimento Web</p>
+                        <p class="project-description">Criação de website com design responsivo para a marca Music Booth, um conjunto de Dj’s e produtores especializados em música eletrónica. Focando-se na Experiência do Utilizador (UX), a identidade visual foi construída com um Design Dark Mode/Néon meticulosamente codificado com variáveis CSS. O resultado é uma plataforma que atinge a performance máxima, alinhando a estética de palco com a funcionalidade de um website profissional e moderno.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://nadiairina.github.io/sarasjournals/" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/sarasjournal.png" alt="Designer Website" 
+                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Website para Designer</h3>
+                        <p class="project-category">Desenvolvimento Web</p>
+                        <p class="project-description">Criação de um portefólio interativo e responsivo, projetado para destacar cadernos e diários de leitura. O site utiliza um design clean e animações suaves para guiar o utilizador através de uma galeria de produtos, com um modal de visualização detalhada para cada item. O formulário de contacto funcional permite uma comunicação direta, garantindo uma experiência de utilizador fluida e profissional.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://nadiairina.github.io/Lar-Sabor/" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/personalchef.png" alt="Personal Chef Website" 
+                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Website para Chef Privado</h3>
+                        <p class="project-category">Desenvolvimento Web</p>
+                        <p class="project-description">Desenvolvimento de um website responsivo e elegante para uma Personal Chef, concebido para refletir a sua arte culinária. O design, complementado por animações de scroll suaves, cria uma navegação imersiva. Uma galeria de criações culinárias foi integrada, com legendas descritivas para cada prato, permitindo aos potenciais clientes explorar o menu de forma visualmente apelativa e deliciosa.</p>
+                    </div>
+                </div>
+            </a>
+            
             <a href="https://nadiairina.github.io/Heat-Map/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/Heat-Map.png" alt="Visualização de Dados de Mapa de Calor" class="main-image"
+                    <div class="project-image">
+                        <img src="assets/images/projects/Heat-Map.png" alt="Visualização de Dados de Mapa de Calor" 
                              onerror="this.src='https://via.placeholder.com/400x300?text=Heat+Map'">
                     </div>
                     <div class="project-info">
@@ -800,8 +782,8 @@ body.dark .branding-case-study .project-media img {
             
             <a href="https://nadiairina.github.io/Choropleth-Map/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/Choropleth-Map.png" alt="Visualização de Mapa Coroplético" class="main-image"
+                    <div class="project-image">
+                        <img src="assets/images/projects/Choropleth-Map.png" alt="Visualização de Mapa Coroplético"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Choropleth+Map'">
                     </div>
                     <div class="project-info">
@@ -814,8 +796,8 @@ body.dark .branding-case-study .project-media img {
             
             <a href="https://nadiairina.github.io/Treemap-Diagram/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/Treemap-Diagram.png" alt="Diagrama de Treemap" class="main-image"
+                    <div class="project-image">
+                        <img src="assets/images/projects/Treemap-Diagram.png" alt="Diagrama de Treemap"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Treemap+Diagram'">
                     </div>
                     <div class="project-info">
@@ -828,8 +810,8 @@ body.dark .branding-case-study .project-media img {
             
             <a href="https://nadiairina.github.io/Drum-Machine/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/Drum-Machine.png" alt="Máquina de Ritmos" class="main-image"
+                    <div class="project-image">
+                        <img src="assets/images/projects/Drum-Machine.png" alt="Máquina de Ritmos"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Drum+Machine'">
                     </div>
                     <div class="project-info">
@@ -840,10 +822,38 @@ body.dark .branding-case-study .project-media img {
                 </div>
             </a>
             
+            <a href="https://nadiairina.github.io/JavaScript-Calculator/" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/JavaScript-Calculator.png" alt="Calculadora JavaScript"
+                             onerror="this.src='https://via.placeholder.com/400x300?text=JS+Calculator'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Calculadora JavaScript</h3>
+                        <p class="project-category">Aplicação Web</p>
+                        <p class="project-description">Calculadora totalmente funcional com operações aritméticas, suporte de teclado e exibição de fórmulas. Desenvolvida com JavaScript puro, HTML5 e CSS3.</p>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://nadiairina.github.io/Todo-App/" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Todo-App.png" alt="Aplicação de Tarefas"
+                             onerror="this.src='https://via.placeholder.com/400x300?text=Todo+App'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Aplicação de Tarefas</h3>
+                        <p class="project-category">Aplicação Web</p>
+                        <p class="project-description">Aplicação de gestão de tarefas com funcionalidades de adicionar, editar, eliminar e completar. Utiliza armazenamento local para persistência, construída com JavaScript e CSS3.</p>
+                    </div>
+                </div>
+            </a>
+
             <a href="https://nadiairina.github.io/Statistics-Calculator/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/Statistics-Calculator.png" alt="Calculadora de Estatística" class="main-image"
+                    <div class="project-image">
+                        <img src="assets/images/projects/Statistics-Calculator.png" alt="Calculadora de Estatística"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Statistics+Calculator'">
                     </div>
                     <div class="project-info">
@@ -854,10 +864,38 @@ body.dark .branding-case-study .project-media img {
                 </div>
             </a>
             
+            <a href="https://nadiairina.github.io/Palindrome-Checker/" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Palindrome-Checker.png" alt="Verificador de Palíndromosr"
+                             onerror="this.src='https://via.placeholder.com/400x300?text=Palindrome+Checker'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Verificador de Palíndromos</h3>
+                        <p class="project-category">Aplicação JavaScript</p>
+                        <p class="project-description">Ferramenta que verifica se um texto se lê da mesma forma de trás para a frente, ignorando pontuação e espaços. Desenvolvida com algoritmos JavaScript e manipulação do DOM.</p>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://nadiairina.github.io/Technical-Documentation-Page/" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Technical-Documentation-Page.png" alt="Página de Documentação Técnica"
+                             onerror="this.src='https://via.placeholder.com/400x300?text=Technical+Documentation'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Página de Documentação Técnica</h3>
+                        <p class="project-category">Documentação</p>
+                        <p class="project-description">Documentação técnica responsiva com barra lateral recolhível, fragmentos de código e um layout de leitura claro. Criada com HTML5, CSS3 e melhorias subtis em JavaScript.</p>
+                    </div>
+                </div>
+            </a>
+
             <a href="https://nadiairina.github.io/product-landing-page/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/product-landing-page.png" alt="Landing Page de Produto" class="main-image"
+                    <div class="project-image">
+                        <img src="assets/images/projects/product-landing-page.png" alt="Landing Page de Produto"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Product+Landing+Page'">
                     </div>
                     <div class="project-info">
@@ -870,8 +908,8 @@ body.dark .branding-case-study .project-media img {
 
             <a href="https://nadiairina.github.io/Tribute-Page/" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
-                    <div class="project-media">
-                        <img src="assets/images/projects/Tribute-Page.png" alt="Página de Homenagem" class="main-image"
+                    <div class="project-image">
+                        <img src="assets/images/projects/Tribute-Page.png" alt="Página de Homenagem"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Tribute+Page'">
                     </div>
                     <div class="project-info">
