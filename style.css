@@ -2651,21 +2651,4 @@ body.dark header#header.scrolled {
         margin-bottom: 1rem;
     }
 }
-/* --- A: AJUSTE GLOBAL PARA CONSISTÊNCIA DE IMAGEM (Solução Horizontal/Vertical) --- */
-
-/* Garante que o contentor da imagem tenha um rácio de aspeto consistente */
-.modern-project-card .project-image {
-    width: 100%;
-    /* Define uma altura fixa para o formato retangular */
-    height: 250px; 
-    overflow: hidden; 
-}
-
-/* Força a imagem a cobrir todo o contentor sem distorcer, cortando o excesso */
-.modern-project-card .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ESSENCIAL para misturar fotos verticais e horizontais */
-    display: block;
-}
 
