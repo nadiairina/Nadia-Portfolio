@@ -625,3 +625,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }, isSafari ? 300 : 100);
 }
 });
+// --- Carrossel de Imagens no Hover (Slideshow) ---
+// Este código percorre todos os cartões de projeto e, se encontra o atributo data-images, 
+// inicia um slideshow automático enquanto o rato estiver sobre o elemento.
+
+document.querySelectorAll('.project-link-wrapper').forEach(card => {
+    const imgElement = card.querySelector('.project-image img');
+    const imagesAttr = card.getAttribute('data-images');
+    
+    // 1. Verifica se o cartão tem o atributo de imagens
+    if (!imagesAttr) return;
+
+    let images;
+    try {
+        images = JSON.parse(imagesAttr);
+    } catch (e) {
+        console.error("Erro ao analisar data-images:", e);
+        return;
+    }
+
+    if (images.length < 2) return; 
+
+    let currentImageIndex = 0;
+    let intervalId;
+    const intervalTime = 800; // Troca a cada 0.8 segundos
+
+    // 2. Inicia o carrossel (alterna entre a 2ª, 3ª, 2ª, 3ª...)
+    function startCarousel() {
+        const originalImage = images[0];
+        currentImageIndex = 1; // Começa na segunda imagem (índice 1)
+
+        intervalId = setInterval(() => {
+            imgElement.src = images[currentImageIndex];
+            
+            // Alterna entre a segunda imagem (1) e a terceira (2)
+            if (currentImageIndex === images.length - 1) {
+                currentImageIndex = 1; 
+            } else {
+                currentImageIndex++; 
+            }
+        }, intervalTime);
+    }
+
+    // 3. Para o carrossel e volta à primeira imagem original
+    function stopCarousel() {
+        clearInterval(intervalId);
+        imgElement.src = images[0]; 
+        currentImageIndex = 0;
+    }
+
+    // 4. Ativa e Desativa o Carrossel nos eventos de rato
+    card.addEventListener('mouseenter', startCarousel);
+    card.addEventListener('mouseleave', stopCarousel);
+});
