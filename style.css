@@ -1009,7 +1009,66 @@ body.dark .mobile-resume-btn:hover {
     padding: 5rem 0;
 }
 
-.status-box {
+.contact-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.contact-info {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.contact-info h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.contact-methods {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-method {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.contact-icon {
+    background-color: #e0e7ff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.contact-detail h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.contact-detail p,
+.contact-detail a {
+    color: var(--text-muted);
+    transition: color var(--transition-normal);
+}
+
+.contact-detail a:hover {
+    color: var(--primary-color);
+}
+
+.availability-status {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -1074,17 +1133,117 @@ body.dark .mobile-resume-btn:hover {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: var(--text-muted);
+/* Form validation styles */
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.05);
 }
 
-/* Modern Project Card Styles */
-/* Garante que o project-link-wrapper é um bloco para que o hover funcione no cartão inteiro */
-.project-link-wrapper {
-    text-decoration: none;
-    color: inherit;
-    display: block;
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.form-feedback {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    min-height: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-feedback.error {
+    color: #e53e3e;
+}
+
+/* Form success message */
+.form-success {
+    text-align: center;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.form-success i {
+    font-size: 3rem;
+    color: #48bb78;
+    margin-bottom: 1rem;
+}
+
+.form-success p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* CTA Section */
+.cta-section {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.cta-section .btn.secondary {
+    color: white;
+    border-color: white;
+}
+
+.cta-section .btn.secondary:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.cta-section .btn.primary {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.cta-section .btn.primary:hover {
+    background-color: var(--bg-light);
+}
+
+/* Modern Projects Grid */
+.modern-projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
 .modern-project-card {
@@ -1092,16 +1251,30 @@ body.dark .mobile-resume-btn:hover {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-md);
-    transition: all var(--transition-normal);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .modern-project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
+}
+
+.modern-project-card .project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.modern-project-card:hover .project-image img {
+    transform: scale(1.05);
 }
 
 .modern-project-card .project-info {
@@ -1118,9 +1291,1454 @@ body.dark .mobile-resume-btn:hover {
     font-size: 0.9rem;
 }
 
+.project-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding: 4rem 0 2rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-logo .logo {
+    font-size: 1.75rem;
+    color: white;
+}
+
+.footer-logo p {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.footer-nav,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-nav h4,
+.footer-social h4 {
+    font-size: 1.125rem;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.footer-nav a,
+.footer-social a {
+    color: #a1a1aa;
+    transition: color var(--transition-normal);
+}
+
+.footer-nav a:hover,
+.footer-social a:hover {
+    color: var(--primary-light);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+    color: #a1a1aa;
+    font-size: 0.875rem;
+}
+
+/* Typewriter effect styles */
+.typewriter-effect {
+    font-weight: 600;
+    color: #6366f1;
+    position: relative;
+    display: inline-block;
+    border-right: 2px solid #6366f1;
+    padding-right: 5px;
+    animation: blink-caret 0.75s step-end infinite;
+    min-height: 1.5em;
+    min-width: 1ch;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #6366f1 }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-7px);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.fade-in-left {
+    animation: fadeInFromLeft 1s ease-out;
+}
+
+.fade-in-right {
+    animation: fadeInFromRight 1s ease-out;
+}
+
+.scale-up {
+    animation: scaleUp 0.7s ease-out;
+}
+
+.bounce {
+    animation: bounce 2s ease infinite;
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for items in a collection */
+.animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+.animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+
+/* ===== DARK MODE - CLEAN AND SIMPLIFIED ===== */
+
+body.dark {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+/* Dark header */
+body.dark .header {
+    background-color: rgba(26, 26, 26, 0.95);
+    border-bottom-color: #333333;
+}
+
+/* Dark theme toggle */
+body.dark .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark theme flash */
+body.dark .theme-flash {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark tooltips */
+body.dark .tooltip {
+    background-color: var(--text-light);
+    color: var(--text-dark);
+}
+
+body.dark .tooltip:before {
+    border-color: transparent transparent var(--text-light) transparent;
+}
+
+/* Dark sections */
+body.dark .work,
+body.dark .skills,
+body.dark .experience,
+body.dark .content-creation-section,
+body.dark .extras-section {
+    background-color: #000000;
+}
+
+/* Dark cards */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .contact-info,
+body.dark .contact-form-container,
+body.dark .timeline-content,
+body.dark .education-item,
+body.dark .project-item,
+body.dark .modern-project-card,
+body.dark .service-card,
+body.dark .package-card,
+body.dark .pricing-card,
+body.dark .include-item {
+    background-color: #1f1f1f;
+    border-color: #333333;
+}
+
+/* Dark navigation */
+body.dark .nav a {
+    color: #ffffff;
+}
+
+body.dark .nav a:hover,
+body.dark .nav a.active {
+    color: var(--primary-light);
+}
+
+/* Dark social icons */
+body.dark .social-icons a {
+    color: #9ca3af;
+}
+
+body.dark .social-icons a:hover {
+    color: var(--primary-light);
+}
+
+/* Dark text content */
+body.dark .subtitle,
+body.dark .page-description {
+    color: #d1d5db;
+}
+
+/* Dark buttons */
+body.dark .btn.secondary {
+    color: #ffffff;
+    border-color: #4b5563;
+}
+
+body.dark .btn.secondary:hover {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+/* Dark project content */
+body.dark .project-card h3,
+body.dark .timeline-content h3,
+body.dark .education-details h3,
+body.dark .project-details h2 {
+    color: #ffffff;
+}
+
+body.dark .project-card p,
+body.dark .timeline-content p,
+body.dark .education-details p,
+body.dark .contact-detail p,
+body.dark .contact-detail a {
+    color: #d1d5db;
+}
+
+/* Dark tech and skill tags */
+body.dark .tech-tag,
+body.dark .skill-tag {
+    background-color: #312e81;
+    color: #d1d5db;
+}
+
+body.dark .skill-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Dark timeline */
+body.dark .timeline:before {
+    background-color: #4b5563;
+}
+
+body.dark .timeline-content h4,
+body.dark .education-details h4 {
+    color: #9ca3af;
+}
+
+/* Dark contact and education icons */
+body.dark .contact-icon,
+body.dark .education-icon {
+    background-color: #312e81;
+}
+
+/* Dark form elements */
+body.dark .form-group input,
+body.dark .form-group textarea {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
+}
+
+body.dark .form-group input:focus,
+body.dark .form-group textarea:focus {
+    border-color: var(--primary-light);
+}
+
+body.dark .form-group input::placeholder,
+body.dark .form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Dark filter buttons */
+body.dark .filter-btn {
+    color: #e5e7eb;
+    border-color: #4b5563;
+}
+
+body.dark .filter-btn:hover,
+body.dark .filter-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Dark placeholder images */
+body.dark .placeholder-img {
+    background-color: #374151;
+}
+
+/* Dark personal details */
+body.dark .personal-details {
+    background-color: #111827;
+}
+
+body.dark .detail-label {
+    color: #9ca3af;
+}
+
+body.dark .detail-value {
+    color: #e5e7eb;
+}
+
+/* Dark image placeholder */
+body.dark .image-placeholder {
+    background-color: #312e81;
+}
+
+body.dark .project-image.placeholder-img {
+    background-color: #312e81;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+    
+    .title {
+        font-size: 3rem;
+    }
+    
+    .about-content,
+    .project-item {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0.25rem 0;
+    }
+    
+    .header.scrolled {
+        padding: 0.125rem 0;
+    }
+    
+    .header .container {
+        min-height: 45px;
+        padding: 0 0.75rem;
+    }
+    
+    .logo {
+        font-size: 1.1rem;
+    }
+    
+    .nav {
+        gap: 0.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .nav a {
+        padding: 0.25rem 0.15rem;
+    }
+    
+    .actions {
+        gap: 0.75rem;
+    }
+    
+    
+    
+    .social-icons a {
+        font-size: 0.95rem;
+        padding: 0.2rem;
+    }
+    
+    .theme-toggle {
+        font-size: 1.1rem;
+        padding: 0.2rem;
+    }
+    
+    .hero {
+        padding: 4rem 1rem 2rem;
+    }
+    
+    .title {
+        font-size: 2.25rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .project-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .greeting:before,
+    .greeting:after {
+        display: none;
+    }
+    
+    .project-links {
+        flex-direction: column;
+    }
+    
+    .contact-section .container {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .social-icons {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .project-filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        width: 200px;
+    }
+    
+    .page-title {
+        font-size: 2.25rem;
+    }
+    
+    .contact-method {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .container {
+        flex-direction: column;
+        gap: 0.25rem;
+        min-height: 60px;
+        padding: 0.25rem 0.75rem;
+    }
+    
+    .nav {
+        order: 2;
+    }
+    
+    .actions {
+        order: 3;
+        font-size: 0.8rem;
+    }
+}
+/* SUPER TARGETED FIX: Content Creation Section Dark Mode Only */
+
+/* Force BLACK background - override all gradients */
+body.dark .content-creation-section,
+body.dark section.content-creation-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+}
+
+/* Remove the blue gradient background pattern */
+body.dark .content-creation-section::before {
+    display: none !important;
+}
+
+/* Target the exact container and all child elements */
+body.dark .content-creation-section .content-creation-container,
+body.dark .content-creation-section .service-content,
+body.dark .content-creation-section .includes-section,
+body.dark .content-creation-section .includes-grid,
+body.dark .content-creation-section .include-item,
+body.dark .content-creation-section .pricing-section,
+body.dark .content-creation-section .pricing-cards,
+body.dark .content-creation-section .pricing-card,
+body.dark .content-creation-section .pdf-cta-section {
+    background: #1a1a2e !important;
+    background-color: #1a1a2e !important;
+    background-image: none !important;
+    border-color: #333333 !important;
+}
+
+/* FORCE PURPLE title - main title only */
+body.dark .content-creation-section h2.service-title,
+body.dark .content-creation-section .service-header h2 {
+    color: #6366f1 !important;
+}
+
+/* Other titles stay white */
+body.dark .content-creation-section h3.includes-title,
+body.dark .content-creation-section .include-content h4,
+body.dark .content-creation-section h1,
+body.dark .content-creation-section h3,
+body.dark .content-creation-section h4 {
+    color: #ffffff !important;
+}
+
+/* FORCE light gray text */
+body.dark .content-creation-section p.service-description,
+body.dark .content-creation-section .include-content p,
+body.dark .content-creation-section p,
+body.dark .content-creation-section li {
+    color: #cccccc !important;
+}
+
+/* FORCE purple icons */
+body.dark .content-creation-section .include-icon i,
+body.dark .content-creation-section i.fas,
+body.dark .content-creation-section i {
+    color: #6366f1 !important;
+}
+
+/* Target any remaining inline styles that override */
+body.dark .content-creation-section div[style*="background"],
+body.dark .content-creation-section section[style*="background"] {
+    background: #1a1a2e !important;
+background-color: #1a1a2e !important;
+}
+
+/* Ultra-specific override for any stubborn elements */
+body.dark section#content-creation,
+body.dark section#content-creation * {
+    background-color: inherit !important;
+}
+
+body.dark section#content-creation {
+    background-color: #000000 !important;
+}
+/* PDF Download box - PURPLE background */
+body.dark .content-creation-section .pdf-cta-section {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+}
+
+/* PDF text - WHITE on purple */
+body.dark .content-creation-section .pdf-cta-section * {
+    color: #ffffff !important;
+}
+/* Specific button - White in Light Mode */
+.pdf-download-section a[href="#download-pdf"].pdf-download-button {
+    background: white !important;
+    color: var(--text-dark) !important;
+    border: 2px solid var(--border-color) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.pdf-download-section a[href="#download-pdf"].pdf-download-button:hover {
+    background: #f8f9fa !important;
+    color: var(--text-dark) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Dark Mode: Specific button - Purple in Dark Mode */
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color) !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+}
+
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:hover {
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
+    color: white !important;
+    border-color: var(--primary-dark) !important;
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4) !important;
+}
+
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:visited {
+    color: white !important;
+}
+
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:focus {
+    color: white !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5) !important;
+}
+
+body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:active {
+    color: white !important;
+    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
+}
+/* ===== ICON VISIBILITY FIXES FOR DARK MODE ===== */
+
+/* Fix for Extras Section Icons in Dark Mode */
+body.dark .extras-section .extras-category .service-icon,
+body.dark .extras-section .extras-grid .service-icon,
+body.dark .extras-section .extras-card .service-icon,
+body.dark .extras-section .extra-item .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .extras-section .extras-item .include-icon {
+    background-color: transparent !important;
+    background: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+/* Remove black backgrounds from icon containers in Extras section */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .include-icon-container {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Ensure Extras section icons maintain purple color */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.extras-section .fab,
+body.dark .extras-section i[class*="fa-"] {
+    color: #6366f1 !important;
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* Fix for "O Que Inclui" Section Icons in Dark Mode */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background-color: #6366f1 !important;
+    background: #6366f1 !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* Ensure "O Que Inclui" icons stay white on purple background */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Target specific Font Awesome icons in "O Que Inclui" section */
+body.dark .includes-section .fa,
+body.dark .includes-section .fas,
+body.dark .includes-section .far,
+body.dark .includes-section .fab,
+body.dark .includes-section i[class*="fa-"],
+body.dark .content-creation-section .include-icon .fa,
+body.dark .content-creation-section .include-icon .fas,
+body.dark .content-creation-section .include-icon .far,
+body.dark .content-creation-section .include-icon .fab,
+body.dark .content-creation-section .include-icon i[class*="fa-"] {
+    color: white !important;
+}
+
+/* Remove any unwanted borders or shadows from icon containers */
+body.dark .extras-section .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure proper contrast for all service-related icons in dark mode */
+body.dark .service-card .service-icon,
+body.dark .service-item .service-icon,
+body.dark .package-card .service-icon {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+}
+
+/* Fix for any remaining icon visibility issues */
+body.dark .extras-section .extras-category .fa-check,
+body.dark .extras-section .extras-category .fa-times,
+body.dark .extras-section .extras-category .fa-star,
+body.dark .extras-section .extras-category .fa-heart,
+body.dark .extras-section .extras-category .fa-thumbs-up,
+body.dark .extras-section .extras-category .fa-camera,
+body.dark .extras-section .extras-category .fa-video,
+body.dark .extras-section .extras-category .fa-edit,
+body.dark .extras-section .extras-category .fa-paint-brush,
+body.dark .extras-section .extras-category .fa-bullhorn,
+body.dark .extras-section .extras-category .fa-chart-line {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* Ensure includes section maintains purple circular background with white icons */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .includes-grid .include-icon,
+body.dark .service-includes .include-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+}
+
+/* White icons inside purple circles for includes section */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .includes-grid .include-icon i,
+body.dark .service-includes .include-icon i {
+    color: white !important;
+    font-size: 1.5rem !important;
+}
+
+/* Additional specificity for stubborn icons */
+body.dark .extras-section * .fa,
+body.dark .extras-section * .fas,
+body.dark .extras-section * .far,
+body.dark .extras-section * .fab,
+body.dark .extras-section * i[class*="fa-"] {
+    color: #6366f1 !important;
+    background: transparent !important;
+}
+
+/* Override any inline styles that might be causing issues */
+body.dark .extras-section [style*="background"],
+body.dark .extras-section [style*="color"] {
+    background-color: transparent !important;
+    color: #6366f1 !important;
+}
+
+/* Ensure proper visibility for all icon types */
+body.dark .extras-section .service-icon svg,
+body.dark .extras-section .include-icon svg {
+    fill: #6366f1 !important;
+    color: #6366f1 !important;
+}
+
+body.dark .includes-section .include-icon svg,
+body.dark .content-creation-section .include-icon svg {
+    fill: white !important;
+    color: white !important;
+}
+
+/* Hover effects for icons in dark mode */
+body.dark .extras-section .service-icon:hover,
+body.dark .extras-section .include-icon:hover {
+    background-color: rgba(99, 102, 241, 0.1) !important;
+    color: var(--primary-light) !important;
+}
+
+body.dark .includes-section .include-icon:hover,
+body.dark .content-creation-section .include-icon:hover {
+    background: linear-gradient(135deg, var(--primary-light), #6366f1) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Ensure transitions work smoothly */
+body.dark .extras-section .service-icon,
+body.dark .extras-section .include-icon,
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon {
+    transition: all 0.3s ease !important;
+}
+
+/* Final catch-all for any remaining icon issues */
+body.dark .extras-section i,
+body.dark .extras-section .icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+body.dark .includes-section i,
+body.dark .content-creation-section .includes-grid i,
+body.dark .service-includes i {
+    color: white !important;
+}
+
+/* Responsive fixes for mobile */
+@media (max-width: 768px) {
+    body.dark .extras-section .service-icon,
+    body.dark .extras-section .include-icon {
+        font-size: 1.2rem !important;
+    }
+    
+    body.dark .includes-section .include-icon,
+    body.dark .content-creation-section .include-icon {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    body.dark .includes-section .include-icon i,
+    body.dark .content-creation-section .include-icon i {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    body.dark .includes-section .include-icon,
+    body.dark .content-creation-section .include-icon {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    body.dark .includes-section .include-icon i,
+    body.dark .content-creation-section .include-icon i {
+        font-size: 1rem !important;
+    }
+}
+/* No seu ficheiro CSS existente, adicione/modifique estas regras */
+
+/* --- INÍCIO DO BLOCO MEDIA QUERY (SUBSTITUA O SEU EXISTENTE NO style.css) --- */
+@media (max-width: 768px) {
+    /* Assegurar que o menu mobile está SEMPRE acima do header no telemóvel */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Ocupar a altura total da viewport */
+        background-color: var(--bg-dark); /* Ou a cor de fundo que deseja para o menu */
+        z-index: 1001 !important; /* <--- AQUI! DEVE ser MAIOR que o z-index do .header (que é 1000 no HTML) */
+        overflow-y: auto; /* Para permitir scroll se o conteúdo do menu for maior que a tela */
+        display: flex; /* Se já estiver a usar flexbox para o conteúdo interno do menu */
+        flex-direction: column; /* Se já estiver a usar flexbox */
+        /* Outras transições ou estilos do seu menu móvel */
+    }
+
+    /* Opcional: Força o z-index do header a ser menor no mobile */
+    /* Para o caso de ter o z-index: 1000 do header no HTML, esta regra garante que no mobile ele seja 999. */
+    .header {
+        z-index: 999 !important; /* <--- AQUI! Torna o header menor que o menu overlay no mobile */
+    }
+
+    /* OCULTAR A NAVEGAÇÃO STICKY QUANDO O MENU MOBILE ESTÁ ABERTO */
+    /* Usamos a classe 'no-scroll' que o JavaScript adiciona ao <body> */
+    body.no-scroll header {
+        opacity: 0 !important; /* Força a opacidade a zero */
+        visibility: hidden !important; /* Força a visibilidade a hidden */
+        pointer-events: none !important; /* Impede cliques no header enquanto oculto */
+        /* Transições para a opacidade e visibilidade devem estar na regra .header geral (fora desta media query) */
+    }
+
+    /* Garante que o header reaparece quando o menu mobile não está aberto */
+    body:not(.no-scroll) header {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    /* Se tiver outras regras dentro deste @media, coloque-as aqui abaixo */
+    /* ... suas outras regras ... */
+
+}
+/* --- FIM DO BLOCO MEDIA QUERY --- */
+/* ===== DARK MODE ICON FIXES ===== */
+
+/* Fix for ALL Extras Section Icons - Make them visible and purple */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section .service-icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove black backgrounds from "O Que Inclui" section */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+}
+
+/* Purple circles with white icons for "O Que Inclui" */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* White icons inside purple circles */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+    font-size: 1.5rem !important;
+}
+/* ===== DARK MODE ICON FIXES ===== */
+
+/* Fix for ALL Extras Section Icons - Make them visible and purple */
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section .service-icon {
+    color: #6366f1 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Remove black backgrounds from "O Que Inclui" section */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+}
+
+/* Purple circles with white icons for "O Que Inclui" - maintain original size */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* White icons inside purple circles - maintain original font size */
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i {
+    color: white !important;
+    background: transparent !important;
+}
+/* ===== DARK MODE ICON FIXES - CLEAN SOLUTION ===== */
+
+/* EXTRAS SECTION - Purple icons with transparent backgrounds */
+body.dark .extras-section .service-icon {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+body.dark .extras-section .service-icon i,
+body.dark .extras-section .fa,
+body.dark .extras-section .fas,
+body.dark .extras-section .far,
+body.dark .extras-section .fab,
+body.dark .extras-section i[class*="fa-"],
+body.dark .extras-section i {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove black backgrounds from Extras section containers */
+body.dark .extras-section .icon-container,
+body.dark .extras-section .service-icon-container,
+body.dark .extras-section .extras-category,
+body.dark .extras-section .service-card,
+body.dark .extras-section .extra-item {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* LIGHTNING BOLT ICON - Special fix for Funcionalidades section */
+body.dark .extras-section .fa-bolt,
+body.dark .extras-section .fa-lightning-bolt {
+    color: #6366f1 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* O QUE INCLUI SECTION - White icons on purple circles */
+body.dark .includes-section .include-icon,
+body.dark .content-creation-section .include-icon,
+body.dark .includes-grid .include-icon,
+body.dark .include-item .include-icon {
+    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+    background-color: #6366f1 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    /* Keep original dimensions - do not override width/height */
+}
+
+body.dark .includes-section .include-icon i,
+body.dark .content-creation-section .include-icon i,
+body.dark .includes-grid .include-icon i,
+body.dark .include-item .include-icon i,
+body.dark .includes-section .fa,
+body.dark .content-creation-section .fa,
+body.dark .includes-grid .fa,
+body.dark .include-item .fa {
+    color: white !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    /* Keep original font-size - do not override */
+}
+
+/* Remove black backgrounds from includes section containers */
+body.dark .includes-section,
+body.dark .content-creation-section .includes-section,
+body.dark .includes-grid,
+body.dark .include-item {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* HOVER EFFECTS - Enhance user experience */
+body.dark .extras-section .service-icon:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+body.dark .includes-section .include-icon:hover,
+body.dark .content-creation-section .include-icon:hover {
+    background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* RESPONSIVE BEHAVIOR - Keep original responsive design */
+@media (max-width: 768px) {
+    /* Let original CSS handle responsive sizing */
+}
+/* Dark mode service cards - cleaner gray appearance */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .service-card,
+body.dark .extra-item {
+    background-color: #2d2d2d;
+    border: 1px solid #444444;
+     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1), 
+                0 2px 4px rgba(255, 255, 255, 0.05);
+}
+
+body.dark .service-card:hover,
+body.dark .project-card:hover,
+body.dark .extra-item:hover {
+    background-color: #353535;
+    border-color: #555555;
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15), 
+                0 3px 6px rgba(255, 255, 255, 0.08);
+}
+/* Dark mode CSS variables override */
+body.dark {
+    --shadow-sm: 0 2px 4px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(255, 255, 255, 0.15);
+    --shadow-md: 0 6px 12px rgba(255, 255, 255, 0.25), 0 3px 6px rgba(255, 255, 255, 0.2);
+    --shadow-lg: 0 12px 24px rgba(255, 255, 255, 0.3), 0 6px 12px rgba(255, 255, 255, 0.25);
+}
+
+/* Dark cards */
+body.dark .project-card,
+body.dark .skill-category,
+body.dark .service-card,
+body.dark .extra-item {
+    background-color: #2d2d2d;
+    border: 1px solid #444444;
+}
+
+body.dark .service-card:hover,
+body.dark .project-card:hover,
+body.dark .extra-item:hover {
+    background-color: #353535;
+    border-color: #555555;
+}
+/* Light mode CTA buttons - white background */
+.cta-section .btn {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    color: var(--text-dark);
+}
+
+.cta-section .btn:hover {
+    background-color: #f9fafb;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Dark mode specific CTA buttons only */
+body.dark .cta-section .btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+body.dark .cta-section .btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* --- INÍCIO DO CÓDIGO DO BOTÃO CURRÍCULO (COPIE E COLE ESTE BLOCO NO FINAL DO SEU style.css) --- */
+
+/* 1. Regra Geral do Botão de Currículo (aplica-se a todas as páginas) */
+.resume-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    /* Tamanho padrão (sem !important aqui) */
+    padding: 12px 30px;
+    font-size: 1rem;
+    min-width: 150px;
+}
+
+/* 2. Efeito Hover do Botão de Currículo */
+.resume-btn:hover {
+    background-color: var(--primary-dark); /* Roxo mais escuro no hover */
+    transform: translateY(-2px); /* Efeito de levantar */
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
+}
+
+/* 3. Dark Mode para o Botão de Currículo (cores) */
+body.dark .resume-btn,
+body.dark .mobile-resume-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+body.dark .resume-btn:hover,
+body.dark .mobile-resume-btn:hover {
+    background-color: var(--primary-dark) !important;
+    color: white !important;
+}
+body.dark-mode .logo {
+    background-color: transparent; /* Adicione esta linha */
+}
+/* 4. SOLUÇÃO FINAL PARA O PROBLEMA DO BOTÃO CURRÍCULO NA PÁGINA DE SERVIÇOS */
+/* Esta regra FORÇA o tamanho apenas na página de serviços e DEVE ser a ÚLTIMA definida */
+body.section-services-hero .resume-btn {
+    padding: 12px 30px !important; /* FORÇA o padding desejado */
+    font-size: 1rem !important;    /* FORÇA o font-size desejado */
+    min-width: 150px !important;   /* FORÇA o min-width desejado */
+    /* Se as cores ficarem erradas APENAS nesta página, pode adicionar estas linhas: */
+    /* background-color: var(--primary-color) !important; */
+    /* color: white !important; */
+}
+
+/* --- FIM DO CÓDIGO DO BOTÃO CURRÍCULO --- */
+/* CORREÇÃO FINAL: SECÇÃO CRIAÇÃO DE CONTEÚDO - CAIXAS CORTADAS NO MOBILE */
+@media (max-width: 767px) { /* Para ecrãs de telemóvel (até 767px de largura) */
+    /* Este seletor é agora tão específico quanto o do desktop para garantir a anulação */
+    .content-creation-section .service-content .includes-section .includes-grid {
+        grid-template-columns: 1fr !important; /* Força UMA coluna, fazendo as caixas empilharem-se */
+        gap: 20px !important; /* Ajusta o espaçamento entre as caixas empilhadas */
+    }
+
+    /* Opcional: Ajustar o padding das caixas individuais no telemóvel se parecerem muito grandes */
+    .content-creation-section .include-item {
+        padding: 15px !important; /* Torna o padding um pouco menor para ecrãs pequenos */
+    }
+
+    /* Opcional: Ajustar tamanhos de fonte ou outros elementos se necessário */
+    .content-creation-section .service-title {
+        font-size: 2.2rem !important; /* Título principal mais pequeno no mobile */
+    }
+
+    .content-creation-section .includes-title {
+        font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
+    }
+}
+/* Correção para garantir que a sombra do header aparece na página de serviços */
+.header {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+/* Correção definitiva para forçar a sombra na barra de navegação,
+   em modo claro, escuro, com e sem scroll, e em todas as páginas. */
+
+/* Sombra padrão para o modo claro */
+header#header {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Sombra para o modo claro com scroll */
+header#header.scrolled {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+}
+
+/* Sombra padrão para o modo escuro */
+body.dark header#header {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+}
+
+/* Sombra para o modo escuro com scroll */
+body.dark header#header.scrolled {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.7) !important;
+}
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo {
+        position: static;
+        margin: 0 auto;
+        padding-top: 15px; /* Adiciona um pequeno espaço no topo */
+        padding-bottom: 15px; /* Adiciona um pequeno espaço no fundo */
+    }
+    .logo img {
+        position: static; /* Remove a posição absoluta para permitir a centralização normal */
+        transform: none; /* Remove a transformação de centralização vertical */
+        left: auto;
+    }
+}
+@media (max-width: 768px) {
+    /* Mostra a secção de ações no menu de hambúrguer quando está ativo */
+    .mobile-menu-overlay .actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    
+    /* Garante que os ícones sociais são visíveis e alinhados */
+    .mobile-menu-overlay .actions .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    /* Alinha o botão de currículo */
+    .mobile-menu-overlay .actions .resume-btn {
+        margin-bottom: 1rem;
+    }
+}
+/* --- A: AJUSTE GLOBAL PARA CONSISTÊNCIA DE IMAGEM (Solução Horizontal/Vertical) --- */
+
+/* Garante que o contentor da imagem tenha um rácio de aspeto consistente */
+.modern-project-card .project-image {
+    width: 100%;
+    /* Define uma altura fixa para o formato retangular */
+    height: 250px; 
+    overflow: hidden; 
+}
+
+/* Força a imagem a cobrir todo o contentor sem distorcer, cortando o excesso */
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ESSENCIAL para misturar fotos verticais e horizontais */
+    display: block;
+}
+
+/* --- B: ESTILOS PARA O CARTÃO DE NEGÓCIO (Efeito Flip 3D) --- */
+
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Oculta a face de trás durante o flip */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--bg-card);
+    color: var(--text-dark);
+}
+
+.card-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.card-front img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    object-fit: contain; 
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background-color: var(--primary-color); /* Usa a cor principal para o verso */
+    color: var(--text-light);
+}
+
+.card-back h3 {
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.card-back p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.card-back .btn {
+    margin-top: 20px;
+    background-color: var(--primary-dark);
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Estilos Dark Mode para o Cartão */
+body.dark .card-face {
+    background-color: #1f2937;
+    color: #ffffff;
+}
+
+body.dark .card-back {
+    background-color: var(--primary-dark);
+}
 /* --- A: AJUSTE GLOBAL PARA CONSISTÊNCIA DE IMAGEM (Fotos Verticais/Horizontais) --- */
 
-/* O seletor .modern-project-card é usado para aumentar a especificidade e garantir o tamanho correto */
+/* Garante que o contentor da imagem tenha um rácio de aspeto consistente */
 .modern-project-card .project-image {
     width: 100%;
     /* Define uma altura fixa para o formato retangular (250px é um bom padrão) */
@@ -1134,17 +2752,31 @@ body.dark .mobile-resume-btn:hover {
     height: 100%;
     object-fit: cover; /* ESSENCIAL para misturar fotos verticais e horizontais */
     display: block;
-    transition: transform 0.5s ease;
 }
 
-.modern-project-card:hover .project-image img {
-    transform: scale(1.05);
+/* --- A: AJUSTE GLOBAL PARA CONSISTÊNCIA DE IMAGEM (Fotos Verticais/Horizontais) --- */
+
+/* Garante que o contentor da imagem tenha um rácio de aspeto consistente */
+.modern-project-card .project-image {
+    width: 100%;
+    /* Define uma altura fixa para o formato retangular (250px é um bom padrão) */
+    height: 250px; 
+    overflow: hidden; 
+}
+
+/* Força a imagem a cobrir todo o contentor sem distorcer, cortando o excesso */
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ESSENCIAL para misturar fotos verticais e horizontais */
+    display: block;
 }
 
 /* --- B: ESTILOS PARA O CARTÃO DE NEGÓCIO (INTEGRAÇÃO NO PROJECT GRID) --- */
 
 /* O contentor da imagem no cartão de projeto adiciona a perspetiva 3D */
 .project-image {
+    /* Mantém os estilos existentes e adiciona o 3D */
     perspective: 1000px; 
 }
 
@@ -1234,418 +2866,4 @@ body.dark .card-face {
 body.dark .card-back {
     background-color: var(--primary-dark);
 }
-
-/* Footer */
-.footer {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    padding: 4rem 0 2rem;
-    margin-top: auto;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-
-.footer-logo {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.footer-logo .logo {
-    font-size: 1.75rem;
-    color: white;
-}
-
-.footer-logo p {
-    color: #a1a1aa;
-    font-size: 0.95rem;
-}
-
-.footer-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-}
-
-.footer-nav,
-.footer-social {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.footer-nav h4,
-.footer-social h4 {
-    font-size: 1.125rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary-light);
-}
-
-.footer-nav a,
-.footer-social a {
-    color: #d1d5db;
-    font-size: 0.95rem;
-}
-
-.footer-nav a:hover,
-.footer-social a:hover {
-    color: var(--primary-color);
-}
-
-.copyright {
-    text-align: center;
-    border-top: 1px solid #374151;
-    padding-top: 2rem;
-    font-size: 0.875rem;
-    color: #9ca3af;
-}
-
-/* === DARK MODE STYLES === */
-
-/* ===== DARK MODE - CLEAN AND SIMPLIFIED ===== */
-body.dark {
-    background-color: #1a1a1a;
-    color: #ffffff;
-}
-
-/* Dark header */
-body.dark .header {
-    background-color: rgba(26, 26, 26, 0.95);
-    border-bottom-color: #333333;
-}
-
-/* Dark theme toggle */
-body.dark .theme-toggle {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-body.dark .theme-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Dark theme flash */
-body.dark .theme-flash {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Dark typography */
-body.dark .highlight:after {
-    background-color: var(--primary-light);
-}
-
-body.dark .subtitle {
-    color: #a1a1aa;
-}
-
-/* Dark work/skills sections */
-body.dark .work,
-body.dark .experience,
-body.dark .contact-hero {
-    background-color: #1a1a1a;
-}
-
-/* Dark cards */
-body.dark .project-card,
-body.dark .skill-category,
-body.dark .timeline-content,
-body.dark .education-item,
-body.dark .project-item,
-body.dark .contact-form-container {
-    background-color: #2d2d2d;
-    border-color: #444444;
-}
-
-/* Dark links */
-body.dark .project-link {
-    border-top-color: #444444;
-}
-
-/* Dark tech/skill tags */
-body.dark .tech-tag,
-body.dark .skill-tag {
-    background-color: #374151;
-    color: var(--primary-light);
-}
-
-body.dark .skill-tag:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* Dark about details */
-body.dark .personal-details {
-    background-color: #2d2d2d;
-}
-
-body.dark .detail-label {
-    color: #a1a1aa;
-}
-
-/* Dark education icons */
-body.dark .education-icon {
-    background-color: #312e81;
-}
-
-/* Dark form elements */
-body.dark .form-group input,
-body.dark .form-group textarea {
-    background-color: #374151;
-    border-color: #4b5563;
-    color: #e5e7eb;
-}
-
-body.dark .form-group input:focus,
-body.dark .form-group textarea:focus {
-    border-color: var(--primary-light);
-}
-
-body.dark .form-group input::placeholder,
-body.dark .form-group textarea::placeholder {
-    color: #9ca3af;
-}
-
-/* Dark filter buttons */
-body.dark .filter-btn {
-    color: #e5e7eb;
-    border-color: #4b5563;
-}
-
-body.dark .filter-btn:hover,
-body.dark .filter-btn.active {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-}
-
-
-/* Footer Dark Mode fix */
-body.dark .footer {
-    background-color: #1f2937;
-}
-
-body.dark .copyright {
-    border-top-color: #4b5563;
-}
-
-/* === ICON AND BUTTON FIXES === */
-
-/* 1. Botão de Currículo */
-.resume-btn, .mobile-resume-btn {
-    /* Define as cores e tamanhos padrão (sem !important aqui) */
-    padding: 12px 30px;
-    font-size: 1rem;
-    min-width: 150px;
-}
-
-/* 2. Efeito Hover do Botão de Currículo */
-.resume-btn:hover {
-    background-color: var(--primary-dark); /* Roxo mais escuro no hover */
-    transform: translateY(-2px); /* Efeito de levantar */
-    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
-}
-
-/* 3. Dark Mode para o Botão de Currículo (cores) */
-body.dark .resume-btn, body.dark .mobile-resume-btn {
-    background-color: var(--primary-color) !important;
-    color: white !important;
-}
-
-body.dark .resume-btn:hover, body.dark .mobile-resume-btn:hover {
-    background-color: var(--primary-dark) !important;
-    color: white !important;
-}
-
-/* 4. SOLUÇÃO FINAL PARA O PROBLEMA DO BOTÃO CURRÍCULO NA PÁGINA DE SERVIÇOS */
-/* Esta regra FORÇA o tamanho apenas na página de serviços e DEVE ser a ÚLTIMA definida */
-body.section-services-page .mobile-resume-btn {
-    padding: 0.75rem 1.5rem !important; /* Tamanho normal do botão */
-    min-width: unset !important; /* Retira o min-width */
-    font-size: 1rem !important;
-}
-
-/* Correção definitiva para forçar a sombra na barra de navegação, em modo claro, escuro, com e sem scroll, e em todas as páginas. */
-/* Sombra padrão para o modo claro */
-header#header {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Sombra para o modo claro com scroll */
-header#header.scrolled {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Sombra padrão para o modo escuro */
-body.dark header#header {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* Sombra para o modo escuro com scroll */
-body.dark header#header.scrolled {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
-}
-
-@media (max-width: 768px) {
-    .header .container {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .logo {
-        position: static;
-        margin: 0 auto;
-        padding: 0.5rem 0;
-    }
-
-    .logo img {
-        position: static;
-        transform: none;
-        height: 40px;
-        margin-right: 10px;
-    }
-
-    .nav {
-        margin-left: 0;
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        padding-top: 10px;
-        border-top: 1px solid var(--border-color);
-        margin-top: 10px;
-    }
-
-    .actions {
-        display: none; /* Ocultar ações desktop em mobile */
-    }
-}
-
-
-/* Dark mode service cards - cleaner gray appearance */
-body.dark .project-card, body.dark .skill-category, body.dark .service-card, body.dark .extra-item {
-    background-color: #2d2d2d;
-    border: 1px solid #444444;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1), 0 2px 4px rgba(255, 255, 255, 0.05);
-}
-
-/* Fix for PDF Button on Dark Mode */
-.pdf-download-section a[href="#download-pdf"].pdf-download-button {
-    color: white !important;
-}
-
-body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button {
-    background: var(--primary-color) !important;
-    color: white !important;
-    border-color: var(--primary-color) !important;
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
-}
-
-body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:hover {
-    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
-    color: white !important;
-    border-color: var(--primary-dark) !important;
-    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4) !important;
-}
-
-body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:visited {
-    color: white !important;
-}
-
-body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:focus {
-    color: white !important;
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5) !important;
-}
-
-body.dark .pdf-download-section a[href="#download-pdf"].pdf-download-button:active {
-    color: white !important;
-    background: linear-gradient(135deg, var(--primary-dark), #3730a3) !important;
-}
-
-/* ===== ICON VISIBILITY FIXES FOR DARK MODE ===== */
-
-/* Fix for ALL Extras Section Icons - Make them visible and purple */
-body.dark .extras-section .fa,
-body.dark .extras-section .fas,
-body.dark .extras-section .far,
-body.dark .extras-section .fab,
-body.dark .extras-section i[class*="fa-"],
-body.dark .extras-section .service-icon {
-    color: #6366f1 !important;
-    background: transparent !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Remove black backgrounds from Extras section containers */
-body.dark .extras-section .icon-container,
-body.dark .extras-section .service-icon-container,
-body.dark .extras-section .extras-category,
-body.dark .extras-section .service-card {
-    background: transparent !important;
-    border: none !important;
-}
-
-/* Remove black backgrounds from "O Que Inclui" section */
-body.dark .includes-section,
-body.dark .content-creation-section .includes-section,
-body.dark .includes-grid,
-body.dark .include-item {
-    background: transparent !important;
-}
-
-/* Purple circles with white icons for "O Que Inclui" */
-body.dark .includes-section .include-icon,
-body.dark .content-creation-section .include-icon,
-body.dark .includes-grid .include-icon,
-body.dark .include-item .include-icon {
-    background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
-    color: white !important;
-    border-radius: 50% !important;
-    width: 60px !important;
-    height: 60px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* White icons inside purple circles */
-body.dark .includes-section .include-icon i,
-body.dark .content-creation-section .include-icon i,
-body.dark .includes-grid .include-icon i,
-body.dark .include-item .include-icon i {
-    color: white !important;
-    background: transparent !important;
-}
-
-/* HOVER EFFECTS - Enhance user experience */
-body.dark .extras-section .service-icon:hover {
-    background: rgba(99, 102, 241, 0.1) !important;
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-}
-
-body.dark .includes-section .include-icon:hover,
-body.dark .content-creation-section .include-icon:hover {
-    background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-}
-
-/* Responsive fixes for mobile */
-@media (max-width: 768px) {
-    body.dark .includes-section .include-icon,
-    body.dark .content-creation-section .include-icon {
-        width: 50px !important;
-        height: 50px !important;
-    }
-
-    body.dark .includes-section .include-icon i,
-    body.dark .content-creation-section .include-icon i {
-        font-size: 1.2rem !important;
-    }
-}
+style - cópia.css
