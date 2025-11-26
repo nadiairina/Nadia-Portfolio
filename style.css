@@ -2806,6 +2806,24 @@ body.dark .card-back {
     display: block;
 }
 
+/* --- A: AJUSTE GLOBAL PARA CONSISTÊNCIA DE IMAGEM (Fotos Verticais/Horizontais) --- */
+
+/* Garante que o contentor da imagem tenha um rácio de aspeto consistente */
+.modern-project-card .project-image {
+    width: 100%;
+    /* Define uma altura fixa para o formato retangular (250px é um bom padrão) */
+    height: 250px; 
+    overflow: hidden; 
+}
+
+/* Força a imagem a cobrir todo o contentor sem distorcer, cortando o excesso */
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ESSENCIAL para misturar fotos verticais e horizontais */
+    display: block;
+}
+
 /* --- B: ESTILOS PARA O CARTÃO DE NEGÓCIO (INTEGRAÇÃO NO PROJECT GRID) --- */
 
 /* O contentor da imagem no cartão de projeto adiciona a perspetiva 3D */
