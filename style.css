@@ -2651,3 +2651,140 @@ body.dark header#header.scrolled {
         margin-bottom: 1rem;
     }
 }
+/* --- A: AJUSTE GLOBAL PARA CONSISTÊNCIA DE IMAGEM (Solução Horizontal/Vertical) --- */
+
+/* Garante que o contentor da imagem tenha um rácio de aspeto consistente */
+.modern-project-card .project-image {
+    width: 100%;
+    /* Define uma altura fixa para o formato retangular */
+    height: 250px; 
+    overflow: hidden; 
+}
+
+/* Força a imagem a cobrir todo o contentor sem distorcer, cortando o excesso */
+.modern-project-card .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ESSENCIAL para misturar fotos verticais e horizontais */
+    display: block;
+}
+
+/* --- B: ESTILOS PARA O CARTÃO DE NEGÓCIO (Efeito Flip 3D) --- */
+
+.business-card-section {
+    padding: 60px 1rem;
+    text-align: center;
+    background-color: var(--bg-muted); 
+    transition: background-color 0.3s ease;
+}
+
+body.dark .business-card-section {
+    background-color: #000000;
+}
+
+.business-card-section h2 {
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+body.dark .business-card-section h2 {
+    color: #ffffff;
+}
+
+.card-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+body.dark .card-subtitle {
+    color: #cccccc;
+}
+
+/* Onde a magia 3D acontece */
+.card-flip-container {
+    width: 350px; 
+    height: 200px; 
+    margin: 0 auto;
+    perspective: 1000px; /* Perspetiva 3D para o efeito flip */
+}
+
+.business-card-flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d; /* O segredo para o flip 3D */
+    box-shadow: var(--shadow-lg);
+    border-radius: 12px;
+}
+
+/* O Flipper volta no hover */
+.card-flip-container:hover .business-card-flipper {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Oculta a face de trás durante o flip */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--bg-card);
+    color: var(--text-dark);
+}
+
+.card-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.card-front img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    object-fit: contain; 
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background-color: var(--primary-color); /* Usa a cor principal para o verso */
+    color: var(--text-light);
+}
+
+.card-back h3 {
+    margin-bottom: 15px;
+    color: var(--text-light);
+}
+
+.card-back p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.card-back .btn {
+    margin-top: 20px;
+    background-color: var(--primary-dark);
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Estilos Dark Mode para o Cartão */
+body.dark .card-face {
+    background-color: #1f2937;
+    color: #ffffff;
+}
+
+body.dark .card-back {
+    background-color: var(--primary-dark);
+}
