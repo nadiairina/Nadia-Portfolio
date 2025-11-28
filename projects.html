@@ -427,146 +427,6 @@ body.dark .mobile-theme-toggle {
     border-color: #374151;
     color: #ffffff;
 }
-
-/* --- A: AJUSTE GLOBAL PARA CONSISTÊNCIA DE IMAGEM (Solução Horizontal/Vertical) --- */
-
-/* Garante que o contentor da imagem tenha um rácio de aspeto consistente */
-.modern-project-card .project-image {
-    width: 100%;
-    /* Define uma altura fixa para o formato retangular */
-    height: 250px; 
-    overflow: hidden; 
-}
-
-/* Força a imagem a cobrir todo o contentor sem distorcer, cortando o excesso */
-.modern-project-card .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ESSENCIAL para misturar fotos verticais e horizontais */
-    display: block;
-}
-
-    /* ---------------------------------------------------------------------- */
-/* --- AJUSTES FINAIS PARA CARTÃO DE VISITA NO PROJECT GRID --- */
-/* ---------------------------------------------------------------------- */
-
-/* --- A: AJUSTE GLOBAL PARA CONSISTÊNCIA DE IMAGEM (Fotos Verticais/Horizontais) --- */
-
-/* O seletor .modern-project-card é usado para aumentar a especificidade e garantir o tamanho correto */
-.modern-project-card .project-image {
-    width: 100%;
-    /* Define uma altura fixa para o formato retangular (250px é um bom padrão) */
-    height: 250px; 
-    overflow: hidden; 
-}
-
-/* Força a imagem a cobrir todo o contentor sem distorcer, cortando o excesso */
-.modern-project-card .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ESSENCIAL para misturar fotos verticais e horizontais */
-    display: block;
-    transition: transform 0.5s ease;
-}
-
-.modern-project-card:hover .project-image img {
-    transform: scale(1.05);
-}
-
-/* --- B: ESTILOS PARA O CARTÃO DE NEGÓCIO (Efeito Flip 3D) --- */
-
-/* O contentor da imagem no cartão de projeto adiciona a perspetiva 3D */
-.project-image {
-    perspective: 1000px; 
-}
-
-/* O Flipper é o elemento que roda */
-.business-card-flipper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d; /* O segredo para o flip 3D */
-}
-
-/* O Flipper volta no hover, aplicado ao contentor principal (o link) */
-.project-link-wrapper:hover .business-card-flipper {
-    transform: rotateY(180deg);
-}
-
-.card-face {
-    /* As faces do cartão ocupam 100% da área da imagem do projeto */
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden; /* Oculta a face de trás durante a rotação */
-    border-radius: 0; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: var(--bg-card); /* Fundo da frente (Light Mode) */
-    color: var(--text-dark);
-}
-
-/* Frente do Cartão */
-.card-front {
-    z-index: 2;
-    transform: rotateY(0deg);
-}
-
-.card-front img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
-    object-fit: contain; 
-}
-
-/* Verso do Cartão */
-.card-back {
-    transform: rotateY(180deg);
-    background-color: var(--primary-color); /* Usa a cor principal para o verso */
-    color: var(--text-light);
-    text-align: center;
-}
-
-.card-back h3 {
-    margin-bottom: 15px;
-    color: var(--text-light);
-}
-
-.card-back p {
-    margin: 5px 0;
-    font-size: 1rem;
-    display: flex; /* Para alinhar ícones com o texto */
-    align-items: center;
-    justify-content: center;
-    gap: 8px; /* Espaço entre ícone e texto */
-}
-
-.card-back .btn {
-    margin-top: 20px;
-    background-color: var(--primary-dark);
-    color: white;
-    text-decoration: none;
-    padding: 8px 15px;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-/* Estilos Dark Mode para o Cartão */
-body.dark .card-face {
-    background-color: #1f2937;
-    color: #ffffff;
-}
-
-body.dark .card-back {
-    background-color: var(--primary-dark);
-}
-
     </style>
 </head>
 <body>
@@ -670,52 +530,20 @@ body.dark .card-back {
         <div class="modern-projects-container">
             <!-- BEST WORK FIRST -->
 
-            <div class="project-item" data-category="interactivity">
-    <a href="#card-flip" class="project-link-wrapper" id="business-card-project"> 
-        <div class="modern-project-card">
-            <div class="project-image"> 
-                <div class="business-card-flipper">
-                    <div class="card-face card-front">
-                        <img src="assets/images/business-card-front.png" alt="Frente do Cartão de Visita Nadia Irina">
+            <!-- Project 0: Adil Moveis Website -->
+            <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Wesbite" 
+                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
                     </div>
-
-                    <div class="card-face card-back">
-                        <h3>Contactos</h3>
-                        <p><i class="fas fa-envelope"></i> nadiairina934@gmail.com</p>
-                        <p><i class="fab fa-linkedin"></i> linkedin.com/in/nadia-irina-138366144/</p>
-                        <p><i class="fab fa-github"></i> github.com/nadiairina</p>
-                        <a href="assets/Nadia-Irina-CV.pdf" download class="btn primary-small">
-                            <i class="fas fa-download"></i> Currículo
-                        </a>
+                    <div class="project-info">
+                        <h3>Website para Loja de Móveis</h3>
+                        <p class="project-category">Desenvolvimento Web</p>
+                        <p class="project-description">Desenvolvimento de um showroom digital polido para a Adil Móveis. O projeto integra uma interface de navegação fluida, filtragem inteligente de produtos e galerias de imagens dinâmicas, proporcionando uma experiência de utilizador intuitiva e responsiva em todos os dispositivos. A gestão de redes sociais foi integrada para uma presença online coesa.</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="project-info">
-                <h3>Cartão de Visita Digital</h3>
-                <p class="project-category">Interatividade & Contacto</p>
-                <p class="project-description">Um projeto pessoal que demonstra a criação de uma experiência de contacto imediata com um efeito "flip" em 3D. Basta passar o rato para virar o cartão e aceder aos seus dados de contacto.</p>
-            </div>
-        </div>
-    </a>
-</div>
-            
-            <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link-wrapper"
-   id="adil-moveis-card" 
-   data-images='["assets/images/projects/adil-moveis.png", "assets/images/projects/adil-moveis-2.png", "assets/images/projects/adil-moveis-3.png"]'>
-    <div class="modern-project-card">
-        <div class="project-image">
-            <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Wesbite" 
-                 onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
-        </div>
-        <div class="project-info">
-            <h3>Website para Loja de Móveis</h3>
-            <p class="project-category">Desenvolvimento Web</p>
-            <p class="project-description">Desenvolvimento de um showroom digital polido para a Adil Móveis. O projeto integra uma interface de navegação fluida, filtragem inteligente de produtos e galerias de imagens dinâmicas, proporcionando uma experiência de utilizador intuitiva e responsiva em todos os dispositivos. A gestão de redes sociais foi integrada para uma presença online coesa.</p>
-        </div>
-    </div>
-</a>
-            
+            </a>
 
             <a href="https://cantinhodooutono.myshopify.com/" target="_blank" class="project-link-wrapper">
     <div class="modern-project-card">
