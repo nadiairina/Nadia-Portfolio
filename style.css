@@ -140,32 +140,32 @@ p {
 
 
 
-/* Certifique-se de que a versão móvel também tem estas propriedades definidas, se aplicável */
+/* Certifique-se de que a versÃ£o mÃ³vel tambÃ©m tem estas propriedades definidas, se aplicÃ¡vel */
 @media (max-width: 768px) {
     .mobile-resume-btn {
-        padding: 12px 30px !important; /* Força o padding para mobile */
-        font-size: 1rem !important; /* Força o font-size para mobile */
+        padding: 12px 30px !important; /* ForÃ§a o padding para mobile */
+        font-size: 1rem !important; /* ForÃ§a o font-size para mobile */
         min-width: unset !important; /* Remove min-width para mobile se for um problema */
     }
 }
 
 .resume-btn:hover {
     background-color: #5558d1; /* Um roxo ligeiramente mais escuro no hover */
-    border-color: #5558d1; /* Ajusta a borda no hover também */
+    border-color: #5558d1; /* Ajusta a borda no hover tambÃ©m */
     transform: translateY(-2px); /* Efeito de levantar */
     box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
 }
 
 /* No seu ficheiro CSS existente, adicione ou modifique estas regras */
 
-/* Problema 2: Botão Currículo não está roxo em Dark Mode (no telemóvel) */
+/* Problema 2: BotÃ£o CurrÃ­culo nÃ£o estÃ¡ roxo em Dark Mode (no telemÃ³vel) */
 body.dark .resume-btn,
 body.dark .mobile-resume-btn {
-    background-color: var(--primary-color) !important; /* Força o roxo */
+    background-color: var(--primary-color) !important; /* ForÃ§a o roxo */
     color: white !important; /* Garante o texto branco */
 }
 
-/* Garante que o hover também é roxo no dark mode */
+/* Garante que o hover tambÃ©m Ã© roxo no dark mode */
 body.dark .resume-btn:hover,
 body.dark .mobile-resume-btn:hover {
     background-color: var(--primary-dark) !important; /* Roxo mais escuro no hover */
@@ -216,8 +216,8 @@ body.dark .mobile-resume-btn:hover {
     width: auto;
     position: absolute; /* Adicione esta linha */
     top: 50%; /* Centraliza verticalmente */
-    left: 20px; /* Ajuste a distância da esquerda */
-    transform: translateY(-50%); /* Ajuste fino para a centralização */
+    left: 20px; /* Ajuste a distÃ¢ncia da esquerda */
+    transform: translateY(-50%); /* Ajuste fino para a centralizaÃ§Ã£o */
     background-color: transparent;
 }
 
@@ -2196,9 +2196,9 @@ body.dark .service-includes i {
 }
 /* No seu ficheiro CSS existente, adicione/modifique estas regras */
 
-/* --- INÍCIO DO BLOCO MEDIA QUERY (SUBSTITUA O SEU EXISTENTE NO style.css) --- */
+/* --- INÃCIO DO BLOCO MEDIA QUERY (SUBSTITUA O SEU EXISTENTE NO style.css) --- */
 @media (max-width: 768px) {
-    /* Assegurar que o menu mobile está SEMPRE acima do header no telemóvel */
+    /* Assegurar que o menu mobile estÃ¡ SEMPRE acima do header no telemÃ³vel */
     .mobile-menu-overlay {
         position: fixed;
         top: 0;
@@ -2206,29 +2206,29 @@ body.dark .service-includes i {
         width: 100%;
         height: 100vh; /* Ocupar a altura total da viewport */
         background-color: var(--bg-dark); /* Ou a cor de fundo que deseja para o menu */
-        z-index: 1001 !important; /* <--- AQUI! DEVE ser MAIOR que o z-index do .header (que é 1000 no HTML) */
-        overflow-y: auto; /* Para permitir scroll se o conteúdo do menu for maior que a tela */
-        display: flex; /* Se já estiver a usar flexbox para o conteúdo interno do menu */
-        flex-direction: column; /* Se já estiver a usar flexbox */
-        /* Outras transições ou estilos do seu menu móvel */
+        z-index: 1001 !important; /* <--- AQUI! DEVE ser MAIOR que o z-index do .header (que Ã© 1000 no HTML) */
+        overflow-y: auto; /* Para permitir scroll se o conteÃºdo do menu for maior que a tela */
+        display: flex; /* Se jÃ¡ estiver a usar flexbox para o conteÃºdo interno do menu */
+        flex-direction: column; /* Se jÃ¡ estiver a usar flexbox */
+        /* Outras transiÃ§Ãµes ou estilos do seu menu mÃ³vel */
     }
 
-    /* Opcional: Força o z-index do header a ser menor no mobile */
+    /* Opcional: ForÃ§a o z-index do header a ser menor no mobile */
     /* Para o caso de ter o z-index: 1000 do header no HTML, esta regra garante que no mobile ele seja 999. */
     .header {
         z-index: 999 !important; /* <--- AQUI! Torna o header menor que o menu overlay no mobile */
     }
 
-    /* OCULTAR A NAVEGAÇÃO STICKY QUANDO O MENU MOBILE ESTÁ ABERTO */
+    /* OCULTAR A NAVEGAÃ‡ÃƒO STICKY QUANDO O MENU MOBILE ESTÃ ABERTO */
     /* Usamos a classe 'no-scroll' que o JavaScript adiciona ao <body> */
     body.no-scroll header {
-        opacity: 0 !important; /* Força a opacidade a zero */
-        visibility: hidden !important; /* Força a visibilidade a hidden */
+        opacity: 0 !important; /* ForÃ§a a opacidade a zero */
+        visibility: hidden !important; /* ForÃ§a a visibilidade a hidden */
         pointer-events: none !important; /* Impede cliques no header enquanto oculto */
-        /* Transições para a opacidade e visibilidade devem estar na regra .header geral (fora desta media query) */
+        /* TransiÃ§Ãµes para a opacidade e visibilidade devem estar na regra .header geral (fora desta media query) */
     }
 
-    /* Garante que o header reaparece quando o menu mobile não está aberto */
+    /* Garante que o header reaparece quando o menu mobile nÃ£o estÃ¡ aberto */
     body:not(.no-scroll) header {
         opacity: 1 !important;
         visibility: visible !important;
@@ -2510,9 +2510,9 @@ body.dark .cta-section .btn:hover {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* --- INÍCIO DO CÓDIGO DO BOTÃO CURRÍCULO (COPIE E COLE ESTE BLOCO NO FINAL DO SEU style.css) --- */
+/* --- INÃCIO DO CÃ“DIGO DO BOTÃƒO CURRÃCULO (COPIE E COLE ESTE BLOCO NO FINAL DO SEU style.css) --- */
 
-/* 1. Regra Geral do Botão de Currículo (aplica-se a todas as páginas) */
+/* 1. Regra Geral do BotÃ£o de CurrÃ­culo (aplica-se a todas as pÃ¡ginas) */
 .resume-btn {
     background-color: var(--primary-color);
     color: white;
@@ -2523,20 +2523,20 @@ body.dark .cta-section .btn:hover {
     border: none;
     display: inline-block;
     text-align: center;
-    /* Tamanho padrão (sem !important aqui) */
+    /* Tamanho padrÃ£o (sem !important aqui) */
     padding: 12px 30px;
     font-size: 1rem;
     min-width: 150px;
 }
 
-/* 2. Efeito Hover do Botão de Currículo */
+/* 2. Efeito Hover do BotÃ£o de CurrÃ­culo */
 .resume-btn:hover {
     background-color: var(--primary-dark); /* Roxo mais escuro no hover */
     transform: translateY(-2px); /* Efeito de levantar */
     box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2); /* Sombra suave */
 }
 
-/* 3. Dark Mode para o Botão de Currículo (cores) */
+/* 3. Dark Mode para o BotÃ£o de CurrÃ­culo (cores) */
 body.dark .resume-btn,
 body.dark .mobile-resume-btn {
     background-color: var(--primary-color) !important;
@@ -2551,48 +2551,48 @@ body.dark .mobile-resume-btn:hover {
 body.dark-mode .logo {
     background-color: transparent; /* Adicione esta linha */
 }
-/* 4. SOLUÇÃO FINAL PARA O PROBLEMA DO BOTÃO CURRÍCULO NA PÁGINA DE SERVIÇOS */
-/* Esta regra FORÇA o tamanho apenas na página de serviços e DEVE ser a ÚLTIMA definida */
+/* 4. SOLUÃ‡ÃƒO FINAL PARA O PROBLEMA DO BOTÃƒO CURRÃCULO NA PÃGINA DE SERVIÃ‡OS */
+/* Esta regra FORÃ‡A o tamanho apenas na pÃ¡gina de serviÃ§os e DEVE ser a ÃšLTIMA definida */
 body.section-services-hero .resume-btn {
-    padding: 12px 30px !important; /* FORÇA o padding desejado */
-    font-size: 1rem !important;    /* FORÇA o font-size desejado */
-    min-width: 150px !important;   /* FORÇA o min-width desejado */
-    /* Se as cores ficarem erradas APENAS nesta página, pode adicionar estas linhas: */
+    padding: 12px 30px !important; /* FORÃ‡A o padding desejado */
+    font-size: 1rem !important;    /* FORÃ‡A o font-size desejado */
+    min-width: 150px !important;   /* FORÃ‡A o min-width desejado */
+    /* Se as cores ficarem erradas APENAS nesta pÃ¡gina, pode adicionar estas linhas: */
     /* background-color: var(--primary-color) !important; */
     /* color: white !important; */
 }
 
-/* --- FIM DO CÓDIGO DO BOTÃO CURRÍCULO --- */
-/* CORREÇÃO FINAL: SECÇÃO CRIAÇÃO DE CONTEÚDO - CAIXAS CORTADAS NO MOBILE */
-@media (max-width: 767px) { /* Para ecrãs de telemóvel (até 767px de largura) */
-    /* Este seletor é agora tão específico quanto o do desktop para garantir a anulação */
+/* --- FIM DO CÃ“DIGO DO BOTÃƒO CURRÃCULO --- */
+/* CORREÃ‡ÃƒO FINAL: SECÃ‡ÃƒO CRIAÃ‡ÃƒO DE CONTEÃšDO - CAIXAS CORTADAS NO MOBILE */
+@media (max-width: 767px) { /* Para ecrÃ£s de telemÃ³vel (atÃ© 767px de largura) */
+    /* Este seletor Ã© agora tÃ£o especÃ­fico quanto o do desktop para garantir a anulaÃ§Ã£o */
     .content-creation-section .service-content .includes-section .includes-grid {
-        grid-template-columns: 1fr !important; /* Força UMA coluna, fazendo as caixas empilharem-se */
-        gap: 20px !important; /* Ajusta o espaçamento entre as caixas empilhadas */
+        grid-template-columns: 1fr !important; /* ForÃ§a UMA coluna, fazendo as caixas empilharem-se */
+        gap: 20px !important; /* Ajusta o espaÃ§amento entre as caixas empilhadas */
     }
 
-    /* Opcional: Ajustar o padding das caixas individuais no telemóvel se parecerem muito grandes */
+    /* Opcional: Ajustar o padding das caixas individuais no telemÃ³vel se parecerem muito grandes */
     .content-creation-section .include-item {
-        padding: 15px !important; /* Torna o padding um pouco menor para ecrãs pequenos */
+        padding: 15px !important; /* Torna o padding um pouco menor para ecrÃ£s pequenos */
     }
 
-    /* Opcional: Ajustar tamanhos de fonte ou outros elementos se necessário */
+    /* Opcional: Ajustar tamanhos de fonte ou outros elementos se necessÃ¡rio */
     .content-creation-section .service-title {
-        font-size: 2.2rem !important; /* Título principal mais pequeno no mobile */
+        font-size: 2.2rem !important; /* TÃ­tulo principal mais pequeno no mobile */
     }
 
     .content-creation-section .includes-title {
-        font-size: 1.6rem !important; /* Título "O Que Inclui" mais pequeno no mobile */
+        font-size: 1.6rem !important; /* TÃ­tulo "O Que Inclui" mais pequeno no mobile */
     }
 }
-/* Correção para garantir que a sombra do header aparece na página de serviços */
+/* CorreÃ§Ã£o para garantir que a sombra do header aparece na pÃ¡gina de serviÃ§os */
 .header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
 }
-/* Correção definitiva para forçar a sombra na barra de navegação,
-   em modo claro, escuro, com e sem scroll, e em todas as páginas. */
+/* CorreÃ§Ã£o definitiva para forÃ§ar a sombra na barra de navegaÃ§Ã£o,
+   em modo claro, escuro, com e sem scroll, e em todas as pÃ¡ginas. */
 
-/* Sombra padrão para o modo claro */
+/* Sombra padrÃ£o para o modo claro */
 header#header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
 }
@@ -2602,7 +2602,7 @@ header#header.scrolled {
     box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
 }
 
-/* Sombra padrão para o modo escuro */
+/* Sombra padrÃ£o para o modo escuro */
 body.dark header#header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
 }
@@ -2620,17 +2620,17 @@ body.dark header#header.scrolled {
     .logo {
         position: static;
         margin: 0 auto;
-        padding-top: 15px; /* Adiciona um pequeno espaço no topo */
-        padding-bottom: 15px; /* Adiciona um pequeno espaço no fundo */
+        padding-top: 15px; /* Adiciona um pequeno espaÃ§o no topo */
+        padding-bottom: 15px; /* Adiciona um pequeno espaÃ§o no fundo */
     }
     .logo img {
-        position: static; /* Remove a posição absoluta para permitir a centralização normal */
-        transform: none; /* Remove a transformação de centralização vertical */
+        position: static; /* Remove a posiÃ§Ã£o absoluta para permitir a centralizaÃ§Ã£o normal */
+        transform: none; /* Remove a transformaÃ§Ã£o de centralizaÃ§Ã£o vertical */
         left: auto;
     }
 }
 @media (max-width: 768px) {
-    /* Mostra a secção de ações no menu de hambúrguer quando está ativo */
+    /* Mostra a secÃ§Ã£o de aÃ§Ãµes no menu de hambÃºrguer quando estÃ¡ ativo */
     .mobile-menu-overlay .actions {
         display: flex;
         flex-direction: column;
@@ -2638,7 +2638,7 @@ body.dark header#header.scrolled {
         margin-top: 1rem;
     }
     
-    /* Garante que os ícones sociais são visíveis e alinhados */
+    /* Garante que os Ã­cones sociais sÃ£o visÃ­veis e alinhados */
     .mobile-menu-overlay .actions .social-icons {
         display: flex;
         justify-content: center;
@@ -2646,9 +2646,8 @@ body.dark header#header.scrolled {
         margin-top: 1rem;
     }
 
-    /* Alinha o botão de currículo */
+    /* Alinha o botÃ£o de currÃ­culo */
     .mobile-menu-overlay .actions .resume-btn {
         margin-bottom: 1rem;
     }
 }
-
