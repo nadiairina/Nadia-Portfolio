@@ -427,43 +427,54 @@ body.dark .mobile-theme-toggle {
     border-color: #374151;
     color: #ffffff;
 }
-/* 1. Contentor Principal (Mantido) */
+/* 1. Contentor Principal */
 .project-image {
     width: 100%;
-    height: 300px; /* Mantenha uma altura fixa */
+    height: 300px; /* Altura fixa */
     overflow: hidden; 
     position: relative;
 }
 
-/* 2. Contentor Interno do Slider (Flexbox) */
+/* 2. Contentor Interno do Slider (Flexbox e Resets) */
 .image-slider {
-    /* Define o dobro da largura para caberem as duas imagens lado a lado */
     width: 200%; 
     height: 100%;
-    
-    /* ***** NOVO: Usa Flexbox para colocar as imagens lado a lado ***** */
     display: flex; 
     flex-wrap: nowrap;
     
-    /* Inicia a animação */
+    /* Resets para evitar espaços indesejados */
+    margin: 0;
+    padding: 0;
+
     animation: slide-show 8s infinite ease-in-out; 
 }
 
-/* 3. Estilização das Imagens */
+/* 3. Estilização das Imagens (Ajuste Crítico de Largura) */
 .image-slider .slide-image {
-    /* Faz com que cada imagem ocupe 50% do contentor */
-    width: 50%; 
-    flex-shrink: 0; /* IMPEDE que a imagem encolha */
+    /* **CORREÇÃO PRINCIPAL:** Força a largura a ser ligeiramente maior (50.1%) para compensar 
+       qualquer pixel residual do navegador */
+    width: 50.1%; 
+    flex-shrink: 0; 
     height: 100%;
     object-fit: cover;
+    
+    /* ***** ESSENCIAL: Garante que os navegadores calculam o tamanho de forma previsível ***** */
+    box-sizing: border-box; 
+    
+    /* Resets */
+    display: block; 
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
-/* 4. Keyframes (Mantidos) */
+/* 4. Keyframes (Ajuste Fino na Translação) */
 @keyframes slide-show {
     0% { transform: translateX(0); }
     40% { transform: translateX(0); } 
-    50% { transform: translateX(-50%); } 
-    95% { transform: translateX(-50%); } 
+    /* Ajustamos para -50.5% para compensar a largura de 50.1% */
+    50% { transform: translateX(-50.5%); } 
+    95% { transform: translateX(-50.5%); } 
     100% { transform: translateX(0); }
 }
     </style>
@@ -602,13 +613,7 @@ body.dark .mobile-theme-toggle {
     <div class="modern-project-card">
         <div class="project-image">
             <div class="image-slider">
-                <img src="assets/images/projects/1.png" 
-                    alt="Frente do Cartão de Visita Nadia Irina" 
-                    class="slide-image">
-                
-                <img src="assets/images/projects/2.png" 
-                    alt="Frente do Cartão de Visita Nadia Irina" 
-                    class="slide-image">
+                <img src="assets/images/projects/1.png" alt="Frente do Cartão de Visita Nadia Irina" class="slide-image"><img src="assets/images/projects/2.png" alt="Frente do Cartão de Visita Nadia Irina" class="slide-image">
             </div>
             </div>
         
