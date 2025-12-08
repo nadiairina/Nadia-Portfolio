@@ -427,6 +427,46 @@ body.dark .mobile-theme-toggle {
     border-color: #374151;
     color: #ffffff;
 }
+    /* 1. Definir o Contentor Principal para garantir que a imagem não transborde */
+.project-image {
+    width: 100%;
+    height: 300px; /* Altura fixa para o slider */
+    overflow: hidden; /* **Essencial:** Esconde a imagem que está fora do ecrã */
+    position: relative;
+}
+
+/* 2. Contentor Interno do Slider */
+.image-slider {
+    /* Define o dobro da largura para caberem as duas imagens lado a lado */
+    width: 200%; 
+    height: 100%;
+    /* Inicia a animação */
+    animation: slide-show 8s infinite ease-in-out; 
+}
+
+/* 3. Estilização das Imagens */
+.image-slider .slide-image {
+    width: 50%; /* Cada imagem ocupa metade do contentor (100% / 2) */
+    height: 100%;
+    float: left; /* Coloca as imagens lado a lado */
+    object-fit: cover;
+}
+
+/* 4. Definição da Animação (Keyframes) */
+@keyframes slide-show {
+    /* 0% a 40%: Mostra a primeira imagem (posição inicial) */
+    0% { transform: translateX(0); }
+    40% { transform: translateX(0); } 
+
+    /* 50%: Desliza para a segunda imagem (metade do contentor) */
+    50% { transform: translateX(-50%); } 
+
+    /* 90%: Mantém a segunda imagem visível */
+    95% { transform: translateX(-50%); } 
+
+    /* 100%: Volta para a primeira imagem (reinicia) */
+    100% { transform: translateX(0); }
+}
     </style>
 </head>
 <body>
@@ -559,6 +599,29 @@ body.dark .mobile-theme-toggle {
                 </div>
             </a>
 
+            <div class="project-link-wrapper">
+    <div class="modern-project-card">
+        <div class="project-image">
+            <div class="image-slider">
+                <img src="assets/images/business-card/frente.png" 
+                    alt="Frente do Cartão de Visita Nadia Irina" 
+                    class="slide-image">
+                
+                <img src="assets/images/business-card/verso.png" 
+                    alt="Verso do Cartão de Visita Nadia Irina" 
+                    class="slide-image">
+            </div>
+            </div>
+        
+        <div class="project-info">
+            <h3>Cartão de Visita & Branding Digital: Nadia Irina</h3>
+            <p class="project-category">Design Gráfico & Identidade Corporativa</p>
+            <p class="project-description">
+                Desenvolvimento de uma peça de comunicação essencial com foco em **branding moderno** e **contacto facilitado**. O design integra uma paleta de cores sofisticada (roxo/lavanda) e uma tipografia elegante que reflete o serviço de web design. O verso do cartão maximiza a funcionalidade ao incluir um **QR Code** de fácil leitura, incentivando a visita imediata ao website, e apresenta todos os pontos de contacto cruciais: telefone, e-mail e Instagram.
+            </p>
+        </div>
+    </div>
+</div>
             <a href="https://cantinhodooutono.myshopify.com/" target="_blank" class="project-link-wrapper">
     <div class="modern-project-card">
         <div class="project-image">
