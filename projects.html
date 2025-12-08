@@ -436,9 +436,18 @@ body.dark .mobile-theme-toggle {
 }
 
 /* 3. Estilização das Imagens - NOVO AJUSTE CRÍTICO PARA 3 IMAGENS */
+/* 2. Contentor Interno do Slider (DEFINIÇÃO COMPLETA) */
 .image-slider {
-    width: 300%; /* Aumentamos para 300% para caberem 3 imagens */
-    /* ... (restante código .image-slider permanece igual) ... */
+    width: 300%; 
+    height: 100%;
+    
+    /* ESTAS PROPRIEDADES ESTAVAM A FALTAR/INCORRETAS: */
+    display: flex !important; /* Essencial para colocar as 3 imagens lado a lado */
+    flex-wrap: nowrap;
+    animation: slide-show 12s infinite ease-in-out; /* Essencial para iniciar a animação */
+    
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .image-slider .slide-image {
