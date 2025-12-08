@@ -435,48 +435,33 @@ body.dark .mobile-theme-toggle {
     position: relative;
 }
 
-/* 2. Contentor Interno do Slider (NOVA ESTRATÉGIA) */
+/* 3. Estilização das Imagens - NOVO AJUSTE CRÍTICO PARA 3 IMAGENS */
 .image-slider {
-    /* Define a largura como 200% da largura visível do contentor, 
-       mas vamos forçar a animação a ser controlada pela largura do ecrã */
-    width: 200%; /* Mantido, mas a lógica de translação muda */
-    height: 100%;
-    display: flex !important; /* Mantenha o !important */
-    flex-wrap: nowrap;
-    
-    margin: 0 !important;
-    padding: 0 !important;
-
-    animation: slide-show 8s infinite ease-in-out; 
+    width: 300%; /* Aumentamos para 300% para caberem 3 imagens */
+    /* ... (restante código .image-slider permanece igual) ... */
 }
 
-/* 3. Estilização das Imagens (Ajuste Crítico - Usando Calc) */
 .image-slider .slide-image {
-    /* **CORREÇÃO MAIS SEGURA:** Define a largura como metade do contentor pai (200%),
-       mas garantindo 100% da área visível com a função calc() */
-    width: 50vw; /* Usamos viewport width como âncora */
-    /* OU, se 50vw não funcionar bem, use: width: calc(50% + 1px) !important; */
-    width: 50% !important; /* Forçamos 50% do container (200% do .project-image) */
-    min-width: 50% !important;
-    
-    flex-shrink: 0; 
-    height: 100%;
-    object-fit: cover;
-    box-sizing: border-box !important; 
-    
-    display: block !important; 
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
+    width: 33.333% !important; 
+    min-width: 33.333% !important;
+    /* ... (restante código .slide-image permanece igual) ... */
 }
 
-/* 4. Keyframes (Translação BASEADA na largura da imagem, não do contentor) */
+/* 4. Keyframes - NOVA TRANSLAÇÃO PARA 3 IMAGENS */
 @keyframes slide-show {
+    /* 1ª imagem */
     0% { transform: translateX(0); }
-    40% { transform: translateX(0); } 
-    /* ATENÇÃO: Deslocamos 50% do contentor, o que move a 100% da 1ª imagem */
-    50% { transform: translateX(-50%); } 
-    95% { transform: translateX(-50%); } 
+    25% { transform: translateX(0); } 
+    
+    /* 2ª imagem */
+    33.33% { transform: translateX(-33.333%); } 
+    58.33% { transform: translateX(-33.333%); } 
+    
+    /* 3ª imagem */
+    66.66% { transform: translateX(-66.666%); }
+    91.66% { transform: translateX(-66.666%); }
+    
+    /* Volta ao início */
     100% { transform: translateX(0); }
 }
     </style>
@@ -600,9 +585,27 @@ body.dark .mobile-theme-toggle {
             <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
                     <div class="project-image">
-                        <img src="assets/images/projects/adil-moveis.png" alt="Adil Móveis Wesbite" <img src="assets/images/projects/1.png" alt="Frente do Cartão de Visita Nadia Irina" class="slide-image"><img src="assets/images/projects/2.png" alt="Frente do Cartão de Visita Nadia Irina" class="slide-image">
-                             onerror="this.src='https://via.placeholder.com/400x300?text=adil+moveis'">
+                        <img src="assets/images/projects/adil-moveis-1.png" alt="Página Inicial Adil Móveis" class="slide-image">
+                            <img src="assets/images/projects/1.png" alt="Galeria de Produtos Adil Móveis" class="slide-image">
+                            <img src="assets/images/projects/2.png" alt="Design Responsivo Adil Móveis" class="slide-image">
                     </div>
+                    <div class="project-info">
+                        <h3>Website para Loja de Móveis</h3>
+                        <p class="project-category">Desenvolvimento Web</p>
+                        <p class="project-description">Desenvolvimento de um showroom digital polido para a Adil Móveis. O projeto integra uma interface de navegação fluida, filtragem inteligente de produtos e galerias de imagens dinâmicas, proporcionando uma experiência de utilizador intuitiva e responsiva em todos os dispositivos. A gestão de redes sociais foi integrada para uma presença online coesa.</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link-wrapper">
+                <div class="modern-project-card">
+                    <div class="project-image">
+                        <div class="image-slider">
+                            <img src="assets/images/projects/adil-moveis-1.png" alt="Página Inicial Adil Móveis" class="slide-image">
+                            <img src="assets/images/projects/adil-moveis-2.png" alt="Galeria de Produtos Adil Móveis" class="slide-image">
+                            <img src="assets/images/projects/adil-moveis-3.png" alt="Design Responsivo Adil Móveis" class="slide-image">
+                        </div>
+                        </div>
                     <div class="project-info">
                         <h3>Website para Loja de Móveis</h3>
                         <p class="project-category">Desenvolvimento Web</p>
