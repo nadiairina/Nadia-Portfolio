@@ -435,45 +435,44 @@ body.dark .mobile-theme-toggle {
     position: relative;
 }
 
-/* 2. Contentor Interno do Slider (Flexbox e Resets) */
+/* 2. Contentor Interno do Slider (Ajuste MAIS FORTE) */
 .image-slider {
-    width: 200%; 
+    width: 200% !important; /* Força a largura de 200% */
     height: 100%;
     display: flex; 
     flex-wrap: nowrap;
     
-    /* Resets para evitar espaços indesejados */
-    margin: 0;
-    padding: 0;
+    /* Zera agressivamente margens e paddings */
+    margin: 0 !important;
+    padding: 0 !important;
 
     animation: slide-show 8s infinite ease-in-out; 
 }
 
-/* 3. Estilização das Imagens (Ajuste Crítico de Largura) */
+/* 3. Estilização das Imagens (Ajuste Crítico de Largura MAIS FORTE) */
 .image-slider .slide-image {
-    /* **CORREÇÃO PRINCIPAL:** Força a largura a ser ligeiramente maior (50.1%) para compensar 
-       qualquer pixel residual do navegador */
-    width: 50.1%; 
+    /* Usa 50.1% e !important para compensar erros de arredondamento do navegador */
+    width: 50.1% !important; 
+    min-width: 50.1% !important; /* Essencial para flexbox */
     flex-shrink: 0; 
     height: 100%;
     object-fit: cover;
     
-    /* ***** ESSENCIAL: Garante que os navegadores calculam o tamanho de forma previsível ***** */
-    box-sizing: border-box; 
+    /* Garante que o cálculo da largura é previsível */
+    box-sizing: border-box !important; 
     
-    /* Resets */
-    display: block; 
-    margin: 0;
-    padding: 0;
-    border: none;
+    /* Zera agressivamente margens e paddings */
+    display: block !important; 
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
 }
 
-/* 4. Keyframes (Ajuste Fino na Translação) */
+/* 4. Keyframes (A translação mantém o ajuste) */
 @keyframes slide-show {
     0% { transform: translateX(0); }
     40% { transform: translateX(0); } 
-    /* Ajustamos para -50.5% para compensar a largura de 50.1% */
-    50% { transform: translateX(-50.5%); } 
+    50% { transform: translateX(-50.5%); } /* Mantém o ajuste */
     95% { transform: translateX(-50.5%); } 
     100% { transform: translateX(0); }
 }
