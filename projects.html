@@ -427,56 +427,7 @@ body.dark .mobile-theme-toggle {
     border-color: #374151;
     color: #ffffff;
 }
-/* 1. Contentor Principal (Mantido) */
-.project-image {
-    width: 100%;
-    height: 300px;
-    overflow: hidden; 
-    position: relative;
-}
 
-/* 2. Contentor Interno do Slider (REGRAS CRÍTICAS) */
-.image-slider {
-    width: 300%; 
-    height: 100%;
-    /* ESSENCIAIS PARA O SLIDER */
-    display: flex !important; 
-    flex-wrap: nowrap;
-    animation: slide-show 12s infinite ease-in-out; 
-    
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* 3. Estilização das Imagens */
-.image-slider .slide-image {
-    width: 33.333% !important; 
-    min-width: 33.333% !important;
-    
-    flex-shrink: 0; /* Impede que a imagem encolha e fique esmagada */
-    height: 100%;
-    object-fit: cover;
-    box-sizing: border-box !important; 
-    
-    display: block !important; 
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-}
-
-/* 4. Keyframes - TRANSLAÇÃO PARA 3 IMAGENS */
-@keyframes slide-show {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(0); } 
-    
-    33.33% { transform: translateX(-33.333%); } 
-    58.33% { transform: translateX(-33.333%); } 
-    
-    66.66% { transform: translateX(-66.666%); }
-    91.66% { transform: translateX(-66.666%); }
-    
-    100% { transform: translateX(0); }
-}
     </style>
 </head>
 <body>
@@ -597,12 +548,11 @@ body.dark .mobile-theme-toggle {
             <a href="https://nadiairina.github.io/adil-moveis/index.html" target="_blank" class="project-link-wrapper">
                 <div class="modern-project-card">
                     <div class="project-image">
-                        <div class="image-slider">
-                            <img src="assets/images/projects/adil-moveis-1.png" alt="Página Inicial Adil Móveis" class="slide-image">
-                            <img src="assets/images/projects/1.png" alt="Galeria de Produtos Adil Móveis" class="slide-image">
-                            <img src="assets/images/projects/2.png" alt="Design Responsivo Adil Móveis" class="slide-image">
+                       
+                            <img src="assets/images/projects/adil-moveis.png" alt="Página Inicial Adil Móveis" class="slide-image">
+                            
                         </div>
-                        </div>
+                        
                     <div class="project-info">
                         <h3>Website para Loja de Móveis</h3>
                         <p class="project-category">Desenvolvimento Web</p>
