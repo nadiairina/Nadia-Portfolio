@@ -437,8 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typewriterElement) {
         console.log("Setting up typewriter effect");
         setupTypewriterEffect();
-    } else {
-        console.error("Typewriter element not found!");
     }
 
     // --- Funções Auxiliares (mantidas dentro de DOMContentLoaded) ---
@@ -579,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function setupTypewriterEffect() {
-    const phrases = ['Marketeer +', 'Front-End Developer =', 'Web Designer !']; // Adicionado 'Web Designer'
+    const phrases = ['Web Designer', 'Front-End Developer', 'Marketeer'];
     let index = 0;
     let charIndex = 0;
     

@@ -2651,3 +2651,10 @@ body.dark header#header.scrolled {
         margin-bottom: 1rem;
     }
 }
+
+
+/* Correções: título do início em ecrãs pequenos */
+@media (max-width: 600px) {
+    .hero .job-title { font-size: 2.1rem; overflow-wrap: anywhere; }
+    .hero .title { font-size: 1.8rem; }
+}
